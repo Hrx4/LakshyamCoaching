@@ -1,0 +1,77 @@
+.counter {
+  /* border: 2px solid greenyellow; */
+    box-sizing: border-box;
+    display: flex;
+    
+}
+.counter .days {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 22%;
+    height: 90px;
+    /* float: left; */
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(250, 250, 250, 0.1);
+    margin-right: 4%;
+  }
+
+  .counter .days .value {
+    box-sizing: border-box;
+    margin-top: 15px;
+    display: block;
+    width: 100%;
+}
+
+.counter .days span {
+    box-sizing: border-box;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: rgba(63, 229, 3, 0.867);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 0px;
+    display: block;
+  }
+
+   .counter .hours,
+ .counter .minutes,
+ .counter .seconds {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 22%;
+  height: 90px;
+  /* float: left; */
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(250, 250, 250, 0.1);
+  margin-right: 4%;
+}
+
+ .counter .hours .value,
+ .counter .minutes .value,
+ .counter .seconds .value {
+  box-sizing: border-box;
+  margin-top: 15px;
+  display: block;
+  width: 100%;
+}
+
+ .counter .hours span,
+ .counter .minutes span,
+ .counter .seconds span {
+  box-sizing: border-box;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: rgba(63, 229, 3, 0.867);
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 0px;
+  display: block;
+}

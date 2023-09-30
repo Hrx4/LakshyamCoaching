@@ -1,0 +1,20 @@
+[
+  {
+      "id": 1,
+      "title": "experienced Instuctors",
+      "content": "Lakshyam Coaching provides top-tier education and tailored mentorship, ensuring students benefit from expert faculty guidance for a holistic learning experience.",
+      "iconClass": "fa fa-pencil"
+  },
+  {
+      "id": 2,
+      "title": "Empowering Students",
+      "content": "Our vision is to empower students with the knowledge, skills, and confidence required to tackle the challenges of competitive exams.",
+      "iconClass": "fa fa-pencil"
+  },
+  {
+      "id": 3,
+      "title": "Continuous Innovation",
+      "content": "We are committed to embracing innovation and staying at the forefront of educational advancements.",
+      "iconClass": "fa fa-pencil"
+  }
+]

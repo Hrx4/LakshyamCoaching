@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  
+  .admin__card{
+    border:2px solid white ;
+     color:white;
+     width: 20%;
+  }
+  .admin__card:hover{
+    color: green;
+    border: 2px solid green;
+    cursor: pointer;
+  }
+  .note__btn:hover{
+    background-color: rgb(53, 53, 88);
+    color: white;
+  }
+  
+  @media screen and (max-width: 650px) {
+    
+    .admin__card{
+      margin: auto;
+       width: 80%;
+    }
+    .admin__row{
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  @media screen and (min-width: 650px) {
+    .cross{
+      display: none;
+      
+    }
+    
+  }

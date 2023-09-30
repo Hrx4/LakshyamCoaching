@@ -1,0 +1,77 @@
+Global Styles
+html {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    line-height: 1.15;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgb(33, 37, 41);
+    text-align: left;
+    background-color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+  }
+  
+  /* .features-content */
+  .features-content {
+    box-sizing: border-box;
+    padding: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(12, 18, 40);
+    color: rgb(255, 255, 255);
+  }
+  
+  /* .content-show h4 */
+  .content-show h4 {
+    box-sizing: border-box;
+    margin-top: 0;
+    line-height: 1.2;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    letter-spacing: 1px;
+    margin-bottom: 0;
+  }
+  
+  /* .content-show i */
+  .content-show i {
+    box-sizing: border-box;
+    font-variant: normal;
+    display: inline-block;
+    font-style: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 1;
+    font-family: FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0, 0);
+    margin-right: 15px;
+    font-size: 24px;
+  }
+  
+  /* .content-hide p */
+  .content-hide p {
+    box-sizing: border-box;
+    margin-top: 0;
+    font-size: 13px;
+    line-height: 22px;
+    margin-bottom: 0;
+    color: rgb(255, 255, 255);
+  }
+  

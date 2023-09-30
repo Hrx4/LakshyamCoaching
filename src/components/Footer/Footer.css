@@ -1,0 +1,89 @@
+/* footer-styles.css */
+
+/* Apply styles to the footer */
+footer {
+    box-sizing: border-box;
+    display: block;
+    background-color: rgb(21, 32, 54);
+    text-align: center;
+    /* height: 30px; */
+  }
+  
+  /* Apply styles to the container within the footer */
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    /* height: 40px; */
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1140px;
+    /* box-sizing: border-box;
+    display: block;
+    background-color: rgb(21, 32, 54);
+    text-align: center; */
+  }
+  
+  /* Apply styles to the row within the container */
+  footer .row {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+  /* Apply styles to the columns within the row */
+  footer .col-md-12 {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  /* Apply styles to the paragraph within the column */
+  footer p {
+    box-sizing: border-box;
+    margin-top: 0;
+    line-height: 22px;
+    padding: 25px 0;
+    margin-bottom: 0;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Apply styles to the FontAwesome icon within the paragraph */
+  footer p i.fa-copyright {
+    box-sizing: border-box;
+    font-variant: normal;
+    display: inline-block;
+    font-style: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 1;
+    font-family: FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0px, 0px);
+  }
+  
+  /* Apply styles to the link within the paragraph */
+  footer p a {
+    box-sizing: border-box;
+    background-color: transparent;
+    text-decoration: none;
+    color: rgb(245, 164, 37);
+  }
+  

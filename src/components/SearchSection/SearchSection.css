@@ -1,0 +1,42 @@
+
+.courseSearch-bars{
+    height:60px;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(22, 34, 57, 0.95);
+    
+}
+
+.courseSearch-bars-bar{
+    text-transform: none;
+    overflow-wrap: normal;
+    border: thin solid white;
+    border-radius: 25px;
+    font-variant: inherit;
+    padding: 0.5em 3.5em 0.5em 1em;
+    margin: 5px;
+    background-color: rgba(22, 34, 57, 0.95);
+    color: white;
+    display: inline-block;
+    font-style: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    line-height: 1.5em;
+    box-sizing: border-box;
+    appearance: none;
+    width: 100%;
+    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 0.5em) 0.5em;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), radial-gradient(rgb(221, 221, 221) 70%, transparent 72%);
+    background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
+  
+}

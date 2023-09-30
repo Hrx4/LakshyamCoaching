@@ -1,0 +1,36 @@
+/* Button group styles */
+.owl-dots {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .owl-dot {
+    border: none;
+    background: none;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 255, 255);
+    margin: 50px 10px 0px;
+    border-radius: 0;
+    overflow: visible;
+    text-transform: none;
+    appearance: button;
+    font: inherit;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    padding: 0;
+  }
+  
+  .owl-dot.active {
+    background-color: rgba(63, 229, 3, 0.867);
+  }
+
+  .owl-dot.active :hover {
+    background-color: rgba(255, 255, 255, 0.867);
+  }
+  

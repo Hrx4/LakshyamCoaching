@@ -1,0 +1,103 @@
+.row .g-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.component1 {
+    /* border:2px solid red; */
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.component1-1 {
+    /* border: 2px solid green; */
+    display: flex;
+    flex-direction: column;
+}
+
+.custom {
+    height: fit-content;
+    width: fit-content;
+    max-width: 30em;
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid red; */
+    /* overflow: hidden; */
+    justify-content: center;
+    align-items: center;
+}
+
+.section-courses {
+    background-image: url("./img/choosing-bg.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.img-1 {
+    /* border: 2px solid rgb(30, 245, 105); */
+    height: fit-content;
+    padding: 10px;
+    width: fit-content;
+    max-width: 26em;
+    margin: 20px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+.img-2 {
+    padding: 10px;
+    padding-top: 0;
+    margin: 10px;
+    width: 30em;
+}
+
+.img-3 {
+    padding: 10px;
+    margin: 10px;
+    width: 30em;
+    padding-top: 0;
+}
+
+
+
+.component-2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* border: 2px solid red; */
+    /* width: fit-content; */
+    display: flex;
+    /* justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    min-height: 350px;
+    max-width: 35em;
+    padding: 10px; */
+    object-fit: contain;
+    /* width: 300px;
+    height: 460px; */
+    max-width: 20em;
+    height: fit-content;
+    overflow: hidden;
+    /* position: relative;  */
+}
+
+.img-4 {
+    /* padding: 20px;
+    margin: 10px; 
+    width: 200px;
+    max-width: 90%;
+    height: 300px; */
+    /* object-fit: fill; */
+    /* overflow: hidden; */
+    object-position: left; /* Center the image within the container */
+    
+
+}
