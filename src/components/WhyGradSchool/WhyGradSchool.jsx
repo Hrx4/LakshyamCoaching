@@ -4,7 +4,7 @@ import React , {useState} from 'react'
 // import './css/lightbox.css';
 // import './css/owl.css';
 // import './css/templatemo-grad-school.css';
-
+import './WhyGradSchool.css'
 import image1 from './imageChoose/choose-us-image-01.png'
 import image2 from './imageChoose/choose-us-image-02.png'
 import image3 from './imageChoose/choose-us-image-03.png'
@@ -57,7 +57,7 @@ const pressable2 = (e)=>{
 }
   return (
     <>
-      <section className="section why-us" data-section="section2" style={{backgroundColor:"rgb(23, 34, 56)"}}>
+      <section className="section-why-us" data-section="section2" style={{}}>
     <div className="container">
       <div className="row">
         <div className="col-md-12">

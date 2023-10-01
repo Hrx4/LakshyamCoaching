@@ -3,7 +3,7 @@
   display: block;
   background-repeat: no-repeat;
   padding: 70px 0;
-  background-image: url("http://127.0.0.1:5500/assets/images/coming-soon-bg.jpg");
+  background-image: url("./comingbackground.jpg");
   background-size: cover;
   background-color: rgb(23, 34, 56);
 }
