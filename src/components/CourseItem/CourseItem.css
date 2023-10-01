@@ -3,7 +3,9 @@
     border-radius: 1%;
     display: flex;
     flex-direction: column;
-    max-height: 350px;
+    width: 400px;
+    justify-content: space-between;
+    background-color: white;
 }
 
 .item img{
@@ -13,7 +15,6 @@
     border-style: none;
     
     display: block;
-    width: 100%;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
 

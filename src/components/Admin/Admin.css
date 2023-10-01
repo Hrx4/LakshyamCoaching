@@ -17,9 +17,19 @@
   .note__btn:hover{
     background-color: rgb(53, 53, 88);
     color: white;
+    
+  }
+  .super-choose{
+    flex-direction: column;
+    height: 92vh;
+    width: 15%;
+  }
+  .note__btn{
+    align-items: center;
+    display: flex;
   }
   
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 750px) {
     
     .admin__card{
       margin: auto;
@@ -29,6 +39,17 @@
       flex-direction: column;
       gap: 20px;
     }
+    .super-container{
+      flex-direction: column;
+    }
+    .super-choose{
+      flex-direction: row;
+      height: 10vh;
+      justify-content: space-evenly;
+      width: 90%;
+    }
+    
+    
   }
   @media screen and (min-width: 650px) {
     .cross{

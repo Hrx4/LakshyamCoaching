@@ -37,11 +37,7 @@ const GallerySection = () => {
             </div>
             <div className="component-2" style={{width:"auto" , marginTop:40}}>
               <div className="img-4">
-                {/* <GalleryItem
-                imgSrc={img_4}
-                delay="0.7s"
-                coverImage
-              /> */}
+                
                 <img src={img_4} alt="jj"/>
               </div>
             </div>

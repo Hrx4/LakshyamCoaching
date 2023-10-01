@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css';
 import lakshyamLogo from './lakshyamlogo.png';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = () => {
+
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <div>
     <header className="main-header clearfix">
@@ -18,9 +22,9 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <a href="#menu" className="menu-link">
-        <i className="fa fa-bars"></i>
-      </a>
+      <div onClick={()=>{setMenuOpen(!menuOpen)}} className="menu-link">
+        <MenuIcon fontSize='large' color='success' />
+      </div>
       <nav id="menu" className="main-nav" role="navigation">
         <ul className="main-menu">
           <li>
@@ -46,6 +50,36 @@ const Navbar = () => {
         </ul>
       </nav>
     </header>
+    {
+      (menuOpen)?
+      (
+        <div className='nav-toggle' style={{height:500 , width:'100%' , backgroundColor:'rgba(22,34,57,1)',position:"static" }}>
+          <ul className="main-menu1" style={{height:400 , display:"flex" , justifyContent:"space-evenly" , flexDirection:"column" , alignItems:"center" , listStyle:"none" , textDecoration:"none"}}>
+            <li >
+              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}} to="/">Home</Link>
+            </li>
+            <li>
+              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/about">About Us</Link>
+            </li>
+            <li>
+              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/courses">Courses</Link>
+            </li>
+            <li>
+              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/freetutorial">Free Tutorial</Link>
+            </li>
+            <li>
+              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/contact">Contact</Link>
+            </li>
+            <li>
+              <Link style={{textDecoration:"none" , fontSize:20 , backgroundColor: '#3fe503dd' , padding:5 , color:'black'}}  to={'/login'} >
+                Login
+              </Link>
+            </li>
+          </ul>
+        </div>
+      ):
+      null
+    }
     </div>
   )
 }

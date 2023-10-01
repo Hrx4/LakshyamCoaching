@@ -5,14 +5,12 @@
     z-index: 12;
     width: 100%;
     top: 0;
-    /* border: red solid; */
 }
 .main-header .logo {
     float: left;
     /* line-height: 60px; */
     padding: auto;
     padding-left: 60px;
-    /* border: red solid; */
 }
 
 
@@ -127,6 +125,9 @@
 .main-nav li.active a {
     border: 2px solid #25f53a;
 }
+.menu-link{
+    display: none;
+}
 
 @media (max-width: 950px) {
   .main-nav li:hover a,
@@ -138,6 +139,9 @@
 
 
 .topnav .icon {
+    display: none;
+  }
+  .nav-toggle{
     display: none;
   }
 
@@ -162,4 +166,29 @@
       display: block;
       text-align: left;
     }
+  }
+
+
+  @media screen and (max-width: 750px) {
+    .main-menu{
+        display: none;
+    }
+    .menu-link{
+        display: flex;
+        height: 100%;
+        width: 30px;
+        justify-content: flex-end;
+        align-items: center;
+        margin-left: 80%;
+        cursor: pointer;
+    }
+    .menu-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-toggle{
+        display: block;
+      }
+    
+
   }

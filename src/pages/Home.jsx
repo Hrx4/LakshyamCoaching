@@ -27,7 +27,6 @@ function Home() {
       <CoursesSection/>
       <VideoSection/>
       <GallerySection/>
-      {/* <TestimonialSection/> */}
       <Testimonials/>
       <ContactSection/>
       

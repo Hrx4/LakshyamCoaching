@@ -128,7 +128,7 @@ const NoteTable = (props) => {
       
   return (
     <>
-        <div style={{width:"85%", overflowX:"scroll", padding:10}}>
+        <div className='table-scroll' style={{width:"100%", overflowX:"scroll",overflowY:"scroll", padding:10,height:"100vh"}}>
         <table >
       <tbody>
       {

@@ -34,7 +34,7 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
     <div className="col-md-6">
       <form id="contact" onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
         <div className="row" style={{display:"flex" , justifyContent:"center" , alignItems:"center"}}>
-          <div className="col-md-5">
+          <div className="col-md-5 col-sm-10">
             <fieldset>
               <input
                 name="name"
@@ -49,7 +49,7 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
             </fieldset>
           </div>
 
-          <div className="col-md-5">
+          <div className="col-md-5 col-sm-10">
             <fieldset>
               <input
                 name="email"
@@ -64,7 +64,7 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
             </fieldset>
           </div>
 
-          <div className="col-md-10">
+          <div className="col-md-10 col-sm-10">
             <fieldset>
               <textarea
                 name="message"

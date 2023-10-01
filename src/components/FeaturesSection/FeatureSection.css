@@ -1,11 +1,10 @@
 .feature-main-container{
     /* border: 4px solid orange; */
     /* background-color: white; */
-    margin-top: 43.5%;
+    margin-top: 43%;
     /* opacity: 0.5; */
     /* z-index: 1000; */
     display: flex;
-    
     width: 49%;
     justify-content: space-around;
     height: 50px;
@@ -19,16 +18,16 @@
     color: white;
     flex-direction: column;
     align-items: center;
-    height: 50px;
-    transition: transform 0.9s ease-in-out;
+    height: 56.5px;
+    transition: all 0.6s ease-in-out;
 }
 
 .feature-main-container-sub:hover {
     background-color: green;
     height: 200px;
-    /* height: 450px; */
-    transform: translateY(-100px);
+    transform: translateY(-120px);
     text-align: center;
+    padding: 10px;
 }
 
 .feature-main-container-sub-p1{
@@ -46,3 +45,9 @@
     color: white;
 }
 
+@media screen and (max-width: 750px) {
+    .feature-main-container{
+        /* margin-top: 137%; */
+        display: none;
+    }
+}

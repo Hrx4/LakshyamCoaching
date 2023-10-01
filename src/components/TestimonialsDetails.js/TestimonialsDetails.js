@@ -4,7 +4,7 @@ const TestiMonialsDetails = ({testiMonialDetail}) => {
     const {name, address, description, img} = testiMonialDetail;
     console.log("testiMonialDetail"+testiMonialDetail)
     return (
-        <div class="item">
+        <div class="item" style={{margin:"auto"}}>
             <div class="shadow-effect">
                 <img class="img-circle" src={img} alt='imageify'/>
                 <p>{description}</p>

@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import CourseItem from "../CourseItem/CourseItem";
-// import myCourseImage1 from './courses-01.jpg'
 import './CoursesSection.css';
 import img_1 from './courses-01 copy.jpg';
 import img_2 from './courses-02.jpg';
 import img_3 from './courses-03.jpg';
 import img_4 from './courses-04.jpg';
 import img_5 from './courses-05.jpg';
-import ButtonGroup from "./ButtonGroup/ButtonGroup";
  
 
 
@@ -77,27 +75,24 @@ const CoursesSection = () => {
     },
   ];
 
-  const [activeButton, setActiveButton] = useState(1);
 
-  const itemsToShow = activeButton === 1 ? coursesData.slice(0, 5) : coursesData.slice(5);
 
   return (
-    <section className="section-courses" data-section="section4">
-      <div className="container-fluid">
-        <div className="row">
+    <section className="section-courses" data-section="section4" style={{paddingBottom:50}}>
+      <div className="container-fluid" >
+        <div className="">
           <div className="col-md-12">
             <div className="section-heading">
               <h2>Choose Your Course</h2>
             </div>
           </div>
           <div className="courseContainer">
-            {itemsToShow.map((course, index) => (
+            {coursesData.map((course, index) => (
               <CourseItem key={index} {...course} />
             ))}
           </div>
         </div>
       </div>
-      <ButtonGroup activeButton={activeButton} setActiveButton={setActiveButton} />
     </section>
   );
 };

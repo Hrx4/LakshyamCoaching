@@ -14,7 +14,7 @@
     padding-right: 15px;
     padding-left: 15px;
     flex: 0 0 100%;
-    max-width: 100%;
+    /* max-width: 100%; */
   }
   
   /* Styles for the section heading */
@@ -44,6 +44,12 @@
   .courseContainer{
     box-sizing: border-box;
     display: flex;
+    width: auto  !important;
+    max-width: auto !important;
     flex-direction: row ;
-    justify-content: center;
+    overflow-x: scroll;    
+  }
+  .courseContainer::-webkit-scrollbar {
+    background: transparent; /* Chrome/Safari/Webkit */
+    width: 0px;
   }

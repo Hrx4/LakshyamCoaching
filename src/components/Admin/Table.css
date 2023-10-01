@@ -6,3 +6,7 @@ table, th, td {
   table{
     width: 100%;
   }
+  .table-scroll::-webkit-scrollbar {
+    background: transparent; /* Chrome/Safari/Webkit */
+    width: 0px;
+  }

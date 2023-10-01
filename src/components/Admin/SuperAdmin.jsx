@@ -42,17 +42,17 @@ const SuperAdmin = () => {
   return (
     <>
       
-        <div style={{display:"flex" , backgroundColor:('rgba(22,34,57,0.85)'), color:"white"}}>
-        <div style={{ width:"15%", height:"92vh",display:"flex",flexDirection:"column",marginTop:5}}>
+        <div className='super-container' style={{display:"flex" , backgroundColor:('rgba(22,34,57,0.85)'), color:"white"}}>
+        <div className='super-choose' style={{display:"flex",marginTop:5}}>
         
-        <div onClick={(e)=>{setNoteView('noteform')}} style={{padding:10, cursor:"pointer"}} className='note__btn'>
+        <div onClick={(e)=>{setNoteView('noteform')}} style={{padding:20, cursor:"pointer"}} className='note__btn'>
           Note form
         </div>
-        <div onClick={handleNoteTable} style={{padding:10 , cursor:"pointer"}} className='note__btn'>
+        <div onClick={handleNoteTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Note details
         </div>
       </div>
-      <Divider orientation='vertical'  style={{height:"93vh",color:"red"}}/>
+      {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}
       {
         (noteView==='noteform')?
         <NoteForm/>:

@@ -92,7 +92,7 @@ function NoteForm() {
   </div> : null}
   <ToastContainer/>
 
-      <div className="form-container">
+      <div className="form-container" style={{marginTop:50 , marginBottom:50}}>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title:</label>
