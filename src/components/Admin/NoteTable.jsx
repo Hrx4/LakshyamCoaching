@@ -196,67 +196,67 @@ const NoteTable = (props) => {
         onClose={handleCustomerClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-      >
-        <Box sx={{position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: {xs:"65%" ,md:400},
-  height:"70vh",
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-  overflowY:"scroll"
-}}>
-  {loading ? <div className="loader"> 
-  Please Wait Your File is Uploading......
-  <CircularProgress/>
-  </div> : null}
+        >
+          <Box sx={{position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: {xs:"80%" ,md:500},
+            height:"70vh",
+            bgcolor: 'background.paper',
+            border: '2px solid #000',
+            boxShadow: 24,
+            p: 4,
+            overflowY:"scroll"
+          }}>
+            {loading ? <div className="loader"> 
+            Please Wait Your File is Uploading......
+            <CircularProgress/>
+            </div> : null}
 
-<div className="form-container">
-      <form onSubmit={updateList} >
-        <div className="form-group">
-          <label>Title:</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-        </div>
+            <div style={{width:"auto"}} className="form-container">
+              <form onSubmit={updateList} >
+                <div className="form-group">
+                  <label>Title:</label>
+                  <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                </div>
 
-        <div className="form-group">
-          <label>Subject:</label>
-          <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} />
-        </div>
+                <div className="form-group">
+                  <label>Subject:</label>
+                  <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} />
+                </div>
 
-        <div className="form-group">
-          <label>Class:</label>
-          <input type="text" value={classValue} onChange={(e) => setClassValue(e.target.value)} />
-        </div>
+                <div className="form-group">
+                  <label>Class:</label>
+                  <input type="text" value={classValue} onChange={(e) => setClassValue(e.target.value)} />
+                </div>
 
-        <div className="form-group">
-          <label>Batch:</label>
-          <input type="text" value={batch} onChange={(e) => setBatch(e.target.value)} />
-        </div>
+                <div className="form-group">
+                  <label>Batch:</label>
+                  <input type="text" value={batch} onChange={(e) => setBatch(e.target.value)} />
+                </div>
 
-        <div className="form-group">
-          <label>Image:</label>
-          <input type="file" accept="image/*" onChange={uploadFiles} />
-        </div>
+                <div className="form-group">
+                  <label>Image:</label>
+                  <input type="file" accept="image/*" onChange={uploadFiles} />
+                </div>
 
-        <div className="form-group">
-          <label>PDF:</label>
-          <input type="file" accept=".pdf" onChange={uploadFiles} />
-        </div>
+                <div className="form-group">
+                  <label>PDF:</label>
+                  <input type="file" accept=".pdf" onChange={uploadFiles} />
+                </div>
 
-        <div className="form-group">
-          <label>Course:</label>
-          <input type="text" value={course} onChange={(e) => setCourse(e.target.value)} />
-        </div>
+                <div className="form-group">
+                  <label>Course:</label>
+                  <input type="text" value={course} onChange={(e) => setCourse(e.target.value)} />
+                </div>
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
 
-        </Box>
-      </Modal>
+          </Box>
+        </Modal>
 
     </>
   )

@@ -1,14 +1,10 @@
 .main-header {
     background-color: rgba(22,34,57,1);
     height: 80px;
-    position: sticky;
-    z-index: 12;
     width: 100%;
-    top: 0;
 }
 .main-header .logo {
     float: left;
-    /* line-height: 60px; */
     padding: auto;
     padding-left: 60px;
 }

@@ -9,7 +9,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div>
+    <div style={{position:"sticky" , top:0 , zIndex:100}}>
     <header className="main-header clearfix">
       <div className="logo">
         <Link to="/">

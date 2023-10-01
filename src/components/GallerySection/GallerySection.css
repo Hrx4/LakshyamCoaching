@@ -101,3 +101,26 @@
     
 
 }
+.image__grow:hover{
+    flex-grow: 1;
+    transform: scale(1.1);
+}
+.image__right{
+    width: 60%;
+}
+.image__left{
+    width: 39%;
+}
+
+
+@media screen and (max-width: 750px) {
+    .image__left, .image__right{
+        width: 100%;
+    }
+    .image__left{
+        margin-top: 10px;
+    }
+    .gallery__container{
+        flex-direction: column;
+    }
+}

@@ -1,6 +1,4 @@
 import React from "react";
-// You can create a SectionHeading component
-import GalleryItem from "../GalleryItem/GalleryItem"; // Create a GalleryItem component
 import SectionHeading from "../SectionHeading/SectionHeading";
 import "./GallerySection.css";
 import img_1 from "./img/gallery1.jpg";
@@ -13,35 +11,27 @@ const GallerySection = () => {
       <div className="container-xxl py-5 category">
         <div className="container">
           <SectionHeading title="Students Gallery" />
-
-          <div className="row g-3" style={{justifyContent:"center"}}>
-            <div className="component1" style={{width:"38%"}}>
-              <div className="component1-1">
-                <div className="img-1">
-                  <GalleryItem imgSrc={img_1} delay="0.1s" />
+          <div style={{height:700 , width:"100%"}}>
+            <div className="gallery__container" style={{width:"95%",height:"100%" , margin:"auto" , display:"flex", justifyContent:"space-between" }}>
+              <div className="image__right" style={{ height:"100%"  , display:"flex" , flexDirection:"column" , justifyContent:"space-between" }}>
+                <div  style={{height:"60%" , width:"100%", overflow:"hidden" }}>
+                <img className="image__grow" style={{height:"100%" , width:"100%" , objectFit:"cover" , transition:".3s all ease-in-out" }} src={img_1} alt="" />
                 </div>
-                <div className="custom">
-                  <div className="img-2">
-                    <GalleryItem
-                      style={{ width: "50%", height: "50%" }}
-                      imgSrc={img_2}
-                      delay="0.3s"
-                      marginTop="10px"
-                    />
+                <div style={{height:"39%" , width:"100%" , display:"flex" , justifyContent:"space-between"}}>
+                  <div style={{width:"49%" , height:"100%", overflow:"hidden"  }}>
+                  <img className="image__grow" style={{height:"100%" , width:"100%" , objectFit:"cover" , transition:".3s all ease-in-out" }} src={img_2} alt="" />
                   </div>
-                  <div className="img-3">
-                    <GalleryItem imgSrc={img_3} delay="0.5s" marginTop="10px" />
+                  <div style={{width:"49%" , height:"100%", overflow:"hidden" }}>
+                  <img  className="image__grow"style={{height:"100%" , width:"100%" , objectFit:"cover" , transition:".3s all ease-in-out" }} src={img_3} alt="" />
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="component-2" style={{width:"auto" , marginTop:40}}>
-              <div className="img-4">
-                
-                <img src={img_4} alt="jj"/>
+              <div className="image__left" style={{ height:"100%"  , overflow:"hidden" }}>
+                <img className="image__grow" style={{height:"100%" , width:"100%" , objectFit:"cover" , transition:".3s all ease-in-out" }} src={img_4} alt="" />
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

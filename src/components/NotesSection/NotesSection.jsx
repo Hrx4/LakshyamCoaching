@@ -74,7 +74,7 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
     <section className="text">
       <div className="contain">
         <div className="row tut__container">
-          <div className="col-lg-8 col-sm-10">
+          <div className="col-lg-8 col-sm-12">
           {/* {notes.map()} */}
             {
               (showImg==='')?<div style={{ width: "100%", height: "60vh", color:"white" , display:"flex" , justifyContent:"center" , alignItems:"center"}}>

@@ -13,7 +13,7 @@ import SuperAdmin from "./components/Admin/SuperAdmin";
 function App() {
 
   return (
-    <div className="bodyContainer">
+    <div >
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
