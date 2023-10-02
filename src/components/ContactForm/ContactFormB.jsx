@@ -44,6 +44,9 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
       });
       } else {
         console.log("Some error occured");
+        toast.warning('All fields Required', {
+          position: toast.POSITION.TOP_CENTER
+      });
       }
     } catch (err) {
       console.log(err);
