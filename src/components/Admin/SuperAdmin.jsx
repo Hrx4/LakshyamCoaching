@@ -1,12 +1,13 @@
-import { Divider } from '@mui/material'
 import React, { useState } from 'react'
 import NoteForm from './NoteForm'
 import NoteTable from './NoteTable'
 import backend from '../../backend'
+import ContactTable from './ContactTable'
 
 const SuperAdmin = () => {
 
   const [noteList, setNoteList] = useState([])
+  const [contactList, setContactList] = useState([])
   const [noteView, setNoteView] = useState('noteform')
 
 
@@ -38,6 +39,34 @@ const SuperAdmin = () => {
       }
 
     }
+  const handleContactTable = async() => {
+      setNoteView('contacttable')
+  
+      try {
+          const response = await fetch(`${backend}contact/`, {
+            method: "GET",
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          const resJson = await response.json();
+  
+  
+          if (response.status === 200) {
+            setContactList(resJson);
+            console.log('====================================');
+            console.log(resJson);
+            console.log('====================================');
+          } else {
+            console.log("Some error occured");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+  
+    }
 
   return (
     <>
@@ -51,13 +80,27 @@ const SuperAdmin = () => {
         <div onClick={handleNoteTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Note details
         </div>
+        <div onClick={handleContactTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
+          Contact details
+        </div>
       </div>
       {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}
       {
         (noteView==='noteform')?
         <NoteForm/>:
-        <NoteTable noteList={noteList} setNoteList={setNoteList}/>
+        null
       }
+      {
+        (noteView==='notetable')?
+      <NoteTable noteList={noteList} setNoteList={setNoteList}/>:
+      null
+      }
+      {
+        (noteView==='contacttable')?
+        <ContactTable contactList={contactList} setContactList={setContactList}/>:
+        null
+      }
+
         </div>
       
     </>

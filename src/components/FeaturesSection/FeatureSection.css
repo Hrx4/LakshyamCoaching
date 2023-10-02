@@ -23,7 +23,7 @@
 }
 
 .feature-main-container-sub:hover {
-    background-color: green;
+    background-color: rgba(63, 229, 3, 0.867);
     height: 200px;
     transform: translateY(-120px);
     text-align: center;

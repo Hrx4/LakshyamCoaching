@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import './ContactForm.css'
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import backend from '../../backend';
+
 
 const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) => {
   const [formData, setFormData] = useState({
@@ -16,14 +20,40 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+
+    try {
+      const res = await fetch(`${backend}contact/`, {
+        method: "POST",
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contactName : formData.name , 
+          contactEmail : formData.email , 
+          contactMessage : formData.message
+        }),
+      });
+      // let resJson = await res.json();
+      if (res.status === 200) {
+        console.log("fine");
+        toast.success('Form submitted', {
+          position: toast.POSITION.TOP_CENTER
+      });
+      } else {
+        console.log("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    
+
+
     console.log("Submitted Data:", formData);
 
-    // You can perform additional actions here, such as sending the data to a server.
-
-    // Optionally, you can clear the form fields after submission.
-    setFormData({
+      setFormData({
       name: "",
       email: "",
       message: "",
@@ -31,7 +61,8 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
   };
 
   return (
-    <div className="col-md-6">
+      <div className="col-md-6">
+            <ToastContainer/>
       <form id="contact" onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
         <div className="row" style={{display:"flex" , justifyContent:"center" , alignItems:"center"}}>
           <div className="col-md-5 col-sm-10">

@@ -23,7 +23,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div onClick={()=>{setMenuOpen(!menuOpen)}} className="menu-link">
-        <MenuIcon fontSize='large' color='success' />
+        <MenuIcon fontSize='large'  style={{color:"rgba(63, 229, 3, 0.867)"}} />
       </div>
       <nav id="menu" className="main-nav" role="navigation">
         <ul className="main-menu">
