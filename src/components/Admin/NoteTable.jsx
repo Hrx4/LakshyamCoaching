@@ -84,7 +84,7 @@ const NoteTable = (props) => {
           console.log('====================================');
   
           props.setNoteList( [...props.noteList.filter(item => item._id !== id)]);
-          // window.location.reload(true);
+          window.location.reload(true);
         } catch (err) {
           console.log(err);
         }

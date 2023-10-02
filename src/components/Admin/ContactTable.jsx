@@ -48,7 +48,7 @@ const ContactTable = (props) => {
           console.log('====================================');
   
           props.setContactList( [...props.contactList.filter(item => item._id !== id)]);
-          // window.location.reload(true);
+          window.location.reload(true);
         } catch (err) {
           console.log(err);
         }
