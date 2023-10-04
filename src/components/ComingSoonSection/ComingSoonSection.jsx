@@ -6,10 +6,10 @@ import './ComingSoonSection.css'
 
 const ComingSoonSection = () => {
   return (
-    <section className="section coming-soon" data-section="section3">
-      <div className="container" style={{width:"80%"}}>
-        <div className="row">
-          <div className="col-md-7 col-xs-12">
+    <section className="section coming-soon"  data-section="section3">
+      <div className="container">
+        <div className="row container__part" >
+          <div className="col-md-7 col-sm-12">
             <div className="continer centerIt">
               <h4>
                 Take <em>any Lakhsyam courses</em> and get 10% off for your next course

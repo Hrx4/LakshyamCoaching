@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {saveAs} from 'file-saver'
 import './NotesSection.css';
 import backend from "../../backend";
 // NoteCard component
@@ -92,9 +93,9 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
               <h3>{title}</h3>
               <span>Download Notes Here</span>
               <button className="btn">
-                <a onClick={()=>{console.log(showPdf)}} href={showPdf} target="_blank"  rel="noreferrer" style={{textDecoration:"none" , fontWeight:"bold"}}>
-                <i className="fa fa-download"></i> Download
-                </a>
+                <div onClick={()=>{saveAs(showPdf , `${title}.pdf`)}} download={`${title}.pdf`}  rel="noreferrer" style={{textDecoration:"none" , fontWeight:"bold"}}>
+                 Download
+                </div>
               </button>
             </div>
           </div>
@@ -107,7 +108,6 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
                   title={note.noteTitle}
                   pdf={note.notePdf}
                 />
-
                 
               ))}
   </div>

@@ -32,7 +32,9 @@ app.get('/', (req, res) => {
 
 
 app.use('/getnote' , require('./routes/noteRoute'))
+app.use('/contact' , require('./routes/contactRoute'))
+
 
 app.listen(8080, () => {
-  console.log(`Server is running `);
+  console.log(`Server is running on Port 8080`);
 });

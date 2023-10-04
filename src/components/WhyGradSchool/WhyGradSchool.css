@@ -51,3 +51,16 @@ li.clicked{
 
 
 
+
+li::marker{
+  color: rgba(63, 229, 3, 0.867);
+  height: 5px;
+  width: 5px;
+}
+
+@media screen and (max-width: 750px) {
+
+.section__image{
+  width: 100%;
+}
+}

@@ -76,7 +76,7 @@ const pressable2 = (e)=>{
               <article style={{marginTop:50, marginBottom:60 }} id='tabs-1'>
                 <div className="row">
                   <div className="col-md-6">
-                    <img src={imageContent} alt=""/>
+                    <img className='section__image' src={imageContent} alt=""/>
                   </div>
                   <div className="col-md-6" style={{display:"flex" , flexDirection:"column" , justifyContent:"space-evenly"}}>
                     <h4 style={{color:"white" ,fontSize:35}}>{heading}</h4>

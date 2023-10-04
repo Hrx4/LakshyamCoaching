@@ -23,7 +23,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div onClick={()=>{setMenuOpen(!menuOpen)}} className="menu-link">
-        <MenuIcon fontSize='large' color='success' />
+        <MenuIcon fontSize='large'  style={{color:"rgba(63, 229, 3, 0.867)"}} />
       </div>
       <nav id="menu" className="main-nav" role="navigation">
         <ul className="main-menu">
@@ -55,22 +55,22 @@ const Navbar = () => {
       (
         <div className='nav-toggle' style={{height:500 , width:'100%' , backgroundColor:'rgba(22,34,57,1)',position:"static" }}>
           <ul className="main-menu1" style={{height:400 , display:"flex" , justifyContent:"space-evenly" , flexDirection:"column" , alignItems:"center" , listStyle:"none" , textDecoration:"none"}}>
-            <li >
+            <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}} to="/">Home</Link>
             </li>
-            <li>
+            <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/about">About Us</Link>
             </li>
-            <li>
+            <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/courses">Courses</Link>
             </li>
-            <li>
+            <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/freetutorial">Free Tutorial</Link>
             </li>
-            <li>
+            <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/contact">Contact</Link>
             </li>
-            <li>
+            <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , backgroundColor: '#3fe503dd' , padding:5 , color:'black'}}  to={'/login'} >
                 Login
               </Link>

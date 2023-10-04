@@ -1,13 +1,12 @@
 .feature-main-container{
     /* border: 4px solid orange; */
     /* background-color: white; */
-    margin-top: 43%;
+    /* margin-top: 43%; */
     /* opacity: 0.5; */
     /* z-index: 1000; */
     display: flex;
-    width: 49%;
     justify-content: space-around;
-    height: 50px;
+    height: 55px;
 }
 
 .feature-main-container-sub{
@@ -23,7 +22,7 @@
 }
 
 .feature-main-container-sub:hover {
-    background-color: green;
+    background-color: rgba(63, 229, 3, 0.867);
     height: 200px;
     transform: translateY(-120px);
     text-align: center;

@@ -21,7 +21,6 @@
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-    max-width: 900px;
   }
   .section.coming-soon .row {
     box-sizing: border-box;
@@ -65,4 +64,24 @@
     width: 40%;
     
     
+  }
+  .container{
+    width: 80%
+  }
+
+  @media screen and (max-width: 750px) {
+    .container__part{
+      flex-direction: row !important;
+    }
+    .container{
+      width:  100% !important;
+      /* flex-direction: row; */
+    }
+    .registration{
+      margin-top: 70px !important;
+    }
+    .section{
+      height: 800px;
+    }
+
   }

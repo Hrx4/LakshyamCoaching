@@ -33,9 +33,6 @@ function NoteForm() {
                     setPdf(data.url)
                 if(files[0].type === "image/jpeg" || files[0].type === "image/png")
                     setImage(data.url)
-               console.log('====================================');
-               console.log(data.url);
-               console.log('====================================');
             })
             .catch((err) => {
               console.log(err);
@@ -70,15 +67,29 @@ function NoteForm() {
       // let resJson = await res.json();
       if (res.status === 200) {
         console.log("fine");
+            setTitle('')
+            setSubject('') 
+            setClassValue('') 
+            setBatch ('') 
+            setImage ('') 
+            setPdf('') 
+            setCourse('')
+            toast.success('Form submitted', {
+              position: toast.POSITION.TOP_CENTER
+          });
       } else {
+        toast.error('All field fill required', {
+          position: toast.POSITION.TOP_CENTER
+      });
         console.log("Some error occured");
       }
     } catch (err) {
+      toast.error('All field fill required', {
+        position: toast.POSITION.TOP_CENTER
+    });
       console.log(err);
     }
-    toast.success('Form submitted', {
-      position: toast.POSITION.TOP_CENTER
-  });
+    
   // setLoading(false)
 
   };
@@ -116,12 +127,12 @@ function NoteForm() {
 
         <div className="form-group">
           <label>Image:</label>
-          <input type="file" accept="image/*" onChange={uploadFiles} />
+          <input type="file" accept="image/*"  onChange={uploadFiles} />
         </div>
 
         <div className="form-group">
           <label>PDF:</label>
-          <input type="file" accept=".pdf" onChange={uploadFiles} />
+          <input type="file" accept=".pdf"  onChange={uploadFiles} />
         </div>
 
         <div className="form-group">
