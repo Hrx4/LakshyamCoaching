@@ -39,6 +39,9 @@ function NoteForm() {
             })
             .catch((err) => {
               console.log(err);
+              console.log('====================================');
+              console.log(files);
+              console.log('====================================');
             });
             setLoading(false)
   }
@@ -130,12 +133,12 @@ function NoteForm() {
 
         <div className="form-group">
           <label>Image:</label>
-          <input type="file" accept="image/*" value={image} onChange={uploadFiles} />
+          <input type="file" accept="image/*"  onChange={uploadFiles} />
         </div>
 
         <div className="form-group">
           <label>PDF:</label>
-          <input type="file" accept=".pdf" value={pdf} onChange={uploadFiles} />
+          <input type="file" accept=".pdf"  onChange={uploadFiles} />
         </div>
 
         <div className="form-group">
