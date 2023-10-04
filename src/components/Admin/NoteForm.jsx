@@ -33,15 +33,9 @@ function NoteForm() {
                     setPdf(data.url)
                 if(files[0].type === "image/jpeg" || files[0].type === "image/png")
                     setImage(data.url)
-               console.log('====================================');
-               console.log(data.url);
-               console.log('====================================');
             })
             .catch((err) => {
               console.log(err);
-              console.log('====================================');
-              console.log(files);
-              console.log('====================================');
             });
             setLoading(false)
   }
