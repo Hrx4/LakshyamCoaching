@@ -62,7 +62,7 @@ const pressable2 = (e)=>{
       <div className="row">
         <div className="col-md-12">
           <div  className="section-heading">
-            <h2>Why choose Grad School?</h2>
+            <h2>Why choose Lakshyam Coaching?</h2>
           </div>
         </div>
         <div className="col-md-12">

@@ -1,12 +1,20 @@
 .main-header {
-    background-color: rgba(22,34,57,1);
+    background-color: rgba(22, 42, 75, 0.795);
+    transition: background-color 0.3s ease ;
+    /* background-color: (0,0,0); */
     height: 80px;
     width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.main-header.scrolled{
+    background-color: rgba(22, 42, 75, 1);
 }
 .main-header .logo {
     float: left;
     padding: auto;
     padding-left: 60px;
+    padding-top: 8px;
 }
 
 
@@ -32,8 +40,9 @@
     float: right;
     padding-right: 60px;
     padding-top: 15px;
-    padding-bottom: 0px;
+    padding-bottom: 15px;
     /* border: red solid; */
+    
 }
 
 .main-menu li {

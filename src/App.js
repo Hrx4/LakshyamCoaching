@@ -13,8 +13,10 @@ import SuperAdmin from "./components/Admin/SuperAdmin";
 function App() {
 
   return (
+   
     <div >
       <Navbar/>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
