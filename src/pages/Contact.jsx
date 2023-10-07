@@ -11,7 +11,6 @@ const Contact = () => {
         heading2a="Contact us"
         // heading2b="us"
         videoSource={myVideo}
-        // buttonText="Discover more" // Provide buttonText prop if needed
         showFeaturesSection={false}
       />
       <ContactSection/>
