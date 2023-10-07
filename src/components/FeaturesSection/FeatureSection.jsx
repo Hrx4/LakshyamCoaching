@@ -8,7 +8,7 @@ import data from "./bannerData.json";
 const FeaturesSection = () => {
   return (
     <div style={{ display: "flex", justifyContent: "center" , height:"90%" , alignItems:"end"}}>
-      <div className="feature-main-container" /*style={{width:800}}> */>
+      <div className="feature-main-container" >
         {data.map((card) => (
           <div className="feature-main-container-sub" style={{padding:10}} key={card.id}>
             <div style={{ height: "30px", display:'flex' }}>
