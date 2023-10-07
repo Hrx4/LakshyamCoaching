@@ -85,7 +85,7 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
 
           <div className="col-md-5 col-sm-10">
             <fieldset>
-              <input style={{border:"none", margin:"10px"}}
+              <input style={{border:"none", marginTop:10, marginBottom:10}}
                 name="email"
                 type="text"
                 className="form-control"

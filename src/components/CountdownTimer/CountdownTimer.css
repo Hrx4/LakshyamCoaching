@@ -17,7 +17,6 @@
     color: rgb(255, 255, 255);
     background-color: rgba(250, 250, 250, 0.1);
     margin-right: 4%;
-    /* padding: 8px; */
   }
 
   .counter .days .value {
@@ -26,7 +25,6 @@
     display: block;
     width: 100%;
 }
-
 .counter .days span {
     box-sizing: border-box;
     font-size: 18px;
@@ -36,10 +34,11 @@
     letter-spacing: 1px;
     margin-top: 0px;
     display: block;
-    
   }
 
    .counter .hours,
+
+    
  .counter .minutes,
  .counter .seconds {
   box-sizing: border-box;
@@ -54,7 +53,6 @@
   color: rgb(255, 255, 255);
   background-color: rgba(250, 250, 250, 0.1);
   margin-right: 4%;
-  
 }
 
  .counter .hours .value,
@@ -65,7 +63,6 @@
   display: block;
   width: 100%;
 }
-
  .counter .hours span,
  .counter .minutes span,
  .counter .seconds span {
@@ -77,23 +74,4 @@
   letter-spacing: 1px;
   margin-top: 0px;
   display: block;
-  
 }
- @media (max-width:750px){
-  .counter{
-    display: flex;
-    flex-direction: column;
-  }
- .days{
-  height: 100px;
-}
-.hours{
-  height: 100px;
-}
-.minutes{
-  height: 100px;
-}
-.seconds{
-  height: 100px;
-}
- }

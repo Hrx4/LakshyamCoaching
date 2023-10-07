@@ -69,17 +69,14 @@
     width: 80%
   }
 
-  @media (max-width: 750px) {
+  @media screen and (max-width: 750px) {
     .container__part{
       flex-direction: row !important;
     }
-     .container{
-       width:  100% !important; 
-       flex-direction: row; 
-     }
-     .continer .centerIt{
-      width: 100vw;
-    } 
+    .container{
+      width:  100% !important;
+      /* flex-direction: row; */
+    }
     .registration{
       margin-top: 70px !important;
     }
