@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {saveAs} from 'file-saver'
 import './NotesSection.css';
-import backend from "../../backend";
 // NoteCard component
 
 
@@ -9,9 +8,8 @@ import backend from "../../backend";
 
 
 // Parent component
-const NotesSection = () => {
+const NotesSection = ({open , setOpen, noteList , setNoteList}) => {
 
-  const [noteList, setNoteList] = useState([]);
   const [showImg, setShowImg] = useState('');
   const [showPdf, setShowPdf] = useState('');
   const [title, setTitle] = useState('')
@@ -38,41 +36,41 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
 
 
 
-  const handleNoteTable = async() => {
+  // const handleNoteTable = async() => {
 
-    try {
-        const response = await fetch(`${backend}getnote/`, {
-          method: "GET",
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        });
+  //   try {
+  //       const response = await fetch(`${backend}getnote/`, {
+  //         method: "GET",
+  //         headers: {
+  //           Accept: 'application/json',
+  //           'Content-Type': 'application/json',
+  //         },
+  //       });
 
-        const resJson = await response.json();
+  //       const resJson = await response.json();
 
 
-        if (response.status === 200) {
-          setNoteList(resJson);
-          console.log('====================================');
-          console.log(resJson);
-          console.log('====================================');
-        } else {
-          console.log("Some error occured");
-        }
-      } catch (err) {
-        console.log(err);
-      }
+  //       if (response.status === 200) {
+  //         setNoteList(resJson);
+  //         console.log('====================================');
+  //         console.log(resJson);
+  //         console.log('====================================');
+  //       } else {
+  //         console.log("Some error occured");
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
 
-    }
+  //   }
 
-    useEffect(() => {
-      handleNoteTable()
-    }, [])
+    // useEffect(() => {
+    //   handleNoteTable()
+    // }, [])
     
 
   return (
-    <section className="text">
+    <section className="text" style={{display:open?"block" : "none"}}>
       <div className="contain">
         <div className="row tut__container">
           <div className="col-lg-8 col-sm-12">

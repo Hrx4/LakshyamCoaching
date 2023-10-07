@@ -13,8 +13,12 @@ const createNote = asyncHandler(async(req , res) => {
 
 
 const getNote = asyncHandler(async(req , res) => {
-    const notes = await noteModels.find()
+    const {noteClass , noteSubject , noteCourse} = req.body
+    const notes = await noteModels.find({noteClass:noteClass , noteSubject:noteSubject, noteCourse:noteCourse})
     res.status(200).json(notes);
+    console.log('====================================');
+    console.log(notes);
+    console.log('====================================');
 })
 
 const deleteNote = asyncHandler(async(req , res) => {
