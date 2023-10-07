@@ -145,10 +145,12 @@
   #email{
     height: 50px;
     background-color: rgba(0, 0, 0, 0.1);
+    width: 500px;
   }
   #phone-number{
     height: 50px;
     background-color: rgba(0, 0, 0, 0.1);
+    width: 500px;
   }
   #name::placeholder{
     color: #fff;

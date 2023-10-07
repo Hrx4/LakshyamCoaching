@@ -79,4 +79,21 @@
   display: block;
   
 }
- 
+ @media (max-width:750px){
+  .counter{
+    display: flex;
+    flex-direction: column;
+  }
+ .days{
+  height: 100px;
+}
+.hours{
+  height: 100px;
+}
+.minutes{
+  height: 100px;
+}
+.seconds{
+  height: 100px;
+}
+ }

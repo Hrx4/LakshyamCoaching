@@ -56,7 +56,7 @@ const CountdownTimer = () => {
         <div className="value">{countdown.minutes < 10 ? `0${countdown.minutes}` : countdown.minutes}</div>
         <span >Minutes</span>
       </div>
-      <div className="seconds" style={{height:"150px", width:"250px"}}>
+       <div className="seconds" style={{height:"150px", width:"250px"}}> 
         <div className="value">{countdown.seconds < 10 ? `0${countdown.seconds}` : countdown.seconds}</div>
         <span >Seconds</span>
       </div>

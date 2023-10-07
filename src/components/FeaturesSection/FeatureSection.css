@@ -8,6 +8,9 @@
     justify-content: space-around;
     height: 55px;
     width: 1200px;
+    text-transform: capitalize;
+    position: absolute;
+    bottom: 0;
 }
 
 .feature-main-container-sub{
@@ -20,10 +23,11 @@
     align-items: center;
     height: 56.5px;
     transition: all 0.6s ease-in-out;
+    
 }
 
 .feature-main-container-sub:hover {
-    box-shadow: 0px 0px 30px ;
+    /* box-shadow: 0px 0px 30px ; */
     background-color: rgba(63, 229, 3, 0.867);
     height: 1200px;
     transform: translateY(-120px);
@@ -34,7 +38,7 @@
 .feature-main-container-sub-p1{
     text-align:left;
     font-weight: bolder;
-    margin-top: -5px;
+    margin-top: 10px;
 }
 
 .feature-main-container-sub:hover .feature-main-container-sub-p2 {
