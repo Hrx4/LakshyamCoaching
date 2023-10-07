@@ -8,8 +8,8 @@ const Contact = () => {
     <div>
       <MainBanner
         heading6="Home >"
-        heading2a="Contact"
-        heading2b="us"
+        heading2a="Contact us"
+        // heading2b="us"
         videoSource={myVideo}
         // buttonText="Discover more" // Provide buttonText prop if needed
         showFeaturesSection={false}

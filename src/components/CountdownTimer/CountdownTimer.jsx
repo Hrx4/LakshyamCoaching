@@ -44,21 +44,21 @@ const CountdownTimer = () => {
 
   return (
     <div className="counter">
-      <div className="days">
+      <div className="days" style={{height:"150px", width:"250px"}}>
         <div className="value">{countdown.days < 10 ? `0${countdown.days}` : countdown.days}</div>
-        <span>Days</span>
+        <span >Days</span>
       </div>
-      <div className="hours">
+      <div className="hours" style={{height:"150px", width:"250px"}}>
         <div className="value">{countdown.hours < 10 ? `0${countdown.hours}` : countdown.hours}</div>
-        <span>Hours</span>
+        <span >Hours</span>
       </div>
-      <div className="minutes">
+      <div className="minutes" style={{height:"150px", width:"250px"}}>
         <div className="value">{countdown.minutes < 10 ? `0${countdown.minutes}` : countdown.minutes}</div>
-        <span>Minutes</span>
+        <span >Minutes</span>
       </div>
-      <div className="seconds">
+       <div className="seconds" style={{height:"150px", width:"250px"}}> 
         <div className="value">{countdown.seconds < 10 ? `0${countdown.seconds}` : countdown.seconds}</div>
-        <span>Seconds</span>
+        <span >Seconds</span>
       </div>
     </div>
   );

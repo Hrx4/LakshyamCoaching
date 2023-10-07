@@ -15,8 +15,8 @@ function Home() {
     <div>
       <MainBanner
         heading6="Success starts here!"
-        heading2a="Lakshyam"
-        heading2b="Coaching"
+        heading2a="Lakshyam Coaching"
+        // heading2b="Coaching"
         videoSource={myVideo}
         buttonText="Discover more"
         showFeaturesSection={true} 

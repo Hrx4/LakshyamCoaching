@@ -8,8 +8,8 @@ const Courses = () => {
     <div>
     <MainBanner
         heading6="Home >"
-        heading2a="our"
-        heading2b="courses"
+        heading2a="our courses"
+        // heading2b="courses"
         videoSource={myVideo}
         // buttonText="Discover more" // Provide buttonText prop if needed
         showFeaturesSection={false}

@@ -12,7 +12,7 @@ const ComingSoonSection = () => {
           <div className="col-md-7 col-sm-12">
             <div className="continer centerIt">
               <h4>
-                Take <em>any Lakhsyam courses</em> and get 10% off for your next course
+                Take <em style={{fontSize:"30px"}}>any Lakhsyam courses</em> and get 10% off for your next course
               </h4>
               <CountdownTimer />
             </div>

@@ -18,6 +18,40 @@
   max-width: 1140px;
 }
 
+li:hover{
+  cursor: pointer;
+  color: #3cf;
+}
+li.clicked{
+  color:  #3cf !important; 
+}
+/* a:active{
+  color:  #3cf; 
+} */
+#tabs ul li a:active { 
+  color: #3fe503dd !important; 
+}
+
+.active_class{
+  color: #3fe503dd !important;
+}
+@media (max-width:750px) {
+  .tabs-content img {
+    width: 100%;
+    overflow: hidden;
+  }
+  img {
+    vertical-align: middle;
+    border-style: none;
+}
+}
+
+
+
+
+
+
+
 li::marker{
   color: rgba(63, 229, 3, 0.867);
   height: 5px;

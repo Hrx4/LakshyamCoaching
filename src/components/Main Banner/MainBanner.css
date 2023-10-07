@@ -86,9 +86,32 @@ em {
   outline: none;
   background-color: rgba(63, 229, 3, 0.867);
   color: rgb(255, 255, 255);
-  font-size: 13px;
+  font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 700;
   display: inline-block;
+  margin-top: 2rem;
+}
+bg-video{
+  width: 100vw;
+  height: 1000vh;
+  height: 90vh;
+}
+
+em{
+  letter-spacing: 1px;
+  font-size: 80px;
+  margin-bottom: 2rem;
+}
+h6{
+  letter-spacing: 1px;
+}
+
+@media (max-width:750px) {
+  em{
+    font-size: 50px ;
+    line-height: 4px;
+  }
+  
 }
