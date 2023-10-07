@@ -62,15 +62,15 @@ const pressable2 = (e)=>{
       <div className="row">
         <div className="col-md-12">
           <div  className="section-heading">
-            <h2>Why choose Grad School?</h2>
+            <h2>Why choose Lakshyam Coaching?</h2>
           </div>
         </div>
         <div className="col-md-12">
           <div id='tabs'>
             <ul style={{display:"flex", justifyContent:"space-evenly" }}>
-              <li><a style={{textDecoration:"none" , fontSize:20 , color:"white"}}  href='/' onClick={pressable}>Best Education</a></li>
-              <li><a style={{textDecoration:"none" , fontSize:20 , color:"white"}} href='/' onClick={pressable1}>Expert Faculty</a></li>
-              <li><a style={{textDecoration:"none" , fontSize:20 , color:"white"}} href='/' onClick={pressable2}>Personalized Attention</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}}  href='/' onClick={pressable}>Best Education</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}} href='/' onClick={pressable1}>Expert Faculty</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}} href='/' onClick={pressable2}>Personalized Attention</a></li>
             </ul>
             <section className='tabs-content'>
               <article style={{marginTop:50, marginBottom:60 }} id='tabs-1'>

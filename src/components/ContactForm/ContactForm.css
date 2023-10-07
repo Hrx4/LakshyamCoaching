@@ -1,0 +1,15 @@
+.button{
+    position: relative;
+    top:15px;
+    right:130px
+}
+textarea.form-control{
+    height: 200px;
+    background-color: rgba(3, 0, 0, 0.1);
+    border: none;
+    outline: none;
+    color: #fff;
+}
+textarea.form-control::placeholder{
+    color: #fff;
+}

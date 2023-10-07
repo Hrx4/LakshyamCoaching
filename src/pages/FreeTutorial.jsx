@@ -8,8 +8,8 @@ const FreeTutorial = () => {
     <div>
       <MainBanner
         heading6="Home >"
-        heading2a="Free"
-        heading2b="Tutorial"
+        heading2a="Free Tutorial"
+        // heading2b="Tutorial"
         videoSource={myVideo}
         // buttonText="Discover more" // Provide buttonText prop if needed
         showFeaturesSection={false}

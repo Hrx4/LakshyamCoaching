@@ -30,7 +30,7 @@ const RegistrationForm = () => {
         <div className="row">
           <div className="fieldset-container">
             <fieldset className="fieldset">
-              <input
+              <input 
                 name="name"
                 type="text"
                 className="form-control"
