@@ -16,7 +16,7 @@ const MainBanner = ({ heading6, heading2a, heading2b, videoSource,buttonText,sho
   }, []);
 
   return (
-    <div>
+    <div >
       <section className="section-main-banner" id="top" data-section="section1" style={{height:665}} >
         <div className="bg-video">
           <video ref={videoRef} controls loop muted>

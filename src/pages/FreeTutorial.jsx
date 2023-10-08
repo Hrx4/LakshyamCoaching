@@ -5,7 +5,7 @@ import NotesSection from '../components/NotesSection/NotesSection'
 import SearchSection from "../components/SearchSection/SearchSection";
 
 const FreeTutorial = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [noteList, setNoteList] = useState([]);
 
   return (

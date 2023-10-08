@@ -72,9 +72,9 @@ const SearchSection = ({open , setOpen , noteList , setNoteList}) => {
   const [course, setCourse] = useState("Jee")
   const [classs, setClasss] = useState("12")
 
-  const mainSubjects = ["Jee", "WB Joint", "NEET"];
-  const subSubjects = ["MATH", "Physics", "CHEMISTRY"];
-  const classes = ["Class X", "Class XI", "12"];
+  const mainSubjects = ["JEE Main", "WBJEE"];
+  const subSubjects = ["Math", "Physics", "Chemistry"];
+  const classes = [ "Class XI", "Class XII"];
 
   return (
     <section className="courseSearch">

@@ -6,7 +6,7 @@ const VideoContent = () => {
       <div className="left-content">
         <span style={{color:"white"}}>our presentation is for you</span>
         <h4 style={{color:"white", fontSize:30}}>
-          Watch the video to learn more <em>about Lakshyam Coaching</em>
+          Watch the video to learn more <em style={{fontSize:35}}>about Lakshyam Coaching</em>
         </h4>
         <p style={{color:"white" , fontSize:14}}>
           Welcome to Lakshyam Coaching, the premier institute dedicated to

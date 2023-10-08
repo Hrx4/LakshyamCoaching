@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './Navbar.css';
 import lakshyamLogo from './lakshyamlogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 const Navbar = () => {
 
@@ -26,8 +27,6 @@ const Navbar = () => {
   return (
     <div style={{position:"sticky" , top:0 , zIndex:100}}>
     <header className={`main-header ${isScrolled ? 'scrolled' : ''} clearfix `}>
-    {/* <div className={`navbar ${isScrolled ? 'scrolled' : ''}`}> */}
-
       <div className="logo">
         <Link to="/">
           <img
@@ -39,7 +38,8 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <div onClick={()=>{setMenuOpen(!menuOpen)}} className="menu-link">
+      <div className='nav__list__part' style={{display:"flex" , alignItems:"center" }}>
+      <div style={{marginLeft:"10rem"}} onClick={()=>{setMenuOpen(!menuOpen)}} className="menu-link">
         <MenuIcon fontSize='large'  style={{color:"rgba(63, 229, 3, 0.867)"}} />
       </div>
       <nav id="menu" className="main-nav" role="navigation">
@@ -66,6 +66,8 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
+      <NotificationsActiveIcon style={{cursor:"pointer", marginLeft:"1rem"}}/>
+      </div>
     </header>
     {
       (menuOpen)?

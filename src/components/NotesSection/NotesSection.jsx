@@ -77,7 +77,7 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
           {/* {notes.map()} */}
             {
               (showImg==='')?<div style={{ width: "100%", height: "60vh", color:"white" , display:"flex" , justifyContent:"center" , alignItems:"center"}}>
-              Please Select a Pdf From The List IN Right
+              Select your desired notes.....
               </div>
               :
               <img

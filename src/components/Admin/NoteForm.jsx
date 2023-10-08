@@ -111,18 +111,30 @@ function NoteForm() {
         </div>
 
         <div className="form-group">
-          <label>Subject:</label>
-          <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} />
+          <label style={{marginRight:10}}>Subject:</label>
+          <select type="text" value={subject} onChange={(e) => setSubject(e.target.value)} >
+            <option value="Math">Math</option>
+            <option value="Physics">Physics</option>
+            <option value="Chemistry">Chemistry</option>
+          </select>
         </div>
 
         <div className="form-group">
-          <label>Class:</label>
-          <input type="text" value={classValue} onChange={(e) => setClassValue(e.target.value)} />
+          <label style={{marginRight:10}}>Class:</label>
+          <select  type="text" value={classValue} onChange={(e) => setClassValue(e.target.value)}>
+            <option value="Class XI">Class XI</option>
+            <option value="Class XII">Class XII</option>
+          </select>
         </div>
 
         <div className="form-group">
-          <label>Batch:</label>
-          <input type="text" value={batch} onChange={(e) => setBatch(e.target.value)} />
+          <label style={{marginRight:10}}>Batch:</label>
+          <select type="text" value={batch} onChange={(e) => setBatch(e.target.value)}>
+            <option value="Batch 1">Batch 1</option>
+            <option value="Batch 2">Batch 2</option>
+            <option value="Batch 3">Batch 3</option>
+
+          </select>
         </div>
 
         <div className="form-group">
@@ -136,8 +148,11 @@ function NoteForm() {
         </div>
 
         <div className="form-group">
-          <label>Course:</label>
-          <input type="text" value={course} onChange={(e) => setCourse(e.target.value)} />
+          <label  style={{marginRight:10}}>Course:</label>
+          <select type="text" value={course} onChange={(e) => setCourse(e.target.value)}>
+            <option value="JEE Main">JEE Main</option>
+            <option value="WBJEE">WBJEE</option>
+          </select>
         </div>
 
         <button type="submit">Submit</button>

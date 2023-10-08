@@ -14,7 +14,7 @@ const CopyrightText = () => (
 
 // Footer component
 const Footer = () => (
-  <footer>
+  <footer >
     <div className="container">
       <div className="row">
         <div className="col-md-12">

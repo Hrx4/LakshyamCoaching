@@ -11,8 +11,12 @@ const createNote = asyncHandler(async(req , res) => {
 
 })
 
+const getNote = asyncHandler(async(req,res)=>{
+    const notes = await noteModels.find();
+    res.status(200).json(notes)
+})
 
-const getNote = asyncHandler(async(req , res) => {
+const getFilterNotes = asyncHandler(async(req , res) => {
     const {noteClass , noteSubject , noteCourse} = req.body
     const notes = await noteModels.find({noteClass:noteClass , noteSubject:noteSubject, noteCourse:noteCourse})
     res.status(200).json(notes);
@@ -63,4 +67,4 @@ const updateNote = asyncHandler(async(req , res) => {
 
 
 
-module.exports = {createNote , getNote  , deleteNote , updateNote}
+module.exports = {createNote , getFilterNotes,getNote  , deleteNote , updateNote}
