@@ -9,7 +9,9 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
+    
   });
 
   const handleChange = (e) => {
@@ -33,7 +35,8 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
         body: JSON.stringify({
           contactName : formData.name , 
           contactEmail : formData.email , 
-          contactMessage : formData.message
+          contactPhone: formData.phone,
+          contactMessage : formData.message,
         }),
       });
       // let resJson = await res.json();
@@ -59,6 +62,7 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
       setFormData({
       name: "",
       email: "",
+      phone:"",
       message: "",
     });
   };
@@ -99,6 +103,22 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
           </div>
 
           <div className="col-md-10 col-sm-10">
+            <fieldset>
+              <input
+                name="phone"
+                rows="6"
+                className="form-control"
+                id="phone"
+                placeholder={ "Your Phone number..."}
+                required=""
+                value={formData.phone}
+                onChange={handleChange}
+                style={{margin:"auto"}}
+              ></input>
+            </fieldset>
+          </div>
+
+          <div className="col-md-10 col-sm-10" style={{marginTop:10}}>
             <fieldset>
               <textarea
                 name="message"

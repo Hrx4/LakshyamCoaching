@@ -9,6 +9,7 @@ const ContactTable = (props) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [message, setMessage] = useState('');
     const [modal, setModal] = useState(false);
     const [updateId, setUpdateId] = useState("");
@@ -17,11 +18,12 @@ const ContactTable = (props) => {
 
     const handleCustomerClose = () => setModal(false);
 
-    const CustomerModalOpen = (id , contactName , contactEmail , contactMessage) => {
+    const CustomerModalOpen = (id , contactName , contactEmail,contactPhone , contactMessage) => {
         const key = id
         setUpdateId(key);
         setName(contactName)
         setEmail(contactEmail)
+        setPhone(contactPhone)
         setMessage(contactMessage)
         setModal(true)
     
@@ -68,6 +70,7 @@ const ContactTable = (props) => {
             body: JSON.stringify({
                     contactName : name , 
                     contactEmail : email , 
+                    contactPhone : phone,
                     contactMessage : message
                 }),
             });
@@ -97,6 +100,7 @@ const ContactTable = (props) => {
         <tr >
         <th style={{border:"1px solid black", padding:5}}>Name</th>
         <th style={{border:"1px solid black", padding:5}}>Email</th>
+        <th style={{border:"1px solid black", padding:5}}>Phone Number</th>
         <th style={{border:"1px solid black", padding:5}}>Message</th>
         <th style={{border:"1px solid black", padding:5}}>Buttons</th>
       </tr>
@@ -112,6 +116,9 @@ const ContactTable = (props) => {
               {item.contactEmail}
               </td>
               <td style={{border:"1px solid black" , padding:5}}>
+              {item.contactPhone}
+              </td>
+              <td style={{border:"1px solid black" , padding:5}}>
               {item.contactMessage}
               </td>
               <td style={{border:"1px solid black" , padding:5 , }}>
@@ -119,7 +126,7 @@ const ContactTable = (props) => {
                   Delete
                 </Button>
                 <Button style={{marginBottom:5, marginLeft:5}} variant='contained' color='success' size='small' onClick={()=>CustomerModalOpen(
-                     item._id,item.contactName , item.contactEmail , item.contactMessage 
+                     item._id,item.contactName , item.contactEmail,item.contactPhone , item.contactMessage 
                 )} >
                   Update
                 </Button>

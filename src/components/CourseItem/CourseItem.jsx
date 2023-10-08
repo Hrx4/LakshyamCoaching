@@ -7,9 +7,9 @@ const CourseItem = ({ imgSrc, title, description }) => {
       <div className="down-content">
         <h4>{title}</h4>
         <p>{description}</p>
-        <div className="text-button-pay">
+        {/* <div className="text-button-pay">
           <a style={{textDecoration:"none" , color:"orange"}} href="/#">More Details <i className="fa fa-angle-double-right"></i></a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

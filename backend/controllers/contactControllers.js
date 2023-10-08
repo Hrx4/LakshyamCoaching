@@ -2,10 +2,10 @@ const contactModels = require('../models/contactModels');
 const asyncHandler = require('express-async-handler');
 
 const createContact = asyncHandler(async(req , res) => {
-    const {contactName , contactEmail , contactMessage} = req.body;
+    const {contactName , contactEmail,contactPhone , contactMessage} = req.body;
  
     const contact = await contactModels.create({
-        contactName , contactEmail , contactMessage
+        contactName , contactEmail,contactPhone , contactMessage
     })
     res.status(200).json(contact);
 
@@ -32,7 +32,7 @@ const deleteContact = asyncHandler(async(req , res) => {
 
 const updateContact = asyncHandler(async(req , res) => {
 
-    const {contactName , contactEmail , contactMessage} = req.body
+    const {contactName , contactEmail ,contactPhone, contactMessage} = req.body
 
     const contact = await contactModels.findById(req.params.id);
     if(!contact){
@@ -45,6 +45,7 @@ const updateContact = asyncHandler(async(req , res) => {
         {
             contactName : contactName , 
             contactEmail : contactEmail , 
+            contactPhone : contactPhone,
             contactMessage : contactMessage
         }
     )
