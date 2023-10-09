@@ -68,9 +68,9 @@ const Select2 = ({ options ,setClasss , classs}) => (
 
 // Parent component
 const SearchSection = ({open , setOpen , noteList , setNoteList}) => {
-  const [subject, setSubject] = useState("Physics")
-  const [course, setCourse] = useState("Jee")
-  const [classs, setClasss] = useState("12")
+  const [subject, setSubject] = useState("Math")
+  const [course, setCourse] = useState("JEE Main")
+  const [classs, setClasss] = useState("Class XI")
 
   const mainSubjects = ["JEE Main", "WBJEE"];
   const subSubjects = ["Math", "Physics", "Chemistry"];
