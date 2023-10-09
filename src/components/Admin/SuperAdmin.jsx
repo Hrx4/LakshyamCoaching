@@ -81,7 +81,7 @@ const SuperAdmin = () => {
           Note details
         </div>
         <div onClick={handleContactTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
-          Contact details
+          Query details
         </div>
       </div>
       {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}

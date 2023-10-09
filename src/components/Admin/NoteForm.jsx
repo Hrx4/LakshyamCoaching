@@ -8,12 +8,12 @@ import backend from '../../backend';
 function NoteForm() {
   // Define state variables for form inputs
   const [title, setTitle] = useState('');
-  const [subject, setSubject] = useState('');
-  const [classValue, setClassValue] = useState('');
-  const [batch, setBatch] = useState('');
+  const [subject, setSubject] = useState('Math');
+  const [classValue, setClassValue] = useState('Class XI');
+  const [batch, setBatch] = useState('Batch 1');
   const [image, setImage] = useState('');
   const [pdf, setPdf] = useState('');
-  const [course, setCourse] = useState('');
+  const [course, setCourse] = useState('JEE Main');
   const [loading, setLoading] = useState(false)
 
 
@@ -68,12 +68,8 @@ function NoteForm() {
       if (res.status === 200) {
         console.log("fine");
             setTitle('')
-            setSubject('') 
-            setClassValue('') 
-            setBatch ('') 
             setImage ('') 
             setPdf('') 
-            setCourse('')
             toast.success('Form submitted', {
               position: toast.POSITION.TOP_CENTER
           });
