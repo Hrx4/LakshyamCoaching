@@ -27,7 +27,7 @@ const MainBanner = ({ heading6, heading2a, heading2b, videoSource,buttonText,sho
 
         <div className="video-overlay header-text">
           <div className="caption">
-            <h6 style={{color:"white", fontSize:25, letterSpacing:"1px", marginBottom:"2rem"}}>{heading6}</h6>
+            <h6 style={{color:"white", fontSize:35, letterSpacing:"1px", marginBottom:"2rem"}}>{heading6}</h6>
             <h2 style={{color:"white" , fontSize:60}}>
               <em>{heading2a}</em> {heading2b}
             </h2>
