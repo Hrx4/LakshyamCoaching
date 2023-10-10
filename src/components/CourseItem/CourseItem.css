@@ -84,6 +84,14 @@
     -webkit-font-smoothing: antialiased;
     transform: translate(0px, 0px);
   }
+  .form-group{
+    margin-top: 10px;
+  }
+  @media (max-width:750px) {
+    textarea{
+      width: 215px;
+    }
+  }
   
 
   
