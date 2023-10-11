@@ -88,7 +88,7 @@ const SuperAdmin = () => {
         </div>
         <div onClick={handleClassForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Class</div>
       </div>
-      {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}
+      
       {
         (noteView==='noteform')?
         <NoteForm/>:
