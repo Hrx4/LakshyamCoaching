@@ -5,12 +5,12 @@ const ContactInfo = () => {
     <div className="col-md-4">
       <p style={{ color: "white", fontSize: "16px", fontWeight: 600 }}>
         Call At <br />
-        <span style={{ color: "#3fe503dd" }}>+91 8001100314</span>
+        <a href="tel:+91 8001100314"> <span style={{ color: "#3fe503dd" }}>+91 8001100314</span></a>
       </p>
 
       <p style={{ color: "white", fontSize: "16px", fontWeight: 600 }}>
         Mail At <br />
-        <span style={{ color: "#3fe503dd" }}>Lakshyam.office0799@gmail.com</span>
+        <a href=" mailto:Lakshyam.office0799@gmail.com"><span style={{ color: "#3fe503dd" }}>Lakshyam.office0799@gmail.com</span></a> 
       </p>
 
       <p style={{ color: "white", fontSize: "16px", fontWeight: 600 }}>
