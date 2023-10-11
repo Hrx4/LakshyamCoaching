@@ -10,28 +10,28 @@ const TestiMonials = () => {
   
     const testiMonials = [
         {
-            name: 'Rekob Ramya',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            address: 'USA',
-            img: 'https://i.ibb.co/hgGJc8d/Gareth-Bale.jpg'
+            name: 'Aryan Tiwari',
+            description: 'I loved it. Teachers are very professional, when you have a problem they are always ready to help you.This is magnificent academy with excellent teachers, small classrooms , small group of students, warm atmosphere and super friendly Teachers. In totality it helped me a lot and I would suggest the same to you all as well  " Do not Hesitate " Just Go for the best to come out as the best.. 😊😊 Thankyou Sooo much for everything "Lakshyam coaching"  centre.' ,
+            //address: 'USA',
+           // img: 'https://i.ibb.co/hgGJc8d/Gareth-Bale.jpg'
         },
         {
-            name: 'Brandon Savage',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            address: 'USA',
-            img: 'https://i.ibb.co/z7Kp6yr/np-file-33188.jpg'
+            name: 'Somesh Das',
+            description: 'Best schooling option under one roof.Teachers are very well qualified.the environment and the competition is very healthy.',
+            //address: 'USA',
+            //img: 'https://i.ibb.co/z7Kp6yr/np-file-33188.jpg'
         },
         {
-            name: 'Steve Burns',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+            name: 'Hritik Kumar Paswan',
+            description: 'Lakshyam coaching institute is a best tutorial place for science students for class 11th n 12th.',
             address: 'USA',
-            img: 'https://i.ibb.co/CP5sj7g/2856040-58866808-2560-1440.jpg'
+           // img: 'https://i.ibb.co/CP5sj7g/2856040-58866808-2560-1440.jpg'
         },
         {
-            name: 'Kevin Canlas',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            address: 'USA',
-            img: 'https://i.ibb.co/10SYccm/1552313010-354215-noticia-normal.jpg'
+            name: 'Pijush Kanti Roy',
+            description: 'Best coaching institute in Asansol.',
+            //address: 'USA',
+            // img: 'https://i.ibb.co/10SYccm/1552313010-354215-noticia-normal.jpg'
         },
     ]
     //Owl Carousel Settings
@@ -68,7 +68,7 @@ const TestiMonials = () => {
                                 testiMonials.length === 0 ?
                                     <div class="item">
                                         <div class="shadow-effect">
-                                            <img class="img-circle" alt='imageify' />
+                                            {/* <img class="img-circle" alt='imageify' /> */}
 
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
                                         </div>

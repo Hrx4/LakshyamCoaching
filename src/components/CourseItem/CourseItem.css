@@ -87,6 +87,9 @@
   .form-group{
     margin-top: 10px;
   }
+  label{
+    padding-bottom: 10px;
+  }
   @media (max-width:750px) {
     textarea{
       width: 215px;
