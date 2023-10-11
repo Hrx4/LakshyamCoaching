@@ -3,13 +3,14 @@ import NoteForm from './NoteForm'
 import NoteTable from './NoteTable'
 import backend from '../../backend'
 import ContactTable from './ContactTable'
+import ClassForm from './ClassForm'
 
 const SuperAdmin = () => {
 
   const [noteList, setNoteList] = useState([])
   const [contactList, setContactList] = useState([])
   const [noteView, setNoteView] = useState('noteform')
-
+  
 
   const handleNoteTable = async() => {
     setNoteView('notetable')
@@ -67,7 +68,9 @@ const SuperAdmin = () => {
         }
   
     }
-
+    const handleClassForm = () =>{
+      setNoteView("classform");
+    }
   return (
     <>
       
@@ -83,6 +86,7 @@ const SuperAdmin = () => {
         <div onClick={handleContactTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Query details
         </div>
+        <div onClick={handleClassForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Class</div>
       </div>
       {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}
       {
@@ -100,7 +104,10 @@ const SuperAdmin = () => {
         <ContactTable contactList={contactList} setContactList={setContactList}/>:
         null
       }
-
+      {
+        (noteView==="classform")?
+       ( <ClassForm /> ) : null
+      }
         </div>
       
     </>

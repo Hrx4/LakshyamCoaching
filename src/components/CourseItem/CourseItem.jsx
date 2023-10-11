@@ -68,12 +68,13 @@ const CourseItem = ({ imgSrc, title, description }) => {
             bgcolor: "rgb(22,34,57,0.95)",
             color: "white",
             border: "2px solid #000",
+            //border: "none",
             boxShadow: 24,
             p: 4,
             overflowY: "scroll",
           }}
         >
-          <div style={{ width: "auto" }} className="form-container">
+          <div style={{ width: "auto" , border:"none"}} className="form-container">
             <h1 style={{ fontSize: 25, fontWeight: "bold" }}>
               Apply for Lakshyam Courses
             </h1>
@@ -89,6 +90,7 @@ const CourseItem = ({ imgSrc, title, description }) => {
             <form>
               <div className="form-group">
                 <label>Name*</label>
+                <br />
                 <input
                   type="text"
                   value={name}
@@ -121,6 +123,7 @@ const CourseItem = ({ imgSrc, title, description }) => {
               </div>
               <div className="form-group">
                 <label style={{ marginRight: 10 }}>Class*</label>
+                <br />
                 <select
                   type="text"
                   value={wclass}
@@ -140,6 +143,7 @@ const CourseItem = ({ imgSrc, title, description }) => {
               </div>
               <div className="form-group">
                 <label style={{ marginRight: 10 }}>Course*</label>
+                <br />
                 <select
                   type="text"
                   value={course}
@@ -168,7 +172,7 @@ const CourseItem = ({ imgSrc, title, description }) => {
                   placeholder="Add Your Message"
                 ></textarea>
               </div>
-              <button type="submit">Apply Now</button>
+              <button type="submit" style={{backgroundColor:"rgba(63, 229, 3, 0.867)"}}>Apply Now</button>
             </form>
           </div>
         </Box>
