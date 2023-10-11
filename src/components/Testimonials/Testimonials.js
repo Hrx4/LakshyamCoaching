@@ -24,7 +24,7 @@ const TestiMonials = () => {
         {
             name: 'Hritik Kumar Paswan',
             description: 'Lakshyam coaching institute is a best tutorial place for science students for class 11th n 12th.',
-            address: 'USA',
+            // address: 'USA',
            // img: 'https://i.ibb.co/CP5sj7g/2856040-58866808-2560-1440.jpg'
         },
         {

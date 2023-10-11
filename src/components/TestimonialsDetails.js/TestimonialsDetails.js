@@ -1,12 +1,11 @@
 import React from 'react';
 
 const TestiMonialsDetails = ({testiMonialDetail}) => {
-    const {name, address, description, img} = testiMonialDetail;
+    const {name, address, description} = testiMonialDetail;
     console.log("testiMonialDetail"+testiMonialDetail)
     return (
         <div class="item" style={{margin:"auto"}}>
             <div class="shadow-effect">
-                {/* <img class="img-circle" src={img} alt='imageify'/> */}
                 <p>{description}</p>
             </div>
             <div class="testimonial-name">
