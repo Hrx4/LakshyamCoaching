@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './ContactForm.css'
-import { ToastContainer, toast } from "react-toastify";
+import {toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import backend from '../../backend';
 
@@ -69,7 +69,6 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
 
   return (
       <div className="col-md-6">
-            <ToastContainer/>
       <form id="contact" onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
         <div className="row" style={{display:"flex" , justifyContent:"center" , alignItems:"center"}}>
           <div className="col-md-5 col-sm-10">
