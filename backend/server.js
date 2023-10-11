@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
 
 app.use('/getnote' , require('./routes/noteRoute'))
 app.use('/contact' , require('./routes/contactRoute'))
+app.use('/apply', require('./routes/applyRoute'))
+app.use('/notice', require('./routes/noticeRoute'))
+
 
 
 app.listen(8080, () => {
