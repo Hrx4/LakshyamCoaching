@@ -1,0 +1,4 @@
+.notice__item:hover{
+    background-color: rgba(23, 49, 97, 0.95);
+    cursor: pointer;
+}

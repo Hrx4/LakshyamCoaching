@@ -42,6 +42,7 @@ const MainBanner = ({ heading6, heading2a, heading2b, videoSource,buttonText,sho
         {showFeaturesSection && <FeaturesSection />}
         </div>
       </section>
+
     </div>
   );
 };
