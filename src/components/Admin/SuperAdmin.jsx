@@ -7,6 +7,7 @@ import ClassForm from './ClassForm'
 import NoticeForm from './NoticeForm'
 import ApplyTable from './ApplyTable'
 import NoticeTable from './NoticeTable'
+import SubjectDetails from './SubjectDetails'
 
 const SuperAdmin = () => {
 
@@ -132,6 +133,9 @@ const SuperAdmin = () => {
     // const handleClassForm = () =>{
     //   setNoteView("classform");
     // }
+    const handleSubjectDetails = () =>{
+         setNoteView("subjectdetails");
+     }
   return (
     <>
       
@@ -157,7 +161,9 @@ const SuperAdmin = () => {
           Notice details
         </div>
         {/* <div onClick={handleClassForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Class</div> */}
+        <div onClick={handleSubjectDetails} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Subject Details</div>
       </div>
+      {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}
       {
         (noteView==='noteform')?
         <NoteForm/>:
@@ -191,6 +197,10 @@ const SuperAdmin = () => {
       {
         (noteView==="classform")?
        ( <ClassForm /> ) : null
+      }
+      {
+        (noteView==="subjectdetails")?
+       ( <SubjectDetails /> ) : null
       }
         </div>
       
