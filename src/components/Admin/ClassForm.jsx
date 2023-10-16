@@ -9,7 +9,7 @@ const ClassForm = () => {
           <h1 style={{ fontSize: "30px" }}>ADD CLASS</h1>
           <label>Class Name</label>
           <br/>
-          <input type="text" placeholder="Enter classroom name"></input>
+          <input style={{width:"70%"}} type="text" placeholder="Enter classroom name"></input>
           <br />
           <button style={{ marginTop: "15px" }} type="submit">
             Submit
