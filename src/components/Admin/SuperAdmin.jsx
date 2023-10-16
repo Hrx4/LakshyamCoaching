@@ -136,7 +136,7 @@ const SuperAdmin = () => {
     <>
       
         <div className='super-container' style={{display:"flex" , backgroundColor:('rgba(22,34,57,0.85)'), color:"white"}}>
-        <div className='super-choose' style={{display:"flex",marginTop:5}}>
+        <div className='super-choose' style={{display:"flex",marginTop:5 , overflow:"hidden"}}>
         
         <div onClick={(e)=>{setNoteView('noteform')}} style={{padding:20, cursor:"pointer"}} className='note__btn'>
           Note Form

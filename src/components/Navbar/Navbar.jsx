@@ -4,11 +4,48 @@ import './Navbar.css';
 import lakshyamLogo from './lakshyamlogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import Notification from './Notification';
+import backend from '../../backend'
+
+
 
 const Navbar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [notification , setNotification] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false);
+  const [noticeList, setNoticeList] = useState([])
+
+  const handleNoticeTable = async() => {
+    setNotification(!notification)
+
+    if(!notification){
+      try {
+        const response = await fetch(`${backend}notice/`, {
+          method: "GET",
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const resJson = await response.json();
+
+
+        if (response.status === 200) {
+          setNoticeList(resJson);
+          console.log('====================================');
+          console.log(resJson);
+          console.log('====================================');
+        } else {
+          console.log("Some error occured");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+  }
 
   useEffect(() => {
     // Function to handle scroll events
@@ -66,9 +103,12 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
-      <NotificationsActiveIcon style={{cursor:"pointer", marginLeft:"1rem"}}/>
+      <div onClick={handleNoticeTable}>
+        <NotificationsActiveIcon style={{cursor:"pointer", marginLeft:"1rem"}} />
+      </div>
       </div>
     </header>
+      <Notification notification={notification} setNotification={setNotification} noticeList={noticeList}/>
     {
       (menuOpen)?
       (
