@@ -1,15 +1,68 @@
-import React from "react";
+import React, {useState} from "react";
 import "./SubjectDetails.css";
+import backend from "../../backend";
+import { toast } from "react-toastify";
+
+
 
 const SubjectDetails = () => {
+    const [courseName, setCourseName] = useState('CBSE Board All Subjects');
+    const [subjectName, setSubjectName] = useState();
+    const [teacherName, setTeacherName] = useState();
+    const [SubjectFee, setSubjectFee] = useState();
+
+
+    const handleSubmit =async (e) => {
+      e.preventDefault();
+      
+      try {
+        const res = await fetch(`${backend}subject/`, {
+          method: "POST",
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            subjectCourse:courseName, 
+            subjectName : subjectName,
+            subjectFee: SubjectFee,
+            subjectTeacher:teacherName
+          }),
+        });
+        
+        if (res.status === 200) {
+          console.log("fine");
+              setCourseName('')
+              setSubjectName ('') 
+              setSubjectFee('')
+              setTeacherName('')
+              toast.success('Form submitted', {
+                position: toast.POSITION.TOP_CENTER
+            });
+        } else {
+          toast.error('All field fill required', {
+            position: toast.POSITION.TOP_CENTER
+        });
+          console.log("Some error occured");
+        }
+      } catch (err) {
+        toast.error('All field fill required', {
+          position: toast.POSITION.TOP_CENTER
+      });
+        console.log(err);
+      }
+      
+    
+  
+    };
   return (
     <div className="subjectdetails">
-      <form style={{margin:"15px", padding:"15px", border:"2px solid #192655"}}>
+      <form style={{margin:"15px", padding:"15px", border:"2px solid #192655"}} onSubmit={handleSubmit}>
         <div>
           <h1 style={{ fontSize: "30px" }}>SUBJECT DETAILS</h1>
           <label>Course Name</label>
           <br />
-          <select type="text" style={{width:"70%"}} required >
+          <select type="text" style={{width:"70%"}} required value={courseName} onChange={(e)=>{setCourseName(e.target.value)}} >
             <option value="CBSE Board All Subjects">
               CBSE Board All Subjects
             </option>
@@ -38,15 +91,15 @@ const SubjectDetails = () => {
           </select>
           <br /><br/>
           <label>Subject name</label><br/>
-          <input style={{width:"70%"}} type="text" placeholder="Enter subject name" required></input>
+          <input style={{width:"70%"}} type="text" placeholder="Enter subject name" required value={subjectName} onChange={(e)=>{setSubjectName(e.target.value)}}></input>
           <br /><br/>
           <label>Teacher name</label><br/>
-          <input style={{width:"70%"}} type="text" placeholder="Enter teacher name" required></input>
+          <input style={{width:"70%"}} type="text" placeholder="Enter teacher name" required value={teacherName} onChange={(e)=>{setTeacherName(e.target.value)}}></input>
           <br /><br/>
           <label>Subject Fee</label><br/>
-          <input style={{width:"70%"}} type="text" placeholder="Enter Subject Fee" required></input>
+          <input style={{width:"70%"}} type="text" placeholder="Enter Subject Fee" required value={SubjectFee} onChange={(e)=>{setSubjectFee(e.target.value)}}></input>
           <br/>
-          <button style={{ marginTop: "15px" }} type="submit">
+          <button style={{ marginTop: "15px" }} type="submit" >
             Submit
           </button>
         </div>
