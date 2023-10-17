@@ -1,6 +1,6 @@
 const backend = 
-//'http://localhost:8080/';
+'http://localhost:8080/';
 // 'https://lakshyam.onrender.com/';
-'https://lakshyam-coaching.vercel.app/';
+//'https://lakshyam-coaching.vercel.app/';
 
  export default backend;
