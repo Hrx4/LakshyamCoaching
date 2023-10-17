@@ -1,181 +1,221 @@
 import React, {useState} from "react";
-import "./SubjectDetails.css";
+import { Box, Button,Modal } from '@mui/material'
+import  './Table.css'
+import './Form.css'
 import backend from "../../backend";
 import { toast } from "react-toastify";
 
 
 
-const SubjectDetails = () => {
+const SubjectDetails = (props) => {
     const [courseName, setCourseName] = useState('CBSE Board All Subjects');
     const [subjectName, setSubjectName] = useState();
     const [teacherName, setTeacherName] = useState();
-    const [SubjectFee, setSubjectFee] = useState();
+    const [subjectFee, setSubjectFee] = useState();
+    const [modal, setModal] = useState(false);
+  const [updateId, setUpdateId] = useState("");
 
+    const handleCustomerClose = () => setModal(false);
 
-    const handleSubmit =async (e) => {
-      e.preventDefault();
-      
-      try {
-        const res = await fetch(`${backend}subject/`, {
-          method: "POST",
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            subjectCourse:courseName, 
-            subjectName : subjectName,
-            subjectFee: SubjectFee,
-            subjectTeacher:teacherName
-          }),
-        });
-        
-        if (res.status === 200) {
-          console.log("fine");
-              setCourseName('')
-              setSubjectName ('') 
-              setSubjectFee('')
-              setTeacherName('')
-              toast.success('Form submitted', {
-                position: toast.POSITION.TOP_CENTER
-            });
-        } else {
-          toast.error('All field fill required', {
-            position: toast.POSITION.TOP_CENTER
-        });
-          console.log("Some error occured");
-        }
-      } catch (err) {
-        toast.error('All field fill required', {
-          position: toast.POSITION.TOP_CENTER
-      });
-        console.log(err);
-      }
-      
-    
+    const CustomerModalOpen = (id , coursename , subjectname , teachername , subjectfee) => {
+        const key = id
+        setUpdateId(key);
+        setCourseName(coursename)
+        setSubjectName(subjectname)
+        setTeacherName(teachername)
+        setSubjectFee(subjectfee)
+
+        setModal(true)
+      };
   
-    };
-  return (
-    <div className="subjectdetails">
-      <form style={{margin:"15px", padding:"15px", border:"2px solid #192655"}} onSubmit={handleSubmit}>
-        <div>
-          <h1 style={{ fontSize: "30px" }}>SUBJECT DETAILS</h1>
-          <label>Course Name</label>
-          <br />
-          <select type="text" style={{width:"70%"}} required value={courseName} onChange={(e)=>{setCourseName(e.target.value)}} >
-            <option value="CBSE Board All Subjects">
-              CBSE Board All Subjects
-            </option>
-            <option value="ICSE Board All Subjects">
-              ICSE Board All Subjects
-            </option>
-            <option value="Class 11 CBSE Boards + CUET">
-              Class 11 CBSE Boards + CUET
-            </option>
-            <option value="Class 11 ICSE Boards + CUET">
-              Class 11 ICSE Boards + CUET
-            </option>
-            <option value="Class 12 CBSE Boards + CUET">
-              Class 12 CBSE Boards + CUET
-            </option>
-            <option value="Class 12 ICSE Boards + CUET">
-              Class 12 ICSE Boards + CUET
-            </option>
-            <option value="JEE Mains ">JEE Mains </option>
-            <option value="NEET ">NEET </option>
-            <option value="Foundation Course JEE IIT / NEET">
-              Foundation Course JEE IIT / NEET
-            </option>
-            <option value="Commerce Board + CUET">Commerce Board + CUET</option>
-            <option value="CA Foundation">CA Foundation</option>
-          </select>
-          <br /><br/>
-          <label>Subject name</label><br/>
-          <input style={{width:"70%"}} type="text" placeholder="Enter subject name" required value={subjectName} onChange={(e)=>{setSubjectName(e.target.value)}}></input>
-          <br /><br/>
-          <label>Teacher name</label><br/>
-          <input style={{width:"70%"}} type="text" placeholder="Enter teacher name" required value={teacherName} onChange={(e)=>{setTeacherName(e.target.value)}}></input>
-          <br /><br/>
-          <label>Subject Fee</label><br/>
-          <input style={{width:"70%"}} type="text" placeholder="Enter Subject Fee" required value={SubjectFee} onChange={(e)=>{setSubjectFee(e.target.value)}}></input>
-          <br/>
-          <button style={{ marginTop: "15px" }} type="submit" >
-            Submit
-          </button>
-        </div>
-      </form>
-      <br />
-      <br/>
-      <div>
-        <table border="1" style={{overflowX:"scroll"}}>
-          <h1 style={{ fontSize: "30px", paddingLeft:"15px" }}>All Classrooms</h1>
-          <tr>
-            <th>Course Name</th>
-            <th>Subject name</th>
-            <th>Teacher name</th>
-            <th>Subject Fee</th>
-            <th>Action</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>CBSE Board All Subjects</td>
-            <td>.............</td>
-            <td>.............</td>
-            <td><span><button>Edit</button></span> <span><button style={{backgroundColor:"red"}}>Delete</button></span></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>CBSE Board All Subjects</td>
-            <td>.............</td>
-            <td>.............</td>
-            <td><span><button>Edit</button></span> <span><button style={{backgroundColor:"red"}}>Delete</button></span></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>CBSE Board All Subjects</td>
-            <td>.............</td>
-            <td>.............</td>
-            <td><span><button>Edit</button></span> <span><button style={{backgroundColor:"red"}}>Delete</button></span></td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>CBSE Board All Subjects</td>
-            <td>.............</td>
-            <td>.............</td>
-            <td><span><button>Edit</button></span> <span><button style={{backgroundColor:"red"}}>Delete</button></span></td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>CBSE Board All Subjects</td>
-            <td>.............</td>
-            <td>.............</td>
-            <td><span><button>Edit</button></span> <span><button style={{backgroundColor:"red"}}>Delete</button></span></td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>CBSE Board All Subjects</td>
-            <td>.............</td>
-            <td>.............</td>
-            <td><span><button>Edit</button></span> <span><button style={{backgroundColor:"red"}}>Delete</button></span></td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>CBSE Board All Subjects</td>
-            <td>.............</td>
-            <td>.............</td>
-            <td><span><button>Edit</button></span> <span><button style={{backgroundColor:"red"}}>Delete</button></span></td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>CBSE Board All Subjects</td>
-            <td>.............</td>
-            <td>.............</td>
-            <td><span><button>Edit</button></span> <span><button style={{backgroundColor:"red"}}>Delete</button></span></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  );
+      const handleDelete = async(id) =>{
+          const key = JSON.parse(id)
+          console.log('====================================');
+          console.log(key,id);
+          console.log('====================================');
+    
+          try {
+            const response = await fetch(`${backend}subject/${key}`, {
+              method: "DELETE",
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+            });
+    
+            await response.json();
+            console.log('====================================');
+            console.log(response);
+            console.log('====================================');
+    
+            props.setSubjectList( [...props.subjectList.filter(item => item._id !== id)]);
+            window.location.reload(true);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+  
+        const updateList = async (e) => {
+          e.preventDefault();
+          try {
+            const response = await fetch(`${backend}subject/${updateId}`, {
+              method: "PUT",
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  subjectCourse :courseName, 
+                  subjectName : subjectName,
+                  subjectTeacher : teacherName,
+                  subjectFee : subjectFee
+              }),
+            });
+        
+            const resJson = await response.json();
+            console.log(resJson);
+              if (response.status === 201) {
+                console.log("fine");
+              } else {
+                console.log("Some error occured");
+              }
+        
+          } catch (err) {
+            console.log(err);
+          }
+          window.location.reload()
+        
+        }
+    
+    
+    return (
+      <>
+          <div className='table-scroll' style={{width:"100%", overflowX:"scroll",overflowY:"scroll", padding:10,height:"100vh"}}>
+          <table >
+        <tbody>
+        {
+          <tr >
+          <th style={{border:"1px solid black", padding:5}}>Course Name</th>
+          <th style={{border:"1px solid black", padding:5}}>Subject Name</th>
+          <th style={{border:"1px solid black", padding:5}}>Teacher Name</th>
+          <th style={{border:"1px solid black", padding:5}}>Fee</th>
+          <th style={{border:"1px solid black", padding:5}}>Buttons</th>
+
+        </tr>
+        }
+        {props.subjectList.map(
+          (item) => (
+  
+            <tr style={{border:"1px solid black", padding:5}} key={item._id} onClick={()=>{console.log(item._id)}}>
+                <td style={{border:"1px solid black" , padding:5}}>
+                {item.subjectCourse}
+                </td>
+                <td style={{border:"1px solid black" , padding:5}}>
+                {item.subjectName}
+                </td>
+                <td style={{border:"1px solid black" , padding:5}}>
+                {item.subjectTeacher}
+                </td>
+                <td style={{border:"1px solid black" , padding:5}}>
+                {item.subjectFee}
+                </td>
+                <td style={{border:"1px solid black" , padding:5}}>
+                  <Button style={{marginBottom:5}} variant='contained' color='error' size='small' onClick={() => handleDelete(JSON.stringify(item._id))} >
+                    Delete
+                  </Button>
+                  <Button variant='contained' color='success' size='small' onClick={()=>CustomerModalOpen(
+                       item._id,item.subjectCourse , item.subjectName , item.subjectTeacher , item.subjectFee
+                  )} >
+                    Update
+                  </Button>
+                </td>
+        
+              </tr>
+          )
+        )} 
+        </tbody>
+      </table>
+          </div>
+  
+  
+  
+  
+  
+  
+          <Modal
+          open={modal}
+          onClose={handleCustomerClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+          >
+            <Box sx={{position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: {xs:"80%" ,md:500},
+              height:"70vh",
+              bgcolor: 'background.paper',
+              border: '2px solid #000',
+              boxShadow: 24,
+              p: 4,
+              overflowY:"scroll"
+            }}>
+  
+              <div style={{width:"auto"}} className="form-container">
+                <form onSubmit={updateList} >
+                  <div className="form-group">
+                    <label>Course Name:</label>
+                    <select style={{width:"100%" , height:40}} type="text" value={courseName} onChange={(e) => setCourseName(e.target.value)} >
+                          <option value="CBSE Board All Subjects">
+                          CBSE Board All Subjects
+                          </option>
+                          <option value="ICSE Board All Subjects">
+                          ICSE Board All Subjects
+                          </option>
+                          <option value="Class 11 CBSE Boards + CUET">
+                          Class 11 CBSE Boards + CUET
+                          </option>
+                          <option value="Class 11 ICSE Boards + CUET">
+                          Class 11 ICSE Boards + CUET
+                          </option>
+                          <option value="Class 12 CBSE Boards + CUET">
+                          Class 12 CBSE Boards + CUET
+                          </option>
+                          <option value="Class 12 ICSE Boards + CUET">
+                          Class 12 ICSE Boards + CUET
+                          </option>
+                          <option value="JEE Mains ">JEE Mains </option>
+                          <option value="NEET ">NEET </option>
+                          <option value="Foundation Course JEE IIT / NEET">
+                          Foundation Course JEE IIT / NEET
+                          </option>
+                          <option value="Commerce Board + CUET">Commerce Board + CUET</option>
+                          <option value="CA Foundation">CA Foundation</option>
+                      </select>
+                  </div>
+  
+                  <div className="form-group">
+                    <label>Subject Name:</label>
+                    <input type="text" value={subjectName} onChange={(e) => setSubjectName(e.target.value)} />
+                  </div>
+                  <div className="form-group">
+                    <label>Teacher Name:</label>
+                    <input type="text" value={teacherName} onChange={(e) => setTeacherName(e.target.value)} />
+                  </div>
+                  <div className="form-group">
+                    <label>Fee :</label>
+                    <input type="text" value={subjectFee} onChange={(e) => setSubjectFee(e.target.value)} />
+                  </div>
+  
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+  
+            </Box>
+          </Modal>
+  
+      </>
+    )
 };
 
 export default SubjectDetails;

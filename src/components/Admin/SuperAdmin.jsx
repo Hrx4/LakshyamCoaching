@@ -8,6 +8,7 @@ import NoticeForm from './NoticeForm'
 import ApplyTable from './ApplyTable'
 import NoticeTable from './NoticeTable'
 import SubjectDetails from './SubjectDetails'
+import SubjectForm from './SubjectForm'
 
 const SuperAdmin = () => {
 
@@ -15,6 +16,8 @@ const SuperAdmin = () => {
   const [contactList, setContactList] = useState([])
   const [applyList, setApplyList] = useState([])
   const [noticeList, setNoticeList] = useState([])
+  const [subjectList, setSubjectList] = useState([])
+
   const [noteView, setNoteView] = useState('noteform')
   
 
@@ -133,8 +136,31 @@ const SuperAdmin = () => {
     // const handleClassForm = () =>{
     //   setNoteView("classform");
     // }
-    const handleSubjectDetails = () =>{
+    const handleSubjectDetails = async () =>{
          setNoteView("subjectdetails");
+         try {
+          const response = await fetch(`${backend}subject/`, {
+            method: "GET",
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          const resJson = await response.json();
+  
+  
+          if (response.status === 200) {
+            setSubjectList(resJson);
+            console.log('====================================');
+            console.log(resJson);
+            console.log('====================================');
+          } else {
+            console.log("Some error occured");
+          }
+        } catch (err) {
+          console.log(err);
+        }
      }
   return (
     <>
@@ -159,6 +185,9 @@ const SuperAdmin = () => {
         </div>
         <div onClick={handleNoticeTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Notice details
+        </div>
+        <div onClick={(e)=>{setNoteView('subjectform')}} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
+          Subject Form
         </div>
         {/* <div onClick={handleClassForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Class</div> */}
         <div onClick={handleSubjectDetails} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Subject Details</div>
@@ -200,7 +229,12 @@ const SuperAdmin = () => {
       }
       {
         (noteView==="subjectdetails")?
-       ( <SubjectDetails /> ) : null
+       ( <SubjectDetails subjectList={subjectList} setSubjectList={setSubjectList} /> ) : null
+      }
+      {
+        (noteView==='subjectform')?
+        <SubjectForm />:
+        null
       }
         </div>
       
