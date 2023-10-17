@@ -3,8 +3,6 @@ import { Box, Button,Modal } from '@mui/material'
 import  './Table.css'
 import './Form.css'
 import backend from "../../backend";
-import { toast } from "react-toastify";
-
 
 
 const SubjectDetails = (props) => {
