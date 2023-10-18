@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import ClearIcon from '@mui/icons-material/Clear';
 import NoteForm from './NoteForm'
 import NoteTable from './NoteTable'
 import backend from '../../backend'
@@ -10,18 +12,22 @@ import NoticeTable from './NoticeTable'
 import SubjectDetails from './SubjectDetails'
 import SubjectForm from './SubjectForm'
 
-const SuperAdmin = () => {
 
+const SuperAdmin = () => {
+  const ref = useRef(null)
   const [noteList, setNoteList] = useState([])
   const [contactList, setContactList] = useState([])
   const [applyList, setApplyList] = useState([])
   const [noticeList, setNoticeList] = useState([])
   const [subjectList, setSubjectList] = useState([])
-
   const [noteView, setNoteView] = useState('noteform')
+  const [slideOpen, setSlideOpen] = useState(false)
   
 
   const handleNoteTable = async() => {
+    ref.current.classList.add( 'slider__close')
+    ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
     setNoteView('notetable')
 
     try {
@@ -50,6 +56,9 @@ const SuperAdmin = () => {
 
     }
   const handleContactTable = async() => {
+    ref.current.classList.add( 'slider__close')
+    ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
       setNoteView('contacttable')
   
       try {
@@ -78,6 +87,9 @@ const SuperAdmin = () => {
   
     }
     const handleApplyTable = async() => {
+      ref.current.classList.add( 'slider__close')
+      ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
       setNoteView('applytable')
   
       try {
@@ -106,6 +118,11 @@ const SuperAdmin = () => {
   
     }
     const handleNoticeTable = async() => {
+       ref.current.classList.add( 'slider__close')
+       ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
+
+
       setNoteView('noticetable')
   
       try {
@@ -137,6 +154,12 @@ const SuperAdmin = () => {
     //   setNoteView("classform");
     // }
     const handleSubjectDetails = async () =>{
+      ref.current.classList.add( 'slider__close')
+      ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
+
+
+
          setNoteView("subjectdetails");
          try {
           const response = await fetch(`${backend}subject/`, {
@@ -162,13 +185,59 @@ const SuperAdmin = () => {
           console.log(err);
         }
      }
+     const handleNoteForm = ()=>{
+      setNoteView('noteform')
+      ref.current.classList.add( 'slider__close')
+      ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
+
+
+    }
+     const handleNoticeForm = ()=>{
+      setNoteView('noticeform')
+      ref.current.classList.add( 'slider__close')
+      ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
+
+     }
+     const handleSubjectForm = ()=>{
+      setNoteView('subjectform')
+      ref.current.classList.add( 'slider__close')
+      ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
+
+     }
+
+     const btnclicked = ()=>{
+      if(!slideOpen){
+      ref.current.classList.remove( 'slider__close')
+       ref.current.classList.add( 'slider__open')
+      setSlideOpen(true)
+      }
+      else{
+        ref.current.classList.add( 'slider__close')
+        ref.current.classList.remove( 'slider__open')
+        setSlideOpen(false)
+      }
+      
+    } 
   return (
     <>
       
         <div className='super-container' style={{display:"flex" , backgroundColor:('rgba(22,34,57,0.85)'), color:"white"}}>
-        <div className='super-choose' style={{display:"flex",marginTop:5 , overflow:"hidden"}}>
         
-        <div onClick={(e)=>{setNoteView('noteform')}} style={{padding:20, cursor:"pointer"}} className='note__btn'>
+        <button className='hide__btn' style={{ position:"absolute" ,marginTop:5}} onClick={btnclicked}>
+        {
+          (!slideOpen)? 
+          <DoubleArrowIcon fontSize='small'/>
+          :
+          <ClearIcon fontSize='small'/>
+
+        }
+        </button>
+        <div ref={ref} id='super-choose' className='super-choose' style={{display:"flex" , overflow:"hidden"}}>
+        
+        <div onClick={handleNoteForm} style={{padding:20, cursor:"pointer"}} className='note__btn'>
           Note Form
         </div>
         <div onClick={handleNoteTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
@@ -180,18 +249,18 @@ const SuperAdmin = () => {
         <div onClick={handleApplyTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Apply Details
         </div>
-        <div onClick={(e)=>{setNoteView('noticeform')}} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
+        <div onClick={handleNoticeForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Notice Form
         </div>
         <div onClick={handleNoticeTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Notice details
         </div>
-        <div onClick={(e)=>{setNoteView('subjectform')}} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
+        <div onClick={handleSubjectForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Subject Form
         </div>
         {/* <div onClick={handleClassForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Class</div> */}
         <div onClick={handleSubjectDetails} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Subject Details</div>
-      </div>
+        </div>
       {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}
       {
         (noteView==='noteform')?

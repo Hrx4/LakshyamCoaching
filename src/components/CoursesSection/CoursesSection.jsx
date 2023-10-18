@@ -74,7 +74,10 @@ const CoursesSection = () => {
         "Students of classes XI and XII are prepared for entrances. Also, engineering students are given regular coaching.",
     },
     {
+      imgSrc:img_1 ,
       title:"CA Foundation",
+      description:
+        "Students of classes XI and XII are prepared for entrances. Also, medical students are given regular coaching.",
     }
   ];
 

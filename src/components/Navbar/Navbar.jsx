@@ -63,7 +63,7 @@ const Navbar = () => {
   }, []);
   return (
     <div style={{position:"sticky" , top:0 , zIndex:100}}>
-    <header className={`main-header ${isScrolled ? 'scrolled' : ''} clearfix `}>
+    <header className={`main-header ${isScrolled ? 'scrolled' : ''}  `}>
       <div className="logo">
         <Link to="/">
           <img

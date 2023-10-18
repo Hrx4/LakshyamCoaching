@@ -134,9 +134,7 @@
 .menu-link{
     display: none;
 }
-.nav__list__part{
-    margin-left: 30%;
-}
+
 
 @media (max-width: 950px) {
   .main-nav li:hover a,
@@ -152,6 +150,9 @@
   }
   .nav-toggle{
     display: none;
+  }
+  .nav__list__part{
+    margin-right: 30px;
   }
 
 
@@ -197,9 +198,8 @@
     }
     .nav-toggle{
         display: block;
+        
       }
-      .nav__list__part{
-        margin-left: 0px;
-      }
+      
 
   }

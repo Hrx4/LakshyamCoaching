@@ -61,7 +61,7 @@ function NoticeForm() {
     <>
   <ToastContainer/>
 
-      <div className="form-container" style={{marginTop:50 , marginBottom:50}}>
+      <div className="form-container" style={{marginTop:60 , marginBottom:50}}>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title:</label>
