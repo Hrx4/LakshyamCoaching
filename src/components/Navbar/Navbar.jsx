@@ -91,6 +91,9 @@ const Navbar = () => {
             <Link to="/courses">Courses</Link>
           </li>
           <li>
+            <Link to="/gallery">Gallery</Link>
+          </li>
+          <li>
             <Link to="/freetutorial">Free Tutorial</Link>
           </li>
           <li>
@@ -122,6 +125,9 @@ const Navbar = () => {
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/courses">Courses</Link>
+            </li>
+            <li onClick={()=>{setMenuOpen(!menuOpen)}}>
+              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/gallery">Gallery</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/freetutorial">Free Tutorial</Link>

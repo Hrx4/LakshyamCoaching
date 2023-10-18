@@ -10,9 +10,7 @@ const About = () => {
       <MainBanner
         heading6="Home >"
         heading2a="Success Starts Here"
-        // heading2b="Starts Here"
         videoSource={myVideo}
-        // buttonText="Discover more" // Provide buttonText prop if needed
         showFeaturesSection={true}
       />
       <WhyGradSchool/>
