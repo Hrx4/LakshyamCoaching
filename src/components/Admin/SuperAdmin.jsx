@@ -11,6 +11,8 @@ import ApplyTable from './ApplyTable'
 import NoticeTable from './NoticeTable'
 import SubjectDetails from './SubjectDetails'
 import SubjectForm from './SubjectForm'
+import AddStudent from './AddStudent'
+import AllStudent from './AllStudent'
 
 
 const SuperAdmin = () => {
@@ -22,7 +24,43 @@ const SuperAdmin = () => {
   const [subjectList, setSubjectList] = useState([])
   const [noteView, setNoteView] = useState('noteform')
   const [slideOpen, setSlideOpen] = useState(false)
-  
+  const [studentItem, setStudentItem] = useState([ { id: 1, name: '▶ Student', isOpen: false, subItems: ['Add Student', 'All Students'] } ])
+  const [subjectItem, setSubjectItem] = useState([ { id: 1, name: '▶ Subject', isOpen: false, subItems: [' Subject Form', 'Subject Details'] } ])
+  const [noticeItem, setNoticeItem] = useState([ { id: 1, name: '▶ Notice', isOpen: false, subItems: ['Notice Form', 'Notice Details'] } ])
+  const [noteItem, setNoteItem] = useState([ { id: 1, name: '▶ Note', isOpen: false, subItems: ['Note Form', 'Note Details'] } ])
+
+  const toggleMenu = (itemId) => {
+    setStudentItem((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, isOpen: !item.isOpen } : item
+      )
+    );
+  };
+
+  const toggleSubjectMenu = (itemId) => {
+    setSubjectItem((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, isOpen: !item.isOpen } : item
+      )
+    );
+  };
+
+  const toggleNoticeMenu = (itemId) => {
+    setNoticeItem((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, isOpen: !item.isOpen } : item
+      )
+    );
+  };
+
+  const toggleNoteMenu = (itemId) => {
+    setNoteItem((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, isOpen: !item.isOpen } : item
+      )
+    );
+  };
+
 
   const handleNoteTable = async() => {
     ref.current.classList.add( 'slider__close')
@@ -221,10 +259,21 @@ const SuperAdmin = () => {
       }
       
     } 
+
+    const handleAddStudentDetails = () =>{
+      setNoteView('addStudentForm');
+    }
+
+    const handleAllStudentDetails = () =>{
+      setNoteView('allStudentForm');
+    }
+
+
+
   return (
     <>
       
-        <div className='super-container' style={{display:"flex" , backgroundColor:('rgba(22,34,57,0.85)'), color:"white"}}>
+        <div className='super-container' style={{display:"flex" , backgroundColor:('rgba(22,34,57,0.85)'), color:"white", }}>
         
         <button className='hide__btn' style={{ position:"absolute" ,marginTop:5}} onClick={btnclicked}>
         {
@@ -237,29 +286,129 @@ const SuperAdmin = () => {
         </button>
         <div ref={ref} id='super-choose' className='super-choose' style={{display:"flex" , overflow:"hidden"}}>
         
-        <div onClick={handleNoteForm} style={{padding:20, cursor:"pointer"}} className='note__btn'>
+        {/* <div onClick={handleNoteForm} style={{padding:20, cursor:"pointer"}} className='note__btn'>
           Note Form
         </div>
         <div onClick={handleNoteTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Note Details
-        </div>
-        <div onClick={handleContactTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
+        </div> */}
+
+        <div style={{paddingTop:20, textAlign:'left', marginLeft:0, paddingLeft:5}} className='note__btn'>
+        <ul style={{listStyleType: 'none'}}>
+          {noteItem.map((noteItems) => (
+            <li key={noteItems.id}>
+              <span
+                onClick={() => toggleNoteMenu(noteItems.id)}
+                style={{cursor: 'pointer', fontSize:17, textAlign:'left', color:'white' }} className='note__btn'
+              >
+                {noteItems.name}
+              </span>
+              {noteItems.isOpen && (
+                <ul style={{padding:10, color:'white'}}>
+                   
+                  <li onClick={handleNoteForm}>Note Form</li>
+                  <li onClick={handleNoteTable}>Note Details</li>
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+     
+    </div>
+
+        <div onClick={handleContactTable} style={{padding:20 , cursor:"pointer", paddingLeft:30}} className='note__btn'>
           Query Details
         </div>
-        <div onClick={handleApplyTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
+        <div onClick={handleApplyTable} style={{padding:20 , cursor:"pointer", paddingLeft:30}} className='note__btn'>
           Apply Details
         </div>
-        <div onClick={handleNoticeForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
+        {/* <div onClick={handleNoticeForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Notice Form
         </div>
         <div onClick={handleNoticeTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Notice details
-        </div>
-        <div onClick={handleSubjectForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
+        </div> */}
+        {/* <div onClick={handleSubjectForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Subject Form
-        </div>
+        </div> */}
         {/* <div onClick={handleClassForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Class</div> */}
-        <div onClick={handleSubjectDetails} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Subject Details</div>
+        {/* <div onClick={handleSubjectDetails} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Subject Details</div> */}
+
+        <div style={{paddingTop:20, textAlign:'left', marginLeft:0}} className='note__btn'>
+        <ul style={{listStyleType: 'none'}}>
+          {noticeItem.map((noticeItems) => (
+            <li key={noticeItems.id}>
+              <span
+                onClick={() => toggleNoticeMenu(noticeItems.id)}
+                style={{cursor: 'pointer', fontSize:17, textAlign:'left', color:'white' }} className='note__btn'
+              >
+                {noticeItems.name}
+              </span>
+              {noticeItems.isOpen && (
+                <ul style={{padding:10, color:'white'}}>
+                   
+                  <li onClick={handleNoticeForm}>Notice Form</li>
+                  <li onClick={handleNoticeTable}>Notice Details</li>
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+     
+    </div>
+
+
+        <div style={{paddingTop:20, textAlign:'left', marginLeft:0}} className='note__btn'>
+        <ul style={{listStyleType: 'none'}}>
+          {subjectItem.map((subjectItems) => (
+            <li key={subjectItems.id}>
+              <span
+                onClick={() => toggleSubjectMenu(subjectItems.id)}
+                style={{cursor: 'pointer', fontSize:17, textAlign:'left', color:'white' }} className='note__btn'
+              >
+                {subjectItems.name}
+              </span>
+              {subjectItems.isOpen && (
+                <ul style={{padding:10, color:'white'}}>
+                   
+                  <li onClick={handleSubjectForm}>Subject Form</li>
+                  <li onClick={handleSubjectDetails}>Subject Details</li>
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+     
+    </div>
+        
+        <div style={{paddingTop:20, textAlign:'left', marginLeft:0}} className='note__btn'>
+        <ul style={{listStyleType: 'none'}}>
+          {studentItem.map((studentItems) => (
+            <li key={studentItems.id}>
+              <span
+                onClick={() => toggleMenu(studentItems.id)}
+                style={{cursor: 'pointer', fontSize:17, textAlign:'left', color:'white' }} className='note__btn'
+              >
+                {studentItems.name}
+              </span>
+              {studentItems.isOpen && (
+                <ul style={{padding:10, color:'white'}}>
+                   {/* {studentItems.subItems.map((subItem) => (
+                    <li onClick={handleStudentDetails} key={subItem}>{subItem}</li>
+                  ))}  */}
+                  <li onClick={handleAddStudentDetails}>Add Student</li>
+                  <li onClick={handleAllStudentDetails}>All Student</li>
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+     
+    </div>
+
+
+
+
         </div>
       {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}
       {
@@ -303,6 +452,16 @@ const SuperAdmin = () => {
       {
         (noteView==='subjectform')?
         <SubjectForm />:
+        null
+      }
+      {
+        (noteView==='addStudentForm')?
+        <AddStudent />:
+        null
+      }
+      {
+        (noteView==='allStudentForm')?
+        <AllStudent />:
         null
       }
         </div>
