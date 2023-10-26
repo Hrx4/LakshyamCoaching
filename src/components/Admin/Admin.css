@@ -23,6 +23,7 @@
     flex-direction: column;
     height: 92vh;
     width: 15%;
+    border-right: 2px solid white;
   }
   .note__btn{
     align-items: center;
