@@ -3,7 +3,7 @@ import React from "react";
 
 const SubCheckbox = () =>{
     return(
-        <div className="checkbox-container" style={{margin:15}}>
+        <div className="checkbox-container" style={{margin:15, paddingLeft:25}}>
         <label className="checkbox" style={{marginRight:10}}>
             <input type="checkbox" name="subject" value="English"/> English
         </label>

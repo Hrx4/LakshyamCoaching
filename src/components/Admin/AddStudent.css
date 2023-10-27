@@ -20,10 +20,20 @@
     clear: both;
     display: table;
 }
+.student__field{
+    width: 60% !important;
+}
+.form-part{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
  @media (max-width:750px) {
     .form-part{
         width: 70%;
         float: none;
+    }
+    .student__field{
+        width: 100% !important;
     }
     .studentHeading{
         margin-top: 43px;
@@ -34,6 +44,9 @@
     }
     .Guardian{
         margin-left: 40px;
+    }
+    .form-part{
+        width: 90% !important;
     }
  }
 

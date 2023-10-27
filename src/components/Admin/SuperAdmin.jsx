@@ -284,7 +284,7 @@ const SuperAdmin = () => {
 
         }
         </button>
-        <div ref={ref} id='super-choose' className='super-choose' style={{display:"flex" , overflow:"hidden"}}>
+        <div ref={ref} id='super-choose' className='super-choose' style={{display:"flex" , overflowY:"scroll"}}>
         
         {/* <div onClick={handleNoteForm} style={{padding:20, cursor:"pointer"}} className='note__btn'>
           Note Form
@@ -307,7 +307,7 @@ const SuperAdmin = () => {
                 <ul style={{padding:10, color:'white'}}>
                    
                   <li onClick={handleNoteForm}>Note Form</li>
-                  <li onClick={handleNoteTable}>Note Details</li>
+                  <li style={{marginTop:10}} onClick={handleNoteTable}>Note Details</li>
                 </ul>
               )}
             </li>
@@ -317,10 +317,10 @@ const SuperAdmin = () => {
     </div>
 
         <div onClick={handleContactTable} style={{padding:20 , cursor:"pointer", paddingLeft:30}} className='note__btn'>
-          Query Details
+        ▶ Query Details
         </div>
         <div onClick={handleApplyTable} style={{padding:20 , cursor:"pointer", paddingLeft:30}} className='note__btn'>
-          Apply Details
+        ▶ Apply Details
         </div>
         {/* <div onClick={handleNoticeForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Notice Form
@@ -348,14 +348,14 @@ const SuperAdmin = () => {
                 <ul style={{padding:10, color:'white'}}>
                    
                   <li onClick={handleNoticeForm}>Notice Form</li>
-                  <li onClick={handleNoticeTable}>Notice Details</li>
+                  <li style={{marginTop:10}} onClick={handleNoticeTable}>Notice Details</li>
                 </ul>
               )}
             </li>
           ))}
         </ul>
      
-    </div>
+        </div>
 
 
         <div style={{paddingTop:20, textAlign:'left', marginLeft:0}} className='note__btn'>
@@ -372,7 +372,7 @@ const SuperAdmin = () => {
                 <ul style={{padding:10, color:'white'}}>
                    
                   <li onClick={handleSubjectForm}>Subject Form</li>
-                  <li onClick={handleSubjectDetails}>Subject Details</li>
+                  <li style={{marginTop:10}} onClick={handleSubjectDetails}>Subject Details</li>
                 </ul>
               )}
             </li>
@@ -397,7 +397,7 @@ const SuperAdmin = () => {
                     <li onClick={handleStudentDetails} key={subItem}>{subItem}</li>
                   ))}  */}
                   <li onClick={handleAddStudentDetails}>Add Student</li>
-                  <li onClick={handleAllStudentDetails}>All Student</li>
+                  <li style={{marginTop:10}} onClick={handleAllStudentDetails}>All Student</li>
                 </ul>
               )}
             </li>

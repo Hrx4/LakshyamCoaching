@@ -14,7 +14,7 @@ const ContactInfo = () => {
       </p>
 
       <p style={{ color: "white", fontSize: "16px", fontWeight: 600 }}>
-        59, Ram Golum Singh Road, opp. Durga Mandir, Ushagram, Asansol, West Bengal 713303
+        59, Ram Gulam Singh Road, opp. Durga Mandir, Ushagram, Asansol, West Bengal 713303
       </p>
     </div>
   );

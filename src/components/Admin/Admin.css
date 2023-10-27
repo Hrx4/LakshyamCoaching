@@ -21,9 +21,12 @@
   }
   .super-choose{
     flex-direction: column;
-    height: 92vh;
+    height: 98vh;
     width: 15%;
     border-right: 2px solid white;
+  }
+  .super-choose::-webkit-scrollbar {
+    display: none;
   }
   .note__btn{
     align-items: center;
