@@ -2,10 +2,10 @@
     #heading{
         margin-top: 40px;
     }
-    .BoxStyle{
+    .PayBox{
         width: 90% !important;
     }
 }
-.BoxStyle{
+.PayBox{
     width: 30%;
 }

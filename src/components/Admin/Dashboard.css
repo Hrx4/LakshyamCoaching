@@ -1,0 +1,63 @@
+@media (max-width:750px) {
+    .dHeading{
+        margin-top: 40px;
+    }
+    .dBox{
+       width: 30px;
+       height: 17px;
+    }
+    .dContainer{
+        display: block;
+        overflow-y: scroll;
+        /* display: flex; */
+    }
+    .dText{
+        font-size: medium;
+    }
+    .dInnerContainer{
+        display: flex;
+        flex-direction: column;
+    }
+   
+
+}
+
+/* .dContainer {
+  display: flex;
+  justify-content: space-around;
+} */
+
+.dBox {
+  width: 250px;
+  height: 100px;
+  border: 1px solid #000;
+  margin-bottom: 40px;
+  margin-right: 35px;
+}
+
+.inner-box {
+  display: flex;
+  height: 100%;
+}
+
+.half {
+  /* flex: 1; */
+  height: 100%;
+  width: 30%;
+}
+.Dhalf{
+    height: 100%;
+    width: 70%;
+}
+
+.yellow-bg {
+  background-color: yellow;
+}
+
+.dText {
+  display: flex;
+  align-items: left;
+  justify-content: flex-start;
+  background-color: white;
+padding-left: 15px;
+}

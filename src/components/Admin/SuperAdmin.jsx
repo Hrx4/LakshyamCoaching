@@ -13,6 +13,8 @@ import SubjectDetails from './SubjectDetails'
 import SubjectForm from './SubjectForm'
 import AddStudent from './AddStudent'
 import AllStudent from './AllStudent'
+import StudentPayment from './StudentPayment';
+import Dashboard from './Dashboard';
 
 
 const SuperAdmin = () => {
@@ -268,7 +270,12 @@ const SuperAdmin = () => {
       setNoteView('allStudentForm');
     }
 
-
+    const handleStudentPayment = ()=>{
+      setNoteView('addPaymentDetails');
+    }
+    const handleDashboard = ()=>{
+      setNoteView('Dashboard');
+    }
 
   return (
     <>
@@ -292,6 +299,10 @@ const SuperAdmin = () => {
         <div onClick={handleNoteTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
           Note Details
         </div> */}
+
+        <div onClick={handleDashboard} style={{padding:20 , cursor:"pointer", paddingLeft:30}} className='note__btn'>
+        ▶ Dashboard
+        </div>
 
         <div style={{paddingTop:20, textAlign:'left', marginLeft:0, paddingLeft:5}} className='note__btn'>
         <ul style={{listStyleType: 'none'}}>
@@ -405,7 +416,7 @@ const SuperAdmin = () => {
         </ul>
      
     </div>
-
+    <div onClick={handleStudentPayment} style={{padding:20 , cursor:"pointer", paddingLeft:30}} className='note__btn'>▶Student Payment</div>
 
 
 
@@ -464,6 +475,18 @@ const SuperAdmin = () => {
         <AllStudent />:
         null
       }
+      {
+        (noteView==='addPaymentDetails')?
+        <StudentPayment />:
+        null
+      }
+      {
+        (noteView==='Dashboard')?
+        <Dashboard />:
+        null
+      }
+
+
         </div>
       
     </>
