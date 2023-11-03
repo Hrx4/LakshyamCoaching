@@ -12,7 +12,7 @@ const StudentInfo = () =>{
         </tr>
         <tr>
             <td style={{border: '1px solid #000', padding: '8px'}}>1</td>
-            <td style={{border: '1px solid #000', padding: '8px'}}>Pamela</td>
+            <td style={{cursor:'pointer', border: '1px solid #000', padding: '8px', }}>Pamela</td>
             <td style={{border: '1px solid #000', padding: '8px', }}><button>Edit</button>   <button style={{backgroundColor:'red'}}>Delete</button></td>
         </tr>
         

@@ -1,5 +1,10 @@
 import React from "react";
 import './AddStudent.css'
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Box from '@mui/material/Box';
 import SubCheckbox from './SubCheckbox';
 const AddStudent = () => {
   
@@ -44,7 +49,8 @@ const AddStudent = () => {
 
           <div style={{marginLeft:40}}>
             <label style={{marginRight:10, marginTop:10}}>Course Name</label><br/>
-            <select  className="student__field" style={{  height: 40 }} type="text" required>
+            {/*<select  className="student__field" style={{  height: 40 }} type="text" required>
+             <option disabled selected>Select Your Course</option>
               <option value="CBSE Board All Subjects">
                 CBSE Board All Subjects
               </option>
@@ -72,7 +78,44 @@ const AddStudent = () => {
                 Commerce Board + CUET
               </option>
               <option value="CA Foundation">CA Foundation</option>
-            </select>
+            </select> */}
+            <Box sx={{ minWidth: 120 }}>
+      <FormControl style={{width:'60%', backgroundColor:'white'}} className="student__field">
+        <InputLabel  style={{color:'black'}}>Select Your Course</InputLabel>
+        <Select
+          
+          // value={courseForPay}
+          label=""
+          // onChange={(e) => setCourseForPay(e.target.value)}
+          style={{color:'black'}}
+
+        >
+          <MenuItem  value="CBSE Board All Subjects"> CBSE Board All Subjects</MenuItem>
+          <MenuItem value="ICSE Board All Subjects">
+                ICSE Board All Subjects
+                </MenuItem>
+                <MenuItem value="Class 11 CBSE Boards + CUET">
+                Class 11 CBSE Boards + CUET
+                </MenuItem>
+                <MenuItem value="Class 11 ICSE Boards + CUET">
+                Class 11 ICSE Boards + CUET
+                </MenuItem>
+                <MenuItem value="Class 12 CBSE Boards + CUET">
+                Class 12 CBSE Boards + CUET
+                </MenuItem>
+                <MenuItem value="Class 12 ICSE Boards + CUET">
+                Class 12 ICSE Boards + CUET
+                </MenuItem>
+                <MenuItem value="JEE Mains ">JEE Mains </MenuItem>
+                <MenuItem value="NEET ">NEET </MenuItem>
+                <MenuItem value="Foundation Course JEE IIT / NEET">
+                Foundation Course JEE IIT / NEET
+                </MenuItem>
+                <MenuItem value="Commerce Board + CUET">Commerce Board + CUET</MenuItem>
+                <MenuItem value="CA Foundation">CA Foundation</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
           </div>
           <div style={{marginLeft:40}}>
             <label style={{marginRight:10, marginTop:10}}>Choose Subject</label><br/>
@@ -97,9 +140,9 @@ const AddStudent = () => {
           <div style={{marginLeft:40}}>
             <label style={{marginRight:10, marginTop:10}}>Payment Type</label><br/>
             <select className="student__field" required>
-                <option>UPI</option>
-                <option>Paytm</option>
-                <option>Cash</option>
+                <option>Monthly Payment</option>
+                <option>Quarterly Payment</option>
+                <option>Yearly Payment</option>
             </select>
           </div>
           <div style={{marginLeft:40}}>
