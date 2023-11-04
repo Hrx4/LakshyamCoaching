@@ -4,7 +4,8 @@ const { getStudent, updateStudent, deleteStudent, createStudent } = require('../
 const router= express.Router()
 
 router.route('/').post(createStudent);
-router.route('/:id').delete(deleteStudent).put(updateStudent).get(getStudent);
+router.route('/getstudent').post(getStudent)
+router.route('/:id').delete(deleteStudent).put(updateStudent);
 
 
 module.exports = router

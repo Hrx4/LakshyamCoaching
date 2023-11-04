@@ -2,27 +2,22 @@ const asyncHandler = require('express-async-handler');
 const studentModels = require('../models/studentModels');
 
 const createStudent = asyncHandler(async(req , res) => {
-    const {studentEnrollment , studentClass,studentBoard, studentCourse , studentSubjects , studentEmail , studentPhone , studentAddress , studentPaymentType , studentDob , studentPhoto , guardianName , guardianPhone , guardianEmail , guardianAddress } = req.body;
+    const {studentEnrollment ,studentName, studentClass,studentBoard, studentCourse , studentSubjects , studentEmail , studentPhone , studentAddress , studentPaymentType , studentDob , studentPhoto , guardianName , guardianPhone , guardianEmail , guardianAddress } = req.body;
  
     const student = await studentModels.create({
-        studentEnrollment , studentClass,studentBoard, studentCourse , studentSubjects , studentEmail , studentPhone , studentAddress , studentPaymentType , studentDob , studentPhoto , guardianName , guardianPhone , guardianEmail , guardianAddress    })
-    res.status(200).json(student)
+        studentEnrollment ,studentName, studentClass,studentBoard, studentCourse , studentSubjects , studentEmail , studentPhone , studentAddress , studentPaymentType , studentDob , studentPhoto , guardianName , guardianPhone , guardianEmail , guardianAddress    })
+    
+        // await 
+
+        res.status(200).json(student)
 
 })
 
 
 const getStudent = asyncHandler(async(req , res) => {
-    const studentCourse = req.params.id;
+    const studentCourse = req.body;
 
-    const students = await studentModels.find({studentCourse : studentCourse} , 
-        function (err, docs) { 
-            if (err){ 
-                console.log(err); 
-            } 
-            else{ 
-                console.log("List of the students : ", docs); 
-            } 
-        })
+    const students = await studentModels.find({studentCourse : studentCourse})
     res.status(200).json(students);
 })
 
@@ -41,7 +36,7 @@ const deleteStudent = asyncHandler(async(req , res) => {
 
 const updateStudent = asyncHandler(async(req , res) => {
 
-    const {studentEnrollment , studentClass,studentBoard, studentCourse , studentSubjects , studentEmail , studentPhone , studentAddress , studentPaymentType , studentDob , studentPhoto , guardianName , guardianPhone , guardianEmail , guardianAddress } = req.body;
+    const {studentEnrollment ,studentName, studentClass,studentBoard, studentCourse , studentSubjects , studentEmail , studentPhone , studentAddress , studentPaymentType , studentDob , studentPhoto , guardianName , guardianPhone , guardianEmail , guardianAddress } = req.body;
 
     const student = await studentModels.findById(req.params.id);
     if(!student){
@@ -53,6 +48,7 @@ const updateStudent = asyncHandler(async(req , res) => {
         req.params.id,
         {
             studentEnrollment : studentEnrollment, 
+            studentName:studentName,
             studentClass : studentClass,
             studentBoard : studentBoard, 
             studentCourse : studentCourse , 

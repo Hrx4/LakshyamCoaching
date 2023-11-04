@@ -6,6 +6,10 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: [true, "Please add the Enrollment No"],
     },
+    studentName: {
+        type: String,
+        required: [true, "Please add the Name"],
+    },
     studentClass: {
         type: String,
         required: [true, "Please add the Class"],
