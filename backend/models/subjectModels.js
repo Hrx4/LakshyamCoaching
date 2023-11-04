@@ -9,7 +9,6 @@ const subjectSchema = mongoose.Schema({
     subjectName: {
         type: String,
         required: [true, "Please add the Name"],
-
     },
     subjectFee: {
         type: String,

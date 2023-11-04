@@ -22,11 +22,6 @@ const SubCheckbox = () =>{
     </div>
 
 
-
-
-
-
-
     )
 }
 
