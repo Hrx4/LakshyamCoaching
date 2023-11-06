@@ -66,6 +66,14 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: [true, "Please add the Guardian Address"],
     },
+    createdMonth: {
+        type:Number,
+        required: [true, "Please add the Month"],
+    },
+    createdYear : {
+        type:Number,
+        required: [true, "Please add the Year"],
+    }
     
 }, {
     timestamps: true,

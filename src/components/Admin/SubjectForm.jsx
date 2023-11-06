@@ -9,7 +9,7 @@ function SubjectForm() {
   const [subjectCourse, setSubjectCourse] = useState('CBSE Board All Subjects');
   const [subjectName, setSubjectName] = useState('');
   const [subjectTeacher, setSubjectTeacher] = useState('');
-  const [subjectFee, setSubjectFee] = useState('');
+  const [subjectFee, setSubjectFee] = useState(0);
 
 
 
@@ -38,7 +38,7 @@ function SubjectForm() {
             setSubjectCourse('CBSE Board All Subjects')
             setSubjectName('')
             setSubjectTeacher('')
-            setSubjectFee('')
+            setSubjectFee(0)
 
             toast.success('Form submitted', {
               position: toast.POSITION.TOP_CENTER
@@ -110,7 +110,9 @@ function SubjectForm() {
 
         <div className="form-group">
           <label>Fee :</label>
-          <input type="text" value={subjectFee} onChange={(e) => setSubjectFee(e.target.value)} />
+          <input type="number" value={subjectFee} onChange={(e) => setSubjectFee(e.target.value)} 
+            style={{width:"100%"}}
+          />
         </div>
 
         <button type="submit">Submit</button>

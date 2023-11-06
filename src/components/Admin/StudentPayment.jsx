@@ -6,52 +6,61 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import './StudentPayment.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import backend from '../../backend';
 
 const StudentPayment = () =>{
 
   const [courseForPay, setCourseForPay] = useState();
   const [payDetails, setPayDetails] = useState();
-  const handlePayDetails = (e) =>{
+  const [studentPayList , setStudentPayList] = useState([]);
+
+
+  const handlePayDetails = async (e) =>{
     e.preventDefault();
     setPayDetails('addPayDetails');
+    try {
+      const res = await fetch(`${backend}getstudent/`, {
+        method: "POST",
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          
+          studentCourse : courseForPay , 
+          
+        }),
+      });
+      let resJson = await res.json();
+      if (res.status === 200) {
+        console.log("fine");
+            setStudentPayList(resJson)
+            toast.success('Form submitted', {
+              position: toast.POSITION.TOP_CENTER
+          });
+      } 
+
+    } catch (err) {
+      toast.error('Error Occured', {
+        position: toast.POSITION.TOP_CENTER
+    });
+      console.log(err);
+    }
   }
 
     return(
-        <div className="PayBox" style={{marginTop:40, margin:20}}>
+        <>
+                <ToastContainer/>
+          <div className="PayBox" style={{marginTop:40, margin:20}}>
         <h1 id="heading" style={{marginBottom:'15px'}}>Student Payment</h1>
         <div style={{border:'2px solid rgb(30, 144, 255)', padding:20}}>
         <h2 style={{textTransform:'capitalize'}}>Select Course</h2>
         <form onSubmit={handlePayDetails}>
         <label>Course Name:</label>
         
-          {/* <select style={{width:"100%" , height:40}} type="text" value={courseForPay} onChange={(e) => setCourseForPay(e.target.value)} >
-                
-                <option value="CBSE Board All Subjects">
-                CBSE Board All Subjects
-                </option>
-                <option value="ICSE Board All Subjects">
-                ICSE Board All Subjects
-                </option>
-                <option value="Class 11 CBSE Boards + CUET">
-                Class 11 CBSE Boards + CUET
-                </option>
-                <option value="Class 11 ICSE Boards + CUET">
-                Class 11 ICSE Boards + CUET
-                </option>
-                <option value="Class 12 CBSE Boards + CUET">
-                Class 12 CBSE Boards + CUET
-                </option>
-                <option value="Class 12 ICSE Boards + CUET">
-                Class 12 ICSE Boards + CUET
-                </option>
-                <option value="JEE Mains ">JEE Mains </option>
-                <option value="NEET ">NEET </option>
-                <option value="Foundation Course JEE IIT / NEET">
-                Foundation Course JEE IIT / NEET
-                </option>
-                <option value="Commerce Board + CUET">Commerce Board + CUET</option>
-                <option value="CA Foundation">CA Foundation</option>
-          </select> */}
+          
           <Box >
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label" style={{color:'white'}}>Select Your Course</InputLabel>
@@ -94,10 +103,11 @@ const StudentPayment = () =>{
         </div>
         {
         (payDetails==='addPayDetails')?
-        <PayDetailsTab/>:
+        <PayDetailsTab  studentPayList={studentPayList} setStudentPayList={setStudentPayList}/>:
         null
       }
         </div>
+        </>
     )
 }
 

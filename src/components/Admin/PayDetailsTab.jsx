@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PaymentHistoryTab from "./PaymentHistoryTab";
 
-const PayDetailsTab = () =>{
+const PayDetailsTab = ({studentPayList , setStudentPayList}) =>{
     const [payHistory, setPayHistory] = useState();
     const PayHistoryTab = () =>{
         setPayHistory('PaymentHistory');
@@ -18,11 +18,18 @@ const PayDetailsTab = () =>{
             <th style={{border: '1px solid #000', padding: '8px'}}>Action</th>
         </tr>
         </thead>
-        <tr>
-            <td style={{border: '1px solid #000', padding: '8px'}}>1</td>
-            <td style={{border: '1px solid #000', padding: '8px'}}>Pamela</td>
-            <td style={{border: '1px solid #000', padding: '8px' }}><button>Add Payment</button>   <button onClick={PayHistoryTab}>View Payments</button></td>
-        </tr>
+
+        {
+            studentPayList.map(
+            (item,index) => (
+                <tr style={{border:"1px solid black", padding:5}} key={item._id}>
+                    <td style={{border: '1px solid #000', padding: '8px'}}>{index+1}</td>
+                    <td style={{border: '1px solid #000', padding: '8px'}}>{item.studentName}</td>
+                    <td style={{border: '1px solid #000', padding: '8px' }}><button>Add Payment</button>   <button onClick={PayHistoryTab(item.studentEnrollment)}>View Payments</button></td>
+                </tr>
+            ))
+        }
+        
         
     </table>
         </div>

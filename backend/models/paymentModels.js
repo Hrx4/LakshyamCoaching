@@ -9,9 +9,10 @@ const paymentSchema = mongoose.Schema({
     paymentDetails: {
         type: [
             new mongoose.Schema({
-                paymentMonth : {type:String},
-                paymentMoney: {type:String},
-                paymentDate: {timestamps:true}
+                paymentMonth : {type:String },
+                paymentMoney: {type:Number },
+                paymentType:{type:String},
+                paymentDate: {type:String }
             })
         ],
 
