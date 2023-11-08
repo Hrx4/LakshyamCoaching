@@ -3,9 +3,11 @@ import MainBanner from '../components/Main Banner/MainBanner'
 import myVideo from '../assets/images/aboutus.mp4'
 import WhyGradSchool from '../components/WhyGradSchool/WhyGradSchool'
 import VideoSection from '../components/VideoSection/VideoSection'
-
+import Navbar from "../components/Navbar/Navbar";
 const About = () => {
   return (
+    <>
+  <Navbar/>
     <div>
       <MainBanner
         heading6="Home >"
@@ -17,6 +19,7 @@ const About = () => {
       <VideoSection/>
       
     </div>
+    </>
   )
 }
 

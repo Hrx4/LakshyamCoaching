@@ -3,12 +3,14 @@ import MainBanner from '../components/Main Banner/MainBanner'
 import myVideo from '../assets/images/free-tutorial.mp4'
 import NotesSection from '../components/NotesSection/NotesSection'
 import SearchSection from "../components/SearchSection/SearchSection";
-
+import Navbar from "../components/Navbar/Navbar";
 const FreeTutorial = () => {
   const [open, setOpen] = useState(true)
   const [noteList, setNoteList] = useState([]);
 
   return (
+    <>
+    <Navbar/>
     <div>
       <MainBanner
         heading6="Home >"
@@ -22,6 +24,7 @@ const FreeTutorial = () => {
       <NotesSection open={open} setOpen={setOpen} noteList={noteList} setNoteList={setNoteList} />
       
     </div>
+    </>
   )
 }
 
