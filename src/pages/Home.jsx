@@ -9,9 +9,12 @@ import GallerySection from "../components/GallerySection/GallerySection";
 // import TestimonialSection from "../components/CourseItem/TestimonialSection/TestimonialSection";
 import  Testimonials  from "../components/Testimonials/Testimonials";
 import ContactSection from "../components/ContactSection/ContactSection";
+import Navbar from "../components/Navbar/Navbar";
 
 function Home() {
   return (
+    <>
+    <Navbar/>
     <div>
       <MainBanner
         heading6="Lakshyam Coaching"
@@ -31,6 +34,7 @@ function Home() {
       <ContactSection/>
       
     </div>
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import './Admin.css'
 import { useState } from 'react'
+import Navbar from '../Navbar/Navbar'
 
 const Admin = () => {
     const style = {
@@ -34,6 +35,7 @@ const Admin = () => {
 
   return (
     <>
+    <Navbar/>
         <div style={{backgroundColor: 'rgba(22,34,57,0.95)' , height : "100%", width:"100%" , display:"flex" , flexDirection:"column", justifyContent:"center" , gap:30, paddingTop:110 ,  paddingBottom:110}}>
 
         <div className='admin__row' style={{display:"flex" , justifyContent:"space-evenly"  }}>

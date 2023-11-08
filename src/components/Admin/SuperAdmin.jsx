@@ -15,6 +15,7 @@ import AddStudent from './AddStudent'
 import AllStudent from './AllStudent'
 import StudentPayment from './StudentPayment';
 import Dashboard from './Dashboard';
+import SnavBar from './SnavBar';
 
 
 const SuperAdmin = () => {
@@ -279,7 +280,7 @@ const SuperAdmin = () => {
 
   return (
     <>
-      
+      <SnavBar/>
         <div className='super-container' style={{display:"flex" , backgroundColor:('rgba(22,34,57,0.85)'), color:"white", }}>
         
         <button className='hide__btn' style={{ position:"absolute" ,marginTop:5}} onClick={btnclicked}>

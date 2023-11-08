@@ -3,8 +3,11 @@ import MainBanner from '../components/Main Banner/MainBanner'
 import myVideo from '../assets/images/courses.mp4'
 import CoursesSection from '../components/CoursesSection/CoursesSection'
 // import Footer from '../components/Footer/Footer'
+import Navbar from "../components/Navbar/Navbar";
 const Courses = () => {
   return (
+    <>
+    <Navbar/>
     <div>
     <MainBanner
         heading6="Home >"
@@ -17,6 +20,7 @@ const Courses = () => {
       <CoursesSection/>
       
       </div>
+      </>
   )
 }
 
