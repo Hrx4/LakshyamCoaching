@@ -117,7 +117,22 @@ const AddStudent = () => {
               }
               
             // setLoading(false)
-          
+                    setStudentEnrollment('')  
+                    setStudentName('')
+                    setStudentClass('') 
+                    setStudentBoard('') 
+                    setStudentCourse('') 
+                    setStudentSubjects('') 
+                    setStudentEmail('') 
+                    setStudentPhone ('')
+                    setStudentAddress ('')
+                    setStudentPaymentType('') 
+                    setStudentDob('') 
+                    setStudentPhoto('') 
+                    setGuardianName ('')
+                    setGuardianPhone('')  
+                    setGuardianEmail('') 
+                    setGuardianAddress('') 
             };
 
   

@@ -1,7 +1,24 @@
 import React from "react";
 import './PaymentHistoryTab.css';
 
-const PaymentHistoryTab = () =>{
+const PaymentHistoryTab = ({paymentList , setPaymentList}) =>{
+
+    const data = [
+        "January" ,
+        "February" ,
+        "March" ,
+        "April" ,
+        "May" ,
+        "June" ,
+        "July" ,
+        "Augast" ,
+        "September" ,
+        "Ovtober" ,
+        "November" ,
+        "December" ,
+      ]
+
+
     return(
         <div style={{marginTop:100}}>
             <table className="PHT" style={{borderCollapse: 'collapse', width:'100%', border: '1px solid #000'}}>
@@ -18,16 +35,22 @@ const PaymentHistoryTab = () =>{
                     </thead>
                     <tbody >
 
-
-                    <tr >
-                        <td style={{border: '1px solid #000', padding: '8px'}}>1</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>2023</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>October</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>Monthly</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>800</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>06-10-2023</td>
-                        <td className="actionButtons"><button className="actionButton">View Details</button> <button className="actionButton">View Invoice</button></td>
+                    {
+                        paymentList[0].paymentDetails.map((item , index)=>(
+                            <tr style={{border:"1px solid black", padding:5}} key={item._id}>
+                        
+                            <td style={{border: '1px solid #000', padding: '8px'}}>{index+1}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentYear}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{data[item.paymentMonth]}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentType}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentMoney}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentDate}</td>
+                        <td className="actionButtons"> <button className="actionButton">View Invoice</button></td>
+                        
                     </tr>
+                        ))
+                    }
+                    
                     </tbody>
                 
             </table>

@@ -6,11 +6,25 @@ const paymentSchema = mongoose.Schema({
         type: String,
         required: [true, "Please add the Title"],
     },
+    studentCourse: {
+        type: String,
+        required: [true, "Please add the Course"],
+    },
+    studentSubjects: {
+        type: [],
+        required: [true, "Please add the Subjects"],
+    },    
+    paymentMoney: {type:Number },
+    paymentType: {type:String },
+
     paymentDetails: {
         type: [
             new mongoose.Schema({
                 paymentMonth : {type:String },
-                paymentMoney: {type:Number },
+                paymentMoney:{type:Number},
+                paymentYear:{type:String},
+                paidMonth : {type:String },
+                paidYear:{type:String},
                 paymentType:{type:String},
                 paymentDate: {type:String }
             })

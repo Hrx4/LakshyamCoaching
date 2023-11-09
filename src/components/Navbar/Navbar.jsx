@@ -65,7 +65,7 @@ const Navbar = () => {
     <div style={{position:"sticky" , top:0 , zIndex:100}}>
     <header className={`main-header ${isScrolled ? 'scrolled' : ''}  `}>
       <div className="logo">
-        <Link to="/">
+        <Link to="/" style={{fontSize:16 , display:"flex" , gap:8 , alignItems:"center"}}>
           <img
             src={lakshyamLogo }
             alt="logo"
@@ -73,6 +73,7 @@ const Navbar = () => {
             width="60px"
             
           />
+          Lakshyam Coaching
         </Link>
       </div>
       <div className='nav__list__part' style={{display:"flex" , alignItems:"center" }}>

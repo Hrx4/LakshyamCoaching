@@ -18,7 +18,7 @@ const AllStudent = () =>{
       e.preventDefault();
       setStudentTab('studentInfo');
       try {
-        const res = await fetch(`${backend}getstudent/`, {
+        const res = await fetch(`${backend}student/getstudent`, {
           method: "POST",
           headers: {
             Accept: 'application/json',
