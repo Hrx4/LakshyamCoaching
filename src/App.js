@@ -6,11 +6,9 @@ import Contact from "./pages/Contact";
 import Courses from "./pages/Courses";
 import FreeTutorial from "./pages/FreeTutorial";
 import Gallery from "./pages/Gallery";
-import Navbar from "./components/Navbar/Navbar";
 import Admin from "./components/Admin/Admin";
 import Footer from "./components/Footer/Footer";
 import SuperAdmin from "./components/Admin/SuperAdmin";
-import SnavBar from "./components/Admin/SnavBar";
 
 function App() {
 
