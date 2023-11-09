@@ -1,10 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Dashboard.css";
 import { FaAddressBook } from "react-icons//fa6";
 import { FaCreativeCommonsBy } from "react-icons//fa6";
 import { FaCreativeCommonsNc } from "react-icons//fa6";
 import { FaCommentDollar } from "react-icons//fa6";
+import SubDashBoard from "./SubDashBoard";
+
 const Dashboard = () => {
+  const [subDash, setSubDash] = useState('noteform');
+
+
+  const handleMonthlyIncome = () =>{
+    setSubDash('MonthlyIncome');
+  }
+
+  const handleTotalIncome = () =>{
+    setSubDash('TotalIncome');
+  }
+
+  const handleMonthlyDue = () =>{
+    setSubDash('MonthlyDue');
+  }
+
+  const handleTotalDue = () =>{
+    setSubDash('TotalDue');
+  }
+
   return (
     <div className="dContainer" style={{ marginTop: 40, margin: 20 }}>
       <h1 className="dHeading" style={{marginLeft:15}}>Dashboard</h1>
@@ -24,13 +45,13 @@ const Dashboard = () => {
         <div className="dBox">
           <div className="inner-box">
             <div className="half yellow-bg" style={{backgroundColor:'#00a65a'}} ><FaCommentDollar size={50}/></div>
-            <div className="Dhalf dText" style={{color:'black'}}>MONTHLY INCOME</div>
+            <div className="Dhalf dText" style={{color:'black', cursor:'pointer'}} onClick={handleMonthlyIncome} onDoubleClick={(e)=>{setSubDash('')}}>MONTHLY INCOME</div>
           </div>
         </div>
         <div className="dBox">
           <div className="inner-box">
             <div className="half yellow-bg" style={{backgroundColor:'#f39c12 '}}><FaCommentDollar size={50}/></div>
-            <div className="Dhalf dText" style={{color:'black'}}>TOTAL INCOME</div>
+            <div className="Dhalf dText" style={{color:'black', cursor:'pointer'}} onClick={handleTotalIncome} onDoubleClick={(e)=>{setSubDash('')}}>TOTAL INCOME</div>
           </div>
         </div>
       </div>
@@ -44,7 +65,7 @@ const Dashboard = () => {
         <div className="dBox">
           <div className="inner-box">
             <div className="half yellow-bg" style={{backgroundColor:'#dd4b39'}}><FaCreativeCommonsNc size={50}/></div>
-            <div className="Dhalf dText" style={{color:'black'}}>MONTHLY DUE</div>
+            <div className="Dhalf dText" style={{color:'black', cursor:'pointer'}} onClick={handleMonthlyDue} onDoubleClick={(e)=>{setSubDash('')}}>MONTHLY DUE</div>
           </div>
          
         </div>
@@ -58,12 +79,33 @@ const Dashboard = () => {
         <div className="dBox">
           <div className="inner-box">
             <div className="half yellow-bg" style={{backgroundColor:'#f39c12 '}}><FaCreativeCommonsNc size={50}/></div>
-            <div className="Dhalf dText" style={{color:'black'}}>TOTAL DUE</div>
+            <div className="Dhalf dText" style={{color:'black', cursor:'pointer'}} onClick={handleTotalDue} onDoubleClick={(e)=>{setSubDash('')}}>TOTAL DUE</div>
           </div>
          
         </div>
       </div>
-    </div>
+      
+      {
+        (subDash==='MonthlyIncome')?
+        <SubDashBoard headingDash='Monthly Income'/>:
+        null
+      }
+      {
+        (subDash==='TotalIncome')?
+        <SubDashBoard headingDash='Total Income'/>:
+        null
+      }
+      {
+        (subDash==='MonthlyDue')?
+        <SubDashBoard headingDash='Monthly Due'/>:
+        null
+      }{
+        (subDash==='TotalDue')?
+        <SubDashBoard headingDash='Total Due'/>:
+        null
+      }
+</div>
+    
   );
 };
 
