@@ -95,7 +95,7 @@ const Navbar = () => {
             <Link to="/gallery">Gallery</Link>
           </li>
           <li>
-            <Link to="/freetutorial">Free Tutorial</Link>
+            <Link to="/freetutorial">Study Material</Link>
           </li>
           <li>
             <Link to="/contact">Contact</Link>
@@ -107,9 +107,9 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
-      <div onClick={handleNoticeTable}>
+      {/* <div onClick={handleNoticeTable}>
         <NotificationsActiveIcon style={{cursor:"pointer", marginLeft:"1rem"}} />
-      </div>
+      </div> */}
       </div>
     </header>
       <Notification notification={notification} setNotification={setNotification} noticeList={noticeList}/>

@@ -10,6 +10,8 @@ import GallerySection from "../components/GallerySection/GallerySection";
 import  Testimonials  from "../components/Testimonials/Testimonials";
 import ContactSection from "../components/ContactSection/ContactSection";
 import Navbar from "../components/Navbar/Navbar";
+import Advertisement from "../components/Advertisement";
+import NotificationAndBanner from "../components/NotificationAndBanner";
 
 function Home() {
   return (
@@ -17,20 +19,25 @@ function Home() {
     <Navbar/>
     <div>
       <MainBanner
-        heading6="Lakshyam Coaching"
+        // heading6="Lakshyam Coaching"
         heading2a="Full Schooling Solution"
         // heading2b="Coaching"
         videoSource={myVideo}
-        buttonText="Discover more"
+        buttonText="Discover Our Courses"
         showFeaturesSection={true} 
         className = "banner-container"
       />
-      <WhyGradSchool/>
-      <ComingSoonSection/>
+      <NotificationAndBanner/>
       <CoursesSection/>
+      <Advertisement/>
+      <Testimonials/>
+      <WhyGradSchool/>
+      {/* <Testimonials/> */}
+      {/* <ComingSoonSection/> */}
+      {/* <CoursesSection/> */}
       <VideoSection/>
       <GallerySection/>
-      <Testimonials/>
+      {/* <Testimonials/> */}
       <ContactSection/>
       
     </div>

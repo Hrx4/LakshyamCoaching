@@ -102,7 +102,7 @@ function NoteForm() {
       <div className="form-container" style={{marginTop:60 , marginBottom:50}}>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Title:</label>
+          <label>Note Title:</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
 
@@ -134,12 +134,12 @@ function NoteForm() {
         </div>
 
         <div className="form-group">
-          <label>Image:</label>
+          <label>Note Thumbnail Image:</label>
           <input type="file" accept="image/*"  onChange={uploadFiles} />
         </div>
 
         <div className="form-group">
-          <label>PDF:</label>
+          <label>Upload File:</label>
           <input type="file" accept=".pdf"  onChange={uploadFiles} />
         </div>
 

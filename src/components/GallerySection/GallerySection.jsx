@@ -7,7 +7,7 @@ import img_3 from "./img/img3.jpeg";
 import img_4 from "./img/img4.jpeg";
 const GallerySection = () => {
   return (
-    <section className="section-courses" data-section="section4">
+    <section className="Gsection-courses" data-section="section4">
       <div className="container-xxl py-5 category">
         <div className="container">
           <SectionHeading title="Students Gallery" />

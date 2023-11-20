@@ -9,6 +9,7 @@
   .testimonials{
     background-color: rgba(22,34,57,0.95);
     background-image: url('./testbackground.jpg');
+    /* background-image: url("./choosing-bg.jpg"); */
   }
   #shadow-effect p {
     font-family: inherit;

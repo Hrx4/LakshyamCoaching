@@ -48,20 +48,20 @@ const Dashboard = () => {
             <div className="Dhalf dText" style={{color:'black', cursor:'pointer'}} onClick={handleMonthlyIncome} onDoubleClick={(e)=>{setSubDash('')}}>MONTHLY INCOME</div>
           </div>
         </div>
-        <div className="dBox">
+        {/* <div className="dBox">
           <div className="inner-box">
             <div className="half yellow-bg" style={{backgroundColor:'#f39c12 '}}><FaCommentDollar size={50}/></div>
             <div className="Dhalf dText" style={{color:'black', cursor:'pointer'}} onClick={handleTotalIncome} onDoubleClick={(e)=>{setSubDash('')}}>TOTAL INCOME</div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="dInnerContainer" style={{ display: "flex", margin:'20px'  }}>
-        <div className="dBox">
+        {/* <div className="dBox">
           <div className="inner-box">
             <div className="half yellow-bg"  style={{backgroundColor:'#00c0ef '}}><FaCommentDollar size={50}/></div>
             <div className="Dhalf dText" style={{color:'black'}}>DAILY INCOME</div>
           </div>
-        </div>
+        </div> */}
         <div className="dBox">
           <div className="inner-box">
             <div className="half yellow-bg" style={{backgroundColor:'#dd4b39'}}><FaCreativeCommonsNc size={50}/></div>
@@ -69,12 +69,18 @@ const Dashboard = () => {
           </div>
          
         </div>
-        <div className="dBox">
+        {/* <div className="dBox">
           <div className="inner-box">
             <div className="half yellow-bg" style={{backgroundColor:'#00a65a'}}><FaCreativeCommonsNc size={50}/></div>
             <div className="Dhalf dText" style={{color:'black'}}>DAILY DUE</div>
           </div>
         
+        </div> */}
+        <div className="dBox">
+          <div className="inner-box">
+            <div className="half yellow-bg" style={{backgroundColor:'#f39c12 '}}><FaCommentDollar size={50}/></div>
+            <div className="Dhalf dText" style={{color:'black', cursor:'pointer'}} onClick={handleTotalIncome} onDoubleClick={(e)=>{setSubDash('')}}>TOTAL INCOME</div>
+          </div>
         </div>
         <div className="dBox">
           <div className="inner-box">

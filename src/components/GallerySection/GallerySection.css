@@ -31,8 +31,9 @@
     align-items: center;
 }
 
-.section-courses {
-    background-image: url("./img/choosing-bg.jpg");
+.Gsection-courses {
+    /* background-image: url("./img/choosing-bg.jpg"); */
+    background-image: url('../Testimonials/testbackground.jpg');
     display: flex;
     justify-content: center;
     align-items: center;

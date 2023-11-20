@@ -28,9 +28,9 @@ const SuperAdmin = () => {
   const [noteView, setNoteView] = useState('noteform')
   const [slideOpen, setSlideOpen] = useState(false)
   const [studentItem, setStudentItem] = useState([ { id: 1, name: '▶ Student', isOpen: false, subItems: ['Add Student', 'All Students'] } ])
-  const [subjectItem, setSubjectItem] = useState([ { id: 1, name: '▶ Subject', isOpen: false, subItems: [' Subject Form', 'Subject Details'] } ])
-  const [noticeItem, setNoticeItem] = useState([ { id: 1, name: '▶ Notice', isOpen: false, subItems: ['Notice Form', 'Notice Details'] } ])
-  const [noteItem, setNoteItem] = useState([ { id: 1, name: '▶ Note', isOpen: false, subItems: ['Note Form', 'Note Details'] } ])
+  const [subjectItem, setSubjectItem] = useState([ { id: 1, name: '▶ Subject', isOpen: false, subItems: ['Add Subject', 'All Subject'] } ])
+  const [noticeItem, setNoticeItem] = useState([ { id: 1, name: '▶ News', isOpen: false, subItems: ['Add News', 'All News'] } ])
+  const [noteItem, setNoteItem] = useState([ { id: 1, name: '▶ Note', isOpen: false, subItems: ['Add Note', 'All Note'] } ])
 
   const toggleMenu = (itemId) => {
     setStudentItem((prevItems) =>
@@ -318,8 +318,8 @@ const SuperAdmin = () => {
               {noteItems.isOpen && (
                 <ul style={{padding:10, color:'white'}}>
                    
-                  <li onClick={handleNoteForm}>Note Form</li>
-                  <li style={{marginTop:10}} onClick={handleNoteTable}>Note Details</li>
+                  <li onClick={handleNoteForm}>Add Note</li>
+                  <li style={{marginTop:10}} onClick={handleNoteTable}>All Note</li>
                 </ul>
               )}
             </li>
@@ -359,8 +359,8 @@ const SuperAdmin = () => {
               {noticeItems.isOpen && (
                 <ul style={{padding:10, color:'white'}}>
                    
-                  <li onClick={handleNoticeForm}>Notice Form</li>
-                  <li style={{marginTop:10}} onClick={handleNoticeTable}>Notice Details</li>
+                  <li onClick={handleNoticeForm}>Add News</li>
+                  <li style={{marginTop:10}} onClick={handleNoticeTable}>All News</li>
                 </ul>
               )}
             </li>
@@ -383,8 +383,8 @@ const SuperAdmin = () => {
               {subjectItems.isOpen && (
                 <ul style={{padding:10, color:'white'}}>
                    
-                  <li onClick={handleSubjectForm}>Subject Form</li>
-                  <li style={{marginTop:10}} onClick={handleSubjectDetails}>Subject Details</li>
+                  <li onClick={handleSubjectForm}>Add Subject</li>
+                  <li style={{marginTop:10}} onClick={handleSubjectDetails}>All Subject</li>
                 </ul>
               )}
             </li>
