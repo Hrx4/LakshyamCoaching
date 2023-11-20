@@ -37,6 +37,8 @@ app.use('/apply', require('./routes/applyRoute'))
 app.use('/notice', require('./routes/noticeRoute'))
 app.use('/subject', require('./routes/subjectRoutes'))
 app.use('/student', require('./routes/studentRoutes'))
+app.use('/popup', require('./routes/popupRoutes'))
+
 
 
 
