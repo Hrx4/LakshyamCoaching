@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import './NotificationAndBanner.css';
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Banner1 from './WhyGradSchool/imageChoose/choose-us-image-01.png';
@@ -11,17 +11,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 const NotificationAndBanner = () => {
  
-    const [currentImageIndex, setCurrentImageIndex] = useState(2);
-    const nextImage = () => {
-        setCurrentImageIndex((image) => (image + 1) % images.length)
     
-    };
-    const prevImage = () => {
-        setCurrentImageIndex((image) =>
-            (image === 0) ? images.length - 1 : image - 1
-        );
-        
-    };
     
     const images = [
         Banner1 , Banner2 , Banner3 
@@ -42,15 +32,15 @@ const NotificationAndBanner = () => {
 
                     <Carousel>
                 <div>
-                    <img src={images[0]} />
+                    <img src={images[0]} alt=""/>
                     {/* <p className="legend">Legend 1</p> */}
                 </div>
                 <div>
-                    <img src={images[1]} />
+                    <img src={images[1]} alt=""/>
                     {/* <p className="legend">Legend 2</p> */}
                 </div>
                 <div>
-                    <img src={images[2]} />
+                    <img src={images[2]} alt=""/>
                     {/* <p className="legend">Legend 3</p> */}
                 </div>
             </Carousel>
