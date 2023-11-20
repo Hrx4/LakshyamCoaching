@@ -1,6 +1,7 @@
 .section-why-us{
   /* border: 2px solid red; */
-  background-image: url(./imageChoose/choosing-bg.jpg);
+  background-image: url('./imageChoose/choosing-bg.jpg');
+  /* background-image: url(../Testimonials/testbackground.jpg); */
   box-sizing: border-box;
   display: block;
   background-repeat: no-repeat;

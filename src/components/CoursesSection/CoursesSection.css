@@ -1,9 +1,11 @@
 .section-courses{
-    background-image: url('./choosing-bg.jpg');
+    background-image: url('../Testimonials/testbackground.jpg');
+    /* background-image: url('http://localhost:3000/static/media/testbackground.103bda3cd0eaa536b88f.jpg'); */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 

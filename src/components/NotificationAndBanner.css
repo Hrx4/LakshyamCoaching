@@ -1,0 +1,106 @@
+.Ncontainer {
+    display: flex;
+    justify-content: space-evenly;
+   /* flex-wrap: wrap; */
+    /* float: left; */
+    width: 100%;
+    background-image: url('./choosing-bg.jpg') !important;
+    /* background-color: blue !important; */
+    padding: 50px;
+   
+}
+
+
+.notificationBox {
+    flex: 1;
+    /* background-color: #f0f0f0; */
+    padding: 20px;
+    margin: 10px;
+    box-sizing: border-box;
+    /* background-color: blue !important; */
+    color: azure;
+    border: 2px solid azure;
+    /* box-shadow: 0px 0px 10px 5px #888888; */
+    overflow-y: auto;
+    width: 70%;
+    height: 400px;
+}
+.nfH{
+    margin-bottom: 10px;
+}
+.subAdFeatures{
+    margin: 15px;
+}
+
+@media (max-width: 768px) {
+    .Ncontainer{
+        flex-direction: column;
+    }
+
+    .advertisementBox,
+    .notificationBox {
+      
+        flex: 100%;
+    }
+
+    .adP{
+        font-size: large !important;
+    }
+    .nfP{
+        font-size: large !important;
+    }
+    .notificationBox{
+        margin-left: 15px !important;
+        width: 100% !important;
+    }
+    .advertisementBox{
+        margin-left: 20px !important;
+    }
+    .nfH{
+        font-size: 30px !important;
+    }
+    .adH{
+        font-size:30px !important;
+    }
+    .adFeatures{
+        display: block;
+        /* overflow-y: scroll; */
+    }
+    .subAdFeatures{
+        width: 100%;
+        text-align: center;
+        margin-top: 15 !important;
+        margin-left: 0 !important;
+        padding-left: 0%;
+        /* float:inline-start !important; */
+       /* font-weight: 100 !important; */
+    }
+    /* .sectionImage{
+        margin-left: 10px !important;
+        width: 90% !important;
+    } */
+    .carouselImage{
+        width: 100% !important;
+        margin-left: 12px !important;
+    }
+    .Ncontainer{
+        padding-left: 20px !important;
+    }
+}
+/* .imageContainer {
+    position: relative;
+  } */
+  
+  /* .arrow-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .arrow-button:hover {
+    text-decoration: underline;
+  } */

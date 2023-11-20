@@ -14,7 +14,7 @@ import img_8 from "./img/img8.jpeg";
 
 const GalleryPage = () => {
   return (
-    <section className="section-courses" data-section="section4">
+    <section className="GPsection-courses" data-section="section4">
       <div className="container-xxl py-5 category">
         <div className="container">
           <SectionHeading title="Students Gallery" />

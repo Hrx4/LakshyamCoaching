@@ -6,7 +6,7 @@ import img_2 from './courses-02.jpg';
 import img_3 from './courses-03.jpg';
 import img_4 from './courses-04.jpg';
 import img_5 from './courses-05.jpg';
- 
+
 
 
 
