@@ -5,12 +5,12 @@ import lakshyamLogo from './lakshyamlogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
+
 const Navbar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  
 
   useEffect(() => {
     // Function to handle scroll events

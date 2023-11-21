@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types"; // Import PropTypes for prop type validation
 import "./MainBanner.css";
 
+
 const MainBanner = ({ heading6, heading2a, heading2b, videoSource,buttonText,showFeaturesSection  }) => {
   const videoRef = useRef(null);
 
