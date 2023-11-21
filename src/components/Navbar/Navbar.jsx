@@ -3,16 +3,12 @@ import { Link } from 'react-router-dom'
 import './Navbar.css';
 import lakshyamLogo from './lakshyamlogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
-import Notification from './Notification';
-
 
 
 const Navbar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [notification , setNotification] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false);
-  const [noticeList, setNoticeList] = useState([])
 
   
 
@@ -81,7 +77,6 @@ const Navbar = () => {
       </div> */}
       </div>
     </header>
-      <Notification notification={notification} setNotification={setNotification} noticeList={noticeList}/>
     {
       (menuOpen)?
       (
