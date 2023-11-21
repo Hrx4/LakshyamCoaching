@@ -35,38 +35,6 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
 };
 
 
-
-  // const handleNoteTable = async() => {
-
-  //   try {
-  //       const response = await fetch(`${backend}getnote/`, {
-  //         method: "GET",
-  //         headers: {
-  //           Accept: 'application/json',
-  //           'Content-Type': 'application/json',
-  //         },
-  //       });
-
-  //       const resJson = await response.json();
-
-
-  //       if (response.status === 200) {
-  //         setNoteList(resJson);
-  //         console.log('====================================');
-  //         console.log(resJson);
-  //         console.log('====================================');
-  //       } else {
-  //         console.log("Some error occured");
-  //       }
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-
-  //   }
-
-    // useEffect(() => {
-    //   handleNoteTable()
-    // }, [])
     
 
   return (

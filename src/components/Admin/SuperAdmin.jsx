@@ -28,6 +28,7 @@ const SuperAdmin = () => {
   const [applyList, setApplyList] = useState([])
   const [noticeList, setNoticeList] = useState([])
   const [subjectList, setSubjectList] = useState([])
+  const [bannerList, setBannerList] = useState([])
   const [income, setIncome] = useState()
   const [noteView, setNoteView] = useState('noteform')
   const [slideOpen, setSlideOpen] = useState(false)
@@ -325,8 +326,35 @@ const SuperAdmin = () => {
     const handleAddBanner = ()=>{
       setNoteView('addBannerForm');
     }
-    const handleAllBanner = ()=>{
+    const handleAllBanner = async()=>{
       setNoteView('allBannerForm');
+      ref.current.classList.add( 'slider__close')
+      ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
+  
+      try {
+          const response = await fetch(`${backend}popup/`, {
+            method: "GET",
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          const resJson = await response.json();
+  
+  
+          if (response.status === 200) {
+            setBannerList(resJson);
+            console.log('====================================');
+            console.log(resJson);
+            console.log('====================================');
+          } else {
+            console.log("Some error occured");
+          }
+        } catch (err) {
+          console.log(err);
+        }
     }
 
 
@@ -348,13 +376,6 @@ const SuperAdmin = () => {
         }
         </button>
         <div ref={ref} id='super-choose' className='super-choose' style={{display:"flex" , overflowY:"scroll"}}>
-        
-        {/* <div onClick={handleNoteForm} style={{padding:20, cursor:"pointer"}} className='note__btn'>
-          Note Form
-        </div>
-        <div onClick={handleNoteTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
-          Note Details
-        </div> */}
 
         <div onClick={handleDashboard} style={{padding:20 , cursor:"pointer", paddingLeft:30}} className='note__btn'>
         ▶ Dashboard
@@ -562,7 +583,7 @@ const SuperAdmin = () => {
       }
       {
         (noteView==='allBannerForm')?
-        <AllBanner />:
+        <AllBanner bannerList={bannerList} setBannerList={setBannerList} />:
         null
       }
 
