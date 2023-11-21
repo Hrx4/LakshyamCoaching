@@ -16,6 +16,9 @@ import AllStudent from './AllStudent'
 import StudentPayment from './StudentPayment';
 import Dashboard from './Dashboard';
 import SnavBar from './SnavBar';
+import AddBanner from './AddBanner';
+import AllBanner from './AllBanner';
+
 
 
 const SuperAdmin = () => {
@@ -30,6 +33,7 @@ const SuperAdmin = () => {
   const [studentItem, setStudentItem] = useState([ { id: 1, name: '▶ Student', isOpen: false, subItems: ['Add Student', 'All Students'] } ])
   const [subjectItem, setSubjectItem] = useState([ { id: 1, name: '▶ Subject', isOpen: false, subItems: ['Add Subject', 'All Subject'] } ])
   const [noticeItem, setNoticeItem] = useState([ { id: 1, name: '▶ News', isOpen: false, subItems: ['Add News', 'All News'] } ])
+  const [banner, setBanner] = useState([ { id: 1, name: '▶ Banner', isOpen: false, subItems: ['Add Banner', 'All Banner'] } ])
   const [noteItem, setNoteItem] = useState([ { id: 1, name: '▶ Note', isOpen: false, subItems: ['Add Note', 'All Note'] } ])
 
   const toggleMenu = (itemId) => {
@@ -63,6 +67,16 @@ const SuperAdmin = () => {
       )
     );
   };
+
+  const toggleBannerMenu = (itemId) => {
+    setBanner((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, isOpen: !item.isOpen } : item
+      )
+    );
+  };
+
+
 
 
   const handleNoteTable = async() => {
@@ -278,6 +292,17 @@ const SuperAdmin = () => {
       setNoteView('Dashboard');
     }
 
+    const handleAddBanner = ()=>{
+      setNoteView('addBannerForm');
+    }
+    const handleAllBanner = ()=>{
+      setNoteView('allBannerForm');
+    }
+
+
+
+
+
   return (
     <>
       <SnavBar/>
@@ -361,6 +386,30 @@ const SuperAdmin = () => {
                    
                   <li onClick={handleNoticeForm}>Add News</li>
                   <li style={{marginTop:10}} onClick={handleNoticeTable}>All News</li>
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+     
+        </div>
+
+        
+        <div style={{paddingTop:20, textAlign:'left', marginLeft:0}} className='note__btn'>
+        <ul style={{listStyleType: 'none'}}>
+          {banner.map((bannerItems) => (
+            <li key={bannerItems.id}>
+              <span
+                onClick={() => toggleBannerMenu(bannerItems.id)}
+                style={{cursor: 'pointer', fontSize:17, textAlign:'left', color:'white' }} className='note__btn'
+              >
+                {bannerItems.name}
+              </span>
+              {bannerItems.isOpen && (
+                <ul style={{padding:10, color:'white'}}>
+                   
+                  <li onClick={handleAddBanner}>Add Banner</li>
+                  <li style={{marginTop:10}} onClick={handleAllBanner}>All Banner</li>
                 </ul>
               )}
             </li>
@@ -486,6 +535,18 @@ const SuperAdmin = () => {
         <Dashboard />:
         null
       }
+      {
+        (noteView==='addBannerForm')?
+        <AddBanner />:
+        null
+      }
+      {
+        (noteView==='allBannerForm')?
+        <AllBanner />:
+        null
+      }
+
+
 
 
         </div>

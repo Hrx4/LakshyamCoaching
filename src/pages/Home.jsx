@@ -2,7 +2,7 @@ import React from "react";
 import MainBanner from "../components/Main Banner/MainBanner";
 import myVideo from '../assets/images/course-video.mp4'
 import WhyGradSchool from "../components/WhyGradSchool/WhyGradSchool";
-import ComingSoonSection from "../components/ComingSoonSection/ComingSoonSection";
+// import ComingSoonSection from "../components/ComingSoonSection/ComingSoonSection";
 import CoursesSection from "../components/CoursesSection/CoursesSection";
 import VideoSection from "../components/VideoSection/VideoSection";
 import GallerySection from "../components/GallerySection/GallerySection";
