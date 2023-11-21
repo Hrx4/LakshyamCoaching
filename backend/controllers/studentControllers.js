@@ -64,6 +64,9 @@ const createStudent = asyncHandler(async (req, res) => {
     studentSubjects: studentSubjects,
     paymentMoney: totalFee,
     paymentType:studentPaymentType,
+    totalIncome : totalFee,
+    lastIncomeMonth: d.getMonth(),
+    lastIncomeMoney: totalFee,
     paymentDetails:[
         {paymentMonth:d.getMonth(),
         paymentMoney:totalFee,
@@ -156,13 +159,15 @@ const updateStudent = asyncHandler(async (req, res) => {
 const updatePayment = asyncHandler(async (req, res) => {
   const student = await paymentModels.find({ paymentId: req.params.id });
   const {paymentMonth , paymentYear} = req.body;
-  const { paymentId, studentCourse, studentSubjects, paymentDetails , paymentType } =
+  const { paymentId, studentCourse, studentSubjects, paymentDetails , paymentType,lastIncomeMonth , lastIncomeMoney,totalIncome } =
     student[0];
   console.log("====================================");
   console.log(paymentDetails);
   console.log("====================================");
 
   var totalFee = 0;
+  var varTotalIncome = totalIncome;
+  var lastPaymentMoney = 0;
   const subjects = await subjectModels.find({ subjectCourse: studentCourse });
 
   subjects.map((item, index) => {
@@ -184,6 +189,14 @@ const updatePayment = asyncHandler(async (req, res) => {
         paymentDate: d,
     }]
   })
+
+  lastPaymentMoney = totalFee * (paymentMonth.length)
+  varTotalIncome+=lastPaymentMoney
+console.log('====================================');
+console.log(varTotalIncome , lastIncomeMonth);
+console.log('====================================');
+  if(lastIncomeMonth===d.getMonth()) lastPaymentMoney+=lastIncomeMoney
+
   const updatedPayment = await paymentModels.findOneAndUpdate(
     { paymentId: req.params.id },
     {
@@ -191,11 +204,35 @@ const updatePayment = asyncHandler(async (req, res) => {
       // studentCourse: studentCourse,
       // studentSubjects: studentSubjects,
       // paymentMoney:totalFee,
+      lastIncomeMoney: lastPaymentMoney,
+      totalIncome:varTotalIncome,
+      lstIncomeMonth: d.getMonth(),
       paymentDetails: paymentDetails.concat(paymentMonthArray)
     }
   );
   res.status(201).json(updatedPayment);
 });
+
+const getMonthlyIncome = asyncHandler( async(req, res)=>{
+  var totalIncome =0 , monthlyIncome=0;
+  const d = new Date();
+
+  const payments = await paymentModels.find()
+  payments.map((item , index) =>{
+    if(d.getMonth()===item.lastIncomeMonth) monthlyIncome+=item.lastIncomeMoney
+    totalIncome+=item.totalIncome
+  })
+
+  res.status(200).json(
+    {
+      monthlyIncome:monthlyIncome,
+      totalIncome:totalIncome,
+      totalStudent: payments.length
+    }
+  )
+}
+
+)
 
 module.exports = {
   createStudent,
@@ -204,4 +241,5 @@ module.exports = {
   updateStudent,
   updatePayment,
   getStudentPayment,
+  getMonthlyIncome
 };

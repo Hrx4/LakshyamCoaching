@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './NotificationAndBanner.css';
 // import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -8,10 +8,21 @@ import Banner2 from './WhyGradSchool/imageChoose/choose-us-image-02.png';
 import Banner3 from './WhyGradSchool/imageChoose/choose-us-image-03.png';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import { Box,Divider,Modal } from '@mui/material'
 
-const NotificationAndBanner = () => {
+
+const NotificationAndBanner = ({noticeList , setNoticeList}) => {
  
-    
+    const [modal, setModal] = useState(false);
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('')
+
+    const customModal= (noticeTitle , noticeDescription)=>{
+        setTitle(noticeTitle)
+        setDescription(noticeDescription)
+        setModal(true)
+
+    }
     
     const images = [
         Banner1 , Banner2 , Banner3 
@@ -23,48 +34,71 @@ const NotificationAndBanner = () => {
         <>
 
             <div className="Ncontainer" style={{paddingTop:95}}>
-                <div className="carouselImage" style={{ float: 'left', width:'65%' }}>
-
-
-                    {/* <img className='sectionImage' src={images[currentImageIndex]} style={{marginLeft:'65px', width:'90%'}} alt="" />
-                    <span className="arrow prev" onClick={prevImage}  style={{cursor:'pointer', fontSize:'45px',color:'red'}}>&#10094;</span>
-                    <span className="arrow next" onclick={nextImage} style={{cursor:'pointer',fontSize:'45px',color:'red'}}>&#10095;</span> */}
+                <div className="carouselImage" style={{ float: 'left', width:'45%' }}>
 
                     <Carousel>
                 <div>
                     <img src={images[0]} alt=""/>
-                    {/* <p className="legend">Legend 1</p> */}
                 </div>
                 <div>
                     <img src={images[1]} alt=""/>
-                    {/* <p className="legend">Legend 2</p> */}
                 </div>
                 <div>
                     <img src={images[2]} alt=""/>
-                    {/* <p className="legend">Legend 3</p> */}
                 </div>
             </Carousel>
                 </div>
                 <div style={{ float: 'left' }}>
                     <div className="notificationBox" style={{ marginLeft: 50, marginBottom: 45 }}>
                         <h2 className="nfH" style={{ fontSize: 35, fontWeight: 'bold' }}>Notification</h2>
-                        {/* <p className="nfP" style={{fontSize:30}}>Your notification content goes here.</p> */}
                         <ul>
-                            <li style={{paddingBottom:12}}>JEE Main 2024 | Step by Step Process of Application form | Document Required Exit Policy</li>
-                            <li >Easy Transfer / Exit Policy for Students </li>
-                            <li style={{paddingBottom:12}}>Winter Carnival for Class 5th to 9th at Kota </li>
-                            <li style={{paddingBottom:12}}>RMO 2023 Paper Solutions are now available NMTC 2023</li>
-                            <li style={{paddingBottom:12}}>Your Ultimate Guidance Series to Excel in JEE 2024</li>
-                            <li style={{paddingBottom:12}}>JEE Main 2024 | Step by Step Process of Application form | Document Required Exit Policy</li>
-                            <li style={{paddingBottom:12}}>Easy Transfer / Exit Policy for Students </li>
-                            <li style={{paddingBottom:12}}>Winter Carnival for Class 5th to 9th at Kota </li>
-                            <li style={{paddingBottom:12}}>RMO 2023 Paper Solutions are now available NMTC 2023</li>
-                            <li style={{paddingBottom:12}}>Your Ultimate Guidance Series to Excel in JEE 2024</li>
+                        {
+                            noticeList?.map((item , index)=>(
+                                (item.noticeLink)?
+                                <a style={{textDecoration:"none" , color:"white"}} href={item.noticeLink}>
+                                <li style={{paddingBottom:12}}>
+                                    {item?.noticeTitle}
+                                </li>
+                                </a>
+                                :
+                                <li style={{paddingBottom:12}} onClick={()=>customModal(item.noticeTitle , item.noticeDetails)}>{item?.noticeTitle}</li>
+                            ))
+                        }
+                            
                         </ul>
                     </div>
                 </div>
             </div>
 
+
+            <Modal
+            open={modal}
+            onClose={() => setModal(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            >
+            <Box sx={{position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: {xs:"80%" ,md:500},
+                height:"40vh",
+                bgcolor: "rgba(22, 34, 57, 1)",
+                border: '2px solid #000',
+                boxShadow: 24,
+                p: 4,
+            }}>
+
+                <h2 style={{color:"white"}}>
+                {title}
+                </h2>
+                <Divider orientation='horizontal' style={{height:1 , backgroundColor:"white"}}/>
+                <div style={{color:"white" , marginTop:10}}>
+                    {description}
+                </div>
+
+            </Box>
+            </Modal>
         </>
     )
 }
