@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import './Navbar.css';
 import lakshyamLogo from './lakshyamlogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import Notification from './Notification';
-import backend from '../../backend'
 
 
 
@@ -16,36 +14,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [noticeList, setNoticeList] = useState([])
 
-  const handleNoticeTable = async() => {
-    setNotification(!notification)
-
-    if(!notification){
-      try {
-        const response = await fetch(`${backend}notice/`, {
-          method: "GET",
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        });
-
-        const resJson = await response.json();
-
-
-        if (response.status === 200) {
-          setNoticeList(resJson);
-          console.log('====================================');
-          console.log(resJson);
-          console.log('====================================');
-        } else {
-          console.log("Some error occured");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-  }
+  
 
   useEffect(() => {
     // Function to handle scroll events

@@ -25,6 +25,7 @@ const SuperAdmin = () => {
   const [applyList, setApplyList] = useState([])
   const [noticeList, setNoticeList] = useState([])
   const [subjectList, setSubjectList] = useState([])
+  const [income, setIncome] = useState()
   const [noteView, setNoteView] = useState('noteform')
   const [slideOpen, setSlideOpen] = useState(false)
   const [studentItem, setStudentItem] = useState([ { id: 1, name: '▶ Student', isOpen: false, subItems: ['Add Student', 'All Students'] } ])
@@ -274,9 +275,38 @@ const SuperAdmin = () => {
     const handleStudentPayment = ()=>{
       setNoteView('addPaymentDetails');
     }
-    const handleDashboard = ()=>{
+    const handleDashboard = async ()=>{
       setNoteView('Dashboard');
+      ref.current.classList.add( 'slider__close')
+      ref.current.classList.remove( 'slider__open')
+      setSlideOpen(false)
+  
+      try {
+          const response = await fetch(`${backend}student/getpayment/`, {
+            method: "GET",
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          const resJson = await response.json();
+  
+  
+          if (response.status === 200) {
+            setIncome(resJson);
+            console.log('====================================');
+            console.log(resJson);
+            console.log('====================================');
+          } else {
+            console.log("Some error occured");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+  
     }
+    
 
   return (
     <>
@@ -334,17 +364,7 @@ const SuperAdmin = () => {
         <div onClick={handleApplyTable} style={{padding:20 , cursor:"pointer", paddingLeft:30}} className='note__btn'>
         ▶ Apply Details
         </div>
-        {/* <div onClick={handleNoticeForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
-          Notice Form
-        </div>
-        <div onClick={handleNoticeTable} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
-          Notice details
-        </div> */}
-        {/* <div onClick={handleSubjectForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>
-          Subject Form
-        </div> */}
-        {/* <div onClick={handleClassForm} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Class</div> */}
-        {/* <div onClick={handleSubjectDetails} style={{padding:20 , cursor:"pointer"}} className='note__btn'>Subject Details</div> */}
+        
 
         <div style={{paddingTop:20, textAlign:'left', marginLeft:0}} className='note__btn'>
         <ul style={{listStyleType: 'none'}}>
@@ -483,7 +503,7 @@ const SuperAdmin = () => {
       }
       {
         (noteView==='Dashboard')?
-        <Dashboard />:
+        <Dashboard income={income} setIncome={setIncome} />:
         null
       }
 

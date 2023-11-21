@@ -8,7 +8,7 @@
     }
     .dContainer{
         display: block;
-        overflow-y: scroll;
+        /* overflow-y: scroll; */
         /* display: flex; */
     }
     .dText{
@@ -22,10 +22,7 @@
 
 }
 
-/* .dContainer {
-  display: flex;
-  justify-content: space-around;
-} */
+
 
 .dBox {
   width: 350px;
