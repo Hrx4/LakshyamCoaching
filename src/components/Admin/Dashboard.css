@@ -1,27 +1,3 @@
-@media (max-width:750px) {
-    .dHeading{
-        margin-top: 40px;
-    }
-    .dBox{
-       width: 250px !important;
-       height: 100px !important;
-    }
-    .dContainer{
-        display: block;
-        /* overflow-y: scroll; */
-        /* display: flex; */
-    }
-    .dText{
-        font-size: medium;
-    }
-    .dInnerContainer{
-        display: flex;
-        flex-direction: column;
-    }
-   
-
-}
-
 
 
 .dBox {
@@ -58,3 +34,28 @@
   background-color: white;
 padding-left: 15px;
 }
+
+@media (max-width:750px) {
+  .dHeading{
+      margin-top: 40px;
+  }
+  .dBox{
+     width: auto ;
+     height: 100px ;
+  }
+  .dContainer{
+      display: block;
+      overflow-y: scroll;
+      /* display: flex; */
+  }
+  .dText{
+      font-size: medium;
+  }
+  .dInnerContainer{
+      display: flex;
+      flex-direction: column;
+  }
+ 
+
+}
+

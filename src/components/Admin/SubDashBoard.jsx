@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 const SubDashBoard = (props) => {
   return (
         <>
+      <div style={{width:"95%"}}>
       <h1>{props.headingDash}</h1>
       <div class="search-box">
         <input type="text" placeholder="Search..." style={{ width: '60%' }}></input>
@@ -17,20 +18,14 @@ const SubDashBoard = (props) => {
       <div style={{ marginTop: 10 }}>
 
 
-        <Box sx={{ minWidth: 120 }}>
+        <Box sx={{ minWidth: '100%' }}>
           <FormControl style={{ width: '60%', backgroundColor: 'white' }} className="student__field">
             <InputLabel style={{ color: 'black', marginLeft: -13 }}>Select Your Course</InputLabel>
             <Select
 
-              // value={courseForPay}
               label=""
-              // onChange={(e) => setCourseForPay(e.target.value)}
               style={{ color: 'black' }}
-            //   value={studentCourse} onChange={(e) => {
-            //     setStudentCourse(e.target.value) 
-            //     setStudentSubjects([''])
-            //     }
-            //    } 
+            
             >
               <MenuItem value="CBSE Board All Subjects"> CBSE Board All Subjects</MenuItem>
               <MenuItem value="ICSE Board All Subjects">
@@ -83,8 +78,8 @@ const SubDashBoard = (props) => {
           <option>Social Science</option>
         </select>
       </div>
-      <div style={{marginTop:40}}>
-      <table style={{borderCollapse: 'collapse', width: '100%', border: '1px solid #000'}}>
+      <div className='table-scroll' style={{marginTop:40 , overflowX:"scroll",overflowY:"scroll",width:'100%'}}>
+      <table >
       <thead>
         <tr style={{backgroundColor: '#f2f2f2'}}>
             <th style={{border: '1px solid #000', padding: '8px'}}>Enrollment No.</th>
@@ -97,6 +92,7 @@ const SubDashBoard = (props) => {
         </tr>
         </thead>
         </table>
+      </div>
       </div>
       </>
 

@@ -86,14 +86,9 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
   return (
     <>
       <ToastContainer />
-      <div style={{ marginTop: 150 }}>
-        <div>
+        <div className='table-scroll' style={{marginTop:40 , overflowX:"scroll",overflowY:"scroll",width:'100%'}}>
           <table
-            style={{
-              borderCollapse: "collapse",
-              width: "100%",
-              border: "1px solid #000",
-            }}
+            
           >
             <thead>
               <tr style={{ backgroundColor: "#f2f2f2" }}>
@@ -122,8 +117,7 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
                   <button
                     onClick={() => {
                       handleAllStudentTable1(item.studentEnrollment);
-                      // setPayHistory("PaymentModal")
-                      // setModalOpen(true)
+                      
                     }}
                   >
                     Add Payment
@@ -147,7 +141,6 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
             setPaymentList={setPaymentList}
           />
         ) : null}
-      </div>
       {
         payHistory === "PaymentModal" ?
         (

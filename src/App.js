@@ -69,7 +69,7 @@ function App() {
         <img
           src={imgsrc}
           alt=""
-          style={{ height: "75%", width: "75%", opacity: 1 }}
+          style={{ height: "60%", width: "55%", opacity: 1 }}
         />
         <div style={{ height: "90%"}}>
           <div onClick={()=>setDisplayState('none')}>

@@ -3,9 +3,9 @@
         margin-top: 40px;
     }
     .PayBox{
-        width: 90% !important;
+        min-width: 40%;
     }
 }
 .PayBox{
-    width: 30%;
+    min-width: 30%;
 }
