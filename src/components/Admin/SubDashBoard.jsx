@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
+import './SubdashBoard.css';
 
 
 const SubDashBoard = (props) => {
@@ -17,9 +18,9 @@ const SubDashBoard = (props) => {
       <div style={{ marginTop: 10 }}>
 
 
-        <Box sx={{ minWidth: 120 }}>
+        <Box sx={{ width:"100%" }}>
           <FormControl style={{ width: '60%', backgroundColor: 'white' }} className="student__field">
-            <InputLabel style={{ color: 'black', marginLeft: -13 }}>Select Your Course</InputLabel>
+            <InputLabel style={{ color: 'black', marginLeft: -13, width:"60%" }}>Select Your Course</InputLabel>
             <Select
 
               // value={courseForPay}
@@ -85,14 +86,15 @@ const SubDashBoard = (props) => {
       </div>
       <div style={{marginTop:40}}>
       <table style={{borderCollapse: 'collapse', width: '100%', border: '1px solid #000'}}>
+      
       <thead>
         <tr style={{backgroundColor: '#f2f2f2'}}>
-            <th style={{border: '1px solid #000', padding: '8px'}}>Enrollment No.</th>
-            <th style={{border: '1px solid #000', padding: '8px'}} >Name</th>
-            <th style={{border: '1px solid #000', padding: '8px'}}>Payment Type</th>
-            <th style={{border: '1px solid #000', padding: '8px'}}>Date</th>
-            <th style={{border: '1px solid #000', padding: '8px'}}>Fees</th>
-            <th style={{border: '1px solid #000', padding: '8px'}}>Action</th>
+            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Enrollment No.</th>
+            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}} >Name</th>
+            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Payment Type</th>
+            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Date</th>
+            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Fees</th>
+            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Action</th>
 
         </tr>
         </thead>
