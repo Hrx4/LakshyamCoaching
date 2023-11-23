@@ -68,7 +68,7 @@ const Admin = () => {
       >
         <Box sx={style}>
           <input onChange={(e)=>{setUsername(e.target.value)}} id='username' type="text" placeholder='UserName' style={{height:30}} />
-          <input onChange={(e)=>{setPassword(e.target.value)}} id='password' type="text" placeholder='Password' style={{height:30}} />
+          <input onChange={(e)=>{setPassword(e.target.value)}} id='password' type='password' placeholder='Password' style={{height:30}} />
           {
             (username==='username' && password==='password')?
            
