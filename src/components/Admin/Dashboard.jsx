@@ -26,13 +26,13 @@ const Dashboard = ({ income, setIncome }) => {
   };
 
   return (
-    <div className="dContainer" style={{ marginTop: 40, margin: 20 }}>
-      <h1 className="dHeading" style={{ marginLeft: 15 }}>
+    <div className="dContainer" style={{ marginTop: 40, margin: 20, width:"100%" }}>
+      <h1 className="dHeading" style={{ marginLeft: 15, display:"flex" }}>
         Dashboard
       </h1>
       <div
         className="dInnerContainer"
-        style={{ display: "flex", margin: "20px" }}
+        style={{ display: "flex", marginTop: "20px" , width:"100%" , justifyContent:'space-evenly'}}
       >
         <div className="dBox">
           <div className="inner-box">
@@ -97,7 +97,7 @@ const Dashboard = ({ income, setIncome }) => {
       </div>
       <div
         className="dInnerContainer"
-        style={{ display: "flex", margin: "20px" }}
+        style={{ display: "flex", marginTop: "20px" , width:"100%" , justifyContent:'space-evenly' }}
       >
         <div className="dBox">
           <div className="inner-box">

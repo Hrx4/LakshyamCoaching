@@ -1,11 +1,11 @@
 
 
 .dBox {
-  width: 350px;
+  width: 250px;
   height: 150px;
   border: 1px solid #000;
   margin-bottom: 40px;
-  margin-right: 35px;
+  /* margin-right: 35px; */
 }
 
 .inner-box {
