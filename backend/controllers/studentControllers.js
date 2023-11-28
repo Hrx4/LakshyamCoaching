@@ -48,11 +48,11 @@ const createStudent = asyncHandler(async (req, res) => {
 
   var totalFee = 0;
   const subjects = await subjectModels.find({ subjectCourse: studentCourse });
- 
 
   subjects.map((item, index) => {
-    studentSubjects.map((sub , index) => {
-      if (index>0 && item.subjectName === sub ) {totalFee += item.subjectFee;
+    studentSubjects.map((sub, index) => {
+      if (index > 0 && item.subjectName === sub) {
+        totalFee += item.subjectFee;
       }
     });
   });
@@ -62,22 +62,25 @@ const createStudent = asyncHandler(async (req, res) => {
     paymentId: studentEnrollment,
     studentCourse: studentCourse,
     studentSubjects: studentSubjects,
+    studentClass: studentClass,
     paymentMoney: totalFee,
-    paymentType:studentPaymentType,
-    totalIncome : totalFee,
+    paymentType: studentPaymentType,
+    studentName: studentName,
+    totalIncome: totalFee,
     lastIncomeMonth: d.getMonth(),
     lastIncomeMoney: totalFee,
-    paymentDetails:[
-        {paymentMonth:d.getMonth(),
-        paymentMoney:totalFee,
-        paymentType:studentPaymentType,
-        paymentDate:d,
-        paidMonth:d.getMonth(),
-        paidYear:d.getFullYear(),
-        paymentYear:d.getFullYear()
-      }
-
-    ]
+    lastIncomeDate: d.toISOString().split("T")[0],
+    paymentDetails: [
+      {
+        paymentMonth: d.getMonth(),
+        paymentMoney: totalFee,
+        paymentType: studentPaymentType,
+        paymentDate: d.toISOString().split("T")[0],
+        paidMonth: d.getMonth(),
+        paidYear: d.getFullYear(),
+        paymentYear: d.getFullYear(),
+      },
+    ],
   });
 
   res.status(200).json(student);
@@ -158,9 +161,18 @@ const updateStudent = asyncHandler(async (req, res) => {
 
 const updatePayment = asyncHandler(async (req, res) => {
   const student = await paymentModels.find({ paymentId: req.params.id });
-  const {paymentMonth , paymentYear} = req.body;
-  const { paymentId, studentCourse, studentSubjects, paymentDetails , paymentType,lastIncomeMonth , lastIncomeMoney,totalIncome } =
-    student[0];
+  const { paymentMonth, paymentYear } = req.body;
+  const {
+    paymentId,
+    studentCourse,
+    studentSubjects,
+    paymentDetails,
+    paymentType,
+    lastIncomeMonth,
+    lastIncomeDate,
+    lastIncomeMoney,
+    totalIncome,
+  } = student[0];
   console.log("====================================");
   console.log(paymentDetails);
   console.log("====================================");
@@ -178,24 +190,27 @@ const updatePayment = asyncHandler(async (req, res) => {
 
   const d = new Date();
   var paymentMonthArray = [];
-  await paymentMonth.map((item , index)=>{
-    paymentMonthArray=[...paymentMonthArray , {
+  await paymentMonth.map((item, index) => {
+    paymentMonthArray = [
+      ...paymentMonthArray,
+      {
         paymentMonth: item,
-        paymentYear:paymentYear,
-        paidMonth:d.getMonth(),
-        paidYear:d.getFullYear(),
+        paymentYear: paymentYear,
+        paidMonth: d.getMonth(),
+        paidYear: d.getFullYear(),
         paymentMoney: totalFee,
         paymentType: paymentType,
         paymentDate: d,
-    }]
-  })
+      },
+    ];
+  });
 
-  lastPaymentMoney = totalFee * (paymentMonth.length)
-  varTotalIncome+=lastPaymentMoney
-console.log('====================================');
-console.log(varTotalIncome , lastIncomeMonth);
-console.log('====================================');
-  if(lastIncomeMonth===d.getMonth()) lastPaymentMoney+=lastIncomeMoney
+  lastPaymentMoney = totalFee * paymentMonth.length;
+  varTotalIncome += lastPaymentMoney;
+  console.log("====================================");
+  console.log(varTotalIncome, lastIncomeMonth);
+  console.log("====================================");
+  if (lastIncomeMonth === d.getMonth()) lastPaymentMoney += lastIncomeMoney;
 
   const updatedPayment = await paymentModels.findOneAndUpdate(
     { paymentId: req.params.id },
@@ -205,34 +220,93 @@ console.log('====================================');
       // studentSubjects: studentSubjects,
       // paymentMoney:totalFee,
       lastIncomeMoney: lastPaymentMoney,
-      totalIncome:varTotalIncome,
-      lstIncomeMonth: d.getMonth(),
-      paymentDetails: paymentDetails.concat(paymentMonthArray)
+      lastIncomeDate: d.toISOString().split("T")[0],
+      totalIncome: varTotalIncome,
+      lastIncomeMonth: d.getMonth(),
+      paymentDetails: paymentDetails.concat(paymentMonthArray),
     }
   );
   res.status(201).json(updatedPayment);
 });
 
-const getMonthlyIncome = asyncHandler( async(req, res)=>{
-  var totalIncome =0 , monthlyIncome=0;
+const getMonthlyIncome = asyncHandler(async (req, res) => {
+  var totalIncome = 0,
+    monthlyIncome = 0;
   const d = new Date();
 
-  const payments = await paymentModels.find()
-  payments.map((item , index) =>{
-    if(d.getMonth()===item.lastIncomeMonth) monthlyIncome+=item.lastIncomeMoney
-    totalIncome+=item.totalIncome
-  })
+  const payments = await paymentModels.find();
+  payments.map((item, index) => {
+    if (d.getMonth() === item.lastIncomeMonth)
+      monthlyIncome += item.lastIncomeMoney;
+    totalIncome += item.totalIncome;
+  });
 
-  res.status(200).json(
-    {
-      monthlyIncome:monthlyIncome,
-      totalIncome:totalIncome,
-      totalStudent: payments.length
-    }
-  )
-}
+  res.status(200).json({
+    monthlyIncome: monthlyIncome,
+    totalIncome: totalIncome,
+    totalStudent: payments.length,
+  });
+});
 
-)
+const getMonthlyIncomeDetails = asyncHandler(async (req, res) => {
+  const { studentCourse, studentClass, studentSubject, studentEnrollment } =
+    req.body;
+  const d = new Date();
+
+  var students = await paymentModels.find({});
+  console.log("====================================");
+  console.log(students, "285");
+  console.log("====================================");
+  students = students.filter((item) => item.lastIncomeMonth === d.getMonth());
+
+  if (studentEnrollment !== "") {
+    students = students.filter((item) => item.paymentId === studentEnrollment);
+    
+  }
+
+  if (studentCourse !== "") {
+    students = students.filter((item) => item.studentCourse === studentCourse);
+  }
+  if (studentClass !== "")
+    students = students.filter((item) => item.studentClass === studentClass);
+
+  if (studentSubject !== "") {
+    students = students.filter((item) => {
+      return item.studentSubjects.some((elem) => elem === studentSubject);
+    });
+    
+  }
+
+  res.status(200).json(students);
+});
+
+const getTotalIncomeDetails = asyncHandler(async (req, res) => {
+  const { studentCourse, studentClass, studentSubject, studentEnrollment } =
+    req.body;
+  const d = new Date();
+
+  var students = await paymentModels.find({});
+  
+  if (studentEnrollment !== "") {
+    students = students.filter((item) => item.paymentId === studentEnrollment);
+    
+  }
+
+  if (studentCourse !== "") {
+    students = students.filter((item) => item.studentCourse === studentCourse);
+  }
+  if (studentClass !== "")
+    students = students.filter((item) => item.studentClass === studentClass);
+
+  if (studentSubject !== "") {
+    students = students.filter((item) => {
+      return item.studentSubjects.some((elem) => elem === studentSubject);
+    });
+    
+  }
+
+  res.status(200).json(students);
+});
 
 module.exports = {
   createStudent,
@@ -241,5 +315,7 @@ module.exports = {
   updateStudent,
   updatePayment,
   getStudentPayment,
-  getMonthlyIncome
+  getMonthlyIncome,
+  getMonthlyIncomeDetails,
+  getTotalIncomeDetails
 };

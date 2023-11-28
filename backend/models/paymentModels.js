@@ -10,15 +10,25 @@ const paymentSchema = mongoose.Schema({
         type: String,
         required: [true, "Please add the Course"],
     },
+    studentName: {
+        type: String,
+        required: [true, "Please add the name"],
+    },
     studentSubjects: {
         type: [],
         required: [true, "Please add the Subjects"],
-    },    
+    },  
+    studentClass: {
+        type: String,
+        required: [true, "Please add the Course"],
+    },
     paymentMoney: {type:Number },
     paymentType: {type:String },
     totalIncome : {type:Number},
     lastIncomeMonth: {type:Number},
     lastIncomeMoney: {type:Number},
+    lastIncomeDate: {type:String},
+
 
     paymentDetails: {
         type: [

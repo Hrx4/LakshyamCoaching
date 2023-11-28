@@ -169,10 +169,10 @@ const Dashboard = ({ income, setIncome }) => {
       </div>
 
       {subDash === "MonthlyIncome" ? (
-        <SubDashBoard headingDash="Monthly Income" />
+        <SubDashBoard headingDash="Monthly Income" apiRoute='monthlyincome' />
       ) : null}
       {subDash === "TotalIncome" ? (
-        <SubDashBoard headingDash="Total Income" />
+        <SubDashBoard headingDash="Total Income" apiRoute='totalincome'/>
       ) : null}
       {subDash === "MonthlyDue" ? (
         <SubDashBoard headingDash="Monthly Due" />
