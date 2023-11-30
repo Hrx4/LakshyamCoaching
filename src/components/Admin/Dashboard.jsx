@@ -109,13 +109,14 @@ const Dashboard = ({ income, setIncome }) => {
             </div>
             <div
               className="Dhalf dText"
-              style={{ color: "black", cursor: "pointer" }}
+              style={{ color: "black", cursor: "pointer",flexDirection:"column" }}
               onClick={handleMonthlyDue}
               onDoubleClick={(e) => {
                 setSubDash("");
               }}
             >
               MONTHLY DUE
+              <div>{income?.monthlyDue}</div>
             </div>
           </div>
         </div>
@@ -156,13 +157,14 @@ const Dashboard = ({ income, setIncome }) => {
             </div>
             <div
               className="Dhalf dText"
-              style={{ color: "black", cursor: "pointer" }}
+              style={{ color: "black", cursor: "pointer" ,flexDirection:"column"}}
               onClick={handleTotalDue}
               onDoubleClick={(e) => {
                 setSubDash("");
               }}
             >
               TOTAL DUE
+              <div>{income?.totalDue}</div>
             </div>
           </div>
         </div>
@@ -175,9 +177,9 @@ const Dashboard = ({ income, setIncome }) => {
         <SubDashBoard headingDash="Total Income" apiRoute='totalincome'/>
       ) : null}
       {subDash === "MonthlyDue" ? (
-        <SubDashBoard headingDash="Monthly Due" />
+        <SubDashBoard headingDash="Monthly Due" apiRoute='monthlydue' />
       ) : null}
-      {subDash === "TotalDue" ? <SubDashBoard headingDash="Total Due" /> : null}
+      {subDash === "TotalDue" ? <SubDashBoard headingDash="Total Due" apiRoute='totaldue' /> : null}
     </div>
   );
 };
