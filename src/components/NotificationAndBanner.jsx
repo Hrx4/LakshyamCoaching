@@ -3,9 +3,9 @@ import './NotificationAndBanner.css';
 // import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Banner1 from './WhyGradSchool/imageChoose/choose-us-image-01.png';
-import Banner2 from './WhyGradSchool/imageChoose/choose-us-image-02.png';
-import Banner3 from './WhyGradSchool/imageChoose/choose-us-image-03.png';
+import Banner1 from './WhyGradSchool/imageChoose/1.png';
+import Banner2 from './WhyGradSchool/imageChoose/2.png';
+import Banner3 from './WhyGradSchool/imageChoose/3.png';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Box,Divider,Modal } from '@mui/material'
@@ -33,7 +33,7 @@ const NotificationAndBanner = ({noticeList , setNoticeList}) => {
 
         <>
 
-            <div className="Ncontainer" style={{paddingTop:95}}>
+            <div className="Ncontainer" style={{paddingTop:25 , paddingBottom:0}}>
                 <div className="carouselImage" style={{ float: 'left', width:'45%' }}>
 
                     <Carousel>

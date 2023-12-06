@@ -60,7 +60,7 @@ const TestiMonials = () => {
     return (
         <section id="testimonial" className="testimonials pt-70 pb-70">
             <div style={{ marginBottom:0}} className="container section-heading" >
-                <h2 style={{color:"white"}} className="miniTitle text-center">TESTIMONIALS</h2>
+                <h2 style={{color:"white" , marginTop:30}} className="miniTitle text-center">TESTIMONIALS</h2>
                 <div className="row">
                     <div className="col-md-12">
                         <OwlCarousel id="customer-testimonoals" className="owl-carousel owl-theme" {...options}>

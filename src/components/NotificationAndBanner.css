@@ -1,11 +1,8 @@
 .Ncontainer {
     display: flex;
     justify-content: space-evenly;
-   /* flex-wrap: wrap; */
-    /* float: left; */
     width: 100%;
-    background-image: url('./choosing-bg.jpg') !important;
-    /* background-color: blue !important; */
+    background-image: url('./choosing-bg.jpg') ;
     padding: 50px;
    
 }

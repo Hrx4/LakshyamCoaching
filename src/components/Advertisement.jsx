@@ -6,10 +6,9 @@ const Advertisement = () => {
         <>
             
             <div class="Adcontainer">
-            <div style={{float:'left',marginTop:100, marginBottom:100}}>
+            <div style={{float:'left',marginTop:30, marginBottom:30}}>
                 <div class="advertisementBox" style={{ marginBottom:45}}>
-                    {/* <h2 className="adH" style={{fontSize:45}}>Advertisement</h2> */}
-                    <h3 className="adH" style={{fontSize:45, fontWeight:'bolder'}}>India's Most Loved Educational Platform!</h3>
+                    <h3 className="adH" style={{fontSize:45, fontWeight:'bolder', textAlign:"center"}}>India's Most Loved Educational Platform!</h3>
                     <p className="adP" style={{fontSize:30, lineHeight: 1.5, paddingBottom:15,textAlign:'center'}}>With Lakshyam Coaching, Begin your journey to success.</p>
                     <div style={{ textAlign:"center"}} className="adFeatures">
                     <div>

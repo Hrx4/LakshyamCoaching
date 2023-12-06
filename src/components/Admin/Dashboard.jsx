@@ -6,7 +6,7 @@ import { FaCreativeCommonsNc } from "react-icons//fa6";
 import { FaCommentDollar } from "react-icons//fa6";
 import SubDashBoard from "./SubDashBoard";
 
-const Dashboard = ({ income, setIncome }) => {
+const Dashboard = ({ income}) => {
   const [subDash, setSubDash] = useState("noteform");
 
   const handleMonthlyIncome = () => {

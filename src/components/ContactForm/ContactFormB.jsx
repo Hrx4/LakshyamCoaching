@@ -133,7 +133,7 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
             </fieldset>
           </div>
 
-          <div className="col-md-10">
+          <div style={{marginTop:10 , display:"flex" , justifyContent:"center"}} className="col-md-10">
             <fieldset>
               <button type="submit" id="form-submit" className="button">
                 Send Message Now
