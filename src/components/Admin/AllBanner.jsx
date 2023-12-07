@@ -194,7 +194,7 @@ const AllBanner = ({ bannerList, setBannerList }) => {
               <form onSubmit={updateList} >
               <div className="form-group">
                         <label>Banner Link :</label>
-                        <input type="text" value={link} onChange={(e)=>setLink(e.target.value)} required/>
+                        <input type="text" value={link} onChange={(e)=>setLink(e.target.value)} />
                     </div>
                     <div className="form-group">
                         <label>Banner Image:</label>

@@ -1,16 +1,14 @@
 import React from "react";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import "./GalleryPage.css";
-import img_1 from "./img/img1.jpeg"
-import img_2 from "./img/img2.jpeg";
-import img_3 from "./img/img3.jpeg";
-import img_4 from "./img/img4.jpeg";
-import img_5 from "./img/img5.jpeg";
-import img_6 from "./img/img6.jpeg";
-import img_7 from "./img/img7.jpeg";
-import img_8 from "./img/img8.jpeg";
-
-
+import img_1 from "./pics/img11.jpeg"
+import img_2 from "./pics/img2.jpeg";
+import img_3 from "./pics/img3.jpeg";
+import img_4 from "./pics/img4.jpeg";
+import img_5 from "./pics/img10.jpeg";
+import img_6 from "./pics/img6.jpeg";
+import img_7 from "./pics/img7.jpeg";
+import img_8 from "./pics/img8.jpeg";
 
 const GalleryPage = () => {
   return (

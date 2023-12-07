@@ -14,3 +14,15 @@ body{
   display: flex;
   flex-direction: column;
 }
+.banner__img{
+  height: 60%;
+   width: 55%
+}
+
+@media (max-width: 768px) {
+  .banner__img{
+    /* position: absolute; */
+    height: 50%;
+     width: 80%
+  }
+}

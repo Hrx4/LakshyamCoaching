@@ -19,7 +19,7 @@
 
 .subAdFeatures{
     margin: 15px;
-   padding-right: 70px;
+   padding-right: 50px;
 }
 
 .adFeatures{
@@ -54,8 +54,6 @@
         padding-left: 0px !important;
     }
     .adFeatures{
-        /* display: block; */
-        /* overflow-y: scroll; */
         padding-left: 0px;
     }
     .subAdFeatures{

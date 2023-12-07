@@ -11,6 +11,7 @@ import Footer from "./components/Footer/Footer";
 import SuperAdmin from "./components/Admin/SuperAdmin";
 import backend from "./backend";
 import ClearIcon from "@mui/icons-material/Clear";
+import './App.css'
 
 function App() {
 
@@ -68,15 +69,16 @@ function App() {
       >
         <img
           src={imgsrc}
+          className="banner__img"
           alt=""
-          style={{ height: "60%", width: "55%", opacity: 1 }}
+          style={{ opacity: 1 }}
         />
-        <div style={{ height: "90%"}}>
+        <div style={{ height: "80%"}}>
           <div onClick={()=>setDisplayState('none')}>
           <ClearIcon
-            color="success"
+            // color="success"
             fontSize="large"
-            style={{ top: 0, display: "absolute", cursor: "pointer" }}
+            style={{ display: "absolute", cursor: "pointer" , color:"red"}}
             
           />
           </div>

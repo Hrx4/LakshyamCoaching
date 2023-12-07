@@ -68,19 +68,19 @@ const pressable2 = (e)=>{
         <div className="col-md-12">
           <div id='tabs'>
             <ul style={{display:"flex", justifyContent:"space-evenly" }}>
-              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}}  href='/' onClick={pressable}>Best Education</a></li>
-              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}} href='/' onClick={pressable1}>Expert Faculty</a></li>
-              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}} href='/' onClick={pressable2}>Personalized Attention</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:18 , fontWeight:"bold" , color:"white"}}  href='/' onClick={pressable}>Best Education</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:18 , fontWeight:"bold" , color:"white"}} href='/' onClick={pressable1}>Expert Faculty</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:18 , fontWeight:"bold" , color:"white"}} href='/' onClick={pressable2}>Personalized Attention</a></li>
             </ul>
             <section className='tabs-content'>
-              <article style={{marginTop:50, marginBottom:60 }} id='tabs-1'>
+              <article style={{marginTop:50, marginBottom:20 }} id='tabs-1'>
                 <div className="row"> 
-                  <div className="col-md-6">
+                  <div className="col-md-6 mb-5">
                     <img className='section__image' style={{height:"100%" , width:"100%"}} src={imageContent} alt=""/>
                   </div>
                   <div className="col-md-6" style={{display:"flex" , flexDirection:"column" , justifyContent:"space-evenly"}}>
-                    <h4 style={{color:"white" ,fontSize:35}}>{heading}</h4>
-                    <p style={{color:"white" , fontSize:16}}>{mainContent}</p>
+                    <h4 style={{color:"white" ,fontSize:30}}>{heading}</h4>
+                    <p style={{color:"white" , fontSize:14}}>{mainContent}</p>
                   </div>
                 </div>
               </article>
