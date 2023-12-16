@@ -4,7 +4,7 @@ import PropTypes from "prop-types"; // Import PropTypes for prop type validation
 import "./MainBanner.css";
 
 
-const MainBanner = ({ heading6, heading2a, heading2b, videoSource,buttonText,showFeaturesSection  }) => {
+const MainBanner = ({ heading6, heading2a, heading2b, videoSource,buttonText  }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -31,15 +31,14 @@ const MainBanner = ({ heading6, heading2a, heading2b, videoSource,buttonText,sho
             <h2 style={{color:"white" , fontSize:60}}>
               <em>{heading2a}</em> {heading2b}
             </h2>
-            {buttonText && ( // Conditionally render the button if buttonText is provided
-              <div style={{fontSize:20}} className="main-button">
+            {buttonText && ( 
+              <div style={{fontSize:15}} className="main-button">
                 <div className="scroll-to-section">
-                  <Link to="/about">{buttonText}</Link>
+                  <Link to="/freetutorial">{buttonText}</Link>
                 </div>
               </div>
             )}
           </div>
-        {/* {showFeaturesSection && <FeaturesSection />} */}
         </div>
       </section>
 

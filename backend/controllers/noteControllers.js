@@ -17,8 +17,8 @@ const getNote = asyncHandler(async(req,res)=>{
 })
 
 const getFilterNotes = asyncHandler(async(req , res) => {
-    const {noteClass , noteSubject , noteCourse} = req.body
-    const notes = await noteModels.find({noteClass:noteClass , noteSubject:noteSubject, noteCourse:noteCourse})
+    const {noteClass , noteSubject , noteCourse , noteBatch} = req.body
+    const notes = await noteModels.find({noteClass:noteClass , noteSubject:noteSubject, noteCourse:noteCourse , noteBatch:noteBatch})
     res.status(200).json(notes);
     console.log('====================================');
     console.log(notes);
