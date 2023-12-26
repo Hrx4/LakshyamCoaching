@@ -6,7 +6,7 @@ import { FaCreativeCommonsNc } from "react-icons//fa6";
 import { FaCommentDollar } from "react-icons//fa6";
 import SubDashBoard from "./SubDashBoard";
 
-const Dashboard = ({ income}) => {
+const Dashboard = ({ income }) => {
   const [subDash, setSubDash] = useState("noteform");
 
   const handleMonthlyIncome = () => {
@@ -26,13 +26,21 @@ const Dashboard = ({ income}) => {
   };
 
   return (
-    <div className="dContainer" style={{ marginTop: 40, margin: 20, width:"100%" }}>
-      <h1 className="dHeading" style={{ marginLeft: 15, display:"flex" }}>
+    <div
+      className="dContainer"
+      style={{ marginTop: 40, margin: 20, width: "100%" }}
+    >
+      <h1 className="dHeading" style={{ marginLeft: 15, display: "flex" }}>
         Dashboard
       </h1>
       <div
         className="dInnerContainer"
-        style={{ display: "flex", marginTop: "20px" , width:"100%" , justifyContent:'space-evenly'}}
+        style={{
+          display: "flex",
+          marginTop: "20px",
+          width: "100%",
+          justifyContent: "space-evenly",
+        }}
       >
         <div className="dBox">
           <div className="inner-box">
@@ -97,7 +105,12 @@ const Dashboard = ({ income}) => {
       </div>
       <div
         className="dInnerContainer"
-        style={{ display: "flex", marginTop: "20px" , width:"100%" , justifyContent:'space-evenly' }}
+        style={{
+          display: "flex",
+          marginTop: "20px",
+          width: "100%",
+          justifyContent: "space-evenly",
+        }}
       >
         <div className="dBox">
           <div className="inner-box">
@@ -109,7 +122,11 @@ const Dashboard = ({ income}) => {
             </div>
             <div
               className="Dhalf dText"
-              style={{ color: "black", cursor: "pointer",flexDirection:"column" }}
+              style={{
+                color: "black",
+                cursor: "pointer",
+                flexDirection: "column",
+              }}
               onClick={handleMonthlyDue}
               onDoubleClick={(e) => {
                 setSubDash("");
@@ -157,7 +174,11 @@ const Dashboard = ({ income}) => {
             </div>
             <div
               className="Dhalf dText"
-              style={{ color: "black", cursor: "pointer" ,flexDirection:"column"}}
+              style={{
+                color: "black",
+                cursor: "pointer",
+                flexDirection: "column",
+              }}
               onClick={handleTotalDue}
               onDoubleClick={(e) => {
                 setSubDash("");
@@ -171,15 +192,17 @@ const Dashboard = ({ income}) => {
       </div>
 
       {subDash === "MonthlyIncome" ? (
-        <SubDashBoard headingDash="Monthly Income" apiRoute='monthlyincome' />
+        <SubDashBoard headingDash="Monthly Income" apiRoute="monthlyincome" />
       ) : null}
       {subDash === "TotalIncome" ? (
-        <SubDashBoard headingDash="Total Income" apiRoute='totalincome'/>
+        <SubDashBoard headingDash="Total Income" apiRoute="totalincome" />
       ) : null}
       {subDash === "MonthlyDue" ? (
-        <SubDashBoard headingDash="Monthly Due" apiRoute='monthlydue' />
+        <SubDashBoard headingDash="Monthly Due" apiRoute="monthlydue" />
       ) : null}
-      {subDash === "TotalDue" ? <SubDashBoard headingDash="Total Due" apiRoute='totaldue' /> : null}
+      {subDash === "TotalDue" ? (
+        <SubDashBoard headingDash="Total Due" apiRoute="totaldue" />
+      ) : null}
     </div>
   );
 };

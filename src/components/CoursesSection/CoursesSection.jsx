@@ -1,11 +1,17 @@
 import React from "react";
 import CourseItem from "../CourseItem/CourseItem";
 import './CoursesSection.css';
-import img_1 from './courses-01 copy.jpg';
-import img_2 from './courses-02.jpg';
-import img_3 from './courses-03.jpg';
-import img_4 from './courses-04.jpg';
-import img_5 from './courses-05.jpg';
+import img_1 from './4.png';
+import img_2 from './5.png';
+import img_3 from './6.png';
+import img_4 from './7.png';
+import img_5 from './8.png';
+import img_6 from './9.png';
+import img_7 from './10.png';
+import img_8 from './11.png';
+import img_9 from './12.png';
+import img_10 from './13.png';
+import img_11 from './14.png';
 
 
 
@@ -44,37 +50,37 @@ const CoursesSection = () => {
         "We have vastly experienced staff members who will ensure your success in various competitive exams.",
     },
     {
-      imgSrc: img_1,
+      imgSrc: img_6,
       title: "Class 12 ICSE Boards + CUET",
       description:
         "Now study Commerce from any of our esteemed institutes & pass out with flying colors & a stable job in hand.",
     },
     {
-      imgSrc: img_2,
+      imgSrc: img_7,
       title: "JEE Mains",
       description:
         "We have experienced teachers to teach students of class XII commerce so that they learn from the basics.",
     },
     {
-      imgSrc: img_4,
+      imgSrc: img_8,
       title: "NEET ",
       description:
         "In this course structure, students of school levels, up to class X, are rendered coaching in all subjects.",
     },
     {
-      imgSrc: img_5,
+      imgSrc: img_9,
       title: "Foundation Course JEE IIT / NEET",
       description:
         "Students of classes XI and XII are prepared for entrances. Also, medical students are given regular coaching.",
     },
     {
-      imgSrc:img_3 ,
+      imgSrc:img_10 ,
       title: "Commerce Board + CUET",
       description:
         "Students of classes XI and XII are prepared for entrances. Also, engineering students are given regular coaching.",
     },
     {
-      imgSrc:img_1 ,
+      imgSrc:img_11 ,
       title:"CA Foundation",
       description:
         "Students of classes XI and XII are prepared for entrances. Also, medical students are given regular coaching.",
