@@ -5,9 +5,8 @@ import { Box, Modal } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import backend from '../../backend';
-
+import "react-toastify/dist/ReactToastify.css";
+import backend from "../../backend";
 
 const CourseItem = ({ imgSrc, title, description }) => {
   const [name, setName] = useState("");
@@ -17,7 +16,7 @@ const CourseItem = ({ imgSrc, title, description }) => {
   const [course, setCourse] = useState("CBSE Board All Subjects");
   const [addmsg, setAddMsg] = useState("");
   const [modal, setModal] = useState(false);
-  
+
   const CustomerInfoOpen = (name, email, phNum, wclass, course, addmsg) => {
     // const key = id
     setName(name);
@@ -28,55 +27,53 @@ const CourseItem = ({ imgSrc, title, description }) => {
     setAddMsg(addmsg);
     setModal(true);
   };
-  const onClose = () =>{
+  const onClose = () => {
     setModal(false);
-  }
+  };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${backend}apply/`, {
+      const res = await fetch(`${backend}super/apply/`, {
         method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          applyName :name,
-           applyEmail : email,
-           applyPhone :phNum ,
-           applyClass : wclass, 
-           applyCourse : course, 
-           applyMessage :addmsg
+          applyName: name,
+          applyEmail: email,
+          applyPhone: phNum,
+          applyClass: wclass,
+          applyCourse: course,
+          applyMessage: addmsg,
         }),
       });
       // let resJson = await res.json();
       if (res.status === 200) {
         console.log("fine");
-        toast.success('Form submitted', {
-          position: toast.POSITION.TOP_CENTER
-      });
+        toast.success("Form submitted", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       } else {
         console.log("Some error occured");
-        toast.warning('All fields Required', {
-          position: toast.POSITION.TOP_CENTER
-      });
+        toast.warning("All fields Required", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (err) {
       console.log(err);
     }
-    
 
+    console.log("Submitted Data:");
 
-    console.log("Submitted Data:", );
-
-    setName('');
-    setEmail('');
-    setPhNum('');
-    setWClass('class IV');
-    setCourse('CBSE Board All Subjects');
-    setAddMsg('');
+    setName("");
+    setEmail("");
+    setPhNum("");
+    setWClass("class IV");
+    setCourse("CBSE Board All Subjects");
+    setAddMsg("");
   };
   return (
     <>
@@ -108,7 +105,6 @@ const CourseItem = ({ imgSrc, title, description }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-
         <Box
           sx={{
             position: "absolute",
@@ -127,7 +123,10 @@ const CourseItem = ({ imgSrc, title, description }) => {
             overflowY: "scroll",
           }}
         >
-          <div style={{ width: "auto" , border:"none"}} className="form-container">
+          <div
+            style={{ width: "auto", border: "none" }}
+            className="form-container"
+          >
             <h1 style={{ fontSize: 25, fontWeight: "bold" }}>
               Apply for Lakshyam Courses
             </h1>
@@ -202,28 +201,53 @@ const CourseItem = ({ imgSrc, title, description }) => {
                   onChange={(e) => setCourse(e.target.value)}
                   required
                 >
-                  <option value="CBSE Board All Subjects">CBSE Board All Subjects</option>
-                  <option value="ICSE Board All Subjects">ICSE Board All Subjects</option>
-                  <option value="Class 11 CBSE Boards + CUET">Class 11 CBSE Boards + CUET</option>
-                <option value="Class 11 ICSE Boards + CUET">Class 11 ICSE Boards + CUET</option>
-                  <option value="Class 12 CBSE Boards + CUET">Class 12 CBSE Boards + CUET</option>
-                  <option value="Class 12 ICSE Boards + CUET">Class 12 ICSE Boards + CUET</option>
+                  <option value="CBSE Board All Subjects">
+                    CBSE Board All Subjects
+                  </option>
+                  <option value="ICSE Board All Subjects">
+                    ICSE Board All Subjects
+                  </option>
+                  <option value="Class 11 CBSE Boards + CUET">
+                    Class 11 CBSE Boards + CUET
+                  </option>
+                  <option value="Class 11 ICSE Boards + CUET">
+                    Class 11 ICSE Boards + CUET
+                  </option>
+                  <option value="Class 12 CBSE Boards + CUET">
+                    Class 12 CBSE Boards + CUET
+                  </option>
+                  <option value="Class 12 ICSE Boards + CUET">
+                    Class 12 ICSE Boards + CUET
+                  </option>
                   <option value="JEE Mains ">JEE Mains </option>
-                 <option value="NEET ">NEET </option>
-                  <option value="Foundation Course JEE IIT / NEET">Foundation Course JEE IIT / NEET</option>
-                  <option value="Commerce Board + CUET">Commerce Board + CUET</option>
+                  <option value="NEET ">NEET </option>
+                  <option value="Foundation Course JEE IIT / NEET">
+                    Foundation Course JEE IIT / NEET
+                  </option>
+                  <option value="Commerce Board + CUET">
+                    Commerce Board + CUET
+                  </option>
                   <option value="CA Foundation">CA Foundation</option>
                 </select>
               </div>
               <div className="form-group">
                 <label>Message (Optional)</label>
-                <textarea value={addmsg} onChange={(e)=>{setAddMsg(e.target.value)}}
+                <textarea
+                  value={addmsg}
+                  onChange={(e) => {
+                    setAddMsg(e.target.value);
+                  }}
                   rows="6"
                   cols="37"
                   placeholder="Add Your Message"
                 ></textarea>
               </div>
-              <button type="submit" style={{backgroundColor:"rgba(63, 229, 3, 0.867)"}}>Apply Now</button>
+              <button
+                type="submit"
+                style={{ backgroundColor: "rgba(63, 229, 3, 0.867)" }}
+              >
+                Apply Now
+              </button>
             </form>
           </div>
         </Box>

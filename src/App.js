@@ -11,16 +11,15 @@ import Footer from "./components/Footer/Footer";
 import SuperAdmin from "./components/Admin/SuperAdmin";
 import backend from "./backend";
 import ClearIcon from "@mui/icons-material/Clear";
-import './App.css'
+import "./App.css";
 
 function App() {
-
   const [imgsrc, setImgsrc] = useState("");
 
   const [displayState, setDisplayState] = useState("none");
   const getBanner = async () => {
     try {
-      const response = await fetch(`${backend}popup/`, {
+      const response = await fetch(`${backend}super/popup/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -44,17 +43,13 @@ function App() {
   };
   useEffect(() => {
     getBanner();
-    setTimeout(()=>{
-      setDisplayState('flex')
-    },10000)
+    setTimeout(() => {
+      setDisplayState("flex");
+    }, 10000);
   }, []);
 
-
-
   return (
-   
     <>
-      
       <div
         style={{
           height: "100%",
@@ -73,14 +68,13 @@ function App() {
           alt=""
           style={{ opacity: 1 }}
         />
-        <div style={{ height: "80%"}}>
-          <div onClick={()=>setDisplayState('none')}>
-          <ClearIcon
-            // color="success"
-            fontSize="large"
-            style={{ display: "absolute", cursor: "pointer" , color:"red"}}
-            
-          />
+        <div style={{ height: "80%" }}>
+          <div onClick={() => setDisplayState("none")}>
+            <ClearIcon
+              // color="success"
+              fontSize="large"
+              style={{ display: "absolute", cursor: "pointer", color: "red" }}
+            />
           </div>
         </div>
       </div>
@@ -89,14 +83,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/freetutorial" element={<FreeTutorial/>} />
+        <Route path="/freetutorial" element={<FreeTutorial />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="/login" element={<Admin/>} />
-        <Route path="/superadmin" element={<SuperAdmin/>}/>
-        <Route path="/gallery" element={<Gallery/>}/>
-       
+        <Route path="/login" element={<Admin />} />
+        <Route path="/superadmin" element={<SuperAdmin />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 }

@@ -31,13 +31,13 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/getnote' , require('./routes/noteRoute'))
-app.use('/contact' , require('./routes/contactRoute'))
-app.use('/apply', require('./routes/applyRoute'))
-app.use('/notice', require('./routes/noticeRoute'))
-app.use('/subject', require('./routes/subjectRoutes'))
-app.use('/student', require('./routes/studentRoutes'))
-app.use('/popup', require('./routes/popupRoutes'))
+app.use('/super/getnote' , require('./routes/noteRoute'))
+app.use('/super/contact' , require('./routes/contactRoute'))
+app.use('/super/apply', require('./routes/applyRoute'))
+app.use('/super/notice', require('./routes/noticeRoute'))
+app.use('/super/subject', require('./routes/subjectRoutes'))
+app.use('/super/student', require('./routes/studentRoutes'))
+app.use('/super/popup', require('./routes/popupRoutes'))
 
 
 

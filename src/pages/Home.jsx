@@ -18,7 +18,7 @@ function Home() {
 
   const handleNoticeTable = async () => {
     try {
-      const response = await fetch(`${backend}notice/`, {
+      const response = await fetch(`${backend}super/notice/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -41,16 +41,12 @@ function Home() {
     }
   };
 
-  
   useEffect(() => {
     handleNoticeTable();
-    
   }, []);
 
   return (
     <>
-      
-
       <Navbar />
       <div>
         <MainBanner

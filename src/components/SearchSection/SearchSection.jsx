@@ -11,7 +11,7 @@ const handleNoteTable = async (
   batch
 ) => {
   try {
-    const response = await fetch(`${backend}getnote/tutorial/`, {
+    const response = await fetch(`${backend}super/getnote/tutorial/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -130,7 +130,19 @@ const SearchSection = ({ open, setOpen, noteList, setNoteList }) => {
   const [classs, setClasss] = useState("Class XI");
   const [batch, setBatch] = useState("Batch 1");
 
-  const mainSubjects = ["CBSE Board All Subjects", "ICSE Board All Subjects" , 'Class 11 CBSE Boards + CUET' , 'Class 11 ICSE Boards + CUET' , 'Class 12 CBSE Boards + CUET' , 'Class 12 ICSE Boards + CUET' , 'JEE Mains' , 'NEET' , 'Foundation Course JEE IIT / NEET' , "Commerce Board + CUET" , "CA Foundation"];
+  const mainSubjects = [
+    "CBSE Board All Subjects",
+    "ICSE Board All Subjects",
+    "Class 11 CBSE Boards + CUET",
+    "Class 11 ICSE Boards + CUET",
+    "Class 12 CBSE Boards + CUET",
+    "Class 12 ICSE Boards + CUET",
+    "JEE Mains",
+    "NEET",
+    "Foundation Course JEE IIT / NEET",
+    "Commerce Board + CUET",
+    "CA Foundation",
+  ];
   const subSubjects = ["Math", "Physics", "Chemistry"];
   const classes = ["Class XI", "Class XII"];
   const batches = ["Batch 1", "Batch 2", "Batch 3"];
