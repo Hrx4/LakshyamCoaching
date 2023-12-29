@@ -322,8 +322,7 @@ const getMonthlyDueDetails = asyncHandler(async (req, res) => {
   const { studentCourse, studentClass, studentSubject, studentEnrollment } =
     req.body;
   const d = new Date();
-
-  var students = await paymentModels.find({});
+  let students = await paymentModels.find({});
   console.log("====================================");
   console.log(students, "285");
   console.log("====================================");

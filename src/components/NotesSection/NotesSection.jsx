@@ -8,7 +8,7 @@ import './NotesSection.css';
 
 
 // Parent component
-const NotesSection = ({open , setOpen, noteList , setNoteList}) => {
+const NotesSection = ({ noteList , setNoteList}) => {
 
   const [showImg, setShowImg] = useState('');
   const [showPdf, setShowPdf] = useState('');
@@ -38,14 +38,14 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
     
 
   return (
-    <section className="text" style={{display:open?"block" : "none"}}>
+    <section className="text" style={{display:"block"}}>
       <div className="contain">
         <div className="row tut__container">
-          <div className="col-lg-8 col-sm-12">
+          <div className="col-lg-8 col-sm-12 border border-secondary">
           {/* {notes.map()} */}
             {
               (showImg==='')?<div style={{ width: "100%", height: "60vh", color:"white" , display:"flex" , justifyContent:"center" , alignItems:"center"}}>
-              Select your desired notes.....
+              Select your desired notes from the list.....
               </div>
               :
               <img
@@ -65,7 +65,7 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
               </button>
             </div>
           </div>
-          <div className="col-lg-4 col-sm-14">
+          <div className="col-lg-4 col-sm-14 pt-3">
             <div className="scroll">
               {noteList.map((note, index) => (
                 <NoteCard

@@ -23,6 +23,10 @@
 .subAdFeatures{
     margin: 15px;
 }
+.list__item::before {
+    content: "\2022"; /* Unicode character for a bullet point */
+    margin-right: 0.5em; /* Adjust the spacing between the marker and the content */
+  }
 
 @media (max-width: 768px) {
     .Ncontainer{

@@ -5,6 +5,11 @@ import WhyGradSchool from '../components/WhyGradSchool/WhyGradSchool'
 import VideoSection from '../components/VideoSection/VideoSection'
 import Navbar from "../components/Navbar/Navbar";
 const About = () => {
+  // const { pathname } = useLocation();
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [pathname])
+  
   return (
     <>
   <Navbar/>

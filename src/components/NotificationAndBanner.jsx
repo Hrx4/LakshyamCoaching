@@ -9,6 +9,7 @@ import Banner3 from "./WhyGradSchool/imageChoose/3.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Box, Divider, Modal } from "@mui/material";
+import gif from "./blink.gif";
 
 const NotificationAndBanner = ({ noticeList, setNoticeList }) => {
   const [modal, setModal] = useState(false);
@@ -54,7 +55,7 @@ const NotificationAndBanner = ({ noticeList, setNoticeList }) => {
             >
               News and Notifications
             </div>
-            <ul>
+            <ul >
               {noticeList?.map((item, index) =>
                 item.noticeLink ? (
                   <a
@@ -63,18 +64,42 @@ const NotificationAndBanner = ({ noticeList, setNoticeList }) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <li style={{ paddingBottom: 12, fontSize: 15 }}>
+                    <li
+                      style={{
+                        paddingBottom: 17,
+                        fontSize: 15,
+                        display: "flex",
+                        gap:10,
+                      }}
+                      className="list__item"
+                    >
                       {item?.noticeTitle}
+                      <div style={{ height: 30, width: 30 }}>
+                        <img
+                          src={gif}
+                          alt=""
+                          style={{ height: "100%", width: "100%" }}
+                        />
+                      </div>
                     </li>
                   </a>
                 ) : (
                   <li
-                    style={{ paddingBottom: 12 }}
+                  className="list__item"
+                    style={{ paddingBottom: 17 ,display: "flex",
+                        gap:10,}}
                     onClick={() =>
                       customModal(item.noticeTitle, item.noticeDetails)
                     }
                   >
                     {item?.noticeTitle}
+                     <div style={{ height: 30, width: 30 }}>
+                        <img
+                          src={gif}
+                          alt=""
+                          style={{ height: "100%", width: "100%" }}
+                        />
+                      </div> 
                   </li>
                 )
               )}

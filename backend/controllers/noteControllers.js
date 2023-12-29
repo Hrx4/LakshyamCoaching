@@ -12,13 +12,28 @@ const createNote = asyncHandler(async(req , res) => {
 })
 
 const getNote = asyncHandler(async(req,res)=>{
-    const notes = await noteModels.find();
+    let notes = await noteModels.find();
+    notes = notes.slice(0,10)
     res.status(200).json(notes)
 })
 
 const getFilterNotes = asyncHandler(async(req , res) => {
     const {noteClass , noteSubject , noteCourse , noteBatch} = req.body
-    const notes = await noteModels.find({noteClass:noteClass , noteSubject:noteSubject, noteCourse:noteCourse , noteBatch:noteBatch})
+    let notes = await noteModels.find()
+
+    if (noteClass !== "") {
+        notes = notes.filter((item) => item.noteClass === noteClass);
+        
+      }
+    
+      if (noteSubject !== "") {
+        notes = notes.filter((item) => item.noteSubject === noteSubject);
+      }
+      if (noteCourse !== "")
+        notes = notes.filter((item) => item.noteCourse === noteCourse);
+        if (noteBatch !== "")
+        notes = notes.filter((item) => item.noteBatch === noteBatch);
+
     res.status(200).json(notes);
     console.log('====================================');
     console.log(notes);

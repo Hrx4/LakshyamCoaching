@@ -124,6 +124,9 @@
     background-color: rgba(22, 34, 57, 0.95);
     height: 67vh;
   }
+  .scroll::-webkit-scrollbar{
+    display: none;
+  }
 
   h4 {
     box-sizing: border-box;

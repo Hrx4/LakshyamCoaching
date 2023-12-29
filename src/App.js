@@ -12,6 +12,7 @@ import SuperAdmin from "./components/Admin/SuperAdmin";
 import backend from "./backend";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./App.css";
+import ScrollTop from "./ScrollTop";
 
 function App() {
   const [imgsrc, setImgsrc] = useState("");
@@ -30,6 +31,10 @@ function App() {
       const resJson = await response.json();
 
       if (response.status === 200) {
+        const size = resJson.length
+        if (size>1)
+        {setImgsrc(resJson[size-1].popupImage)}
+        else 
         setImgsrc(resJson[0].popupImage);
         console.log("====================================");
         console.log(resJson);
@@ -43,10 +48,11 @@ function App() {
   };
   useEffect(() => {
     getBanner();
-    setTimeout(() => {
+    if(imgsrc!=="")
+    {setTimeout(() => {
       setDisplayState("flex");
-    }, 10000);
-  }, []);
+    }, 10000);}
+  }, [imgsrc]);
 
   return (
     <>
@@ -78,7 +84,7 @@ function App() {
           </div>
         </div>
       </div>
-
+<ScrollTop/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

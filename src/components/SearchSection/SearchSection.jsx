@@ -1,134 +1,13 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 import "./SearchSection.css";
 import backend from "../../backend";
 
-const handleNoteTable = async (
-  setNoteList,
-  setOpen,
-  subject,
-  course,
-  classs,
-  batch
-) => {
-  try {
-    const response = await fetch(`${backend}super/getnote/tutorial/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        noteSubject: subject,
-        noteClass: classs,
-        noteCourse: course,
-        noteBatch: batch,
-      }),
-    });
-
-    const resJson = await response.json();
-
-    if (response.status === 200) {
-      setNoteList(resJson);
-      console.log("====================================");
-      console.log(resJson);
-      console.log("====================================");
-    } else {
-      console.log("Some error occured");
-    }
-    setOpen(true);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// Select component
-const Select = ({ options, setSubject, subject }) => (
-  <select
-    style={{
-      width: "100%",
-      background: "transparent",
-      border: "none",
-      color: "white",
-    }}
-    value={subject}
-    onChange={(e) => {
-      setSubject(e.target.value);
-    }}
-  >
-    {options.map((option) => (
-      <option style={{ color: "black" }} key={option}>
-        {option}
-      </option>
-    ))}
-  </select>
-);
-const Select1 = ({ options, setCourse, course }) => (
-  <select
-    style={{
-      width: "100%",
-      background: "transparent",
-      border: "none",
-      color: "white",
-    }}
-    value={course}
-    onChange={(e) => {
-      setCourse(e.target.value);
-    }}
-  >
-    {options.map((option) => (
-      <option style={{ color: "black" }} key={option}>
-        {option}
-      </option>
-    ))}
-  </select>
-);
-const Select2 = ({ options, setClasss, classs }) => (
-  <select
-    style={{
-      width: "100%",
-      background: "transparent",
-      border: "none",
-      color: "white",
-    }}
-    value={classs}
-    onChange={(e) => {
-      setClasss(e.target.value);
-    }}
-  >
-    {options.map((option) => (
-      <option style={{ color: "black" }} key={option}>
-        {option}
-      </option>
-    ))}
-  </select>
-);
-const Select3 = ({ options, setBatch, batch }) => (
-  <select
-    style={{
-      width: "100%",
-      background: "transparent",
-      border: "none",
-      color: "white",
-    }}
-    value={batch}
-    onChange={(e) => {
-      setBatch(e.target.value);
-    }}
-  >
-    {options.map((option) => (
-      <option style={{ color: "black" }} key={option}>
-        {option}
-      </option>
-    ))}
-  </select>
-);
-
 // Parent component
-const SearchSection = ({ open, setOpen, noteList, setNoteList }) => {
-  const [subject, setSubject] = useState("Math");
-  const [course, setCourse] = useState("CBSE Board All Subjects");
-  const [classs, setClasss] = useState("Class XI");
-  const [batch, setBatch] = useState("Batch 1");
+const SearchSection = ({ noteList, setNoteList }) => {
+  const [subject, setSubject] = useState("");
+  const [course, setCourse] = useState("");
+  const [classs, setClasss] = useState("");
+  const [batch, setBatch] = useState("");
 
   const mainSubjects = [
     "CBSE Board All Subjects",
@@ -146,6 +25,128 @@ const SearchSection = ({ open, setOpen, noteList, setNoteList }) => {
   const subSubjects = ["Math", "Physics", "Chemistry"];
   const classes = ["Class XI", "Class XII"];
   const batches = ["Batch 1", "Batch 2", "Batch 3"];
+
+  const handleNoteTable = async () => {
+    try {
+      const response = await fetch(`${backend}super/getnote/tutorial/`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          noteSubject: subject,
+          noteClass: classs,
+          noteCourse: course,
+          noteBatch: batch,
+        }),
+      });
+
+      const resJson = await response.json();
+
+      if (response.status === 200) {
+        setNoteList(resJson);
+        console.log("====================================");
+        console.log(resJson);
+        console.log("====================================");
+      } else {
+        console.log("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+ 
+  // Select component
+  const Select = ({ options, setSubject, subject }) => (
+    <select
+      style={{
+        width: "100%",
+        background: "transparent",
+        border: "none",
+        color: "white",
+      }}
+      value={subject}
+      onChange={(e) => {
+        setSubject(e.target.value);
+      }}
+    >
+      <option hidden>Select Subject</option>
+
+      {options.map((option) => (
+        <option style={{ color: "black" }} key={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+  const Select1 = ({ options, setCourse, course }) => (
+    <select
+      style={{
+        width: "100%",
+        background: "transparent",
+        border: "none",
+        color: "white",
+      }}
+      value={course}
+      onChange={(e) => {
+        setCourse(e.target.value);
+      }}
+    >
+      <option hidden>Select Course</option>
+      {options.map((option) => (
+        <option style={{ color: "black" }} key={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+  const Select2 = ({ options, setClasss, classs }) => (
+    <select
+      style={{
+        width: "100%",
+        background: "transparent",
+        border: "none",
+        color: "white",
+      }}
+      value={classs}
+      onChange={(e) => {
+        setClasss(e.target.value);
+      }}
+    >
+      <option hidden>Select Class</option>
+
+      {options.map((option) => (
+        <option style={{ color: "black" }} key={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+  const Select3 = ({ options, setBatch, batch }) => (
+    <select
+      style={{
+        width: "100%",
+        background: "transparent",
+        border: "none",
+        color: "white",
+      }}
+      value={batch}
+      onChange={(e) => {
+        setBatch(e.target.value);
+      }}
+    >
+      <option hidden>Select Batch</option>
+
+      {options.map((option) => (
+        <option style={{ color: "black" }} key={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+  
 
   return (
     <section className="courseSearch">
@@ -174,12 +175,6 @@ const SearchSection = ({ open, setOpen, noteList, setNoteList }) => {
         <button
           onClick={() =>
             handleNoteTable(
-              setNoteList,
-              setOpen,
-              subject,
-              course,
-              classs,
-              batch
             )
           }
           style={{ borderRadius: 5 }}
