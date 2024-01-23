@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React from "react";
 import {saveAs} from 'file-saver'
 import './NotesSection.css';
 // NoteCard component
@@ -8,11 +8,9 @@ import './NotesSection.css';
 
 
 // Parent component
-const NotesSection = ({ noteList , setNoteList}) => {
+const NotesSection = ({ noteList ,showImg, setShowImg , showPdf, setShowPdf , title, setTitle}) => {
 
-  const [showImg, setShowImg] = useState('');
-  const [showPdf, setShowPdf] = useState('');
-  const [title, setTitle] = useState('')
+  
 
 
   
@@ -44,8 +42,8 @@ const NoteCard = ({key, imgSrc, title, pdf }) => {
           <div className="col-lg-8 col-sm-12 border border-secondary">
           {/* {notes.map()} */}
             {
-              (showImg==='')?<div style={{ width: "100%", height: "60vh", color:"white" , display:"flex" , justifyContent:"center" , alignItems:"center"}}>
-              Select your desired notes from the list.....
+              (noteList.length===0)?<div style={{ width: "100%", height: "60vh", color:"white" , display:"flex" , justifyContent:"center" , alignItems:"center"}}>
+              No Notes Avilable For this Search.....
               </div>
               :
               <img

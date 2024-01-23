@@ -37,7 +37,7 @@ const Advertisement = () => {
                   Happy Students
                   <br />
                   <div style={{ textAlign: "center", paddingTop: 15 }}>
-                    1000+
+                  20000+
                   </div>
                 </div>
                 <div
@@ -47,7 +47,7 @@ const Advertisement = () => {
                   Video lectures
                   <br />
                   <div style={{ textAlign: "center", paddingTop: 15 }}>
-                    3000+
+                  1000+
                   </div>
                 </div>
                 <div
@@ -57,7 +57,7 @@ const Advertisement = () => {
                   Mock Test
                   <br />
                   <div style={{ textAlign: "center", paddingTop: 15 }}>
-                    500+
+                  1000+
                   </div>
                 </div>
                 <div
@@ -67,7 +67,7 @@ const Advertisement = () => {
                   Study Materials
                   <br />
                   <div style={{ textAlign: "center", paddingTop: 15 }}>
-                    3000+
+                  1000+
                   </div>
                 </div>
               </div>

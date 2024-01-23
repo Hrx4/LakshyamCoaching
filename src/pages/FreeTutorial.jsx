@@ -8,6 +8,9 @@ import backend from "../../src/backend";
 
 const FreeTutorial = () => {
   const [noteList, setNoteList] = useState([]);
+  const [showImg, setShowImg] = useState('');
+  const [showPdf, setShowPdf] = useState('');
+  const [title, setTitle] = useState('')
 
   const handleNoteTable = async () => {
     try {
@@ -29,6 +32,9 @@ const FreeTutorial = () => {
 
       if (response.status === 200) {
         setNoteList(resJson);
+        setShowImg(resJson[0].noteImage);
+        setTitle(resJson[0].noteTitle)
+        setShowPdf(resJson[0].notePdf)
         console.log("====================================");
         console.log(resJson);
         console.log("====================================");
@@ -55,8 +61,8 @@ const FreeTutorial = () => {
           // buttonText="Discover more" // Provide buttonText prop if needed
           showFeaturesSection={false}
         />
-        <SearchSection noteList={noteList} setNoteList={setNoteList} />
-        <NotesSection noteList={noteList} setNoteList={setNoteList} />
+        <SearchSection  setNoteList={setNoteList}  setShowImg={setShowImg} setShowPdf={setShowPdf} setTitle={setTitle}/>
+        <NotesSection noteList={noteList}  showImg={showImg} setShowImg={setShowImg} showPdf={showPdf} setShowPdf={setShowPdf} title={title} setTitle={setTitle} />
       </div>
     </>
   );

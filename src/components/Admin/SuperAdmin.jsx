@@ -27,8 +27,7 @@ const SuperAdmin = () => {
   const [noticeList, setNoticeList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
   const [bannerList, setBannerList] = useState([]);
-  const [income, setIncome] = useState([]);
-  const [noteView, setNoteView] = useState("noteform");
+  const [noteView, setNoteView] = useState("Dashboard");
   const [slideOpen, setSlideOpen] = useState(false);
   const [studentItem, setStudentItem] = useState([
     {
@@ -307,29 +306,6 @@ const SuperAdmin = () => {
     ref.current.classList.add("slider__close");
     ref.current.classList.remove("slider__open");
     setSlideOpen(false);
-
-    try {
-      const response = await fetch(`${backend}super/student/getpayment/`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      const resJson = await response.json();
-
-      if (response.status === 200) {
-        setIncome(resJson);
-        console.log("====================================");
-        console.log(resJson);
-        console.log("====================================");
-      } else {
-        console.log("Some error occured");
-      }
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   const handleAddBanner = () => {
@@ -374,6 +350,7 @@ const SuperAdmin = () => {
           display: "flex",
           backgroundColor: "rgba(22,34,57,0.85)",
           color: "white",
+          height: "100vh",
         }}
       >
         <button
@@ -387,6 +364,7 @@ const SuperAdmin = () => {
             <ClearIcon fontSize="small" />
           )}
         </button>
+
         <div
           ref={ref}
           id="super-choose"
@@ -597,40 +575,53 @@ const SuperAdmin = () => {
             ▶Student Payment
           </div>
         </div>
-        {/* <Divider orientation='vertical'   style={{height:"93vh",color:"success"}}/> */}
-        {noteView === "noteform" ? <NoteForm /> : null}
-        {noteView === "notetable" ? (
-          <NoteTable noteList={noteList} setNoteList={setNoteList} />
-        ) : null}
-        {noteView === "contacttable" ? (
-          <ContactTable
-            contactList={contactList}
-            setContactList={setContactList}
-          />
-        ) : null}
-        {noteView === "applytable" ? (
-          <ApplyTable applyList={applyList} setApplyList={setApplyList} />
-        ) : null}
-        {noteView === "noticeform" ? <NoticeForm /> : null}
-        {noteView === "noticetable" ? (
-          <NoticeTable noticeList={noticeList} setNoticeList={setNoticeList} />
-        ) : null}
-        {noteView === "classform" ? <ClassForm /> : null}
-        {noteView === "subjectdetails" ? (
-          <SubjectDetails
-            subjectList={subjectList}
-            setSubjectList={setSubjectList}
-          />
-        ) : null}
-        {noteView === "subjectform" ? <SubjectForm /> : null}
-        {noteView === "addStudentForm" ? <AddStudent /> : null}
-        {noteView === "allStudentForm" ? <AllStudent /> : null}
-        {noteView === "addPaymentDetails" ? <StudentPayment /> : null}
-        {noteView === "Dashboard" ? <Dashboard income={income} /> : null}
-        {noteView === "addBannerForm" ? <AddBanner /> : null}
-        {noteView === "allBannerForm" ? (
-          <AllBanner bannerList={bannerList} setBannerList={setBannerList} />
-        ) : null}
+
+        <div
+          style={{
+            height: "98%",
+            width: "100%",
+            display: "flex",
+            marginBottom: 20,
+            overflowY: "scroll",
+          }}
+        >
+          {noteView === "noteform" ? <NoteForm /> : null}
+          {noteView === "notetable" ? (
+            <NoteTable noteList={noteList} setNoteList={setNoteList} />
+          ) : null}
+          {noteView === "contacttable" ? (
+            <ContactTable
+              contactList={contactList}
+              setContactList={setContactList}
+            />
+          ) : null}
+          {noteView === "applytable" ? (
+            <ApplyTable applyList={applyList} setApplyList={setApplyList} />
+          ) : null}
+          {noteView === "noticeform" ? <NoticeForm /> : null}
+          {noteView === "noticetable" ? (
+            <NoticeTable
+              noticeList={noticeList}
+              setNoticeList={setNoticeList}
+            />
+          ) : null}
+          {noteView === "classform" ? <ClassForm /> : null}
+          {noteView === "subjectdetails" ? (
+            <SubjectDetails
+              subjectList={subjectList}
+              setSubjectList={setSubjectList}
+            />
+          ) : null}
+          {noteView === "subjectform" ? <SubjectForm /> : null}
+          {noteView === "addStudentForm" ? <AddStudent /> : null}
+          {noteView === "allStudentForm" ? <AllStudent /> : null}
+          {noteView === "addPaymentDetails" ? <StudentPayment /> : null}
+          {noteView === "Dashboard" ? <Dashboard /> : null}
+          {noteView === "addBannerForm" ? <AddBanner /> : null}
+          {noteView === "allBannerForm" ? (
+            <AllBanner bannerList={bannerList} setBannerList={setBannerList} />
+          ) : null}
+        </div>
       </div>
     </>
   );

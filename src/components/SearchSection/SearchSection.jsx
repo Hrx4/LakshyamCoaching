@@ -3,7 +3,7 @@ import "./SearchSection.css";
 import backend from "../../backend";
 
 // Parent component
-const SearchSection = ({ noteList, setNoteList }) => {
+const SearchSection = ({  setNoteList , setShowImg ,  setShowPdf ,  setTitle }) => {
   const [subject, setSubject] = useState("");
   const [course, setCourse] = useState("");
   const [classs, setClasss] = useState("");
@@ -46,6 +46,15 @@ const SearchSection = ({ noteList, setNoteList }) => {
 
       if (response.status === 200) {
         setNoteList(resJson);
+        if(resJson.length===0){
+          setShowPdf('')
+          setTitle('')
+        }
+        else{
+          setShowImg(resJson[0].noteImage);
+        setTitle(resJson[0].noteTitle)
+        setShowPdf(resJson[0].notePdf)
+        }
         console.log("====================================");
         console.log(resJson);
         console.log("====================================");

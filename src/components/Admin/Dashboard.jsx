@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import { FaAddressBook } from "react-icons//fa6";
 import { FaCreativeCommonsBy } from "react-icons//fa6";
 import { FaCreativeCommonsNc } from "react-icons//fa6";
 import { FaCommentDollar } from "react-icons//fa6";
 import SubDashBoard from "./SubDashBoard";
+import backend from "../../backend";
 
-const Dashboard = ({ income }) => {
+const Dashboard = () => {
   const [subDash, setSubDash] = useState("noteform");
 
   const handleMonthlyIncome = () => {
@@ -24,6 +25,36 @@ const Dashboard = ({ income }) => {
   const handleTotalDue = () => {
     setSubDash("TotalDue");
   };
+  const [income, setIncome] = useState([])
+
+  useEffect(() => {
+    const incomeList = async()=>{
+      try {
+        const response = await fetch(`${backend}super/student/getpayment/`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+  
+        const resJson = await response.json();
+  
+        if (response.status === 200) {
+          setIncome(resJson);
+          console.log("====================================");
+          console.log(resJson);
+          console.log("====================================");
+        } else {
+          console.log("Some error occured");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    incomeList()
+  }, [])
+  
 
   return (
     <div
