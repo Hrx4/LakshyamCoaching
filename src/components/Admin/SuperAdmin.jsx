@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef} from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import ClearIcon from "@mui/icons-material/Clear";
 import NoteForm from "./NoteForm";
@@ -68,7 +68,6 @@ const SuperAdmin = () => {
       subItems: ["Add Note", "All Note"],
     },
   ]);
-
   const toggleMenu = (itemId) => {
     setStudentItem((prevItems) =>
       prevItems.map((item) =>

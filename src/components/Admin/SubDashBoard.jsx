@@ -1,50 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
-import backend from '../../backend';
-import { toast } from "react-toastify";
+
 
 const SubDashBoard = (props) => {
-  const [classs, setClasss] = useState("");
-  const [subject, setSubject] = useState("");
-  const [course, setCourse] = useState("");
-  const [enrollment, setEnrollment] = useState("");
-  const [incomeList, setIncomeList] = useState([]);
 
-  const handleAllStudentTable = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(`${backend}super/student/${props.apiRoute}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          studentClass: classs,
-          studentCourse: course,
-          studentSubject: subject,
-          studentEnrollment: enrollment,
-        }),
-      });
-      let resJson = await res.json();
-      if (res.status === 200) {
-        console.log("fine");
-        setIncomeList(resJson);
-        toast.success("Form submitted", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      }
-    } catch (err) {
-      toast.error("Error Occured", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      console.log(err);
-    }
-  };
 
   return (
         <>

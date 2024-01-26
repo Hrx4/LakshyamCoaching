@@ -1,4 +1,4 @@
-import { Box, Modal } from '@mui/material'
+import { Box, Modal} from '@mui/material'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import './Admin.css'
@@ -24,12 +24,27 @@ const Admin = () => {
       };
 
     const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-
+  const [route , setRoute] = useState("")
+  const handleOpen = () =>{ 
+    setRoute("/admin/superadmin")
+    setOpen(true)
+  };
+  const handleOpen1 = () =>{ 
+    setRoute("/admin/office1")
+    setOpen(true)
+  };
+  const handleOpen2 = () =>{ 
+    setRoute("/admin/office2")
+    setOpen(true)
+  };
+  const handleOpen3 = () =>{ 
+    setRoute("/admin/office3")
+    setOpen(true)
+  };
+  const handleClose = () => setOpen(false);
 
 
 
@@ -42,14 +57,17 @@ const Admin = () => {
             <div  className='admin__card' style={{height:200 , borderRadius:10 , backgroundColor:"transparent" , fontSize:20 , fontWeight:"bold" ,  display:"flex" , justifyContent:"center" , alignItems:"center" }} onClick={handleOpen}>
             Super Admin
             </div>
-            <div className='admin__card' style={{height:200  , borderRadius:10 , backgroundColor:"transparent" , fontSize:20 , fontWeight:"bold", display:"flex" , justifyContent:"center" , alignItems:"center" }} onClick={handleOpen}>
+            <div className='admin__card' style={{height:200  , borderRadius:10 , backgroundColor:"transparent" , fontSize:20 , fontWeight:"bold", display:"flex" , justifyContent:"center" , alignItems:"center" }} onClick={handleOpen1}>
             Office 1
             </div>
-            <div className='admin__card' style={{height:200  , borderRadius:10 , backgroundColor:"transparent" , fontSize:20 , fontWeight:"bold", display:"flex" , justifyContent:"center" , alignItems:"center" }} onClick={handleOpen}>
+            <div className='admin__card' style={{height:200  , borderRadius:10 , backgroundColor:"transparent" , fontSize:20 , fontWeight:"bold", display:"flex" , justifyContent:"center" , alignItems:"center" }} onClick={handleOpen2}>
             Office 2
             </div>
         </div>
         <div className='admin__row' style={{display:"flex" , justifyContent:"space-evenly"}}>
+        <div className='admin__card' style={{height:200  , borderRadius:10 , backgroundColor:"transparent" , fontSize:20 , fontWeight:"bold", display:"flex" , justifyContent:"center" , alignItems:"center" }} onClick={handleOpen3}>
+            Office 3
+            </div>
             <div className='admin__card' style={{height:200  , borderRadius:10 , backgroundColor:"transparent" , fontSize:20 , fontWeight:"bold", display:"flex" , justifyContent:"center" , alignItems:"center" }}>
             Student
             </div>
@@ -72,7 +90,7 @@ const Admin = () => {
           {
             (username==='username' && password==='password')?
            
-          <Link to={'/superadmin'} style={{backgroundColor:"blue" , height:30 , width:70, color:"white" , border:"none" , borderRadius:3 , textDecoration:"none" , textAlign:"center", fontStyle:"normal", fontWeight:"bold"}}>
+          <Link to={route} style={{backgroundColor:"blue" , height:30 , width:70, color:"white" , border:"none" , borderRadius:3 , textDecoration:"none" , textAlign:"center", fontStyle:"normal", fontWeight:"bold"}}>
             Login
           </Link> :
          <button style={{backgroundColor:"blue" , height:40 , width:70, color:"white" , border:"none" , borderRadius:3,fontStyle:"normal" , fontWeight:"bold"}}>

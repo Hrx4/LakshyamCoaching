@@ -9,12 +9,15 @@ import Box from "@mui/material/Box";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
+import { useParams } from "react-router-dom";
 
 const AllStudent = () => {
   const [course, setCourse] = useState("");
   const [studentEnrollment, setStudentEnrollment] = useState("");
   const [studentTab, setStudentTab] = useState();
   const [studentList, setStudentList] = useState([]);
+  const {id} = useParams()
+
   const handleAllStudentTable = async (e) => {
     e.preventDefault();
     setStudentTab("studentInfo");
@@ -26,7 +29,12 @@ const AllStudent = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-
+          studentOffice : 
+          (id==="office1") ? "office 1" : 
+          (id==="office2") ? "office 2":
+          (id==="office3") ? "office 3" :
+          (id==="superadmin") ? "" :
+          "none" ,
           course: course,
           studentEnrollment : studentEnrollment
         }),

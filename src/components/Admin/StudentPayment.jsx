@@ -9,13 +9,14 @@ import "./StudentPayment.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
+import { useParams } from "react-router-dom";
 
 const StudentPayment = () => {
   const [courseForPay, setCourseForPay] = useState("");
   const [studentEnrollment, setStudentEnrollment] = useState("");
   const [payDetails, setPayDetails] = useState();
   const [studentPayList, setStudentPayList] = useState([]);
-
+  const {id} = useParams()
   const handlePayDetails = async (e) => {
     e.preventDefault();
     setPayDetails("addPayDetails");
@@ -27,6 +28,12 @@ const StudentPayment = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          studentOffice : 
+          (id==="office1") ? "office 1" : 
+          (id==="office2") ? "office 2":
+          (id==="office3") ? "office 3" :
+          (id==="superadmin") ? "" :
+          "none" ,
           course: courseForPay,
           studentEnrollment : studentEnrollment
         }),

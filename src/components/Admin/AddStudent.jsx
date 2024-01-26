@@ -14,13 +14,18 @@ import { ToastContainer} from "react-toastify";
 import { CircularProgress } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
+import { useParams } from "react-router-dom";
 
 const AddStudent = () => {
   const Gender = ["Male", "Female"];
   const Compi = ["IIT-JEE", "NEET"];
   const Schooling = ["CBSE", "ICSE"];
   const admissionFeeStatus = ["YES", "NO"];
-  const officeList = ["office 1", "office 2","office 3"];
+  const {id} = useParams()
+  const officeList = (id==="superadmin") ? ["office 1", "office 2","office 3"] : 
+  (id==="office1") ? ["office 1"] :
+  (id==="office2") ? ["office 2"] :
+  (id==="office3") ? ["office 3"] :[]
 
   const [iitNeetSub, setIitNeetSub] = useState([]);
   const [iitNeetFee , setIitNeetFee] = useState(0)
@@ -370,6 +375,7 @@ const handleSubmit = async(e)=>{
       body: JSON.stringify({
         studentEnrollment: formData.enrollment,
         studentPassword : formData.password,
+        studentOffice : formData.office,
         studentPhoto : formData.photo,
         studentName : formData.name,
     studentDob : formData.dob,

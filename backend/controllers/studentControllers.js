@@ -151,7 +151,6 @@ const getStudent = asyncHandler(async (req, res) => {
   } else {
     students = await studentModels.find();
   }
-
   if (course === "IIT-JEE/NEET") {
     students = students.filter((item) => item.iitNeetFee !== 0);
   } else if (course === "Schooling Solution") {
@@ -291,10 +290,19 @@ const getMonthlyIncome = asyncHandler(async (req, res) => {
     monthlyIncome = 0,
     monthlyDue = 0,
     totalDue = 0;
+    const {studentOffice} = req.body
   const d = new Date();
   const month = d.getMonth();
 
-  const students = await studentModels.find();
+  let students;
+
+  
+    if (studentOffice !== "")
+      students = await studentModels.find({
+        studentOffice: studentOffice,
+      });
+    else
+      students = await studentModels.find();
 
   students.map((student, index) => {
     student.paymentDetails.map((item, index) => {

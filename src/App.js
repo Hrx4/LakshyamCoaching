@@ -94,7 +94,7 @@ function App() {
         <Route path="/freetutorial" element={<FreeTutorial />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/login" element={<Admin />} />
-        <Route path="/superadmin" element={<SuperAdmin />} />
+        <Route path="/admin/:id" element={<SuperAdmin />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/student" element={<StudentPanel/>}/>
         <Route path="/teacher" element={<TeacherPanel/>}/>

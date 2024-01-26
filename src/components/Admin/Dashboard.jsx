@@ -6,6 +6,7 @@ import { FaCreativeCommonsNc } from "react-icons//fa6";
 import { FaCommentDollar } from "react-icons//fa6";
 import SubDashBoard from "./SubDashBoard";
 import backend from "../../backend";
+import { useParams } from "react-router-dom";
 
 const Dashboard = () => {
   const [subDash, setSubDash] = useState("noteform");
@@ -26,16 +27,23 @@ const Dashboard = () => {
     setSubDash("TotalDue");
   };
   const [income, setIncome] = useState([])
-
+  const {id} = useParams()
   useEffect(() => {
     const incomeList = async()=>{
       try {
-        const response = await fetch(`${backend}super/student/getpayment/`, {
-          method: "GET",
+        const response = await fetch(`${backend}super/student/getdashboard/`, {
+          method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-          },
+          },body : JSON.stringify({
+            studentOffice : 
+          (id==="office1") ? "office 1" : 
+          (id==="office2") ? "office 2":
+          (id==="office3") ? "office 3" :
+          (id==="superadmin") ? "" :
+          "none" ,
+          })
         });
   
         const resJson = await response.json();
@@ -53,7 +61,7 @@ const Dashboard = () => {
       }
     }
     incomeList()
-  }, [])
+  }, [id])
   
 
   return (
