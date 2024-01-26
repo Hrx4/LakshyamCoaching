@@ -320,7 +320,7 @@ const SuperAdmin = () => {
 
   return (
     <>
-      <SnavBar />
+      <SnavBar Handler="Hi Super Admin!" />
       <div
         className="super-container"
         style={{

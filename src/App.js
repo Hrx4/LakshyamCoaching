@@ -13,6 +13,8 @@ import backend from "./backend";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./App.css";
 import ScrollTop from "./ScrollTop";
+import StudentPanel from "./components/Student/StudentPanel";
+import TeacherPanel from "./components/Teacher/TeacherPanel";
 
 function App() {
   const [imgsrc, setImgsrc] = useState("");
@@ -94,6 +96,9 @@ function App() {
         <Route path="/login" element={<Admin />} />
         <Route path="/superadmin" element={<SuperAdmin />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/student" element={<StudentPanel/>}/>
+        <Route path="/teacher" element={<TeacherPanel/>}/>
+
       </Routes>
       <Footer />
     </>

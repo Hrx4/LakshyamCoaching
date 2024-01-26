@@ -7,9 +7,12 @@
     max-width: 300px;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .dSearchBox {
         width: auto;
         max-width: none;
+    }
+    .dashTab{
+        font-size: small ;
     }
 }
