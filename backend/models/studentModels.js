@@ -2,6 +2,18 @@ const mongoose = require("mongoose");
 
 const studentSchema = mongoose.Schema(
   {
+    studentEnrollment: {
+      type: String,
+    },
+    studentOffice: {
+      type: String,
+    },
+    studentPassword: {
+      type: String,
+    },
+    studentPhoto: {
+      type: String,
+    },
     studentName: {
       type: String,
     },
@@ -72,6 +84,9 @@ const studentSchema = mongoose.Schema(
       type: Number,
     },
     extraFee: {
+      type: Number,
+    },
+    monthlyIncome: {
       type: Number,
     },
     iitNeetSub: {

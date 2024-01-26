@@ -102,8 +102,11 @@ const Dashboard = () => {
             >
               <FaCreativeCommonsBy size={50} />
             </div>
-            <div className="Dhalf dText" style={{ color: "black" }}>
+            <div className="Dhalf dText" style={{ color: "black" ,
+            display: "flex",
+                flexDirection: "column",}}>
               TOTAL TEACHER
+              <div>{income?.totalTeacher}</div>
             </div>
           </div>
         </div>

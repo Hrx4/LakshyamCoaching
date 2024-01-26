@@ -9,8 +9,6 @@ import ClassForm from "./ClassForm";
 import NoticeForm from "./NoticeForm";
 import ApplyTable from "./ApplyTable";
 import NoticeTable from "./NoticeTable";
-import SubjectDetails from "./SubjectDetails";
-import SubjectForm from "./SubjectForm";
 import AddStudent from "./AddStudent";
 import AllStudent from "./AllStudent";
 import StudentPayment from "./StudentPayment";
@@ -18,6 +16,8 @@ import Dashboard from "./Dashboard";
 import SnavBar from "./SnavBar";
 import AddBanner from "./AddBanner";
 import AllBanner from "./AllBanner";
+import TeacherForm from "./TeacherForm";
+import AllTeacher from "./AllTeacher";
 
 const SuperAdmin = () => {
   const ref = useRef(null);
@@ -25,7 +25,6 @@ const SuperAdmin = () => {
   const [contactList, setContactList] = useState([]);
   const [applyList, setApplyList] = useState([]);
   const [noticeList, setNoticeList] = useState([]);
-  const [subjectList, setSubjectList] = useState([]);
   const [bannerList, setBannerList] = useState([]);
   const [noteView, setNoteView] = useState("Dashboard");
   const [slideOpen, setSlideOpen] = useState(false);
@@ -35,14 +34,6 @@ const SuperAdmin = () => {
       name: "▶ Student",
       isOpen: false,
       subItems: ["Add Student", "All Students"],
-    },
-  ]);
-  const [subjectItem, setSubjectItem] = useState([
-    {
-      id: 1,
-      name: "▶ Subject",
-      isOpen: false,
-      subItems: ["Add Subject", "All Subject"],
     },
   ]);
   const [noticeItem, setNoticeItem] = useState([
@@ -59,6 +50,14 @@ const SuperAdmin = () => {
       name: "▶ Banner",
       isOpen: false,
       subItems: ["Add Banner", "All Banner"],
+    },
+  ]);
+  const [teacher, setTeacher] = useState([
+    {
+      id: 1,
+      name: "▶ Teacher",
+      isOpen: false,
+      subItems: ["Add Teacher", "All Teacher"],
     },
   ]);
   const [noteItem, setNoteItem] = useState([
@@ -78,16 +77,16 @@ const SuperAdmin = () => {
     );
   };
 
-  const toggleSubjectMenu = (itemId) => {
-    setSubjectItem((prevItems) =>
+  const toggleNoticeMenu = (itemId) => {
+    setNoticeItem((prevItems) =>
       prevItems.map((item) =>
         item.id === itemId ? { ...item, isOpen: !item.isOpen } : item
       )
     );
   };
 
-  const toggleNoticeMenu = (itemId) => {
-    setNoticeItem((prevItems) =>
+  const toggleTeacher = (itemId) => {
+    setTeacher((prevItems) =>
       prevItems.map((item) =>
         item.id === itemId ? { ...item, isOpen: !item.isOpen } : item
       )
@@ -230,35 +229,7 @@ const SuperAdmin = () => {
   // const handleClassForm = () =>{
   //   setNoteView("classform");
   // }
-  const handleSubjectDetails = async () => {
-    ref.current.classList.add("slider__close");
-    ref.current.classList.remove("slider__open");
-    setSlideOpen(false);
-
-    setNoteView("subjectdetails");
-    try {
-      const response = await fetch(`${backend}super/subject/`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      const resJson = await response.json();
-
-      if (response.status === 200) {
-        setSubjectList(resJson);
-        console.log("====================================");
-        console.log(resJson);
-        console.log("====================================");
-      } else {
-        console.log("Some error occured");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  
   const handleNoteForm = () => {
     setNoteView("noteform");
     ref.current.classList.add("slider__close");
@@ -271,8 +242,14 @@ const SuperAdmin = () => {
     ref.current.classList.remove("slider__open");
     setSlideOpen(false);
   };
-  const handleSubjectForm = () => {
-    setNoteView("subjectform");
+  const handleTeacherForm = () => {
+    setNoteView("teacherform");
+    ref.current.classList.add("slider__close");
+    ref.current.classList.remove("slider__open");
+    setSlideOpen(false);
+  };
+  const handleTeacherTable = () => {
+    setNoteView("teachertable");
     ref.current.classList.add("slider__close");
     ref.current.classList.remove("slider__open");
     setSlideOpen(false);
@@ -436,6 +413,38 @@ const SuperAdmin = () => {
             className="note__btn"
           >
             <ul style={{ listStyleType: "none" }}>
+              {teacher.map((noticeItems) => (
+                <li key={noticeItems.id}>
+                  <span
+                    onClick={() => toggleTeacher(noticeItems.id)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: 17,
+                      textAlign: "left",
+                      color: "white",
+                    }}
+                    className="note__btn"
+                  >
+                    {noticeItems.name}
+                  </span>
+                  {noticeItems.isOpen && (
+                    <ul style={{ padding: 10, color: "white" }}>
+                      <li onClick={handleTeacherForm}>Add Teacher</li>
+                      <li style={{ marginTop: 10 }} onClick={handleTeacherTable}>
+                        All Teacher
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div
+            style={{ paddingTop: 20, textAlign: "left", marginLeft: 0 }}
+            className="note__btn"
+          >
+            <ul style={{ listStyleType: "none" }}>
               {noticeItem.map((noticeItems) => (
                 <li key={noticeItems.id}>
                   <span
@@ -495,40 +504,7 @@ const SuperAdmin = () => {
             </ul>
           </div>
 
-          <div
-            style={{ paddingTop: 20, textAlign: "left", marginLeft: 0 }}
-            className="note__btn"
-          >
-            <ul style={{ listStyleType: "none" }}>
-              {subjectItem.map((subjectItems) => (
-                <li key={subjectItems.id}>
-                  <span
-                    onClick={() => toggleSubjectMenu(subjectItems.id)}
-                    style={{
-                      cursor: "pointer",
-                      fontSize: 17,
-                      textAlign: "left",
-                      color: "white",
-                    }}
-                    className="note__btn"
-                  >
-                    {subjectItems.name}
-                  </span>
-                  {subjectItems.isOpen && (
-                    <ul style={{ padding: 10, color: "white" }}>
-                      <li onClick={handleSubjectForm}>Add Subject</li>
-                      <li
-                        style={{ marginTop: 10 }}
-                        onClick={handleSubjectDetails}
-                      >
-                        All Subject
-                      </li>
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+         
 
           <div
             style={{ paddingTop: 20, textAlign: "left", marginLeft: 0 }}
@@ -606,13 +582,9 @@ const SuperAdmin = () => {
             />
           ) : null}
           {noteView === "classform" ? <ClassForm /> : null}
-          {noteView === "subjectdetails" ? (
-            <SubjectDetails
-              subjectList={subjectList}
-              setSubjectList={setSubjectList}
-            />
-          ) : null}
-          {noteView === "subjectform" ? <SubjectForm /> : null}
+          {noteView === "teacherform" ? <TeacherForm /> : null}
+          {noteView === "teachertable" ? <AllTeacher/> : null}
+
           {noteView === "addStudentForm" ? <AddStudent /> : null}
           {noteView === "allStudentForm" ? <AllStudent /> : null}
           {noteView === "addPaymentDetails" ? <StudentPayment /> : null}

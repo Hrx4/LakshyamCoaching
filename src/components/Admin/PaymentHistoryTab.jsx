@@ -1,7 +1,7 @@
 import React from "react";
 import './PaymentHistoryTab.css';
 
-const PaymentHistoryTab = ({paymentList , setPaymentList}) =>{
+const PaymentHistoryTab = ({admissionList , paymentList}) =>{
 
     const data = [
         "January" ,
@@ -26,9 +26,9 @@ const PaymentHistoryTab = ({paymentList , setPaymentList}) =>{
                     <tr style={{backgroundColor: '#f2f2f2'}}>
                         <th style={{border: '1px solid #000', padding: '8px', width:'25px'}}>ID</th>
                         <th style={{border: '1px solid #000', padding: '8px'}}>Year</th>
-                        <th style={{border: '1px solid #000', padding: '8px'}}>Month</th>
-                        <th style={{border: '1px solid #000', padding: '8px'}}>Payment Type</th>
-                        <th style={{border: '1px solid #000', padding: '8px'}}>Paid</th>
+                        <th style={{border: '1px solid #000', padding: '8px'}}>Payment Month</th>
+                        <th style={{border: '1px solid #000', padding: '8px'}}>Payment Fee</th>
+                        <th style={{border: '1px solid #000', padding: '8px'}}>Paid Month</th>
                         <th style={{border: '1px solid #000', padding: '8px'}}>Date</th>
                         <th style={{border: '1px solid #000', padding: '8px'}}>Action</th>
                     </tr>
@@ -36,18 +36,22 @@ const PaymentHistoryTab = ({paymentList , setPaymentList}) =>{
                     <tbody >
 
                     {
-                        paymentList[0].paymentDetails.map((item , index)=>(
-                            <tr style={{border:"1px solid black", padding:5}} key={item._id}>
+                        paymentList?.map((item , index)=>(
+                           
+                                (item.paidMonth !==null) ?
+                                <tr style={{border:"1px solid black", padding:5}} key={item._id}>
                         
                             <td style={{border: '1px solid #000', padding: '8px'}}>{index+1}</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentYear}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.year}</td>
                         <td style={{border: '1px solid #000', padding: '8px'}}>{data[item.paymentMonth]}</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentType}</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentMoney}</td>
-                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentDate}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paymentFee}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{data[item.paidMonth]}</td>
+                        <td style={{border: '1px solid #000', padding: '8px'}}>{item.paidDate}</td>
                         <td className="actionButtons"> <button className="actionButton">View Invoice</button></td>
                         
-                    </tr>
+                            </tr>
+                            :null
+                            
                         ))
                     }
                     

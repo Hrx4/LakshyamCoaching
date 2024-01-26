@@ -6,15 +6,11 @@ const PaymentModal = ({
   modalOpen,
   setModalOpen,
   paymentList,
-  setPaymentList,
   paymentId,
-  lastPaidMonth,
-  lastPaidYear,
 }) => {
   // useEffect(() => {
   //     setModalOpen(true)
   // }, [])
-  const [studentSubjects, setStudentSubjects] = useState([]);
 
   const data = [
     "January",
@@ -30,19 +26,20 @@ const PaymentModal = ({
     "November",
     "December",
   ];
+  const [monthList, setMonthList] = useState([])
 
-  const handleCheck = (e) => {
+  const handleCheck = (e , index) => {
     e.target.checked
-      ? setStudentSubjects([...studentSubjects, e.target.value])
-      : setStudentSubjects([
-          ...studentSubjects.filter((item) => item !== e.target.value),
+      ? setMonthList([...monthList, index])
+      : setMonthList([
+          ...monthList.filter((item) => item !== index),
         ]);
     console.log("====================================");
-    console.log(studentSubjects);
+    console.log(monthList);
     console.log("====================================");
   };
 
-  const updateList = async (e) => {
+  const updateList = async (e ) => {
     e.preventDefault();
     try {
       const response = await fetch(
@@ -54,8 +51,7 @@ const PaymentModal = ({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            paymentMonth: studentSubjects,
-            paymentYear: lastPaidYear,
+           monthList : monthList
           }),
         }
       );
@@ -70,7 +66,7 @@ const PaymentModal = ({
     } catch (err) {
       console.log(err);
     }
-    // window.location.reload()
+    window.location.reload()
   };
 
   return (
@@ -96,38 +92,49 @@ const PaymentModal = ({
             overflowY: "scroll",
           }}
         >
-          {paymentList.map((item, index) => (
+          
             <div style={{ width: "auto" }} className="form-container">
               <div className="form-group">
-                <label>Student Enrollment Id : {item?.paymentId} </label>
-                <label>Student Subjects : {item?.studentSubjects} </label>
-                <label>Student Course : {item?.studentCourse} </label>
-                <label>Student Payment Type : {item?.paymentType} </label>
-                <label>Student payment Money : {item?.paymentMoney} </label>
+                <label>Student Enrollment Id : {paymentList?.studentEnrollment} </label>
+                <label>Student Courses :  </label>
+                <div>
+                {"IIT-JEE/NEET -> " + paymentList?.iitNeetCourse + " , Subjects -> " + paymentList?.iitNeetSub + " , Fee ->" + paymentList?.iitNeetFee}
+                </div>
+                <div>
+                {"Schooling Solution -> " + paymentList?.schoolingCourse + " , Class -> " + paymentList?.schoolingClass + " , Subject -> " + paymentList?.schoolingSub +  " , Fee ->" + paymentList?.schoolingFee}
+                </div>
+                <div>
+                {"Extra Curricular -> " + paymentList?.extraSub + " , Fee ->" + paymentList?.iitNeetFee}
+                </div>
+                
+
               </div>
               <form onSubmit={(e) => updateList(e)}>
-                {data.map((item, index) =>
-                  index > lastPaidMonth ? (
-                    <div className="form-group">
-                      <label>{item}:</label>
+              
+              {
+                paymentList?.paymentDetails.map((item , index)=>(
+                  <div className="form-group">
+                      <label>{data[item.paymentMonth]}:</label>
+{
+  (item.paidMonth!==null)?                       <input
+                        type="checkbox"
+                        checked={true}
+                      />
+                      :
                       <input
                         type="checkbox"
                         value={index}
-                        onClick={(e) => handleCheck(e)}
+                        onClick={(e) => handleCheck(e , index)}
                       />
+}
                     </div>
-                  ) : (
-                    <div className="form-group">
-                      <label>{item}:</label>
-                      <input type="checkbox" checked={true} value={index} />
-                    </div>
-                  )
-                )}
+                ))
+              }
 
                 <button type="submit">Submit</button>
               </form>
             </div>
-          ))}
+          
         </Box>
       </Modal>
     </>

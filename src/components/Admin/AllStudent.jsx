@@ -11,7 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
 
 const AllStudent = () => {
-  const [course, setCourse] = useState();
+  const [course, setCourse] = useState("");
+  const [studentEnrollment, setStudentEnrollment] = useState("");
   const [studentTab, setStudentTab] = useState();
   const [studentList, setStudentList] = useState([]);
   const handleAllStudentTable = async (e) => {
@@ -25,7 +26,9 @@ const AllStudent = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          studentCourse: course,
+
+          course: course,
+          studentEnrollment : studentEnrollment
         }),
       });
       let resJson = await res.json();
@@ -69,38 +72,17 @@ const AllStudent = () => {
                   onChange={(e) => setCourse(e.target.value)}
                   style={{ color: "white" }}
                 >
-                  <MenuItem value="CBSE Board All Subjects">
-                    {" "}
-                    CBSE Board All Subjects
+                  <MenuItem value="IIT-JEE/NEET">IIT-JEE/NEET</MenuItem>
+                  <MenuItem value="Schooling Solution">Schooling Solution</MenuItem>
+                  <MenuItem value="Extra Curricular">
+                    Extra Curricular
                   </MenuItem>
-                  <MenuItem value="ICSE Board All Subjects">
-                    ICSE Board All Subjects
-                  </MenuItem>
-                  <MenuItem value="Class 11 CBSE Boards + CUET">
-                    Class 11 CBSE Boards + CUET
-                  </MenuItem>
-                  <MenuItem value="Class 11 ICSE Boards + CUET">
-                    Class 11 ICSE Boards + CUET
-                  </MenuItem>
-                  <MenuItem value="Class 12 CBSE Boards + CUET">
-                    Class 12 CBSE Boards + CUET
-                  </MenuItem>
-                  <MenuItem value="Class 12 ICSE Boards + CUET">
-                    Class 12 ICSE Boards + CUET
-                  </MenuItem>
-                  <MenuItem value="JEE Mains ">JEE Mains </MenuItem>
-                  <MenuItem value="NEET ">NEET </MenuItem>
-                  <MenuItem value="Foundation Course JEE IIT / NEET">
-                    Foundation Course JEE IIT / NEET
-                  </MenuItem>
-                  <MenuItem value="Commerce Board + CUET">
-                    Commerce Board + CUET
-                  </MenuItem>
-                  <MenuItem value="CA Foundation">CA Foundation</MenuItem>
                 </Select>
               </FormControl>
             </Box>
 
+            <label >Student Enrollment : </label>
+            <input type="text" value={studentEnrollment} onChange={(e)=>setStudentEnrollment(e.target.value)} />
             <button style={{ marginTop: 15 }}>Submit</button>
           </form>
         </div>
