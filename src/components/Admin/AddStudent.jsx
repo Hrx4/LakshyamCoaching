@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./AddStudent.css";
-// import { ToastContainer, toast } from "react-toastify";
 import {
   Button,
   Checkbox,
@@ -11,15 +10,22 @@ import {
   OutlinedInput,
   Select
 } from "@mui/material";
+import { ToastContainer} from "react-toastify";
+import { CircularProgress } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
+import { useParams } from "react-router-dom";
 
 const AddStudent = () => {
   const Gender = ["Male", "Female"];
   const Compi = ["IIT-JEE", "NEET"];
   const Schooling = ["CBSE", "ICSE"];
   const admissionFeeStatus = ["YES", "NO"];
-
+  const {id} = useParams()
+  const officeList = (id==="superadmin") ? ["office 1", "office 2","office 3"] : 
+  (id==="office1") ? ["office 1"] :
+  (id==="office2") ? ["office 2"] :
+  (id==="office3") ? ["office 3"] :[]
 
   const [iitNeetSub, setIitNeetSub] = useState([]);
   const [iitNeetFee , setIitNeetFee] = useState(0)
@@ -27,7 +33,14 @@ const AddStudent = () => {
   const [schoolingFee , setSchoolingFee] = useState(0)
   const [extraSub, setExtraSub] = useState([]);
   const [extraFee , setExtraFee] = useState(0)
+  const [monthlyIncome , setMonthlyIncome] = useState(0)
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
+    enrollment : "",
+    office:"",
+    photo : "",
+    password : "",
     name: "",
     dob: "",
     gender: "",
@@ -51,6 +64,28 @@ const AddStudent = () => {
     extraAdmission : "",
 
   });
+  const uploadFiles = async (e) => {
+    const { files } = e.target;
+    setLoading(true);
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "solardealership");
+    data.append("cloud_name", "dkm3nxmk5");
+    await fetch("https://api.cloudinary.com/v1_1/dkm3nxmk5/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (files[0].type === "image/jpeg" || files[0].type === "image/png")
+          // setImage(data.url);
+          setFormData({ ...formData, photo: data.url });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setLoading(false);
+  };
 
   const Choose = ({ list }) => {
     return (
@@ -200,6 +235,27 @@ const AddStudent = () => {
       </select>
     );
   };
+  const Choose7 = ({ list }) => {
+    return (
+      <select
+        name="office"
+        id="office"
+        value={formData.office}
+        onChange={(e) => {
+          setFormData({ ...formData, office: e.target.value });
+        }}
+      >
+        <option value="" disabled="disabled">
+          Choose
+        </option>
+        {list.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  };
   const handleChange = (event) => {
     const {
       target: { value },
@@ -317,6 +373,10 @@ const handleSubmit = async(e)=>{
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        studentEnrollment: formData.enrollment,
+        studentPassword : formData.password,
+        studentOffice : formData.office,
+        studentPhoto : formData.photo,
         studentName : formData.name,
     studentDob : formData.dob,
     studentGender : formData.gender,
@@ -344,6 +404,7 @@ const handleSubmit = async(e)=>{
     iitNeetSub : iitNeetSub,
     schoolingSub : schoolingSub,
     extraSub : extraSub,
+    monthlyIncome : monthlyIncome
       })
     });
 
@@ -363,12 +424,57 @@ const handleSubmit = async(e)=>{
   }
 }
 
+useEffect(() => {
+  const date = new Date();
+  const month = date.getMonth()
+  let totalMonthlyFee = iitNeetFee + schoolingFee + extraFee;
+  if (month >= 0 && month <= 2) {
+    setMonthlyIncome(totalMonthlyFee * (3-month))
+  }
+  else{
+    setMonthlyIncome((totalMonthlyFee * (12-month +3)) / (12-month))
+  }
+
+}, [iitNeetFee , schoolingFee , extraFee])
+
+
   return (
     <>
+    {loading ? (
+        <div className="loader" style={{ color: "black" }}>
+          Please Wait Your File is Uploading......
+          <CircularProgress />
+        </div>
+      ) : null}
+      <ToastContainer />
       <div style={{ width: "30%", marginLeft: "auto", marginRight: "auto" , paddingTop:30 , paddingBottom:30}}>
         <h2>Student Form</h2>
 
         <form style={{ gap: 10, display: "flex", flexDirection: "column" }}>
+        <div>
+            <label htmlFor="">Student Enrollment</label>
+            <input
+              type="text"
+              value={formData.enrollment}
+              onChange={(e) => {
+                setFormData({ ...formData, enrollment: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Password</label>
+            <input
+              type="text"
+              value={formData.password}
+              onChange={(e) => {
+                setFormData({ ...formData, password: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Office : </label>
+            <Choose7 list={officeList} />
+          </div>
           <div>
             <label htmlFor="">Student Name</label>
             <input
@@ -382,13 +488,19 @@ const handleSubmit = async(e)=>{
           <div>
             <label htmlFor="">Date of Birth</label>
             <input
-              type="text"
+              type="date"
               value={formData.dob}
               onChange={(e) => {
                 setFormData({ ...formData, dob: e.target.value });
               }}
             />
           </div>
+          <div>
+            <label htmlFor="">Student Photo</label>
+            <input type="file" accept="image/*" onChange={uploadFiles} />
+
+          </div>
+          
           <div>
             <label htmlFor="">Gender</label>
             <Choose list={Gender} data={"gender"} />
@@ -466,7 +578,7 @@ const handleSubmit = async(e)=>{
           <div>
             <label htmlFor="">Date of joining</label>
             <input
-              type="text"
+              type="date"
               value={formData.doj}
               onChange={(e) => {
                 setFormData({ ...formData, doj: e.target.value });
@@ -554,7 +666,7 @@ const handleSubmit = async(e)=>{
 
           <h2>Schooling Solution</h2>
           <div>
-            <label htmlFor="">Select course</label>
+            <label htmlFor="">Select Board</label>
             <Choose2 list={Schooling}  />
           </div>
           
@@ -630,6 +742,9 @@ const handleSubmit = async(e)=>{
           </div>
           <label htmlFor="">Total Fee</label>
           <input type="number" value={extraFee} onChange={(e)=>setExtraFee(e.target.value)}/>
+          <h2>Total Monthly Income</h2>
+          <input type="number" value={monthlyIncome} onChange={(e)=>setMonthlyIncome(e.target.value)} />
+
           <Button variant="contained" onClick={handleSubmit}>Submit</Button>
         </form>
       </div>

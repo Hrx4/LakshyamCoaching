@@ -1,80 +1,53 @@
 import React, { useEffect, useState } from "react";
 import PaymentHistoryTab from "./PaymentHistoryTab";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import backend from "../../backend";
 import PaymentModal from "./PaymentModal";
 
 const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
   const [payHistory, setPayHistory] = useState();
   const [paymentList, setPaymentList] = useState([]);
   const [modalOpen, setModalOpen] = useState(true);
-  const [lastPaidMonth, setLastPaidMonth] = useState();
-  const [lastPaidYear, setLastPaidYear] = useState();
 
   // const PayHistoryTab = (studentEnrollment) =>{
 
-  const handleAllStudentTable = async (studentEnrollment) => {
+  const handleAllStudentTable = async (ind) => {
     // e.preventDefault();
-    try {
-      const res = await fetch(`${backend}super/student/getpayment`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          paymentId: studentEnrollment,
-        }),
-      });
-      let resJson = await res.json();
-      if (res.status === 200) {
-        console.log("fine");
-        setPaymentList(resJson);
-        toast.success("Form submitted", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      }
-    } catch (err) {
-      toast.error("Error Occured", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      console.log(err);
-    }
+    // try {
+    //   const res = await fetch(`${backend}super/student/getpayment`, {
+    //     method: "POST",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       paymentId: studentEnrollment,
+    //     }),
+    //   });
+    //   let resJson = await res.json();
+    //   if (res.status === 200) {
+    //     console.log("fine");
+    //     setPaymentList(resJson);
+    //     toast.success("Form submitted", {
+    //       position: toast.POSITION.TOP_CENTER,
+    //     });
+    //   }
+    // } catch (err) {
+    //   toast.error("Error Occured", {
+    //     position: toast.POSITION.TOP_CENTER,
+    //   });
+    //   console.log(err);
+    // }
+    console.log(studentPayList);
+    setPaymentList(studentPayList[ind])
     setPayHistory("PaymentHistory");
   };
-  const handleAllStudentTable1 = async (studentEnrollment) => {
+  const handleAllStudentTable1 = async (ind) => {
     // e.preventDefault();
-    try {
-      const res = await fetch(`${backend}super/student/getpayment`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          paymentId: studentEnrollment,
-        }),
-      });
-      let resJson = await res.json();
-      if (res.status === 200) {
-        console.log("fine");
-        setPaymentList(resJson);
-        toast.success("Form submitted", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        const x = resJson[0].paymentDetails.length;
-        setLastPaidMonth(resJson[0].paymentDetails[x - 1].paymentMonth);
-        setLastPaidYear(resJson[0].paymentDetails[x - 1].paymentYear);
-      }
-    } catch (err) {
-      toast.error("Error Occured", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      console.log(err);
-    }
-    setPayHistory("PaymentModal");
+    setPaymentList(studentPayList[ind])
     setModalOpen(true);
+    setPayHistory("PaymentModal");
+
   };
 
   useEffect(() => {
@@ -118,14 +91,14 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
               <td style={{ border: "1px solid #000", padding: "8px" }}>
                 <button
                   onClick={() => {
-                    handleAllStudentTable1(item.studentEnrollment);
+                    handleAllStudentTable1(index);
                   }}
                 >
                   Add Payment
                 </button>{" "}
                 <button
                   onClick={() => {
-                    handleAllStudentTable(item.studentEnrollment);
+                    handleAllStudentTable(index);
                   }}
                 >
                   View Payments
@@ -137,8 +110,8 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
       </div>
       {payHistory === "PaymentHistory" ? (
         <PaymentHistoryTab
-          paymentList={paymentList}
-          setPaymentList={setPaymentList}
+          admissionList = {paymentList.admissionPaymentDetails}
+          paymentList = {paymentList.paymentDetails}
         />
       ) : null}
       {payHistory === "PaymentModal" ? (
@@ -146,10 +119,7 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
           paymentList={paymentList}
-          setPaymentList={setPaymentList}
-          paymentId={paymentList[0].paymentId}
-          lastPaidMonth={lastPaidMonth}
-          lastPaidYear={lastPaidYear}
+          paymentId={paymentList._id}
         />
       ) : null}
     </>

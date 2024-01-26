@@ -39,6 +39,7 @@ app.use('/super/subject', require('./routes/subjectRoutes'))
 app.use('/super/student', require('./routes/studentRoutes'))
 app.use('/super/popup', require('./routes/popupRoutes'))
 app.use('/super/login' , require('./routes/superLoginRoute'))
+app.use('/super/teacher' , require('./routes/teacherRoutes'))
 
 
 

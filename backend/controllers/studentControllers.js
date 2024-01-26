@@ -1,10 +1,14 @@
 const asyncHandler = require("express-async-handler");
 const studentModels = require("../models/studentModels");
 const paymentModels = require("../models/paymentModels");
-const subjectModels = require("../models/subjectModels");
+const teacherModels = require("../models/teacherModels");
 
 const createStudent = asyncHandler(async (req, res) => {
   const {
+    studentEnrollment,
+    studentOffice,
+    studentPassword,
+    studentPhoto,
     studentName,
     studentDob,
     studentGender,
@@ -32,68 +36,68 @@ const createStudent = asyncHandler(async (req, res) => {
     iitNeetSub,
     schoolingSub,
     extraSub,
+    monthlyIncome,
   } = req.body;
 
   const date = new Date();
   // const month = date.getMonth();
-  const month = 4
-  let totalPayingFee = 0;
-  let totalMonthlyFee = iitNeetFee + schoolingFee + extraFee;
-  const actualDate = date.toISOString().split("T")[0]
-  let arr =[]
-  let admissionArr =[]
-  if(iitNeetAdmission === "YES"){
-      admissionArr.push({
-        year : date.getFullYear(),
-        paymentMonth : month,
-        paidMonth : month,
-        paymentFee : 1500,
-        paidDate : actualDate
-      })
-    }
-  if(schoolingAdmission === "YES"){
+  const month = date.getMonth();
+  const actualDate = date.toISOString().split("T")[0];
+  let arr = [];
+  let admissionArr = [];
+  if (iitNeetAdmission === "YES") {
     admissionArr.push({
-      year : date.getFullYear(),
-      paymentMonth : month,
-      paidMonth : month,
-      paymentFee : 1500,
-      paidDate : actualDate
-    })
+      year: date.getFullYear(),
+      paymentMonth: month,
+      paidMonth: month,
+      paymentFee: 1500,
+      paidDate: actualDate,
+    });
   }
-  if(extraAdmission==="YES"){
+  if (schoolingAdmission === "YES") {
     admissionArr.push({
-      year : date.getFullYear(),
-      paymentMonth : month,
-      paidMonth : month,
-      paymentFee : 600,
-      paidDate : actualDate
-    })
+      year: date.getFullYear(),
+      paymentMonth: month,
+      paidMonth: month,
+      paymentFee: 1500,
+      paidDate: actualDate,
+    });
+  }
+  if (extraAdmission === "YES") {
+    admissionArr.push({
+      year: date.getFullYear(),
+      paymentMonth: month,
+      paidMonth: month,
+      paymentFee: 600,
+      paidDate: actualDate,
+    });
   }
   if (month >= 0 && month <= 2) {
     arr.push({
-      year : date.getFullYear(),
-      paymentMonth : month,
-      paidMonth : null,
-      paymentFee : totalMonthlyFee * (3-month),
-      paidDate : null
-    })
-  }
-  else{
-    let actualPayingFee = (totalMonthlyFee * (12-month +3)) / (12-month)
+      year: date.getFullYear(),
+      paymentMonth: month,
+      paidMonth: null,
+      paymentFee: monthlyIncome,
+      paidDate: null,
+    });
+  } else {
     for (let index = month; index <= 11; index++) {
       // const element = array[index];
       arr.push({
-        year : date.getFullYear(),
-        paymentMonth : index,
-        paidMonth : null,
-        paymentFee : actualPayingFee,
-        paidDate : null
-      })
-      
+        year: date.getFullYear(),
+        paymentMonth: index,
+        paidMonth: null,
+        paymentFee: monthlyIncome,
+        paidDate: null,
+      });
     }
   }
 
   const student = await studentModels.create({
+    studentEnrollment,
+    studentOffice,
+    studentPassword,
+    studentPhoto,
     studentName,
     studentDob,
     studentGender,
@@ -121,17 +125,39 @@ const createStudent = asyncHandler(async (req, res) => {
     iitNeetSub,
     schoolingSub,
     extraSub,
-    paymentDetails : arr,
-    admissionPaymentDetails : admissionArr
+    monthlyIncome,
+    paymentDetails: arr,
+    admissionPaymentDetails: admissionArr,
   });
 
   res.status(200).json(student);
 });
 
 const getStudent = asyncHandler(async (req, res) => {
-  const { studentCourse } = req.body;
-
-  const students = await studentModels.find({ studentCourse: studentCourse });
+  const { course, studentEnrollment, studentOffice } = req.body;
+  let students;
+  if (studentEnrollment !== "") {
+    if (studentOffice !== "")
+      students = await studentModels.find({
+        studentEnrollment: studentEnrollment,
+        studentOffice: studentOffice,
+      });
+    else
+      students = await studentModels.find({
+        studentEnrollment: studentEnrollment,
+      });
+  } else if (studentOffice !== "") {
+    students = await studentModels.find({ studentOffice: studentOffice });
+  } else {
+    students = await studentModels.find();
+  }
+  if (course === "IIT-JEE/NEET") {
+    students = students.filter((item) => item.iitNeetFee !== 0);
+  } else if (course === "Schooling Solution") {
+    students = students.filter((item) => item.schoolingFee !== 0);
+  } else if (course === "Extra Curricular") {
+    students = students.filter((item) => item.extraFee !== 0);
+  }
   res.status(200).json(students);
 });
 const getStudentPayment = asyncHandler(async (req, res) => {
@@ -155,6 +181,10 @@ const deleteStudent = asyncHandler(async (req, res) => {
 
 const updateStudent = asyncHandler(async (req, res) => {
   const {
+    studentEnrollment,
+    studentOffice,
+    studentPassword,
+    studentPhoto,
     studentName,
     studentDob,
     studentGender,
@@ -182,6 +212,7 @@ const updateStudent = asyncHandler(async (req, res) => {
     iitNeetSub,
     schoolingSub,
     extraSub,
+    monthlyIncome,
   } = req.body;
 
   const student = await studentModels.findById(req.params.id);
@@ -191,56 +222,60 @@ const updateStudent = asyncHandler(async (req, res) => {
   }
 
   const updatedStudent = await studentModels.findByIdAndUpdate(req.params.id, {
-    studentName : studentName,
-    studentDob : studentDob,
-    studentGender : studentGender,
-    fatherName : fatherName,
-    fatherOccupassion : fatherOccupassion,
-    fatherNo:fatherNo,
-    motherName : motherName,
-    parentWp : parentWp,
-    emergencyNo : emergencyNo,
-    studentAddress : studentAddress,
-    studentDoj : studentDoj,
-    studentBlood : studentBlood,
-    schoolName : schoolName,
-    lastClass : lastClass,
-    lastExam : lastExam,
-    iitNeetCourse : iitNeetCourse,
-    schoolingCourse : schoolingCourse,
-    schoolingClass : schoolingClass,
-    iitNeetAdmission : iitNeetAdmission,
-    schoolingAdmission : schoolingAdmission,
-    extraAdmission : extraAdmission,
-    iitNeetFee : iitNeetFee,
-    schoolingFee : schoolingFee,
-    extraFee : extraFee,
-    iitNeetSub : iitNeetSub,
-    schoolingSub : schoolingSub,
-    extraSub : extraSub,
+    studentEnrollment: studentEnrollment,
+    studentOffice: studentOffice,
+    studentPassword: studentPassword,
+    studentPhoto: studentPhoto,
+    studentName: studentName,
+    studentDob: studentDob,
+    studentGender: studentGender,
+    fatherName: fatherName,
+    fatherOccupassion: fatherOccupassion,
+    fatherNo: fatherNo,
+    motherName: motherName,
+    parentWp: parentWp,
+    emergencyNo: emergencyNo,
+    studentAddress: studentAddress,
+    studentDoj: studentDoj,
+    studentBlood: studentBlood,
+    schoolName: schoolName,
+    lastClass: lastClass,
+    lastExam: lastExam,
+    iitNeetCourse: iitNeetCourse,
+    schoolingCourse: schoolingCourse,
+    schoolingClass: schoolingClass,
+    iitNeetAdmission: iitNeetAdmission,
+    schoolingAdmission: schoolingAdmission,
+    extraAdmission: extraAdmission,
+    iitNeetFee: iitNeetFee,
+    schoolingFee: schoolingFee,
+    extraFee: extraFee,
+    iitNeetSub: iitNeetSub,
+    schoolingSub: schoolingSub,
+    extraSub: extraSub,
+    monthlyIncome: monthlyIncome,
   });
 
   res.status(201).json(updatedStudent);
 });
 
 const updatePayment = asyncHandler(async (req, res) => {
-  const student = await studentModels.findById( req.params.id );
-  const {monthList} = req.body
+  const student = await studentModels.findById(req.params.id);
+  const { monthList } = req.body;
   const date = new Date();
   const month = date.getMonth();
-  const actualDate = date.toISOString().split("T")[0]
+  const actualDate = date.toISOString().split("T")[0];
   if (!student) {
     res.status(404);
     throw new Error("student not found");
   }
   let arr = student.paymentDetails;
-  monthList.map((item , index)=>{
+  monthList.map((item, index) => {
     let temp = arr[item];
-    temp = {...temp , paidMonth : month,
-      paidDate : actualDate,}
-      arr[item]=temp
-  })
-  
+    temp = { ...temp, paidMonth: month, paidDate: actualDate };
+    arr[item] = temp;
+  });
+
   const updatedPayment = await studentModels.findOneAndUpdate(
     { _id: req.params.id },
     {
@@ -251,30 +286,53 @@ const updatePayment = asyncHandler(async (req, res) => {
 });
 
 const getMonthlyIncome = asyncHandler(async (req, res) => {
-  var totalIncome = 0,
+  let totalIncome = 0,
     monthlyIncome = 0,
     monthlyDue = 0,
     totalDue = 0;
+    const {studentOffice} = req.body
   const d = new Date();
+  const month = d.getMonth();
 
-  const payments = await paymentModels.find();
-  payments.map((item, index) => {
-    if (d.getMonth() === item.lastIncomeMonth)
-      monthlyIncome += item.lastIncomeMoney;
-    if (d.getMonth() - item.lastIncomeMonth === 1)
-      monthlyDue += item.lastIncomeMoney;
-    if (d.getMonth() > item.lastIncomeMonth)
-      totalDue += (d.getMonth() - item.lastIncomeMonth) * item.lastIncomeMoney;
+  let students;
 
-    totalIncome += item.totalIncome;
+  
+    if (studentOffice !== "")
+      students = await studentModels.find({
+        studentOffice: studentOffice,
+      });
+    else
+      students = await studentModels.find();
+
+  students.map((student, index) => {
+    student.paymentDetails.map((item, index) => {
+      if (month === item.paidMonth) {
+        monthlyIncome += item.paymentFee;
+      }
+      if (month === item.paymentMonth) {
+        if (item.paidMonth === null) monthlyDue += item.paymentFee;
+      }
+      if (month >= item.paymentMonth) {
+        if (item.paidMonth === null) totalDue += item.paymentFee;
+      }
+      if (item.paidMonth !== null) totalIncome += item.paymentFee;
+    });
+    student.admissionPaymentDetails.map((item, index) => {
+      if (month === item.paidMonth) {
+        monthlyIncome += item.paymentFee;
+      }
+      totalIncome += item.paymentFee;
+    });
   });
+  const teachers = await teacherModels.find();
 
   res.status(200).json({
     monthlyIncome: monthlyIncome,
     monthlyDue: monthlyDue,
     totalIncome: totalIncome,
     totalDue: totalDue,
-    totalStudent: payments.length,
+    totalStudent: students.length,
+    totalTeacher: teachers.length,
   });
 });
 

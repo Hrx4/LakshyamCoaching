@@ -1,0 +1,10 @@
+@media (max-width: 750px) {
+    .sdtable{
+        width: 350px !important;
+    }
+    .payment-table{
+        position: absolute;
+        top:18% ;
+        width: 350px !important;
+    }
+}
