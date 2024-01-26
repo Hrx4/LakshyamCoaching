@@ -1,83 +1,98 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const studentSchema = mongoose.Schema({
-    
-    studentEnrollment: {
-        type: String,
-        required: [true, "Please add the Enrollment No"],
-    },
+const studentSchema = mongoose.Schema(
+  {
     studentName: {
-        type: String,
-        required: [true, "Please add the Name"],
-    },
-    studentClass: {
-        type: String,
-        required: [true, "Please add the Class"],
-    },
-    studentBoard: {
-        type: String,
-        required: [true, "Please add the Board"],
-    },
-    studentCourse: {
-        type: String,
-        required: [true, "Please add the Course"],
-    },
-    studentSubjects: {
-        type: [],
-        required: [true, "Please add the Subjects"],
-    },
-    studentEmail: {
-        type: String,
-        required: [true, "Please add the Email"],
-    },
-    studentPhone: {
-        type: String,
-        required: [true, "Please add the Phone no"],
-    },
-    studentAddress: {
-        type: String,
-        required: [true, "Please add the Address"],
-    },
-    studentPaymentType: {
-        type: String,
-        required: [true, "Please add the Payment type"],
+      type: String,
     },
     studentDob: {
-        type: String,
-        required: [true, "Please add the Dob"],
+      type: String,
     },
-    studentPhoto: {
-        type: String,
-        required: [true, "Please add the Photo"],
+    studentGender: {
+      type: String,
     },
-    guardianName: {
-        type: String,
-        required: [true, "Please add the Guardian Name"],
+    fatherName: {
+      type: String,
     },
-    guardianPhone: {
-        type: String,
-        required: [true, "Please add the Guardian Phone no"],
+    fatherOccupassion: {
+      type: String,
     },
-    guardianEmail: {
-        type: String,
-        required: [true, "Please add the Guardian Email"],
+    fatherNo: {
+      type: String,
     },
-    guardianAddress: {
-        type: String,
-        required: [true, "Please add the Guardian Address"],
+    motherName: {
+      type: String,
     },
-    createdMonth: {
-        type:Number,
-        required: [true, "Please add the Month"],
+    parentWp: {
+      type: String,
     },
-    createdYear : {
-        type:Number,
-        required: [true, "Please add the Year"],
-    }
-    
-}, {
+    emergencyNo: {
+      type: String,
+    },
+    studentAddress: {
+      type: String,
+    },
+    studentDoj: {
+      type: String,
+    },
+    studentBlood: {
+      type: String,
+    },
+    schoolName: {
+      type: String,
+    },
+    lastClass: {
+      type: String,
+    },
+    lastExam: {
+      type: String,
+    },
+    iitNeetCourse: {
+      type: String,
+    },
+    schoolingCourse: {
+      type: String,
+    },
+    schoolingClass: {
+      type: String,
+    },
+    iitNeetAdmission: {
+      type: String,
+    },
+    schoolingAdmission: {
+      type: String,
+    },
+    extraAdmission: {
+      type: String,
+    },
+    iitNeetFee: {
+      type: Number,
+    },
+    schoolingFee: {
+      type: Number,
+    },
+    extraFee: {
+      type: Number,
+    },
+    iitNeetSub: {
+      type: [],
+    },
+    schoolingSub: {
+      type: [],
+    },
+    extraSub: {
+      type: [],
+    },
+    admissionPaymentDetails :{
+        type : []
+    },
+    paymentDetails: {
+        type: [],
+      },
+  },
+  {
     timestamps: true,
-}
+  }
 );
 
-module.exports = mongoose.model("student" , studentSchema)
+module.exports = mongoose.model("student", studentSchema);

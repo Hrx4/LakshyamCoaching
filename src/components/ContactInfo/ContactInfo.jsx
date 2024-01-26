@@ -16,6 +16,9 @@ const ContactInfo = () => {
       <p style={{ color: "white", fontSize: "16px", fontWeight: 600 }}>
         59, Ram Gulam Singh Road, opp. Durga Mandir, Ushagram, Asansol, West Bengal 713303
       </p>
+      <p style={{ color: "white", fontSize: "16px", fontWeight: 600 }}>
+        Hari Gopal Complex, Beside Signature Hotel, Ushagram, Asansol, West Bengal 713303
+      </p>
     </div>
   );
 };

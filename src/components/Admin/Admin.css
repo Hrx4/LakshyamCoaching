@@ -60,7 +60,7 @@
       transition: .5s all ease-in-out;
     }
     .slider__open{
-      width: 60%;
+      width: 60% !important;
       transition: .5s all ease-in-out;
     }
     /* .hide__btn:focus + .super-choose {

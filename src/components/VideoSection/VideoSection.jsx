@@ -6,7 +6,7 @@ import './VideoSection.css'
 
 const VideoSection = () => {
   return (
-    <section className="section video" data-section="section5" style={{paddingTop:80 , paddingBottom:80}}>
+    <section className="section video" data-section="section5" style={{paddingTop:50 , paddingBottom:80}}>
       <div className="container">
         <div className="row">
           <VideoContent />

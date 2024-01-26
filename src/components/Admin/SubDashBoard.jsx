@@ -1,13 +1,51 @@
-import React from "react";
+import React, {useState} from "react";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
-import './SubdashBoard.css';
-
+import backend from '../../backend';
+import { toast } from "react-toastify";
 
 const SubDashBoard = (props) => {
+  const [classs, setClasss] = useState("");
+  const [subject, setSubject] = useState("");
+  const [course, setCourse] = useState("");
+  const [enrollment, setEnrollment] = useState("");
+  const [incomeList, setIncomeList] = useState([]);
+
+  const handleAllStudentTable = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`${backend}super/student/${props.apiRoute}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          studentClass: classs,
+          studentCourse: course,
+          studentSubject: subject,
+          studentEnrollment: enrollment,
+        }),
+      });
+      let resJson = await res.json();
+      if (res.status === 200) {
+        console.log("fine");
+        setIncomeList(resJson);
+        toast.success("Form submitted", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    } catch (err) {
+      toast.error("Error Occured", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      console.log(err);
+    }
+  };
+
   return (
         <>
       <h1>{props.headingDash}</h1>
@@ -18,9 +56,9 @@ const SubDashBoard = (props) => {
       <div style={{ marginTop: 10 }}>
 
 
-        <Box sx={{ width:"100%" }}>
+        <Box sx={{ minWidth: 120 }}>
           <FormControl style={{ width: '60%', backgroundColor: 'white' }} className="student__field">
-            <InputLabel style={{ color: 'black', marginLeft: -13, width:"60%" }}>Select Your Course</InputLabel>
+            <InputLabel style={{ color: 'black', marginLeft: -13 }}>Select Your Course</InputLabel>
             <Select
 
               // value={courseForPay}
@@ -86,22 +124,20 @@ const SubDashBoard = (props) => {
       </div>
       <div style={{marginTop:40}}>
       <table style={{borderCollapse: 'collapse', width: '100%', border: '1px solid #000'}}>
-      
       <thead>
         <tr style={{backgroundColor: '#f2f2f2'}}>
-            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Enrollment No.</th>
-            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}} >Name</th>
-            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Payment Type</th>
-            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Date</th>
-            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Fees</th>
-            <th className="dashTab" style={{border: '1px solid #000', padding: '8px'}}>Action</th>
+            <th style={{border: '1px solid #000', padding: '8px'}}>Enrollment No.</th>
+            <th style={{border: '1px solid #000', padding: '8px'}} >Name</th>
+            <th style={{border: '1px solid #000', padding: '8px'}}>Payment Type</th>
+            <th style={{border: '1px solid #000', padding: '8px'}}>Date</th>
+            <th style={{border: '1px solid #000', padding: '8px'}}>Fees</th>
+            <th style={{border: '1px solid #000', padding: '8px'}}>Action</th>
 
         </tr>
         </thead>
         </table>
       </div>
-      </>
-
-      )
-}
-      export default SubDashBoard;
+    </>
+  );
+};
+export default SubDashBoard;

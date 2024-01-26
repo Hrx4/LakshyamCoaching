@@ -11,15 +11,18 @@ import Footer from "./components/Footer/Footer";
 import SuperAdmin from "./components/Admin/SuperAdmin";
 import backend from "./backend";
 import ClearIcon from "@mui/icons-material/Clear";
+import "./App.css";
+import ScrollTop from "./ScrollTop";
+import StudentPanel from "./components/Student/StudentPanel";
+import TeacherPanel from "./components/Teacher/TeacherPanel";
 
 function App() {
-
   const [imgsrc, setImgsrc] = useState("");
 
   const [displayState, setDisplayState] = useState("none");
   const getBanner = async () => {
     try {
-      const response = await fetch(`${backend}popup/`, {
+      const response = await fetch(`${backend}super/popup/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -30,6 +33,10 @@ function App() {
       const resJson = await response.json();
 
       if (response.status === 200) {
+        const size = resJson.length
+        if (size>1)
+        {setImgsrc(resJson[size-1].popupImage)}
+        else 
         setImgsrc(resJson[0].popupImage);
         console.log("====================================");
         console.log(resJson);
@@ -43,17 +50,14 @@ function App() {
   };
   useEffect(() => {
     getBanner();
-    setTimeout(()=>{
-      setDisplayState('flex')
-    },10000)
-  }, []);
-
-
+    if(imgsrc!=="")
+    {setTimeout(() => {
+      setDisplayState("flex");
+    }, 10000);}
+  }, [imgsrc]);
 
   return (
-   
     <>
-      
       <div
         style={{
           height: "100%",
@@ -68,33 +72,35 @@ function App() {
       >
         <img
           src={imgsrc}
+          className="banner__img"
           alt=""
-          style={{ height: "75%", width: "75%", opacity: 1 }}
+          style={{ opacity: 1 }}
         />
-        <div style={{ height: "90%"}}>
-          <div onClick={()=>setDisplayState('none')}>
-          <ClearIcon
-            color="success"
-            fontSize="large"
-            style={{ top: 0, display: "absolute", cursor: "pointer" }}
-            
-          />
+        <div style={{ height: "80%" }}>
+          <div onClick={() => setDisplayState("none")}>
+            <ClearIcon
+              // color="success"
+              fontSize="large"
+              style={{ display: "absolute", cursor: "pointer", color: "red" }}
+            />
           </div>
         </div>
       </div>
-
+<ScrollTop/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/freetutorial" element={<FreeTutorial/>} />
+        <Route path="/freetutorial" element={<FreeTutorial />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="/login" element={<Admin/>} />
-        <Route path="/superadmin" element={<SuperAdmin/>}/>
-        <Route path="/gallery" element={<Gallery/>}/>
-       
+        <Route path="/login" element={<Admin />} />
+        <Route path="/superadmin" element={<SuperAdmin />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/student" element={<StudentPanel/>}/>
+        <Route path="/teacher" element={<TeacherPanel/>}/>
+
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 }

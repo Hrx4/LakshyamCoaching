@@ -2,30 +2,24 @@
 .Adcontainer {
     display: flex;
     justify-content: space-evenly;
-   /* flex-wrap: wrap; */
-    /* float: left; */
     width: 100%;
     background-image: url('./choosing-bg.jpg') !important;
-    /* background-color: blue !important; */
 
 }
 
 .advertisementBox {
     flex: 1;
-    /* background-color: #e0e0e0; */
     padding: 20px;
     margin: 10px;
     box-sizing: border-box;
-    /* background-color: blue !important; */
     color: azure;
-    /* margin-top: 80px; */
     
 }
 
 
 .subAdFeatures{
     margin: 15px;
-   padding-right: 70px;
+   padding-right: 50px;
 }
 
 .adFeatures{
@@ -33,9 +27,7 @@
     margin-left: 20px;
     font-size: large;
 }
-.adH{
-    padding-left: 100px;
-}
+
 
 @media (max-width: 768px) {
     .Adcontainer{
@@ -59,22 +51,16 @@
     
     .adH{
         font-size:30px !important;
-        margin-left: 20px;
         padding-left: 0px !important;
     }
     .adFeatures{
-        /* display: block; */
-        /* overflow-y: scroll; */
         padding-left: 0px;
     }
     .subAdFeatures{
         width: 90% !important;
         text-align: center;
         margin-top: 15 !important;
-        padding-right: 300px !important;
-        /* margin-left: -20px !important;
-        padding-left: -20%; */
-        /* float:inline-start !important; */
-       /* font-weight: 100 !important; */
+        padding-right: 0px !important;
+
     }
 }

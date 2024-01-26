@@ -13,7 +13,8 @@ const createNotice = asyncHandler(async(req , res) => {
 
 
 const getNotice = asyncHandler(async(req , res) => {
-    const notices = await noticeModels.find()
+    let notices = await noticeModels.find()
+    notices = notices.reverse();
     res.status(200).json(notices);
 })
 

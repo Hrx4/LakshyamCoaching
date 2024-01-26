@@ -1,17 +1,14 @@
-import React, { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import {BrowserRouter} from "react-router-dom";
-import ItemListProvider from './components/ItemListProvider';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <StrictMode>
-  <BrowserRouter>
-  <ItemListProvider>
-    <App />
-    </ItemListProvider>
-  </BrowserRouter>
-  </StrictMode>,
-  document.getElementById('root')
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>
 );

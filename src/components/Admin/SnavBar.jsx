@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import lakshyamLogo from "./lakshyamlogo.png";
 
-const SnavBar = () => {
+const SnavBar = (props) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
@@ -38,7 +38,8 @@ const SnavBar = () => {
           style={{ paddingRight: 15, marginRight: 15, cursor: "pointer" }}
           onClick={toggleBox}
         >
-          Hi Super Admin!
+          {/* Hi Super Admin! */}
+          {props.Handler}
         </span>
       </header>
 

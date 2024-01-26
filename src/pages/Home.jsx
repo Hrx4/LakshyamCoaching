@@ -18,7 +18,7 @@ function Home() {
 
   const handleNoticeTable = async () => {
     try {
-      const response = await fetch(`${backend}notice/`, {
+      const response = await fetch(`${backend}super/notice/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -41,24 +41,18 @@ function Home() {
     }
   };
 
-  
   useEffect(() => {
     handleNoticeTable();
-    
   }, []);
 
   return (
     <>
-      
-
       <Navbar />
       <div>
         <MainBanner
-          // heading6="Lakshyam Coaching"
           heading2a="Full Schooling Solution"
-          // heading2b="Coaching"
           videoSource={myVideo}
-          buttonText="Discover Our Courses"
+          buttonText="Get Free Study Materials"
           showFeaturesSection={true}
           className="banner-container"
         />

@@ -7,7 +7,6 @@
   background-repeat: no-repeat;
   
   background-size: cover;
-  padding-bottom: 100px;
 }
 .section-why-us .container{
   box-sizing: border-box;
@@ -46,12 +45,6 @@ li.clicked{
     border-style: none;
 }
 }
-
-
-
-
-
-
 
 li::marker{
   color: rgba(63, 229, 3, 0.867);

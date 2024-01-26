@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import './RegistrationForm.css';
+import "./RegistrationForm.css";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import backend from '../../backend';
+import "react-toastify/dist/ReactToastify.css";
+import backend from "../../backend";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phoneNumber: "",
-    message:""
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -17,63 +17,61 @@ const RegistrationForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${backend}contact/`, {
+      const res = await fetch(`${backend}super/contact/`, {
         method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          contactName : formData.name , 
-          contactEmail : formData.email , 
-          contactPhone : formData.phoneNumber,
-          contactMessage : formData.message
+          contactName: formData.name,
+          contactEmail: formData.email,
+          contactPhone: formData.phoneNumber,
+          contactMessage: formData.message,
         }),
       });
       // let resJson = await res.json();
       if (res.status === 200) {
         console.log("fine");
-        toast.success('Form submitted', {
-          position: toast.POSITION.TOP_CENTER
-      });
+        toast.success("Form submitted", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       } else {
         console.log("Some error occured");
-        toast.warning('All fields Required', {
-          position: toast.POSITION.TOP_CENTER
-      });
+        toast.warning("All fields Required", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (err) {
       console.log(err);
     }
-    
+
     console.log("Submitted Data:", formData);
 
-      setFormData({
+    setFormData({
       name: "",
       email: "",
-      phoneNumber:"",
+      phoneNumber: "",
       message: "",
     });
   };
 
   return (
     <div className="right-content">
-                <ToastContainer/>
+      <ToastContainer />
       <div className="top-content">
-        <h6>
-          Register your seat and get immediate access to Lakhsyam courses
-        </h6>
+        <h6>Register your seat and get immediate access to Lakhsyam courses</h6>
       </div>
       <form id="contact" onSubmit={handleSubmit}>
         <div className="row">
           <div className="fieldset-container">
             <fieldset className="fieldset">
-              <input 
-                style={{color:"black"}}
+              <input
+                style={{ color: "black" }}
                 name="name"
                 type="text"
                 className="form-control"
@@ -88,7 +86,7 @@ const RegistrationForm = () => {
           <div className="fieldset-container">
             <fieldset className="fieldset">
               <input
-                style={{color:"black"}}              
+                style={{ color: "black" }}
                 name="email"
                 type="email"
                 className="form-control"
@@ -103,7 +101,7 @@ const RegistrationForm = () => {
           <div className="fieldset-container">
             <fieldset className="fieldset">
               <input
-                style={{color:"black"}}
+                style={{ color: "black" }}
                 name="phoneNumber"
                 type="tel"
                 className="form-control"
@@ -118,7 +116,7 @@ const RegistrationForm = () => {
           <div className="fieldset-container">
             <fieldset className="fieldset">
               <input
-              style={{color:"black"}}
+                style={{ color: "black" }}
                 name="message"
                 type="message"
                 className="form-control"

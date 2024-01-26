@@ -1,11 +1,8 @@
 .Ncontainer {
     display: flex;
     justify-content: space-evenly;
-   /* flex-wrap: wrap; */
-    /* float: left; */
     width: 100%;
-    background-image: url('./choosing-bg.jpg') !important;
-    /* background-color: blue !important; */
+    background-image: url('./choosing-bg.jpg') ;
     padding: 50px;
    
 }
@@ -26,6 +23,10 @@
 .subAdFeatures{
     margin: 15px;
 }
+.list__item::before {
+    content: "\2022"; /* Unicode character for a bullet point */
+    margin-right: 0.5em; /* Adjust the spacing between the marker and the content */
+  }
 
 @media (max-width: 768px) {
     .Ncontainer{

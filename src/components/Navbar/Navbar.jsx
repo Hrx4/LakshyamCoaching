@@ -51,7 +51,7 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <Link to="/freetutorial" style={{ backgroundColor: '#3fe503dd' }}>Study Material</Link>
           </li>
           <li>
             <Link to="/courses">Courses</Link>
@@ -60,7 +60,7 @@ const Navbar = () => {
             <Link to="/gallery">Gallery</Link>
           </li>
           <li>
-            <Link to="/freetutorial">Study Material</Link>
+            <Link to="/about">About Us</Link>
           </li>
           <li>
             <Link to="/contact">Contact</Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}} to="/">Home</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
-              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/about">About Us</Link>
+              <Link style={{textDecoration:"none" , fontSize:20 , color:"black", backgroundColor: '#3fe503dd' , padding:5}}  to="/freetutorial">Study Materials</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/courses">Courses</Link>
@@ -95,7 +95,7 @@ const Navbar = () => {
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/gallery">Gallery</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
-              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/freetutorial">Free Tutorial</Link>
+              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/about">About Us</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/contact">Contact</Link>

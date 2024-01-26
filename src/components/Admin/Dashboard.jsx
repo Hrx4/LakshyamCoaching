@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import { FaAddressBook } from "react-icons//fa6";
 import { FaCreativeCommonsBy } from "react-icons//fa6";
 import { FaCreativeCommonsNc } from "react-icons//fa6";
 import { FaCommentDollar } from "react-icons//fa6";
 import SubDashBoard from "./SubDashBoard";
+import backend from "../../backend";
 
-const Dashboard = ({ income, setIncome }) => {
+const Dashboard = () => {
   const [subDash, setSubDash] = useState("noteform");
 
   const handleMonthlyIncome = () => {
@@ -24,15 +25,53 @@ const Dashboard = ({ income, setIncome }) => {
   const handleTotalDue = () => {
     setSubDash("TotalDue");
   };
+  const [income, setIncome] = useState([])
+
+  useEffect(() => {
+    const incomeList = async()=>{
+      try {
+        const response = await fetch(`${backend}super/student/getpayment/`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+  
+        const resJson = await response.json();
+  
+        if (response.status === 200) {
+          setIncome(resJson);
+          console.log("====================================");
+          console.log(resJson);
+          console.log("====================================");
+        } else {
+          console.log("Some error occured");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    incomeList()
+  }, [])
+  
 
   return (
-    <div className="dContainer" style={{ marginTop: 40, margin: 20 }}>
-      <h1 className="dHeading" style={{ marginLeft: 15 }}>
+    <div
+      className="dContainer"
+      style={{ marginTop: 40, margin: 20, width: "100%" }}
+    >
+      <h1 className="dHeading" style={{ marginLeft: 15, display: "flex" }}>
         Dashboard
       </h1>
       <div
         className="dInnerContainer"
-        style={{ display: "flex", margin: "20px" }}
+        style={{
+          display: "flex",
+          marginTop: "20px",
+          width: "100%",
+          justifyContent: "space-evenly",
+        }}
       >
         <div className="dBox">
           <div className="inner-box">
@@ -97,7 +136,12 @@ const Dashboard = ({ income, setIncome }) => {
       </div>
       <div
         className="dInnerContainer"
-        style={{ display: "flex", margin: "20px" }}
+        style={{
+          display: "flex",
+          marginTop: "20px",
+          width: "100%",
+          justifyContent: "space-evenly",
+        }}
       >
         <div className="dBox">
           <div className="inner-box">
@@ -109,13 +153,18 @@ const Dashboard = ({ income, setIncome }) => {
             </div>
             <div
               className="Dhalf dText"
-              style={{ color: "black", cursor: "pointer" }}
+              style={{
+                color: "black",
+                cursor: "pointer",
+                flexDirection: "column",
+              }}
               onClick={handleMonthlyDue}
               onDoubleClick={(e) => {
                 setSubDash("");
               }}
             >
               MONTHLY DUE
+              <div>{income?.monthlyDue}</div>
             </div>
           </div>
         </div>
@@ -156,28 +205,35 @@ const Dashboard = ({ income, setIncome }) => {
             </div>
             <div
               className="Dhalf dText"
-              style={{ color: "black", cursor: "pointer" }}
+              style={{
+                color: "black",
+                cursor: "pointer",
+                flexDirection: "column",
+              }}
               onClick={handleTotalDue}
               onDoubleClick={(e) => {
                 setSubDash("");
               }}
             >
               TOTAL DUE
+              <div>{income?.totalDue}</div>
             </div>
           </div>
         </div>
       </div>
 
       {subDash === "MonthlyIncome" ? (
-        <SubDashBoard headingDash="Monthly Income" />
+        <SubDashBoard headingDash="Monthly Income" apiRoute="monthlyincome" />
       ) : null}
       {subDash === "TotalIncome" ? (
-        <SubDashBoard headingDash="Total Income" />
+        <SubDashBoard headingDash="Total Income" apiRoute="totalincome" />
       ) : null}
       {subDash === "MonthlyDue" ? (
-        <SubDashBoard headingDash="Monthly Due" />
+        <SubDashBoard headingDash="Monthly Due" apiRoute="monthlydue" />
       ) : null}
-      {subDash === "TotalDue" ? <SubDashBoard headingDash="Total Due" /> : null}
+      {subDash === "TotalDue" ? (
+        <SubDashBoard headingDash="Total Due" apiRoute="totaldue" />
+      ) : null}
     </div>
   );
 };

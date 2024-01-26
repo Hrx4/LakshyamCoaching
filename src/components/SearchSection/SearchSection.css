@@ -1,6 +1,7 @@
 
 .courseSearch-bars{
-    height:60px;
+    /* height:60px; */
+    padding: 10px 0px 10px 0px;
     /* border: 2px solid red; */
     display: flex;
     flex-direction: row;
@@ -38,4 +39,13 @@
     background-repeat: no-repeat;
     background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
   
+}
+
+
+@media (max-width: 768px) {
+    .courseSearch-bars{
+        flex-direction: column;
+        gap: 10px;
+    }
+
 }

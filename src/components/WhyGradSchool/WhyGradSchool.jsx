@@ -5,9 +5,9 @@ import React , {useState} from 'react'
 // import './css/owl.css';
 // import './css/templatemo-grad-school.css';
 import './WhyGradSchool.css'
-import image1 from './imageChoose/choose-us-image-01.png'
-import image2 from './imageChoose/choose-us-image-02.png'
-import image3 from './imageChoose/choose-us-image-03.png'
+import image1 from './imageChoose/1.png'
+import image2 from './imageChoose/2.png'
+import image3 from './imageChoose/3.png'
 
 
 export default function WhyGradSchool() {
@@ -61,26 +61,26 @@ const pressable2 = (e)=>{
     <div className="container">
       <div className="row">
         <div className="col-md-12">
-          <div  className="section-heading">
-            <h2>Why choose Lakshyam Coaching?</h2>
+          <div  className="section-heading" style={{marginBottom:30}}>
+            <h2 style={{marginTop:30}}>Why choose Lakshyam Coaching?</h2>
           </div>
         </div>
         <div className="col-md-12">
           <div id='tabs'>
             <ul style={{display:"flex", justifyContent:"space-evenly" }}>
-              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}}  href='/' onClick={pressable}>Best Education</a></li>
-              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}} href='/' onClick={pressable1}>Expert Faculty</a></li>
-              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:20 , color:"white"}} href='/' onClick={pressable2}>Personalized Attention</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:18 , fontWeight:"bold" , color:"white"}}  href='/' onClick={pressable}>Best Education</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:18 , fontWeight:"bold" , color:"white"}} href='/' onClick={pressable1}>Expert Faculty</a></li>
+              <li><a className={({isActive})=>{return isActive? "active_class":""}} style={{textDecoration:"none" , fontSize:18 , fontWeight:"bold" , color:"white"}} href='/' onClick={pressable2}>Personalized Attention</a></li>
             </ul>
             <section className='tabs-content'>
-              <article style={{marginTop:50, marginBottom:60 }} id='tabs-1'>
-                <div className="row">
-                  <div className="col-md-6">
-                    <img className='section__image' src={imageContent} alt=""/>
+              <article style={{marginTop:50, marginBottom:20 }} id='tabs-1'>
+                <div className="row"> 
+                  <div className="col-md-6 mb-5">
+                    <img className='section__image' style={{height:"100%" , width:"100%"}} src={imageContent} alt=""/>
                   </div>
                   <div className="col-md-6" style={{display:"flex" , flexDirection:"column" , justifyContent:"space-evenly"}}>
-                    <h4 style={{color:"white" ,fontSize:35}}>{heading}</h4>
-                    <p style={{color:"white" , fontSize:16}}>{mainContent}</p>
+                    <h4 style={{color:"white" ,fontSize:30}}>{heading}</h4>
+                    <p style={{color:"white" , fontSize:14}}>{mainContent}</p>
                   </div>
                 </div>
               </article>

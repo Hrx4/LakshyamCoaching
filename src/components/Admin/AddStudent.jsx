@@ -1,298 +1,638 @@
-import React, { useState } from "react";
-import './AddStudent.css'
-import { ToastContainer, toast } from 'react-toastify';
-import { CircularProgress } from '@mui/material';
-import 'react-toastify/dist/ReactToastify.css';
-import backend from '../../backend';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Box from '@mui/material/Box';
-import SubCheckbox from './SubCheckbox';
-
-
+import React, { useEffect, useMemo, useState } from "react";
+import "./AddStudent.css";
+// import { ToastContainer, toast } from "react-toastify";
+import {
+  Button,
+  Checkbox,
+  FormControl,
+  InputLabel,
+  ListItemText,
+  MenuItem,
+  OutlinedInput,
+  Select
+} from "@mui/material";
+import "react-toastify/dist/ReactToastify.css";
+import backend from "../../backend";
 
 const AddStudent = () => {
-
-            const [studentEnrollment , setStudentEnrollment] = useState('') 
-            const [studentName,setStudentName] = useState('')
-            const [studentClass , setStudentClass] = useState('IV')
-            const [studentBoard , setStudentBoard ] = useState('ICSE')
-            const [studentCourse , setStudentCourse] = useState('')  
-            const [studentSubjects , setStudentSubjects ] = useState([])
-            const [studentEmail , setStudentEmail] = useState('')  
-            const [studentPhone , setStudentPhone] = useState('')
-            const [studentAddress , setStudentAddress ] = useState('')
-            const [studentPaymentType , setStudentPaymentType] = useState('Monthly Payment') 
-            const [studentDob , setStudentDob ] = useState('') 
-            const [studentPhoto , setStudentPhoto] = useState('')  
-            const [guardianName , setGuardianName] = useState('')
-           const [ guardianPhone , setGuardianPhone] = useState('') 
-            const [guardianEmail , setGuardianEmail ] = useState('') 
-            const [guardianAddress , setGuardianAddress ] = useState('')
-            const [loading, setLoading] = useState(false)
+  const Gender = ["Male", "Female"];
+  const Compi = ["IIT-JEE", "NEET"];
+  const Schooling = ["CBSE", "ICSE"];
+  const admissionFeeStatus = ["YES", "NO"];
 
 
+  const [iitNeetSub, setIitNeetSub] = useState([]);
+  const [iitNeetFee , setIitNeetFee] = useState(0)
+  const [schoolingSub, setSchoolingSub] = useState([]);
+  const [schoolingFee , setSchoolingFee] = useState(0)
+  const [extraSub, setExtraSub] = useState([]);
+  const [extraFee , setExtraFee] = useState(0)
+  const [formData, setFormData] = useState({
+    name: "",
+    dob: "",
+    gender: "",
+    fatherName: "",
+    fatherOccupassion: "",
+    fatherNo: "",
+    motherName: "",
+    parentWp: "",
+    emergencyNo: "",
+    address: "",
+    doj: "",
+    blood: "",
+    schoolName: "",
+    lastClass: "",
+    lastExam: "",
+    iitNeetCourse: "",
+    schoolingCourse : "",
+    schoolingClass:"",
+    iitNeetAdmission : "",
+    schoolingAdmission : "",
+    extraAdmission : "",
 
-            const uploadFiles = async(e ) => {
-              const {files} = e.target
-              setLoading(true)
-              const data = new FormData();
-                      data.append("file" , files[0]);
-                      data.append("upload_preset" , "solardealership");
-                      data.append("cloud_name" , "dkm3nxmk5")
-                      await fetch("https://api.cloudinary.com/v1_1/dkm3nxmk5/image/upload" , {
-                        method:"post",
-                        body:data,
-                      }).then((res) => res.json())
-                      .then((data)=> {
-                          if(files[0].type === "image/jpeg" || files[0].type === "image/png")
-                              setStudentPhoto(data.url)
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                      });
-                      setLoading(false)
-            }
-          
-            // Handle form submission
-            const handleSubmit =async (e) => {
-              e.preventDefault();
-              // setLoading(true)
-          const d = new Date();
-              // Handle form submission here (e.g., send the data to the server)
-              console.log({ 
-                studentEnrollment ,
-                studentName, studentClass,studentBoard, studentCourse , studentSubjects , studentEmail , studentPhone , studentAddress , 
-                studentPaymentType , 
-                studentDob , studentPhoto , guardianName , guardianPhone , guardianEmail , guardianAddress 
-              });
-              try {
-                const res = await fetch(`${backend}student/`, {
-                  method: "POST",
-                  headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-                    studentEnrollment : studentEnrollment, 
-                    studentName:studentName,
-                    studentClass : studentClass,
-                    studentBoard : studentBoard, 
-                    studentCourse : studentCourse , 
-                    studentSubjects : studentSubjects, 
-                    studentEmail : studentEmail , 
-                    studentPhone : studentPhone, 
-                    studentAddress : studentAddress , 
-                    studentPaymentType : studentPaymentType, 
-                    studentDob : studentDob , 
-                    studentPhoto : studentPhoto , 
-                    guardianName : guardianName,
-                    guardianPhone : guardianPhone, 
-                    guardianEmail : guardianEmail , 
-                    guardianAddress : guardianAddress ,
-                    createdMonth: d.getMonth() , 
-                    createdYear : d.getFullYear()
-                  }),
-                });
-                // let resJson = await res.json();
-                if (res.status === 200) {
-                  console.log("fine");
-                      
-                      toast.success('Form submitted', {
-                        position: toast.POSITION.TOP_CENTER
-                    });
-                } else {
-                  toast.error('All field fill required', {
-                    position: toast.POSITION.TOP_CENTER
-                });
-                  console.log("Some error occured");
-                }
-              } catch (err) {
-                toast.error('All field fill required', {
-                  position: toast.POSITION.TOP_CENTER
-              });
-                console.log(err);
-              }
-              
-            // setLoading(false)
-                    setStudentEnrollment('')  
-                    setStudentName('')
-                    setStudentClass('') 
-                    setStudentBoard('') 
-                    setStudentCourse('') 
-                    setStudentSubjects('') 
-                    setStudentEmail('') 
-                    setStudentPhone ('')
-                    setStudentAddress ('')
-                    setStudentPaymentType('') 
-                    setStudentDob('') 
-                    setStudentPhoto('') 
-                    setGuardianName ('')
-                    setGuardianPhone('')  
-                    setGuardianEmail('') 
-                    setGuardianAddress('') 
-            };
+  });
 
+  const Choose = ({ list }) => {
+    return (
+      <select
+        name="gender"
+        id="gender"
+        value={formData.gender}
+        onChange={(e) => {
+          setFormData({ ...formData, gender: e.target.value });
+        }}
+      >
+        <option value="" disabled="disabled">
+          Choose
+        </option>
+        {list.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  };
+  const Choose1 = ({ list }) => {
+    return (
+      <select
+        name="iitNeetCourse"
+        id="iitNeetCourse"
+        value={formData.iitNeetCourse}
+        onChange={(e) => {
+          setFormData({ ...formData, iitNeetCourse: e.target.value });
+        }}
+      >
+        <option value="" disabled="disabled">
+          Choose
+        </option>
+        {list.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  };
+
+  const Choose2 = ({ list }) => {
+    return (
+      <select
+        name="schoolingCourse"
+        id="schoolingCourse"
+        value={formData.schoolingCourse}
+        onChange={(e) => {
+          setFormData({ ...formData, schoolingCourse: e.target.value });
+        }}
+      >
+        <option value="" disabled="disabled">
+          Choose
+        </option>
+        {list.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  };
+  const Choose3 = ({ list }) => {
+    return (
+      <select
+        name="schoolingClass"
+        id="schoolingClass"
+        value={formData.schoolingClass}
+        onChange={(e) => {
+          setFormData({ ...formData, schoolingClass: e.target.value });
+        }}
+      >
+        <option value="" disabled="disabled">
+          Choose
+        </option>
+        {list.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  };
+  const Choose4 = ({ list }) => {
+    return (
+      <select
+        name="iitNeetAdmission"
+        id="iitNeetAdmission"
+        value={formData.iitNeetAdmission}
+        onChange={(e) => {
+          setFormData({ ...formData, iitNeetAdmission: e.target.value });
+        }}
+      >
+        <option value="" disabled="disabled">
+          Choose
+        </option>
+        {list.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  };
+  const Choose5 = ({ list }) => {
+    return (
+      <select
+        name="schoolingAdmission"
+        id="schoolingAdmission"
+        value={formData.schoolingAdmission}
+        onChange={(e) => {
+          setFormData({ ...formData, schoolingAdmission: e.target.value });
+        }}
+      >
+        <option value="" disabled="disabled">
+          Choose
+        </option>
+        {list.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  };
+  const Choose6 = ({ list }) => {
+    return (
+      <select
+        name="extraAdmission"
+        id="extraAdmission"
+        value={formData.extraAdmission}
+        onChange={(e) => {
+          setFormData({ ...formData, extraAdmission: e.target.value });
+        }}
+      >
+        <option value="" disabled="disabled">
+          Choose
+        </option>
+        {list.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  };
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setIitNeetSub(
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleChange1 = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSchoolingSub(
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleChange2 = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setExtraSub(
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const schoolingClassList = useMemo(
+    () =>
+      formData.schoolingCourse === "CBSE"
+        ? ["class 6", "class 7", "class 8" , "class 9" , "class 10" , "class 11 science" , "class 12 science" , "class 11 commerce" , "class 12 commerce"]
+        : formData.schoolingCourse === "ICSE"
+        ? ["class 6", "class 7", "class 8" , "class 9" , "class 10" ]
+        : [],
+    [formData.schoolingCourse]
+  );
+
+  const iitNeetSubList = useMemo(
+    () =>
+      formData.iitNeetCourse === "IIT-JEE"
+        ? ["Physics", "Chemistry", "Math"]
+        : formData.iitNeetCourse === "NEET"
+        ? ["Physics", "Chemistry", "Biology"]
+        : [],
+    [formData.iitNeetCourse]
+  );
+  const extraSubList = ['Dance' , 'Guitar' , 'Singing' , 'Drawing']
+  const schoolingSubList = useMemo(
+    () =>
+      
+        // const {schoolingCourse , schoolingClass} = formData;
+       ( formData.schoolingCourse==="CBSE"?       
+          formData.schoolingClass==="class 6"? (["All Subject"] ) : 
+          formData.schoolingClass==="class 7"? ["All Subject"] : 
+          formData.schoolingClass==="class 8"?( ["All Subject" , "All Subject + Hindi/Bengali"] ) : 
+          formData.schoolingClass==="class 9"?( ["All Subject" , "All Subject + Hindi/Bengali"] ) : 
+          formData.schoolingClass==="class 10"?( ["All Subject" , "All Subject + Hindi/Bengali"] ) : 
+          formData.schoolingClass==="class 11 science"?( ["physics" , "chemistry" , "math" , "biology" , "computer science" , "english"] ) : 
+          formData.schoolingClass==="class 12 science"?( ["physics" , "chemistry" , "math" , "biology" , "computer science" , "english"] ) : 
+          formData.schoolingClass==="class 11 commerce"?( ["Accountancy , bst , economics" , "Accountancy , bst , economics , english"] ) : 
+          formData.schoolingClass==="class 12 commerce"?( ["Accountancy , bst , economics" , "Accountancy , bst , economics , english"] ) : 
+
+          []
+        :
+        
+          formData.schoolingClass==="class 6"? ["All Subject"] : 
+          formData.schoolingClass==="class 7"? ["All Subject"] : 
+          formData.schoolingClass==="class 8"? ["All Subject" , "All Subject + Hindi/Bengali"] : 
+          formData.schoolingClass==="class 9"? ["All Subject" , "All Subject + Hindi/Bengali"] : 
+          formData.schoolingClass==="class 10"? ["All Subject" , "All Subject + Hindi/Bengali"] : [] )
+        
+      ,
+    [formData.schoolingCourse , formData.schoolingClass]
+  );
   
+
+  useEffect(()=>setSchoolingSub([]) ,
+  [formData.schoolingCourse , formData.schoolingClass])
+
+  useMemo(()=> setIitNeetFee(iitNeetSub.length * 600), [iitNeetSub])
+    useMemo(()=> setExtraFee(extraSub.length * 500), [extraSub])
+
+useMemo(()=> formData.schoolingCourse==="CBSE" 
+? (formData.schoolingClass==="class 6" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1100) 
+:(formData.schoolingClass==="class 7" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1300)
+:(formData.schoolingClass==="class 8" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1500)
+:(formData.schoolingClass==="class 8" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1600)
+:(formData.schoolingClass==="class 9" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1700)
+:(formData.schoolingClass==="class 9" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1900)
+:(formData.schoolingClass==="class 10" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1700)
+:(formData.schoolingClass==="class 10" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1900)
+:(formData.schoolingClass==="class 11 commerce" && schoolingSub.includes("Accountancy , bst , economics , english")) ? setSchoolingFee(1300)
+:(formData.schoolingClass==="class 11 commerce" && schoolingSub.includes("Accountancy , bst , economics")) ? setSchoolingFee(1100)
+:(formData.schoolingClass==="class 12 commerce" && schoolingSub.includes("Accountancy , bst , economics , english")) ? setSchoolingFee(1400)
+:(formData.schoolingClass==="class 12 commerce" && schoolingSub.includes("Accountancy , bst , economics")) ? setSchoolingFee(1200)
+:(formData.schoolingClass==="class 11 science" ) ? setSchoolingFee(schoolingSub.length*600)
+:(formData.schoolingClass==="class 12 science")  ? setSchoolingFee(schoolingSub.length*600)
+:setSchoolingFee(0):
+(formData.schoolingClass==="class 6" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1500) 
+:(formData.schoolingClass==="class 7" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1300)
+:(formData.schoolingClass==="class 8" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1500)
+:(formData.schoolingClass==="class 8" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1600)
+:(formData.schoolingClass==="class 9" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1700)
+:(formData.schoolingClass==="class 9" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1900)
+:(formData.schoolingClass==="class 10" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1700)
+:(formData.schoolingClass==="class 10" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1900)
+:setSchoolingFee(0)
+
+, [formData.schoolingClass , formData.schoolingCourse , schoolingSub])
+
+const handleSubmit = async(e)=>{
+  e.preventDefault()
+  try {
+    const response = await fetch(`${backend}super/student/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        studentName : formData.name,
+    studentDob : formData.dob,
+    studentGender : formData.gender,
+    fatherName : formData.fatherName,
+    fatherOccupassion : formData.fatherOccupassion,
+    fatherNo: formData.fatherNo,
+    motherName : formData.motherName,
+    parentWp : formData.parentWp,
+    emergencyNo :  formData.emergencyNo,
+    studentAddress : formData.address,
+    studentDoj : formData.doj,
+    studentBlood : formData.blood,
+    schoolName : formData.schoolName,
+    lastClass : formData.lastClass,
+    lastExam : formData.lastExam,
+    iitNeetCourse :  formData.iitNeetCourse,
+    schoolingCourse : formData.schoolingCourse,
+    schoolingClass : formData.schoolingClass,
+    iitNeetAdmission : formData.iitNeetAdmission,
+    schoolingAdmission : formData.schoolingAdmission,
+    extraAdmission : formData.extraAdmission,
+    iitNeetFee : iitNeetFee,
+    schoolingFee : schoolingFee,
+    extraFee : extraFee,
+    iitNeetSub : iitNeetSub,
+    schoolingSub : schoolingSub,
+    extraSub : extraSub,
+      })
+    });
+
+    const resJson = await response.json();
+
+    if (response.status === 200) {
+      alert("Form Submitted")
+      // setIncome(resJson);
+      console.log("====================================");
+      console.log(resJson);
+      console.log("====================================");
+    } else {
+      console.log("Some error occured");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
 
   return (
     <>
-      {loading ? <div className="loader" style={{color:"black"}}> 
-      Please Wait Your File is Uploading......
-      <CircularProgress/>
-      </div> : null}
-      <ToastContainer/>
+      <div style={{ width: "30%", marginLeft: "auto", marginRight: "auto" , paddingTop:30 , paddingBottom:30}}>
+        <h2>Student Form</h2>
 
-    <div className="add-form">
-      <form onSubmit={handleSubmit} >
-        <div className="form-part">
-            <h2 className="studentHeading">Student Details</h2>
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Student Enrollment No.</label><br/>
-            <input type="text" className="student__field"  value={studentEnrollment} onChange={(e) => setStudentEnrollment(e.target.value)}  required />
+        <form style={{ gap: 10, display: "flex", flexDirection: "column" }}>
+          <div>
+            <label htmlFor="">Student Name</label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => {
+                setFormData({ ...formData, name: e.target.value });
+              }}
+            />
           </div>
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Student Name</label><br/>
-            <input type="text" className="student__field" value={studentName} onChange={(e) => setStudentName(e.target.value)}  required/>
+          <div>
+            <label htmlFor="">Date of Birth</label>
+            <input
+              type="text"
+              value={formData.dob}
+              onChange={(e) => {
+                setFormData({ ...formData, dob: e.target.value });
+              }}
+            />
           </div>
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Class</label><br/>
-            <select className="student__field" value={studentClass} onChange={(e) => setStudentClass(e.target.value)}  required>
-              <option>IV</option>
-              <option>V</option>
-              <option>VI</option>
-              <option>VII</option>
-              <option>VIII</option>
-              <option>IX</option>
-              <option>X</option>
-              <option>XI</option>
-              <option>XII</option>
-            </select>
+          <div>
+            <label htmlFor="">Gender</label>
+            <Choose list={Gender} data={"gender"} />
+          </div>
+          <div>
+            <label htmlFor="">Father's Name</label>
+            <input
+              type="text"
+              value={formData.fatherName}
+              onChange={(e) => {
+                setFormData({ ...formData, fatherName: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Father's Occupation</label>
+            <input
+              type="text"
+              value={formData.fatherOccupassion}
+              onChange={(e) => {
+                setFormData({ ...formData, fatherOccupassion: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Father's Phone No.</label>
+            <input
+              type="text"
+              value={formData.fatherNo}
+              onChange={(e) => {
+                setFormData({ ...formData, fatherNo: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Mother's Name</label>
+            <input
+              type="text"
+              value={formData.motherName}
+              onChange={(e) => {
+                setFormData({ ...formData, motherName: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Parent Whatsapp no</label>
+            <input
+              type="text"
+              value={formData.parentWp}
+              onChange={(e) => {
+                setFormData({ ...formData, parentWp: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Emergency contact no</label>
+            <input
+              type="text"
+              value={formData.emergencyNo}
+              onChange={(e) => {
+                setFormData({ ...formData, emergencyNo: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Address</label>
+            <input
+              type="text"
+              value={formData.address}
+              onChange={(e) => {
+                setFormData({ ...formData, address: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Date of joining</label>
+            <input
+              type="text"
+              value={formData.doj}
+              onChange={(e) => {
+                setFormData({ ...formData, doj: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Blood Group</label>
+            <input
+              type="text"
+              value={formData.blood}
+              onChange={(e) => {
+                setFormData({ ...formData, blood: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Name of the school</label>
+            <input
+              type="text"
+              value={formData.schoolName}
+              onChange={(e) => {
+                setFormData({ ...formData, schoolName: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Last class</label>
+            <input
+              type="text"
+              value={formData.lastClass}
+              onChange={(e) => {
+                setFormData({ ...formData, lastClass: e.target.value });
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Last Exam percentage</label>
+            <input
+              type="text"
+              value={formData.lastExam}
+              onChange={(e) => {
+                setFormData({ ...formData, lastExam: e.target.value });
+              }}
+            />
+          </div>
+          <h2>IIT-JEE / NEET</h2>
+          <div>
+            <label htmlFor="">Select course</label>
+            <Choose1 list={Compi} />
           </div>
 
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Board</label><br/>
-            <select className="student__field"  value={studentBoard} onChange={(e) => setStudentBoard(e.target.value)} required>
-              <option>ICSE</option>
-              <option>CBSE</option>
-              <option>WBBSE</option>
-              <option>WBCHSE</option>
-            </select>
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel
+              id="demo-multiple-checkbox-label"
+              style={{ color: "white" }}
+            >
+              Select Subject
+            </InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple={true}
+              value={iitNeetSub}
+              onChange={handleChange}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              // MenuProps={MenuProps}
+              style={{ color: "white", border: "1px solid white" }}
+            >
+              {iitNeetSubList?.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox checked={iitNeetSub.indexOf(name) > -1} />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <div>
+            <label htmlFor="">Admission Fee :</label>
+            <Choose4 list={admissionFeeStatus} />
           </div>
+          <label htmlFor="">Total Fee</label>
+          <input type="number" value={iitNeetFee} onChange={(e)=>setIitNeetFee(e.target.value)}/>
 
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Course Name</label><br/>
-            
-            <Box sx={{ minWidth: 120 }}>
-      <FormControl style={{width:'60%', backgroundColor:'white'}} className="student__field">
-        <InputLabel  style={{color:'black'}}>Select Your Course</InputLabel>
-        <Select
+          <h2>Schooling Solution</h2>
+          <div>
+            <label htmlFor="">Select course</label>
+            <Choose2 list={Schooling}  />
+          </div>
           
-          // value={courseForPay}
-          label=""
-          // onChange={(e) => setCourseForPay(e.target.value)}
-          style={{color:'black'}}
-          value={studentCourse} onChange={(e) => {
-            setStudentCourse(e.target.value) 
-            setStudentSubjects([''])
-            }
-           } 
-        >
-          <MenuItem  value="CBSE Board All Subjects"> CBSE Board All Subjects</MenuItem>
-          <MenuItem value="ICSE Board All Subjects">
-                ICSE Board All Subjects
-                </MenuItem>
-                <MenuItem value="Class 11 CBSE Boards + CUET">
-                Class 11 CBSE Boards + CUET
-                </MenuItem>
-                <MenuItem value="Class 11 ICSE Boards + CUET">
-                Class 11 ICSE Boards + CUET
-                </MenuItem>
-                <MenuItem value="Class 12 CBSE Boards + CUET">
-                Class 12 CBSE Boards + CUET
-                </MenuItem>
-                <MenuItem value="Class 12 ICSE Boards + CUET">
-                Class 12 ICSE Boards + CUET
-                </MenuItem>
-                <MenuItem value="JEE Mains ">JEE Mains </MenuItem>
-                <MenuItem value="NEET ">NEET </MenuItem>
-                <MenuItem value="Foundation Course JEE IIT / NEET">
-                Foundation Course JEE IIT / NEET
-                </MenuItem>
-                <MenuItem value="Commerce Board + CUET">Commerce Board + CUET</MenuItem>
-                <MenuItem value="CA Foundation">CA Foundation</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+          <div>
+            <label htmlFor="">Select class</label>
+            <Choose3 list={schoolingClassList}  />
           </div>
-          
-         {
-          (studentCourse)?
-          <>
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Choose Subject</label><br/>
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel
+              id="demo-multiple-checkbox-label"
+              style={{ color: "white" }}
+            >
+              Choose Subject
+            </InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={schoolingSub}
+              onChange={handleChange1}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              // MenuProps={MenuProps}
+              style={{ color: "white", border: "1px solid white" }}
+            >
+              {schoolingSubList?.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox checked={schoolingSub.indexOf(name) > -1} />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <div>
+            <label htmlFor="">Admission Fee :</label>
+            <Choose5 list={admissionFeeStatus} />
           </div>
-        <SubCheckbox studentSubjects={studentSubjects}  setStudentSubjects={setStudentSubjects}/>
-          </>
-        :null
-         }
-        
+          <label htmlFor="">Total Fee</label>
+          <input type="number" value={schoolingFee} onChange={(e)=>setSchoolingFee(e.target.value)}/>
 
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Email</label><br/>
-            <input type="text" className="student__field" value={studentEmail} onChange={(e) => setStudentEmail(e.target.value)}  />
+
+          <h2>Extra Curricular</h2>
+          
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel
+              id="demo-multiple-checkbox-label"
+              style={{ color: "white" }}
+            >
+              Select Course
+            </InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple={true}
+              value={extraSub}
+              onChange={handleChange2}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              // MenuProps={MenuProps}
+              style={{ color: "white", border: "1px solid white" }}
+            >
+              {extraSubList?.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox checked={extraSub.indexOf(name) > -1} />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+           <div>
+            <label htmlFor="">Admission Fee :</label>
+            <Choose6 list={admissionFeeStatus} />
           </div>
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Phone no.</label><br/>
-            <input type="text" className="student__field" value={studentPhone} onChange={(e) => setStudentPhone(e.target.value)}  required/>
-          </div>
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Address</label><br/>
-            <input type="text" className="student__field" value={studentAddress} onChange={(e) => setStudentAddress(e.target.value)}  required/>
-          </div>
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Payment Type</label><br/>
-            <select className="student__field" value={studentPaymentType} onChange={(e) => setStudentPaymentType(e.target.value)}  required>
-                <option>Monthly Payment</option>
-                <option>Quarterly Payment</option>
-                <option>Yearly Payment</option>
-            </select>
-          </div>
-          <div style={{marginLeft:40}}>
-            <label style={{marginRight:10, marginTop:10}}>Date Of Birth</label><br/>
-            <input type="text" className="student__field" value={studentDob} onChange={(e) => setStudentDob(e.target.value)}  required/>
-          </div>
-          <div style={{marginLeft:40}}>
-          <label for="photo" style={{marginRight:10, marginTop:10}}>Upload a Photo</label><br/>
-        <input type="file" name="photo" accept="image/*" style={{width:'40%', marginRight:10}} onChange={uploadFiles} required/>
-          </div>
-        </div>
-        <div className="form-part">
-            <h2 className="guardianHeading">Guardian Details</h2>
-            <div className="Guardian">
-                <label style={{marginRight:'10px',marginTop:10}}>Name</label><br/>
-                <input type="text" className="student__field" value={guardianName} onChange={(e) => setGuardianName(e.target.value)}  required />
-            </div>
-            <div className="Guardian">
-            <label style={{marginRight:'10px', marginTop:10}}>Phone no.</label><br/>
-            <input type="text" className="student__field" value={guardianPhone} onChange={(e) => setGuardianPhone(e.target.value)}  required/>
-          </div>
-          <div className="Guardian">
-            <label style={{marginRight:'10px', marginTop:10}}>Email</label><br/>
-            <input type="text" className="student__field" value={guardianEmail} onChange={(e) => setGuardianEmail(e.target.value)}  />
-          </div>
-          <div className="Guardian">
-            <label style={{marginRight:10, marginTop:10}}>Address</label><br/>
-            <input type="text" className="student__field" value={guardianAddress} onChange={(e) => setGuardianAddress(e.target.value)}  required/>
-          </div>
-          <div className="Guardian">
-            <button style={{marginTop:15}}>Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
+          <label htmlFor="">Total Fee</label>
+          <input type="number" value={extraFee} onChange={(e)=>setExtraFee(e.target.value)}/>
+          <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+        </form>
+      </div>
     </>
   );
 };

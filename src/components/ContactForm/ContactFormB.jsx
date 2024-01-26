@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import './ContactForm.css'
-import {toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import backend from '../../backend';
+import "./ContactForm.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import backend from "../../backend";
 
-
-const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) => {
+const ContactForm = ({
+  namePlaceholder,
+  emailPlaceholder,
+  messagePlaceholder,
+}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
-    
   });
 
   const handleChange = (e) => {
@@ -22,55 +24,60 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${backend}contact/`, {
+      const res = await fetch(`${backend}super/contact/`, {
         method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          contactName : formData.name , 
-          contactEmail : formData.email , 
+          contactName: formData.name,
+          contactEmail: formData.email,
           contactPhone: formData.phone,
-          contactMessage : formData.message,
+          contactMessage: formData.message,
         }),
       });
       // let resJson = await res.json();
       if (res.status === 200) {
         console.log("fine");
-        toast.success('Form submitted', {
-          position: toast.POSITION.TOP_CENTER
-      });
+        toast.success("Form submitted", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       } else {
         console.log("Some error occured");
-        toast.warning('All fields Required', {
-          position: toast.POSITION.TOP_CENTER
-      });
+        toast.warning("All fields Required", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (err) {
       console.log(err);
     }
-    
-
 
     console.log("Submitted Data:", formData);
 
-      setFormData({
+    setFormData({
       name: "",
       email: "",
-      phone:"",
+      phone: "",
       message: "",
     });
   };
 
   return (
-      <div className="col-md-6">
+    <div className="col-md-6">
       <form id="contact" onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
-        <div className="row" style={{display:"flex" , justifyContent:"center" , alignItems:"center"}}>
+        <div
+          className="row"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div className="col-md-5 col-sm-10">
             <fieldset>
               <input
@@ -88,7 +95,8 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
 
           <div className="col-md-5 col-sm-10">
             <fieldset>
-              <input style={{border:"none", marginTop:10, marginBottom:10}}
+              <input
+                style={{ border: "none", marginTop: 10, marginBottom: 10 }}
                 name="email"
                 type="text"
                 className="form-control"
@@ -108,16 +116,16 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
                 rows="6"
                 className="form-control"
                 id="phone"
-                placeholder={ "Your Phone number..."}
+                placeholder={"Your Phone number..."}
                 required=""
                 value={formData.phone}
                 onChange={handleChange}
-                style={{margin:"auto"}}
+                style={{ margin: "auto" }}
               ></input>
             </fieldset>
           </div>
 
-          <div className="col-md-10 col-sm-10" style={{marginTop:10}}>
+          <div className="col-md-10 col-sm-10" style={{ marginTop: 10 }}>
             <fieldset>
               <textarea
                 name="message"
@@ -128,12 +136,15 @@ const ContactForm = ({ namePlaceholder, emailPlaceholder, messagePlaceholder }) 
                 required=""
                 value={formData.message}
                 onChange={handleChange}
-                style={{margin:"auto"}}
+                style={{ margin: "auto" }}
               ></textarea>
             </fieldset>
           </div>
 
-          <div className="col-md-10">
+          <div
+            style={{ marginTop: 10, display: "flex", justifyContent: "center" }}
+            className="col-md-10"
+          >
             <fieldset>
               <button type="submit" id="form-submit" className="button">
                 Send Message Now
