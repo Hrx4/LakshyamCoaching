@@ -4,6 +4,7 @@ import StudentProfile from "./StudentProfile";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import ClearIcon from "@mui/icons-material/Clear";
 import TrackPayment from "./TrackPayment";
+import DuePayment from "./DuePayment";
 
 
 const StudentPanel = () =>{
@@ -19,6 +20,12 @@ const StudentPanel = () =>{
   };
   const handleStudentTrackPayment = () =>{
     setNoteView("studenttrackpayment");
+    ref.current.classList.add("slider__close");
+    ref.current.classList.remove("slider__open");
+    setSlideOpen(false);
+  }
+  const handleStudentDuePayment = () =>{
+    setNoteView("due");
     ref.current.classList.add("slider__close");
     ref.current.classList.remove("slider__open");
     setSlideOpen(false);
@@ -81,6 +88,8 @@ const StudentPanel = () =>{
           <div
             style={{ padding: 20, cursor: "pointer", paddingLeft: 30 }}
             className="note__btn"
+            onClick={handleStudentDuePayment}
+
           >
             ▶ Due Payment
           </div>
@@ -97,7 +106,8 @@ const StudentPanel = () =>{
         >
           {noteView === "studentprofile" ? <StudentProfile/> : null}
           {noteView === "studenttrackpayment" ? <TrackPayment/> : null}
-          
+          {noteView === "due" ? <DuePayment/> : null}
+
         </div>
           
       </div>

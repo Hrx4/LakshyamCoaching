@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import backend from '../../backend'
 
 const Birthday = () => {
 
-    const [teacherList, setTeacherList] = useState([])
-    const [studentList, setStudentList] = useState([])
+    // const [teacherList, setTeacherList] = useState([])
+    // const [studentList, setStudentList] = useState([])
 
 useEffect(() => {
   const list = async()=>{
@@ -21,11 +21,11 @@ useEffect(() => {
         const resJson = await response.json();
   
         if (response.status === 200) {
-          setStudentList(resJson.studentList);
-          setTeacherList(resJson.teacherList);
+          // setStudentList(resJson.studentList);
+          // setTeacherList(resJson.teacherList);
 
           console.log("====================================");
-          console.log(resJson);
+          console.log(resJson.teacherList);
           console.log("====================================");
         } else {
           console.log("Some error occured");

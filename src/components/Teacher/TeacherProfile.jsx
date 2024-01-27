@@ -1,5 +1,22 @@
 import React from "react";
 const TeacherProfile = () =>{
+  const fetchStorage = JSON.parse(localStorage.getItem("lakshyamTeacher"));
+  let list = [
+    ["Email", fetchStorage.teacherEmail],
+    ["Name", fetchStorage.teacherName],
+    ["Password", fetchStorage.teacherPassword],
+    ["Date of Birth", fetchStorage.teacherDob],
+    ["Age", fetchStorage.teacherAge],
+    ["Gender", fetchStorage.teacherGender],
+    ["Education", fetchStorage.teacherEducation],
+    ["Address", fetchStorage.teacherAddress],
+    ["Salary", fetchStorage.teacherSalary],
+    ["Date of Joining", fetchStorage.teacherDoj],
+    ["Subject", fetchStorage.teacherSubject],
+    ["Class", fetchStorage.teacherClass],
+    ["Course", fetchStorage.teacherCourse],
+  ];
+
     return (
         <>
         <div>
@@ -29,6 +46,7 @@ const TeacherProfile = () =>{
               >
                 Basic Details
               </h2>
+              {list.map((item, index) => (
               <tr style={{ border: "2px solid white" }}>
                 <td
                   style={{
@@ -37,12 +55,13 @@ const TeacherProfile = () =>{
                     width: "50%",
                     margin: 0,
                     fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
+                    display: "flex",
+                    justifyContent: "left",
                   }}
                 >
-                  Name
+                  {item[0]}
                 </td>
+                
                 <td
                   style={{
                     border: "2px solid white",
@@ -50,203 +69,11 @@ const TeacherProfile = () =>{
                     width: "50%",
                   }}
                 >
+                  {item[1]}
                 </td>
               </tr>
-              <tr style={{ border: "2px solid white" }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Email
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Password
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Age
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Gender
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Education
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Address
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Salary
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Date of Job
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Subject
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Class
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Course
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Blood Group
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
-              <tr style={{ border: "2px solid white", padding: 5 }}>
-                <td
-                  style={{
-                    // border: "2px solid white",
-                    padding: 10,
-                    fontWeight: "bold",
-                    display:"flex",
-                    justifyContent:"left"
-                  }}
-                >
-                  Catagory
-                </td>
-                <td style={{ border: "2px solid white", padding: 10 }}>
-                </td>
-              </tr>
+            ))}
+              
             </tbody>
           </table>
         </div>

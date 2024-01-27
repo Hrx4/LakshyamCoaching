@@ -23,7 +23,7 @@ const teacherSchema = mongoose.Schema({
     teacherAddress: {
         type : String
     },
-    teacherSalary : {
+    teacherAddress : {
         type: Number
     },
     teacherDoj: {
