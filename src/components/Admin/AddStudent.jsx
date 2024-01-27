@@ -8,9 +8,9 @@ import {
   ListItemText,
   MenuItem,
   OutlinedInput,
-  Select
+  Select,
 } from "@mui/material";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { CircularProgress } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
@@ -21,26 +21,32 @@ const AddStudent = () => {
   const Compi = ["IIT-JEE", "NEET"];
   const Schooling = ["CBSE", "ICSE"];
   const admissionFeeStatus = ["YES", "NO"];
-  const {id} = useParams()
-  const officeList = (id==="superadmin") ? ["office 1", "office 2","office 3"] : 
-  (id==="office1") ? ["office 1"] :
-  (id==="office2") ? ["office 2"] :
-  (id==="office3") ? ["office 3"] :[]
+  const { id } = useParams();
+  const officeList =
+    id === "superadmin"
+      ? ["office 1", "office 2", "office 3"]
+      : id === "office1"
+      ? ["office 1"]
+      : id === "office2"
+      ? ["office 2"]
+      : id === "office3"
+      ? ["office 3"]
+      : [];
 
   const [iitNeetSub, setIitNeetSub] = useState([]);
-  const [iitNeetFee , setIitNeetFee] = useState(0)
+  const [iitNeetFee, setIitNeetFee] = useState(0);
   const [schoolingSub, setSchoolingSub] = useState([]);
-  const [schoolingFee , setSchoolingFee] = useState(0)
+  const [schoolingFee, setSchoolingFee] = useState(0);
   const [extraSub, setExtraSub] = useState([]);
-  const [extraFee , setExtraFee] = useState(0)
-  const [monthlyIncome , setMonthlyIncome] = useState(0)
+  const [extraFee, setExtraFee] = useState(0);
+  const [monthlyIncome, setMonthlyIncome] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
-    enrollment : "",
-    office:"",
-    photo : "",
-    password : "",
+    enrollment: "",
+    office: "",
+    photo: "",
+    password: "",
     name: "",
     dob: "",
     gender: "",
@@ -57,12 +63,11 @@ const AddStudent = () => {
     lastClass: "",
     lastExam: "",
     iitNeetCourse: "",
-    schoolingCourse : "",
-    schoolingClass:"",
-    iitNeetAdmission : "",
-    schoolingAdmission : "",
-    extraAdmission : "",
-
+    schoolingCourse: "",
+    schoolingClass: "",
+    iitNeetAdmission: "",
+    schoolingAdmission: "",
+    extraAdmission: "",
   });
   const uploadFiles = async (e) => {
     const { files } = e.target;
@@ -260,32 +265,36 @@ const AddStudent = () => {
     const {
       target: { value },
     } = event;
-    setIitNeetSub(
-      typeof value === "string" ? value.split(",") : value
-    );
+    setIitNeetSub(typeof value === "string" ? value.split(",") : value);
   };
   const handleChange1 = (event) => {
     const {
       target: { value },
     } = event;
-    setSchoolingSub(
-      typeof value === "string" ? value.split(",") : value
-    );
+    setSchoolingSub(typeof value === "string" ? value.split(",") : value);
   };
   const handleChange2 = (event) => {
     const {
       target: { value },
     } = event;
-    setExtraSub(
-      typeof value === "string" ? value.split(",") : value
-    );
+    setExtraSub(typeof value === "string" ? value.split(",") : value);
   };
   const schoolingClassList = useMemo(
     () =>
       formData.schoolingCourse === "CBSE"
-        ? ["class 6", "class 7", "class 8" , "class 9" , "class 10" , "class 11 science" , "class 12 science" , "class 11 commerce" , "class 12 commerce"]
+        ? [
+            "class 6",
+            "class 7",
+            "class 8",
+            "class 9",
+            "class 10",
+            "class 11 science",
+            "class 12 science",
+            "class 11 commerce",
+            "class 12 commerce",
+          ]
         : formData.schoolingCourse === "ICSE"
-        ? ["class 6", "class 7", "class 8" , "class 9" , "class 10" ]
+        ? ["class 6", "class 7", "class 8", "class 9", "class 10"]
         : [],
     [formData.schoolingCourse]
   );
@@ -299,159 +308,240 @@ const AddStudent = () => {
         : [],
     [formData.iitNeetCourse]
   );
-  const extraSubList = ['Dance' , 'Guitar' , 'Singing' , 'Drawing']
+  const extraSubList = ["Dance", "Guitar", "Singing", "Drawing"];
   const schoolingSubList = useMemo(
     () =>
-      
-        // const {schoolingCourse , schoolingClass} = formData;
-       ( formData.schoolingCourse==="CBSE"?       
-          formData.schoolingClass==="class 6"? (["All Subject"] ) : 
-          formData.schoolingClass==="class 7"? ["All Subject"] : 
-          formData.schoolingClass==="class 8"?( ["All Subject" , "All Subject + Hindi/Bengali"] ) : 
-          formData.schoolingClass==="class 9"?( ["All Subject" , "All Subject + Hindi/Bengali"] ) : 
-          formData.schoolingClass==="class 10"?( ["All Subject" , "All Subject + Hindi/Bengali"] ) : 
-          formData.schoolingClass==="class 11 science"?( ["physics" , "chemistry" , "math" , "biology" , "computer science" , "english"] ) : 
-          formData.schoolingClass==="class 12 science"?( ["physics" , "chemistry" , "math" , "biology" , "computer science" , "english"] ) : 
-          formData.schoolingClass==="class 11 commerce"?( ["Accountancy , bst , economics" , "Accountancy , bst , economics , english"] ) : 
-          formData.schoolingClass==="class 12 commerce"?( ["Accountancy , bst , economics" , "Accountancy , bst , economics , english"] ) : 
+      // const {schoolingCourse , schoolingClass} = formData;
+      formData.schoolingCourse === "CBSE"
+        ? formData.schoolingClass === "class 6"
+          ? ["All Subject"]
+          : formData.schoolingClass === "class 7"
+          ? ["All Subject"]
+          : formData.schoolingClass === "class 8"
+          ? ["All Subject", "All Subject + Hindi/Bengali"]
+          : formData.schoolingClass === "class 9"
+          ? ["All Subject", "All Subject + Hindi/Bengali"]
+          : formData.schoolingClass === "class 10"
+          ? ["All Subject", "All Subject + Hindi/Bengali"]
+          : formData.schoolingClass === "class 11 science"
+          ? [
+              "physics",
+              "chemistry",
+              "math",
+              "biology",
+              "computer science",
+              "english",
+            ]
+          : formData.schoolingClass === "class 12 science"
+          ? [
+              "physics",
+              "chemistry",
+              "math",
+              "biology",
+              "computer science",
+              "english",
+            ]
+          : formData.schoolingClass === "class 11 commerce"
+          ? [
+              "Accountancy , bst , economics",
+              "Accountancy , bst , economics , english",
+            ]
+          : formData.schoolingClass === "class 12 commerce"
+          ? [
+              "Accountancy , bst , economics",
+              "Accountancy , bst , economics , english",
+            ]
+          : []
+        : formData.schoolingClass === "class 6"
+        ? ["All Subject"]
+        : formData.schoolingClass === "class 7"
+        ? ["All Subject"]
+        : formData.schoolingClass === "class 8"
+        ? ["All Subject", "All Subject + Hindi/Bengali"]
+        : formData.schoolingClass === "class 9"
+        ? ["All Subject", "All Subject + Hindi/Bengali"]
+        : formData.schoolingClass === "class 10"
+        ? ["All Subject", "All Subject + Hindi/Bengali"]
+        : [],
 
-          []
-        :
-        
-          formData.schoolingClass==="class 6"? ["All Subject"] : 
-          formData.schoolingClass==="class 7"? ["All Subject"] : 
-          formData.schoolingClass==="class 8"? ["All Subject" , "All Subject + Hindi/Bengali"] : 
-          formData.schoolingClass==="class 9"? ["All Subject" , "All Subject + Hindi/Bengali"] : 
-          formData.schoolingClass==="class 10"? ["All Subject" , "All Subject + Hindi/Bengali"] : [] )
-        
-      ,
-    [formData.schoolingCourse , formData.schoolingClass]
+    [formData.schoolingCourse, formData.schoolingClass]
   );
-  
 
-  useEffect(()=>setSchoolingSub([]) ,
-  [formData.schoolingCourse , formData.schoolingClass])
+  useEffect(
+    () => setSchoolingSub([]),
+    [formData.schoolingCourse, formData.schoolingClass]
+  );
 
-  useMemo(()=> setIitNeetFee(iitNeetSub.length * 600), [iitNeetSub])
-    useMemo(()=> setExtraFee(extraSub.length * 500), [extraSub])
+  useMemo(() => setIitNeetFee(iitNeetSub.length * 600), [iitNeetSub]);
+  useMemo(() => setExtraFee(extraSub.length * 500), [extraSub]);
 
-useMemo(()=> formData.schoolingCourse==="CBSE" 
-? (formData.schoolingClass==="class 6" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1100) 
-:(formData.schoolingClass==="class 7" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1300)
-:(formData.schoolingClass==="class 8" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1500)
-:(formData.schoolingClass==="class 8" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1600)
-:(formData.schoolingClass==="class 9" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1700)
-:(formData.schoolingClass==="class 9" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1900)
-:(formData.schoolingClass==="class 10" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1700)
-:(formData.schoolingClass==="class 10" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1900)
-:(formData.schoolingClass==="class 11 commerce" && schoolingSub.includes("Accountancy , bst , economics , english")) ? setSchoolingFee(1300)
-:(formData.schoolingClass==="class 11 commerce" && schoolingSub.includes("Accountancy , bst , economics")) ? setSchoolingFee(1100)
-:(formData.schoolingClass==="class 12 commerce" && schoolingSub.includes("Accountancy , bst , economics , english")) ? setSchoolingFee(1400)
-:(formData.schoolingClass==="class 12 commerce" && schoolingSub.includes("Accountancy , bst , economics")) ? setSchoolingFee(1200)
-:(formData.schoolingClass==="class 11 science" ) ? setSchoolingFee(schoolingSub.length*600)
-:(formData.schoolingClass==="class 12 science")  ? setSchoolingFee(schoolingSub.length*600)
-:setSchoolingFee(0):
-(formData.schoolingClass==="class 6" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1500) 
-:(formData.schoolingClass==="class 7" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1300)
-:(formData.schoolingClass==="class 8" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1500)
-:(formData.schoolingClass==="class 8" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1600)
-:(formData.schoolingClass==="class 9" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1700)
-:(formData.schoolingClass==="class 9" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1900)
-:(formData.schoolingClass==="class 10" && schoolingSub.includes("All Subject")) ? setSchoolingFee(1700)
-:(formData.schoolingClass==="class 10" && schoolingSub.includes("All Subject + Hindi/Bengali")) ? setSchoolingFee(1900)
-:setSchoolingFee(0)
+  useMemo(
+    () =>
+      formData.schoolingCourse === "CBSE"
+        ? formData.schoolingClass === "class 6" &&
+          schoolingSub.includes("All Subject")
+          ? setSchoolingFee(1100)
+          : formData.schoolingClass === "class 7" &&
+            schoolingSub.includes("All Subject")
+          ? setSchoolingFee(1300)
+          : formData.schoolingClass === "class 8" &&
+            schoolingSub.includes("All Subject")
+          ? setSchoolingFee(1500)
+          : formData.schoolingClass === "class 8" &&
+            schoolingSub.includes("All Subject + Hindi/Bengali")
+          ? setSchoolingFee(1600)
+          : formData.schoolingClass === "class 9" &&
+            schoolingSub.includes("All Subject")
+          ? setSchoolingFee(1700)
+          : formData.schoolingClass === "class 9" &&
+            schoolingSub.includes("All Subject + Hindi/Bengali")
+          ? setSchoolingFee(1900)
+          : formData.schoolingClass === "class 10" &&
+            schoolingSub.includes("All Subject")
+          ? setSchoolingFee(1700)
+          : formData.schoolingClass === "class 10" &&
+            schoolingSub.includes("All Subject + Hindi/Bengali")
+          ? setSchoolingFee(1900)
+          : formData.schoolingClass === "class 11 commerce" &&
+            schoolingSub.includes("Accountancy , bst , economics , english")
+          ? setSchoolingFee(1300)
+          : formData.schoolingClass === "class 11 commerce" &&
+            schoolingSub.includes("Accountancy , bst , economics")
+          ? setSchoolingFee(1100)
+          : formData.schoolingClass === "class 12 commerce" &&
+            schoolingSub.includes("Accountancy , bst , economics , english")
+          ? setSchoolingFee(1400)
+          : formData.schoolingClass === "class 12 commerce" &&
+            schoolingSub.includes("Accountancy , bst , economics")
+          ? setSchoolingFee(1200)
+          : formData.schoolingClass === "class 11 science"
+          ? setSchoolingFee(schoolingSub.length * 600)
+          : formData.schoolingClass === "class 12 science"
+          ? setSchoolingFee(schoolingSub.length * 600)
+          : setSchoolingFee(0)
+        : formData.schoolingClass === "class 6" &&
+          schoolingSub.includes("All Subject")
+        ? setSchoolingFee(1500)
+        : formData.schoolingClass === "class 7" &&
+          schoolingSub.includes("All Subject")
+        ? setSchoolingFee(1300)
+        : formData.schoolingClass === "class 8" &&
+          schoolingSub.includes("All Subject")
+        ? setSchoolingFee(1500)
+        : formData.schoolingClass === "class 8" &&
+          schoolingSub.includes("All Subject + Hindi/Bengali")
+        ? setSchoolingFee(1600)
+        : formData.schoolingClass === "class 9" &&
+          schoolingSub.includes("All Subject")
+        ? setSchoolingFee(1700)
+        : formData.schoolingClass === "class 9" &&
+          schoolingSub.includes("All Subject + Hindi/Bengali")
+        ? setSchoolingFee(1900)
+        : formData.schoolingClass === "class 10" &&
+          schoolingSub.includes("All Subject")
+        ? setSchoolingFee(1700)
+        : formData.schoolingClass === "class 10" &&
+          schoolingSub.includes("All Subject + Hindi/Bengali")
+        ? setSchoolingFee(1900)
+        : setSchoolingFee(0),
 
-, [formData.schoolingClass , formData.schoolingCourse , schoolingSub])
+    [formData.schoolingClass, formData.schoolingCourse, schoolingSub]
+  );
 
-const handleSubmit = async(e)=>{
-  e.preventDefault()
-  try {
-    const response = await fetch(`${backend}super/student/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        studentEnrollment: formData.enrollment,
-        studentPassword : formData.password,
-        studentOffice : formData.office,
-        studentPhoto : formData.photo,
-        studentName : formData.name,
-    studentDob : formData.dob,
-    studentGender : formData.gender,
-    fatherName : formData.fatherName,
-    fatherOccupassion : formData.fatherOccupassion,
-    fatherNo: formData.fatherNo,
-    motherName : formData.motherName,
-    parentWp : formData.parentWp,
-    emergencyNo :  formData.emergencyNo,
-    studentAddress : formData.address,
-    studentDoj : formData.doj,
-    studentBlood : formData.blood,
-    schoolName : formData.schoolName,
-    lastClass : formData.lastClass,
-    lastExam : formData.lastExam,
-    iitNeetCourse :  formData.iitNeetCourse,
-    schoolingCourse : formData.schoolingCourse,
-    schoolingClass : formData.schoolingClass,
-    iitNeetAdmission : formData.iitNeetAdmission,
-    schoolingAdmission : formData.schoolingAdmission,
-    extraAdmission : formData.extraAdmission,
-    iitNeetFee : iitNeetFee,
-    schoolingFee : schoolingFee,
-    extraFee : extraFee,
-    iitNeetSub : iitNeetSub,
-    schoolingSub : schoolingSub,
-    extraSub : extraSub,
-    monthlyIncome : monthlyIncome
-      })
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${backend}student/`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          studentEnrollment: formData.enrollment,
+          studentPassword: formData.password,
+          studentOffice: formData.office,
+          studentPhoto: formData.photo,
+          studentName: formData.name,
+          studentDob: formData.dob,
+          studentGender: formData.gender,
+          fatherName: formData.fatherName,
+          fatherOccupassion: formData.fatherOccupassion,
+          fatherNo: formData.fatherNo,
+          motherName: formData.motherName,
+          parentWp: formData.parentWp,
+          emergencyNo: formData.emergencyNo,
+          studentAddress: formData.address,
+          studentDoj: formData.doj,
+          studentBlood: formData.blood,
+          schoolName: formData.schoolName,
+          lastClass: formData.lastClass,
+          lastExam: formData.lastExam,
+          iitNeetCourse: formData.iitNeetCourse,
+          schoolingCourse: formData.schoolingCourse,
+          schoolingClass: formData.schoolingClass,
+          iitNeetAdmission: formData.iitNeetAdmission,
+          schoolingAdmission: formData.schoolingAdmission,
+          extraAdmission: formData.extraAdmission,
+          iitNeetFee: iitNeetFee,
+          schoolingFee: schoolingFee,
+          extraFee: extraFee,
+          iitNeetSub: iitNeetSub,
+          schoolingSub: schoolingSub,
+          extraSub: extraSub,
+          monthlyIncome: monthlyIncome,
+        }),
+      });
 
-    const resJson = await response.json();
+      const resJson = await response.json();
 
-    if (response.status === 200) {
-      alert("Form Submitted")
-      // setIncome(resJson);
-      console.log("====================================");
-      console.log(resJson);
-      console.log("====================================");
-    } else {
-      console.log("Some error occured");
+      if (response.status === 200) {
+        alert("Form Submitted");
+        // setIncome(resJson);
+        console.log("====================================");
+        console.log(resJson);
+        console.log("====================================");
+      } else {
+        console.log("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
     }
-  } catch (err) {
-    console.log(err);
-  }
-}
+  };
 
-useEffect(() => {
-  const date = new Date();
-  const month = date.getMonth()
-  let totalMonthlyFee = iitNeetFee + schoolingFee + extraFee;
-  if (month >= 0 && month <= 2) {
-    setMonthlyIncome(totalMonthlyFee * (3-month))
-  }
-  else{
-    setMonthlyIncome((totalMonthlyFee * (12-month +3)) / (12-month))
-  }
-
-}, [iitNeetFee , schoolingFee , extraFee])
-
+  useEffect(() => {
+    const date = new Date();
+    const month = date.getMonth();
+    let totalMonthlyFee = iitNeetFee + schoolingFee + extraFee;
+    if (month >= 0 && month <= 2) {
+      setMonthlyIncome(totalMonthlyFee * (3 - month));
+    } else {
+      setMonthlyIncome((totalMonthlyFee * (12 - month + 3)) / (12 - month));
+    }
+  }, [iitNeetFee, schoolingFee, extraFee]);
 
   return (
     <>
-    {loading ? (
+      {loading ? (
         <div className="loader" style={{ color: "black" }}>
           Please Wait Your File is Uploading......
           <CircularProgress />
         </div>
       ) : null}
       <ToastContainer />
-      <div style={{ width: "30%", marginLeft: "auto", marginRight: "auto" , paddingTop:30 , paddingBottom:30}}>
+      <div
+        style={{
+          width: "30%",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingTop: 30,
+          paddingBottom: 30,
+        }}
+      >
         <h2>Student Form</h2>
 
         <form style={{ gap: 10, display: "flex", flexDirection: "column" }}>
-        <div>
+          <div>
             <label htmlFor="">Student Enrollment</label>
             <input
               type="text"
@@ -498,9 +588,8 @@ useEffect(() => {
           <div>
             <label htmlFor="">Student Photo</label>
             <input type="file" accept="image/*" onChange={uploadFiles} />
-
           </div>
-          
+
           <div>
             <label htmlFor="">Gender</label>
             <Choose list={Gender} data={"gender"} />
@@ -662,17 +751,21 @@ useEffect(() => {
             <Choose4 list={admissionFeeStatus} />
           </div>
           <label htmlFor="">Total Fee</label>
-          <input type="number" value={iitNeetFee} onChange={(e)=>setIitNeetFee(e.target.value)}/>
+          <input
+            type="number"
+            value={iitNeetFee}
+            onChange={(e) => setIitNeetFee(e.target.value)}
+          />
 
           <h2>Schooling Solution</h2>
           <div>
             <label htmlFor="">Select Board</label>
-            <Choose2 list={Schooling}  />
+            <Choose2 list={Schooling} />
           </div>
-          
+
           <div>
             <label htmlFor="">Select class</label>
-            <Choose3 list={schoolingClassList}  />
+            <Choose3 list={schoolingClassList} />
           </div>
           <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel
@@ -705,11 +798,14 @@ useEffect(() => {
             <Choose5 list={admissionFeeStatus} />
           </div>
           <label htmlFor="">Total Fee</label>
-          <input type="number" value={schoolingFee} onChange={(e)=>setSchoolingFee(e.target.value)}/>
-
+          <input
+            type="number"
+            value={schoolingFee}
+            onChange={(e) => setSchoolingFee(e.target.value)}
+          />
 
           <h2>Extra Curricular</h2>
-          
+
           <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel
               id="demo-multiple-checkbox-label"
@@ -736,16 +832,26 @@ useEffect(() => {
               ))}
             </Select>
           </FormControl>
-           <div>
+          <div>
             <label htmlFor="">Admission Fee :</label>
             <Choose6 list={admissionFeeStatus} />
           </div>
           <label htmlFor="">Total Fee</label>
-          <input type="number" value={extraFee} onChange={(e)=>setExtraFee(e.target.value)}/>
+          <input
+            type="number"
+            value={extraFee}
+            onChange={(e) => setExtraFee(e.target.value)}
+          />
           <h2>Total Monthly Income</h2>
-          <input type="number" value={monthlyIncome} onChange={(e)=>setMonthlyIncome(e.target.value)} />
+          <input
+            type="number"
+            value={monthlyIncome}
+            onChange={(e) => setMonthlyIncome(e.target.value)}
+          />
 
-          <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+          <Button variant="contained" onClick={handleSubmit}>
+            Submit
+          </Button>
         </form>
       </div>
     </>

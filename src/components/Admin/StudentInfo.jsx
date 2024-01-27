@@ -36,7 +36,7 @@ const StudentInfo = ({ studentList, setStudentList }) => {
     console.log("====================================");
 
     try {
-      const response = await fetch(`${backend}super/student/${key}`, {
+      const response = await fetch(`${backend}student/${key}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -126,7 +126,7 @@ const StudentInfo = ({ studentList, setStudentList }) => {
   const updateList = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${backend}super/student/${updateId}`, {
+      const response = await fetch(`${backend}student/${updateId}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

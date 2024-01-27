@@ -74,7 +74,7 @@ const NoteTable = (props) => {
     console.log("====================================");
 
     try {
-      const response = await fetch(`${backend}super/getnote/${key}`, {
+      const response = await fetch(`${backend}getnote/${key}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -97,7 +97,7 @@ const NoteTable = (props) => {
   const updateList = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${backend}super/getnote/${updateId}`, {
+      const response = await fetch(`${backend}getnote/${updateId}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

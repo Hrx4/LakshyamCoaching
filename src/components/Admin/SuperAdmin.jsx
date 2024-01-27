@@ -1,4 +1,4 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import ClearIcon from "@mui/icons-material/Clear";
 import NoteForm from "./NoteForm";
@@ -18,6 +18,7 @@ import AddBanner from "./AddBanner";
 import AllBanner from "./AllBanner";
 import TeacherForm from "./TeacherForm";
 import AllTeacher from "./AllTeacher";
+import Birthday from "./Birthday";
 
 const SuperAdmin = () => {
   const ref = useRef(null);
@@ -115,7 +116,7 @@ const SuperAdmin = () => {
     setNoteView("notetable");
 
     try {
-      const response = await fetch(`${backend}super/getnote/`, {
+      const response = await fetch(`${backend}getnote/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -144,7 +145,7 @@ const SuperAdmin = () => {
     setNoteView("contacttable");
 
     try {
-      const response = await fetch(`${backend}super/contact/`, {
+      const response = await fetch(`${backend}contact/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -166,6 +167,35 @@ const SuperAdmin = () => {
       console.log(err);
     }
   };
+  const handleBirthday = async () => {
+    ref.current.classList.add("slider__close");
+    ref.current.classList.remove("slider__open");
+    setSlideOpen(false);
+    setNoteView("birthday");
+
+    // try {
+    //   const response = await fetch(`${backend}contact/`, {
+    //     method: "GET",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+
+    //   const resJson = await response.json();
+
+    //   if (response.status === 200) {
+    //     setContactList(resJson);
+    //     console.log("====================================");
+    //     console.log(resJson);
+    //     console.log("====================================");
+    //   } else {
+    //     console.log("Some error occured");
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  };
   const handleApplyTable = async () => {
     ref.current.classList.add("slider__close");
     ref.current.classList.remove("slider__open");
@@ -173,7 +203,7 @@ const SuperAdmin = () => {
     setNoteView("applytable");
 
     try {
-      const response = await fetch(`${backend}super/apply/`, {
+      const response = await fetch(`${backend}apply/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -203,7 +233,7 @@ const SuperAdmin = () => {
     setNoteView("noticetable");
 
     try {
-      const response = await fetch(`${backend}super/notice/`, {
+      const response = await fetch(`${backend}notice/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -228,7 +258,7 @@ const SuperAdmin = () => {
   // const handleClassForm = () =>{
   //   setNoteView("classform");
   // }
-  
+
   const handleNoteForm = () => {
     setNoteView("noteform");
     ref.current.classList.add("slider__close");
@@ -294,7 +324,7 @@ const SuperAdmin = () => {
     setSlideOpen(false);
 
     try {
-      const response = await fetch(`${backend}super/popup/`, {
+      const response = await fetch(`${backend}popup/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -429,7 +459,10 @@ const SuperAdmin = () => {
                   {noticeItems.isOpen && (
                     <ul style={{ padding: 10, color: "white" }}>
                       <li onClick={handleTeacherForm}>Add Teacher</li>
-                      <li style={{ marginTop: 10 }} onClick={handleTeacherTable}>
+                      <li
+                        style={{ marginTop: 10 }}
+                        onClick={handleTeacherTable}
+                      >
                         All Teacher
                       </li>
                     </ul>
@@ -503,8 +536,6 @@ const SuperAdmin = () => {
             </ul>
           </div>
 
-         
-
           <div
             style={{ paddingTop: 20, textAlign: "left", marginLeft: 0 }}
             className="note__btn"
@@ -549,6 +580,13 @@ const SuperAdmin = () => {
           >
             ▶Student Payment
           </div>
+          <div
+            onClick={handleBirthday}
+            style={{ padding: 20, cursor: "pointer", paddingLeft: 30 }}
+            className="note__btn"
+          >
+            ▶ Birthday Wish
+          </div>
         </div>
 
         <div
@@ -582,13 +620,15 @@ const SuperAdmin = () => {
           ) : null}
           {noteView === "classform" ? <ClassForm /> : null}
           {noteView === "teacherform" ? <TeacherForm /> : null}
-          {noteView === "teachertable" ? <AllTeacher/> : null}
+          {noteView === "teachertable" ? <AllTeacher /> : null}
 
           {noteView === "addStudentForm" ? <AddStudent /> : null}
           {noteView === "allStudentForm" ? <AllStudent /> : null}
           {noteView === "addPaymentDetails" ? <StudentPayment /> : null}
           {noteView === "Dashboard" ? <Dashboard /> : null}
           {noteView === "addBannerForm" ? <AddBanner /> : null}
+          {noteView === "birthday" ? <Birthday /> : null}
+
           {noteView === "allBannerForm" ? (
             <AllBanner bannerList={bannerList} setBannerList={setBannerList} />
           ) : null}

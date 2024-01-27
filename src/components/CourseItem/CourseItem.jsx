@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
 import { Link } from "react-router-dom";
 
-
 const CourseItem = ({ imgSrc, title, description }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -37,7 +36,7 @@ const CourseItem = ({ imgSrc, title, description }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${backend}super/apply/`, {
+      const res = await fetch(`${backend}apply/`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -84,7 +83,10 @@ const CourseItem = ({ imgSrc, title, description }) => {
         <div className="down-content">
           <h4>{title}</h4>
           <p>{description}</p>
-          <div className="text-button-pay" style={{ display: "flex" , justifyContent:"space-between" }}>
+          <div
+            className="text-button-pay"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <div
               style={{
                 textDecoration: "none",
@@ -97,14 +99,17 @@ const CourseItem = ({ imgSrc, title, description }) => {
             >
               Apply Now <i className="fa fa-angle-double-right"></i>
             </div>
-            <Link style={{
+            <Link
+              style={{
                 textDecoration: "none",
                 color: "orange",
                 cursor: "pointer",
-                fontSize:16
+                fontSize: 16,
               }}
-              to={'/freetutorial'}
-              >Free Note</Link>
+              to={"/freetutorial"}
+            >
+              Free Note
+            </Link>
           </div>
         </div>
       </div>

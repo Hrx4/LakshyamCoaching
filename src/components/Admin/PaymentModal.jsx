@@ -2,12 +2,7 @@ import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
 import backend from "../../backend";
 
-const PaymentModal = ({
-  modalOpen,
-  setModalOpen,
-  paymentList,
-  paymentId,
-}) => {
+const PaymentModal = ({ modalOpen, setModalOpen, paymentList, paymentId }) => {
   // useEffect(() => {
   //     setModalOpen(true)
   // }, [])
@@ -26,35 +21,30 @@ const PaymentModal = ({
     "November",
     "December",
   ];
-  const [monthList, setMonthList] = useState([])
+  const [monthList, setMonthList] = useState([]);
 
-  const handleCheck = (e , index) => {
+  const handleCheck = (e, index) => {
     e.target.checked
       ? setMonthList([...monthList, index])
-      : setMonthList([
-          ...monthList.filter((item) => item !== index),
-        ]);
+      : setMonthList([...monthList.filter((item) => item !== index)]);
     console.log("====================================");
     console.log(monthList);
     console.log("====================================");
   };
 
-  const updateList = async (e ) => {
+  const updateList = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `${backend}super/student/payment/${paymentId}`,
-        {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-           monthList : monthList
-          }),
-        }
-      );
+      const response = await fetch(`${backend}student/payment/${paymentId}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          monthList: monthList,
+        }),
+      });
 
       const resJson = await response.json();
       console.log(resJson);
@@ -66,7 +56,7 @@ const PaymentModal = ({
     } catch (err) {
       console.log(err);
     }
-    window.location.reload()
+    window.location.reload();
   };
 
   return (
@@ -92,49 +82,56 @@ const PaymentModal = ({
             overflowY: "scroll",
           }}
         >
-          
-            <div style={{ width: "auto" }} className="form-container">
-              <div className="form-group">
-                <label>Student Enrollment Id : {paymentList?.studentEnrollment} </label>
-                <label>Student Courses :  </label>
-                <div>
-                {"IIT-JEE/NEET -> " + paymentList?.iitNeetCourse + " , Subjects -> " + paymentList?.iitNeetSub + " , Fee ->" + paymentList?.iitNeetFee}
-                </div>
-                <div>
-                {"Schooling Solution -> " + paymentList?.schoolingCourse + " , Class -> " + paymentList?.schoolingClass + " , Subject -> " + paymentList?.schoolingSub +  " , Fee ->" + paymentList?.schoolingFee}
-                </div>
-                <div>
-                {"Extra Curricular -> " + paymentList?.extraSub + " , Fee ->" + paymentList?.iitNeetFee}
-                </div>
-                
-
+          <div style={{ width: "auto" }} className="form-container">
+            <div className="form-group">
+              <label>
+                Student Enrollment Id : {paymentList?.studentEnrollment}{" "}
+              </label>
+              <label>Student Courses : </label>
+              <div>
+                {"IIT-JEE/NEET -> " +
+                  paymentList?.iitNeetCourse +
+                  " , Subjects -> " +
+                  paymentList?.iitNeetSub +
+                  " , Fee ->" +
+                  paymentList?.iitNeetFee}
               </div>
-              <form onSubmit={(e) => updateList(e)}>
-              
-              {
-                paymentList?.paymentDetails.map((item , index)=>(
-                  <div className="form-group">
-                      <label>{data[item.paymentMonth]}:</label>
-{
-  (item.paidMonth!==null)?                       <input
-                        type="checkbox"
-                        checked={true}
-                      />
-                      :
-                      <input
-                        type="checkbox"
-                        value={index}
-                        onClick={(e) => handleCheck(e , index)}
-                      />
-}
-                    </div>
-                ))
-              }
-
-                <button type="submit">Submit</button>
-              </form>
+              <div>
+                {"Schooling Solution -> " +
+                  paymentList?.schoolingCourse +
+                  " , Class -> " +
+                  paymentList?.schoolingClass +
+                  " , Subject -> " +
+                  paymentList?.schoolingSub +
+                  " , Fee ->" +
+                  paymentList?.schoolingFee}
+              </div>
+              <div>
+                {"Extra Curricular -> " +
+                  paymentList?.extraSub +
+                  " , Fee ->" +
+                  paymentList?.iitNeetFee}
+              </div>
             </div>
-          
+            <form onSubmit={(e) => updateList(e)}>
+              {paymentList?.paymentDetails.map((item, index) => (
+                <div className="form-group">
+                  <label>{data[item.paymentMonth]}:</label>
+                  {item.paidMonth !== null ? (
+                    <input type="checkbox" checked={true} />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      value={index}
+                      onClick={(e) => handleCheck(e, index)}
+                    />
+                  )}
+                </div>
+              ))}
+
+              <button type="submit">Submit</button>
+            </form>
+          </div>
         </Box>
       </Modal>
     </>

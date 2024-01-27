@@ -49,7 +49,7 @@ const AllBanner = ({ bannerList, setBannerList }) => {
     console.log("====================================");
 
     try {
-      const response = await fetch(`${backend}super/popup/${key}`, {
+      const response = await fetch(`${backend}popup/${key}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -72,7 +72,7 @@ const AllBanner = ({ bannerList, setBannerList }) => {
   const updateList = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${backend}super/popup/${updateId}`, {
+      const response = await fetch(`${backend}popup/${updateId}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

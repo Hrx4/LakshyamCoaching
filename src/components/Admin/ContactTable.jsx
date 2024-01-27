@@ -37,7 +37,7 @@ const ContactTable = (props) => {
     console.log("====================================");
 
     try {
-      const response = await fetch(`${backend}super/contact/${key}`, {
+      const response = await fetch(`${backend}contact/${key}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -62,7 +62,7 @@ const ContactTable = (props) => {
   const updateList = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${backend}super/contact/${updateId}`, {
+      const response = await fetch(`${backend}contact/${updateId}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

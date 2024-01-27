@@ -35,7 +35,7 @@ const AddBanner = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${backend}super/popup/`, {
+      const res = await fetch(`${backend}popup/`, {
         method: "POST",
         headers: {
           Accept: "application/json",
