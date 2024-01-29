@@ -47,7 +47,7 @@ function NoteForm() {
     // Handle form submission here (e.g., send the data to the server)
     console.log({ title, subject, classValue, batch, image, pdf, course });
     try {
-      const res = await fetch(`${backend}super/getnote/`, {
+      const res = await fetch(`${backend}getnote/`, {
         method: "POST",
         headers: {
           Accept: "application/json",

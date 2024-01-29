@@ -23,7 +23,7 @@ const teacherSchema = mongoose.Schema({
     teacherAddress: {
         type : String
     },
-    teacherSalary : {
+    teacherAddress : {
         type: Number
     },
     teacherDoj: {
@@ -32,10 +32,19 @@ const teacherSchema = mongoose.Schema({
     teacherSubject : {
         type: String
     },
+    bdayMonth : {
+        type : Number
+      },
+      bdayDate : {
+        type : Number
+      },
     teacherClass: {
         type : String
     },
     teacherCourse : {
+        type: String
+    },
+    teacherDob : {
         type: String
     },
     

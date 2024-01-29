@@ -26,28 +26,36 @@ const Dashboard = () => {
   const handleTotalDue = () => {
     setSubDash("TotalDue");
   };
-  const [income, setIncome] = useState([])
-  const {id} = useParams()
+  const list = ["all" , "office 1", "office 2", "office 3"]
+  const [income, setIncome] = useState([]);
+  const [office, setOffice] = useState("");
+
+  const { id } = useParams();
   useEffect(() => {
-    const incomeList = async()=>{
+    const incomeList = async () => {
       try {
-        const response = await fetch(`${backend}super/student/getdashboard/`, {
+        const response = await fetch(`${backend}student/getdashboard/`, {
           method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-          },body : JSON.stringify({
-            studentOffice : 
-          (id==="office1") ? "office 1" : 
-          (id==="office2") ? "office 2":
-          (id==="office3") ? "office 3" :
-          (id==="superadmin") ? "" :
-          "none" ,
-          })
+          },
+          body: JSON.stringify({
+            studentOffice:
+              id === "office1"
+                ? "office 1"
+                : id === "office2"
+                ? "office 2"
+                : id === "office3"
+                ? "office 3"
+                : id === "superadmin"
+                ? office === "all" ? "" : office
+                : "none",
+          }),
         });
-  
+
         const resJson = await response.json();
-  
+
         if (response.status === 200) {
           setIncome(resJson);
           console.log("====================================");
@@ -59,19 +67,43 @@ const Dashboard = () => {
       } catch (err) {
         console.log(err);
       }
-    }
-    incomeList()
-  }, [id])
-  
+    };
+    incomeList();
+  }, [id , office]);
 
   return (
     <div
       className="dContainer"
       style={{ marginTop: 40, margin: 20, width: "100%" }}
     >
+      <div style={{display:"flex" , justifyContent:"space-between"}}>
       <h1 className="dHeading" style={{ marginLeft: 15, display: "flex" }}>
         Dashboard
+        
       </h1>
+      {
+        (id === "superadmin")  ? <select
+          name="office"
+          id="office"
+          style={{height:"50%"}}
+          value={office}
+          onChange={(e) => {
+            setOffice(e.target.value);
+          }}
+        >
+          <option value="" disabled="disabled">
+            Choose
+          </option>
+          {list.map((item, index) => (
+            <option value={item} key={index}>
+              {item}
+            </option>
+          ))}
+        </select> : null
+
+      }
+      </div>
+      
       <div
         className="dInnerContainer"
         style={{
@@ -110,9 +142,14 @@ const Dashboard = () => {
             >
               <FaCreativeCommonsBy size={50} />
             </div>
-            <div className="Dhalf dText" style={{ color: "black" ,
-            display: "flex",
-                flexDirection: "column",}}>
+            <div
+              className="Dhalf dText"
+              style={{
+                color: "black",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               TOTAL TEACHER
               <div>{income?.totalTeacher}</div>
             </div>

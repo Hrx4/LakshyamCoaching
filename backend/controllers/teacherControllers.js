@@ -3,12 +3,15 @@ const teacherModels = require('../models/teacherModels');
 // const teacherPaymentModels = require('../models/teacherPaymentModels');
 
 const createTeacher = asyncHandler(async(req , res) => {
-    const {teacherName , teacherAge , teacherGender , teacherEducation , teacherAddress , teacherSalary , teacherDoj ,teacherSubject , teacherClass , teacherCourse,teacherEmail , teacherPassword  } = req.body;
+    const {teacherName , teacherDob , teacherAge , teacherGender , teacherEducation , teacherAddress , teacherSalary , teacherDoj ,teacherSubject , teacherClass , teacherCourse,teacherEmail , teacherPassword  } = req.body;
  
+    const bdayMonth = new Date(teacherDob).getMonth()
+  const bdayDate = new Date(teacherDob).getDate()
     const contact = await teacherModels.create({
-        teacherName , teacherAge ,  teacherGender , teacherEducation , teacherAddress , teacherSalary , teacherDoj ,teacherSubject , teacherClass , teacherCourse ,teacherEmail , teacherPassword 
+        teacherName ,teacherDob , teacherAge ,
+        bdayMonth : bdayMonth, 
+    bdayDate  : bdayDate,  teacherGender , teacherEducation , teacherAddress , teacherSalary , teacherDoj ,teacherSubject , teacherClass , teacherCourse ,teacherEmail , teacherPassword 
     })
-    const d = new Date();
 
     // const teacherPayment = await teacherPaymentModels.create({
     //     paymentId: contact._id,
@@ -58,7 +61,7 @@ const deleteTeacher = asyncHandler(async(req , res) => {
 
 const updateTeacher = asyncHandler(async(req , res) => {
 
-    const {teacherName , teacherAge , teacherGender , teacherEducation , teacherAddress , teacherSalary , teacherDoj ,teacherSubject , teacherClass , teacherCourse ,teacherEmail , teacherPassword  } = req.body;
+    const {teacherName,teacherDob , teacherAge , teacherGender , teacherEducation , teacherAddress , teacherSalary , teacherDoj ,teacherSubject , teacherClass , teacherCourse ,teacherEmail , teacherPassword  } = req.body;
 
     const contact = await teacherModels.findById(req.params.id);
     if(!contact){
@@ -70,6 +73,7 @@ const updateTeacher = asyncHandler(async(req , res) => {
         req.params.id,
         {
             teacherName : teacherName , 
+            teacherDob : teacherDob,
             teacherAge : teacherAge, 
             teacherGender : teacherGender, 
             teacherEducation: teacherEducation , 

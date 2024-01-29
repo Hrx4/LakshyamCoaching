@@ -89,6 +89,12 @@ const studentSchema = mongoose.Schema(
     monthlyIncome: {
       type: Number,
     },
+    bdayMonth : {
+      type : Number
+    },
+    bdayDate : {
+      type : Number
+    },
     iitNeetSub: {
       type: [],
     },

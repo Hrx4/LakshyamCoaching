@@ -1,9 +1,9 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import "./SearchSection.css";
 import backend from "../../backend";
 
 // Parent component
-const SearchSection = ({  setNoteList , setShowImg ,  setShowPdf ,  setTitle }) => {
+const SearchSection = ({ setNoteList, setShowImg, setShowPdf, setTitle }) => {
   const [subject, setSubject] = useState("");
   const [course, setCourse] = useState("");
   const [classs, setClasss] = useState("");
@@ -28,7 +28,7 @@ const SearchSection = ({  setNoteList , setShowImg ,  setShowPdf ,  setTitle }) 
 
   const handleNoteTable = async () => {
     try {
-      const response = await fetch(`${backend}super/getnote/tutorial/`, {
+      const response = await fetch(`${backend}getnote/tutorial/`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -46,14 +46,13 @@ const SearchSection = ({  setNoteList , setShowImg ,  setShowPdf ,  setTitle }) 
 
       if (response.status === 200) {
         setNoteList(resJson);
-        if(resJson.length===0){
-          setShowPdf('')
-          setTitle('')
-        }
-        else{
+        if (resJson.length === 0) {
+          setShowPdf("");
+          setTitle("");
+        } else {
           setShowImg(resJson[0].noteImage);
-        setTitle(resJson[0].noteTitle)
-        setShowPdf(resJson[0].notePdf)
+          setTitle(resJson[0].noteTitle);
+          setShowPdf(resJson[0].notePdf);
         }
         console.log("====================================");
         console.log(resJson);
@@ -66,7 +65,6 @@ const SearchSection = ({  setNoteList , setShowImg ,  setShowPdf ,  setTitle }) 
     }
   };
 
- 
   // Select component
   const Select = ({ options, setSubject, subject }) => (
     <select
@@ -155,7 +153,6 @@ const SearchSection = ({  setNoteList , setShowImg ,  setShowPdf ,  setTitle }) 
       ))}
     </select>
   );
-  
 
   return (
     <section className="courseSearch">
@@ -181,13 +178,7 @@ const SearchSection = ({  setNoteList , setShowImg ,  setShowPdf ,  setTitle }) 
         <div className="courseSearch-bars-bar">
           <Select2 options={classes} setClasss={setClasss} classs={classs} />
         </div>
-        <button
-          onClick={() =>
-            handleNoteTable(
-            )
-          }
-          style={{ borderRadius: 5 }}
-        >
+        <button onClick={() => handleNoteTable()} style={{ borderRadius: 5 }}>
           Search
         </button>
       </div>

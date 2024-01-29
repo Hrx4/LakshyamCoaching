@@ -22,7 +22,7 @@ function App() {
   const [displayState, setDisplayState] = useState("none");
   const getBanner = async () => {
     try {
-      const response = await fetch(`${backend}super/popup/`, {
+      const response = await fetch(`${backend}popup/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -33,11 +33,10 @@ function App() {
       const resJson = await response.json();
 
       if (response.status === 200) {
-        const size = resJson.length
-        if (size>1)
-        {setImgsrc(resJson[size-1].popupImage)}
-        else 
-        setImgsrc(resJson[0].popupImage);
+        const size = resJson.length;
+        if (size > 1) {
+          setImgsrc(resJson[size - 1].popupImage);
+        } else setImgsrc(resJson[0].popupImage);
         console.log("====================================");
         console.log(resJson);
         console.log("====================================");
@@ -50,10 +49,11 @@ function App() {
   };
   useEffect(() => {
     getBanner();
-    if(imgsrc!=="")
-    {setTimeout(() => {
-      setDisplayState("flex");
-    }, 10000);}
+    if (imgsrc !== "") {
+      setTimeout(() => {
+        setDisplayState("flex");
+      }, 10000);
+    }
   }, [imgsrc]);
 
   return (
@@ -86,7 +86,7 @@ function App() {
           </div>
         </div>
       </div>
-<ScrollTop/>
+      <ScrollTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -96,9 +96,8 @@ function App() {
         <Route path="/login" element={<Admin />} />
         <Route path="/admin/:id" element={<SuperAdmin />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/student" element={<StudentPanel/>}/>
-        <Route path="/teacher" element={<TeacherPanel/>}/>
-
+        <Route path="/student" element={<StudentPanel />} />
+        <Route path="/teacher" element={<TeacherPanel />} />
       </Routes>
       <Footer />
     </>

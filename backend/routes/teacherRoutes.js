@@ -10,6 +10,6 @@ router.route('/').post(createTeacher).get(getTeacher);
 router.route('/:id').delete(deleteTeacher).put(updateTeacher)
 // .post(updatePayment);
 // router.route('/payment/:id').get(getTeacherPayment)
-router.route('/all/details').post(getTeacherDetails)
+router.route('/details').post(getTeacherDetails)
 
 module.exports = router

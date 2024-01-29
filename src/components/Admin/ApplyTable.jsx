@@ -11,7 +11,7 @@ const ApplyTable = (props) => {
     console.log("====================================");
 
     try {
-      const response = await fetch(`${backend}super/apply/${key}`, {
+      const response = await fetch(`${backend}apply/${key}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",

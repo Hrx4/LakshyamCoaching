@@ -14,7 +14,7 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
   const handleAllStudentTable = async (ind) => {
     // e.preventDefault();
     // try {
-    //   const res = await fetch(`${backend}super/student/getpayment`, {
+    //   const res = await fetch(`${backend}student/getpayment`, {
     //     method: "POST",
     //     headers: {
     //       Accept: "application/json",
@@ -39,15 +39,14 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
     //   console.log(err);
     // }
     console.log(studentPayList);
-    setPaymentList(studentPayList[ind])
+    setPaymentList(studentPayList[ind]);
     setPayHistory("PaymentHistory");
   };
   const handleAllStudentTable1 = async (ind) => {
     // e.preventDefault();
-    setPaymentList(studentPayList[ind])
+    setPaymentList(studentPayList[ind]);
     setModalOpen(true);
     setPayHistory("PaymentModal");
-
   };
 
   useEffect(() => {
@@ -110,8 +109,8 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
       </div>
       {payHistory === "PaymentHistory" ? (
         <PaymentHistoryTab
-          admissionList = {paymentList.admissionPaymentDetails}
-          paymentList = {paymentList.paymentDetails}
+          admissionList={paymentList.admissionPaymentDetails}
+          paymentList={paymentList.paymentDetails}
         />
       ) : null}
       {payHistory === "PaymentModal" ? (

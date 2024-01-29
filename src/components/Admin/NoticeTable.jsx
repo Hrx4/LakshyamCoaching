@@ -28,7 +28,7 @@ const NoticeTable = (props) => {
     console.log("====================================");
 
     try {
-      const response = await fetch(`${backend}super/notice/${key}`, {
+      const response = await fetch(`${backend}notice/${key}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -53,7 +53,7 @@ const NoticeTable = (props) => {
   const updateList = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${backend}super/notice/${updateId}`, {
+      const response = await fetch(`${backend}notice/${updateId}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

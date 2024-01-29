@@ -18,7 +18,7 @@ function Home() {
 
   const handleNoticeTable = async () => {
     try {
-      const response = await fetch(`${backend}super/notice/`, {
+      const response = await fetch(`${backend}notice/`, {
         method: "GET",
         headers: {
           Accept: "application/json",

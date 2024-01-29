@@ -92,6 +92,8 @@ const createStudent = asyncHandler(async (req, res) => {
       });
     }
   }
+  const bdayMonth = new Date(studentDob).getMonth()
+  const bdayDate = new Date(studentDob).getDate()
 
   const student = await studentModels.create({
     studentEnrollment,
@@ -99,6 +101,8 @@ const createStudent = asyncHandler(async (req, res) => {
     studentPassword,
     studentPhoto,
     studentName,
+    bdayMonth : bdayMonth, 
+    bdayDate  : bdayDate,
     studentDob,
     studentGender,
     fatherName,

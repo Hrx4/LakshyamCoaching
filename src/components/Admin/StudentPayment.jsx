@@ -16,26 +16,30 @@ const StudentPayment = () => {
   const [studentEnrollment, setStudentEnrollment] = useState("");
   const [payDetails, setPayDetails] = useState();
   const [studentPayList, setStudentPayList] = useState([]);
-  const {id} = useParams()
+  const { id } = useParams();
   const handlePayDetails = async (e) => {
     e.preventDefault();
     setPayDetails("addPayDetails");
     try {
-      const res = await fetch(`${backend}super/student/getstudent`, {
+      const res = await fetch(`${backend}student/getstudent`, {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          studentOffice : 
-          (id==="office1") ? "office 1" : 
-          (id==="office2") ? "office 2":
-          (id==="office3") ? "office 3" :
-          (id==="superadmin") ? "" :
-          "none" ,
+          studentOffice:
+            id === "office1"
+              ? "office 1"
+              : id === "office2"
+              ? "office 2"
+              : id === "office3"
+              ? "office 3"
+              : id === "superadmin"
+              ? ""
+              : "none",
           course: courseForPay,
-          studentEnrollment : studentEnrollment
+          studentEnrollment: studentEnrollment,
         }),
       });
       let resJson = await res.json();
@@ -83,16 +87,20 @@ const StudentPayment = () => {
                   style={{ color: "white" }}
                 >
                   <MenuItem value="IIT-JEE/NEET">IIT-JEE/NEET</MenuItem>
-                  <MenuItem value="Schooling Solution">Schooling Solution</MenuItem>
-                  <MenuItem value="Extra Curricular">
-                    Extra Curricular
+                  <MenuItem value="Schooling Solution">
+                    Schooling Solution
                   </MenuItem>
+                  <MenuItem value="Extra Curricular">Extra Curricular</MenuItem>
                 </Select>
               </FormControl>
             </Box>
 
-            <label >Student Enrollment : </label>
-            <input type="text" value={studentEnrollment} onChange={(e)=>setStudentEnrollment(e.target.value)} />
+            <label>Student Enrollment : </label>
+            <input
+              type="text"
+              value={studentEnrollment}
+              onChange={(e) => setStudentEnrollment(e.target.value)}
+            />
             <button style={{ marginTop: 15 }}>Submit</button>
           </form>
         </div>

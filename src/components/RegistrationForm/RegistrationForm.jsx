@@ -21,7 +21,7 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${backend}super/contact/`, {
+      const res = await fetch(`${backend}contact/`, {
         method: "POST",
         headers: {
           Accept: "application/json",

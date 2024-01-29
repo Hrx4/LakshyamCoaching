@@ -17,7 +17,7 @@ function NoticeForm() {
 
     // Handle form submission here (e.g., send the data to the server)
     try {
-      const res = await fetch(`${backend}super/notice/`, {
+      const res = await fetch(`${backend}notice/`, {
         method: "POST",
         headers: {
           Accept: "application/json",
