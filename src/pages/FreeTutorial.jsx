@@ -35,9 +35,7 @@ const FreeTutorial = () => {
         setShowImg(resJson[0].noteImage);
         setTitle(resJson[0].noteTitle);
         setShowPdf(resJson[0].notePdf);
-        console.log("====================================");
-        console.log(resJson);
-        console.log("====================================");
+        
       } else {
         console.log("Some error occured");
       }

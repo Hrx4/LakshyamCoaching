@@ -4,7 +4,6 @@ const VideoContent = () => {
   return (
     <div className="col-md-6 align-self-center">
       <div className="left-content">
-        <span style={{color:"white"}}>our presentation is for you</span>
         <h4 style={{color:"white", fontSize:30}}>
           Watch the video to learn more <em style={{fontSize:35}}>about Lakshyam Coaching</em>
         </h4>

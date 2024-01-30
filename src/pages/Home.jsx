@@ -30,9 +30,7 @@ function Home() {
 
       if (response.status === 200) {
         setNoticeList(resJson);
-        console.log("====================================");
-        console.log(resJson);
-        console.log("====================================");
+       
       } else {
         console.log("Some error occured");
       }

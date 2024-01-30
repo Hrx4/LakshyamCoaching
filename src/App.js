@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
+import { useLocation } from 'react-router-dom'
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -18,6 +19,7 @@ import TeacherPanel from "./components/Teacher/TeacherPanel";
 
 function App() {
   const [imgsrc, setImgsrc] = useState("");
+  const location = useLocation()
 
   const [displayState, setDisplayState] = useState("none");
   const getBanner = async () => {
@@ -37,9 +39,7 @@ function App() {
         if (size > 1) {
           setImgsrc(resJson[size - 1].popupImage);
         } else setImgsrc(resJson[0].popupImage);
-        console.log("====================================");
-        console.log(resJson);
-        console.log("====================================");
+        
       } else {
         console.log("Some error occured");
       }
@@ -48,13 +48,14 @@ function App() {
     }
   };
   useEffect(() => {
+    if(location.pathname==="/" || location.pathname==="/freetutorial" || location.pathname==="/courses" || location.pathname==="/gallery" || location.pathname==="/about" || location.pathname==="/contact")
     getBanner();
     if (imgsrc !== "") {
       setTimeout(() => {
         setDisplayState("flex");
       }, 10000);
     }
-  }, [imgsrc]);
+  }, [imgsrc , location]);
 
   return (
     <>
