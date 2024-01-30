@@ -271,16 +271,16 @@ const Dashboard = () => {
       </div>
 
       {subDash === "MonthlyIncome" ? (
-        <SubDashBoard headingDash="Monthly Income" apiRoute="monthlyincome" />
+        <SubDashBoard headingDash="Monthly Income" apiRoute="monthlyincome" office={office} />
       ) : null}
       {subDash === "TotalIncome" ? (
-        <SubDashBoard headingDash="Total Income" apiRoute="totalincome" />
+        <SubDashBoard headingDash="Total Income" apiRoute="totalincome" office={office} />
       ) : null}
       {subDash === "MonthlyDue" ? (
-        <SubDashBoard headingDash="Monthly Due" apiRoute="monthlydue" />
+        <SubDashBoard headingDash="Monthly Due" apiRoute="monthlydue" office={office} />
       ) : null}
       {subDash === "TotalDue" ? (
-        <SubDashBoard headingDash="Total Due" apiRoute="totaldue" />
+        <SubDashBoard headingDash="Total Due" apiRoute="totaldue" office={office} />
       ) : null}
     </div>
   );

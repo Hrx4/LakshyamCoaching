@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css';
 import lakshyamLogo from './lakshyamlogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const location = useLocation()
 
   useEffect(() => {
     // Function to handle scroll events
@@ -24,8 +24,9 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      console.log(location.pathname);
     };
-  }, []);
+  }, [location]);
   return (
     <div style={{position:"sticky" , top:0 , zIndex:100}}>
     <header className={`main-header ${isScrolled ? 'scrolled' : ''}  `}>
@@ -48,22 +49,22 @@ const Navbar = () => {
       <nav id="menu" className="main-nav" role="navigation">
         <ul className="main-menu">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" style={location.pathname === "/" ?{ backgroundColor: '#3fe503dd' } : {}} >Home</Link>
           </li>
           <li>
-            <Link to="/freetutorial" style={{ backgroundColor: '#3fe503dd' }}>Study Material</Link>
+            <Link to="/freetutorial" style={location.pathname === "/freetutorial" ?{ backgroundColor: '#3fe503dd' } : {}}>Study Material</Link>
           </li>
           <li>
-            <Link to="/courses">Courses</Link>
+            <Link to="/courses" style={location.pathname === "/courses" ?{ backgroundColor: '#3fe503dd' } : {}} >Courses</Link>
           </li>
           <li>
-            <Link to="/gallery">Gallery</Link>
+            <Link to="/gallery" style={location.pathname === "/gallery" ?{ backgroundColor: '#3fe503dd' } : {}} >Gallery</Link>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <Link to="/about" style={location.pathname === "/about" ?{ backgroundColor: '#3fe503dd' } : {}} >About Us</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact" style={location.pathname === "/contact" ?{ backgroundColor: '#3fe503dd' } : {}} >Contact</Link>
           </li>
           <li>
             <Link to={'/login'} style={{ backgroundColor: '#3fe503dd' }}>

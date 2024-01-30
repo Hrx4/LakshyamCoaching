@@ -39,10 +39,12 @@ const createStudent = asyncHandler(async (req, res) => {
     monthlyIncome,
   } = req.body;
 
-  const date = new Date();
+  // const date = new Date();
   // const month = date.getMonth();
-  const month = date.getMonth();
-  const actualDate = date.toISOString().split("T")[0];
+  // const month = date.getMonth();
+  const date = new Date(studentDoj)
+  const month = new Date(studentDoj).getMonth()
+  const actualDate = date;
   let arr = [];
   let admissionArr = [];
   if (iitNeetAdmission === "YES") {
@@ -77,7 +79,7 @@ const createStudent = asyncHandler(async (req, res) => {
       year: date.getFullYear(),
       paymentMonth: month,
       paidMonth: null,
-      paymentFee: monthlyIncome,
+      paymentFee: parseInt(monthlyIncome),
       paidDate: null,
     });
   } else {
@@ -87,7 +89,7 @@ const createStudent = asyncHandler(async (req, res) => {
         year: date.getFullYear(),
         paymentMonth: index,
         paidMonth: null,
-        paymentFee: monthlyIncome,
+        paymentFee: parseInt(monthlyIncome),
         paidDate: null,
       });
     }
@@ -341,118 +343,250 @@ const getMonthlyIncome = asyncHandler(async (req, res) => {
 });
 
 const getMonthlyIncomeDetails = asyncHandler(async (req, res) => {
-  const { studentCourse, studentClass, studentSubject, studentEnrollment } =
+  const { studentCourse, studentClass, studentEnrollment ,studentOffice} =
     req.body;
-  const d = new Date();
+    const d = new Date();
+    const month = d.getMonth();
+  
+    let students = [];
+  let result = [];
+    
+  //office wise filter
+      if (studentOffice !== "")
+        students = await studentModels.find({
+          studentOffice: studentOffice,
+        });
+      else
+        students = await studentModels.find();
 
-  var students = await paymentModels.find({});
-  console.log("====================================");
-  console.log(students, "285");
-  console.log("====================================");
-  students = students.filter((item) => item.lastIncomeMonth === d.getMonth());
+  //studentenrollment wise filter
 
   if (studentEnrollment !== "") {
-    students = students.filter((item) => item.paymentId === studentEnrollment);
+    students = students.filter((item) => item.studentEnrollment === studentEnrollment);
   }
-
-  if (studentCourse !== "") {
-    students = students.filter((item) => item.studentCourse === studentCourse);
+  else{
+    let courseList =[]
+     let classList =[]
+    if (studentCourse === "IIT / NEET") {
+      courseList = students.filter((item) => item.iitNeetFee !== 0);
+    }
+    else if(studentCourse === "Extra Curricular"){
+      courseList = students.filter((item) => item.extraFee !== 0);
+    }
+    
+    if (studentClass !== "") {
+      classList = students.filter((item) => item.schoolingClass === studentClass);
+    }
+    students=courseList
+    students = students.concat(classList)
   }
-  if (studentClass !== "")
-    students = students.filter((item) => item.studentClass === studentClass);
+console.log(students);
+        students.map((student, index) => {
+          let monthlyIncome = 0;
+          console.log(monthlyIncome ,  "index : " , index , "upper part");
 
-  if (studentSubject !== "") {
-    students = students.filter((item) => {
-      return item.studentSubjects.some((elem) => elem === studentSubject);
-    });
-  }
+          student.paymentDetails.map((item, index) => {
+            if (month === item.paidMonth ) {
+              monthlyIncome+=item.paymentFee
+          }
+          console.log(monthlyIncome ,  "index : " , index);
+          })
+          console.log(student.monthlyIncome , "monthly");
+          if(monthlyIncome!==0){
+            result.push({
+              studentEnrollment : student.studentEnrollment,
+              studentName : student.studentName,
+              totalIncome : monthlyIncome,
+              monthlyFee : student.monthlyIncome
+            })
+          }
+        });
 
-  res.status(200).json(students);
+  res.status(200).json(result);
 });
 
 const getTotalIncomeDetails = asyncHandler(async (req, res) => {
-  const { studentCourse, studentClass, studentSubject, studentEnrollment } =
-    req.body;
-  const d = new Date();
+  const { studentCourse, studentClass, studentEnrollment ,studentOffice} =
+  req.body;
+  
+  let students = [];
+  let result = [];
 
-  var students = await paymentModels.find({});
+  //office wise filter
+  if (studentOffice !== "")
+  students = await studentModels.find({
+    studentOffice: studentOffice,
+  });
+else
+  students = await studentModels.find();
 
-  if (studentEnrollment !== "") {
-    students = students.filter((item) => item.paymentId === studentEnrollment);
+//studentenrollment wise filter
+
+if (studentEnrollment !== "") {
+students = students.filter((item) => item.studentEnrollment === studentEnrollment);
+}
+else{
+let courseList =[]
+let classList =[]
+if (studentCourse === "IIT / NEET") {
+courseList = students.filter((item) => item.iitNeetFee !== 0);
+}
+else if(studentCourse === "Extra Curricular"){
+courseList = students.filter((item) => item.extraFee !== 0);
+}
+
+if (studentClass !== "") {
+classList = students.filter((item) => item.schoolingClass === studentClass);
+}
+students=courseList
+students = students.concat(classList)
+}
+
+
+students.map((student, index) => {
+  let totalIncome = 0;
+  student.paymentDetails.map((item, index) => {
+    if (item.paidMonth !==null) {
+      totalIncome+=item.paymentFee
   }
-
-  if (studentCourse !== "") {
-    students = students.filter((item) => item.studentCourse === studentCourse);
+  })
+  if(totalIncome!==0){
+    result.push({
+      studentEnrollment : student.studentEnrollment,
+      studentName : student.studentName,
+      totalIncome : totalIncome,
+      monthlyFee : student.monthlyIncome
+    })
   }
-  if (studentClass !== "")
-    students = students.filter((item) => item.studentClass === studentClass);
+});
 
-  if (studentSubject !== "") {
-    students = students.filter((item) => {
-      return item.studentSubjects.some((elem) => elem === studentSubject);
-    });
-  }
+res.status(200).json(result);
 
-  res.status(200).json(students);
+
 });
 
 const getMonthlyDueDetails = asyncHandler(async (req, res) => {
-  const { studentCourse, studentClass, studentSubject, studentEnrollment } =
+  const { studentCourse, studentClass, studentEnrollment ,studentOffice} =
     req.body;
-  const d = new Date();
-  let students = await paymentModels.find({});
-  console.log("====================================");
-  console.log(students, "285");
-  console.log("====================================");
-  students = students.filter(
-    (item) => d.getMonth() - item.lastIncomeMonth === 1
-  );
+    const d = new Date();
+    const month = d.getMonth();
+  
+    let students = [];
+  let result = [];
+    
+  //office wise filter
+      if (studentOffice !== "")
+        students = await studentModels.find({
+          studentOffice: studentOffice,
+        });
+      else
+        students = await studentModels.find();
+
+  //studentenrollment wise filter
 
   if (studentEnrollment !== "") {
-    students = students.filter((item) => item.paymentId === studentEnrollment);
+    students = students.filter((item) => item.studentEnrollment === studentEnrollment);
+  }
+  else{
+    let courseList =[]
+     let classList =[]
+    if (studentCourse === "IIT / NEET") {
+      courseList = students.filter((item) => item.iitNeetFee !== 0);
+    }
+    else if(studentCourse === "Extra Curricular"){
+      courseList = students.filter((item) => item.extraFee !== 0);
+    }
+    
+    if (studentClass !== "") {
+      classList = students.filter((item) => item.schoolingClass === studentClass);
+    }
+    students=courseList
+    students = students.concat(classList)
   }
 
-  if (studentCourse !== "") {
-    students = students.filter((item) => item.studentCourse === studentCourse);
-  }
-  if (studentClass !== "")
-    students = students.filter((item) => item.studentClass === studentClass);
+        students.map((student, index) => {
+          let monthlyDue = 0;
+          let totalPaid = 0
+          student.paymentDetails.map((item, index) => {
+            if (month === item.paymentMonth && item.paidMonth===null) {
+              monthlyDue+=item.paymentFee
+          }
+          if(item.paidMonth!==null) totalPaid+=item.paymentFee
+          })
+          if(monthlyDue!==0){
+            result.push({
+              studentEnrollment : student.studentEnrollment,
+              studentName : student.studentName,
+              monthlyFee : student.monthlyIncome,
+              monthlyDue :monthlyDue,
+              totalPaid : totalPaid
+            })
+          }
+        });
 
-  if (studentSubject !== "") {
-    students = students.filter((item) => {
-      return item.studentSubjects.some((elem) => elem === studentSubject);
-    });
-  }
-
-  res.status(200).json(students);
+  res.status(200).json(result);
 });
 
 const getTotalDueDetails = asyncHandler(async (req, res) => {
-  const { studentCourse, studentClass, studentSubject, studentEnrollment } =
+  const { studentCourse, studentClass, studentEnrollment ,studentOffice} =
     req.body;
-  const d = new Date();
+    const d = new Date();
+    const month = d.getMonth();
+  
+    let students = [];
+  let result = [];
+    
+  //office wise filter
+      if (studentOffice !== "")
+        students = await studentModels.find({
+          studentOffice: studentOffice,
+        });
+      else
+        students = await studentModels.find();
 
-  var students = await paymentModels.find({});
-
-  students = students.filter((item) => d.getMonth() > item.lastIncomeMonth);
+  //studentenrollment wise filter
 
   if (studentEnrollment !== "") {
-    students = students.filter((item) => item.paymentId === studentEnrollment);
+    students = students.filter((item) => item.studentEnrollment === studentEnrollment);
+  }
+  else{
+    let courseList =[]
+     let classList =[]
+    if (studentCourse === "IIT / NEET") {
+      courseList = students.filter((item) => item.iitNeetFee !== 0);
+    }
+    else if(studentCourse === "Extra Curricular"){
+      courseList = students.filter((item) => item.extraFee !== 0);
+    }
+    
+    if (studentClass !== "") {
+      classList = students.filter((item) => item.schoolingClass === studentClass);
+    }
+    students=courseList
+    students = students.concat(classList)
   }
 
-  if (studentCourse !== "") {
-    students = students.filter((item) => item.studentCourse === studentCourse);
-  }
-  if (studentClass !== "")
-    students = students.filter((item) => item.studentClass === studentClass);
+        students.map((student, index) => {
+          let monthlyDue = 0;
+          let totalPaid = 0
+          student.paymentDetails.map((item, index) => {
+            if (month >= item.paymentMonth && item.paidMonth===null) {
+              monthlyDue+=item.paymentFee
+          }
+          if(item.paidMonth!==null) totalPaid+=item.paymentFee
+          })
+          if(monthlyDue!==0){
+            result.push({
+              studentEnrollment : student.studentEnrollment,
+              studentName : student.studentName,
+              monthlyFee : student.monthlyIncome,
+              monthlyDue :monthlyDue,
+              totalPaid : totalPaid
+            })
+          }
+        });
 
-  if (studentSubject !== "") {
-    students = students.filter((item) => {
-      return item.studentSubjects.some((elem) => elem === studentSubject);
-    });
-  }
-
-  res.status(200).json(students);
+  res.status(200).json(result);
 });
 
 module.exports = {

@@ -85,13 +85,14 @@ const CourseItem = ({ imgSrc, title, description }) => {
           <p>{description}</p>
           <div
             className="text-button-pay"
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{ display: "flex", justifyContent: "space-between" , marginTop:1 }}
           >
             <div
               style={{
                 textDecoration: "none",
-                color: "orange",
+                color: "black",
                 cursor: "pointer",
+                fontWeight : "bold"
               }}
               onClick={() =>
                 CustomerInfoOpen(name, email, phNum, wclass, course, addmsg)
@@ -102,13 +103,13 @@ const CourseItem = ({ imgSrc, title, description }) => {
             <Link
               style={{
                 textDecoration: "none",
-                color: "orange",
+                color: "black",
                 cursor: "pointer",
                 fontSize: 16,
               }}
               to={"/freetutorial"}
             >
-              Free Note
+              Free Notes
             </Link>
           </div>
         </div>

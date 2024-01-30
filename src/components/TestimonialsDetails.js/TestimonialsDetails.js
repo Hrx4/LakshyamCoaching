@@ -2,7 +2,6 @@ import React from 'react';
 
 const TestiMonialsDetails = ({testiMonialDetail}) => {
     const {name, address, description} = testiMonialDetail;
-    console.log("testiMonialDetail"+testiMonialDetail)
     return (
         <div class="item" style={{margin:"auto", width:350}}>
             <div class="shadow-effect">
