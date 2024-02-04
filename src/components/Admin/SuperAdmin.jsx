@@ -29,6 +29,7 @@ const SuperAdmin = () => {
   const [bannerList, setBannerList] = useState([]);
   const [noteView, setNoteView] = useState("Dashboard");
   const [slideOpen, setSlideOpen] = useState(false);
+  const [studentDetails , setStudentDetails] = useState({})
   const [studentItem, setStudentItem] = useState([
     {
       id: 1,
@@ -297,6 +298,7 @@ const SuperAdmin = () => {
   };
 
   const handleAddStudentDetails = () => {
+    setStudentDetails({})
     setNoteView("addStudentForm");
   };
 
@@ -622,8 +624,8 @@ const SuperAdmin = () => {
           {noteView === "teacherform" ? <TeacherForm /> : null}
           {noteView === "teachertable" ? <AllTeacher /> : null}
 
-          {noteView === "addStudentForm" ? <AddStudent /> : null}
-          {noteView === "allStudentForm" ? <AllStudent /> : null}
+          {noteView === "addStudentForm" ? <AddStudent studentDetails={studentDetails} /> : null}
+          {noteView === "allStudentForm" ? <AllStudent setNoteView={setNoteView} setStudentDetails={setStudentDetails} /> : null}
           {noteView === "addPaymentDetails" ? <StudentPayment /> : null}
           {noteView === "Dashboard" ? <Dashboard /> : null}
           {noteView === "addBannerForm" ? <AddBanner /> : null}

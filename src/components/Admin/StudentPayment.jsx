@@ -20,6 +20,7 @@ const StudentPayment = () => {
   const handlePayDetails = async (e) => {
     e.preventDefault();
     setPayDetails("addPayDetails");
+    if(courseForPay==="" && studentEnrollment==="") return alert("Fill The Fields")
     try {
       const res = await fetch(`${backend}student/getstudent`, {
         method: "POST",
