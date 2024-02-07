@@ -84,22 +84,22 @@ const Navbar = () => {
         <div className='nav-toggle' style={{height:500 , width:'100%' , backgroundColor:'rgba(22,34,57,1)',position:"static" }}>
           <ul className="main-menu1" style={{height:400 , display:"flex" , justifyContent:"space-evenly" , flexDirection:"column" , alignItems:"center" , listStyle:"none" , textDecoration:"none"}}>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
-              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}} to="/">Home</Link>
+              <Link style={location.pathname === "/" ?{ backgroundColor: '#3fe503dd',textDecoration:"none" , fontSize:20 , color:"white",padding:5 } : {textDecoration:"none" , fontSize:20 , color:"white"}} to="/">Home</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
-              <Link style={{textDecoration:"none" , fontSize:20 , color:"black", backgroundColor: '#3fe503dd' , padding:5}}  to="/freetutorial">Study Materials</Link>
+              <Link style={ location.pathname === "/freetutorial" ?{ backgroundColor: '#3fe503dd',textDecoration:"none" , fontSize:20 , color:"white",padding:5 } : {textDecoration:"none" , fontSize:20 , color:"white" }}  to="/freetutorial">Study Materials</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
-              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/courses">Courses</Link>
+              <Link style={ location.pathname === "/courses" ?{ backgroundColor: '#3fe503dd',textDecoration:"none" , fontSize:20 , color:"white",padding:5 } : {textDecoration:"none" , fontSize:20 , color:"white"}}  to="/courses">Courses</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
-              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/gallery">Gallery</Link>
+              <Link style={ location.pathname === "/gallery" ?{ backgroundColor: '#3fe503dd',textDecoration:"none" , fontSize:20 , color:"white",padding:5 } : {textDecoration:"none" , fontSize:20 , color:"white"}}  to="/gallery">Gallery</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
-              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/about">About Us</Link>
+              <Link style={ location.pathname === "/about" ?{ backgroundColor: '#3fe503dd',textDecoration:"none" , fontSize:20 , color:"white",padding:5 } : {textDecoration:"none" , fontSize:20 , color:"white"}}  to="/about">About Us</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
-              <Link style={{textDecoration:"none" , fontSize:20 , color:"white"}}  to="/contact">Contact</Link>
+              <Link style={ location.pathname === "/contact" ?{ backgroundColor: '#3fe503dd',textDecoration:"none" , fontSize:20 , color:"white",padding:5 } : {textDecoration:"none" , fontSize:20 , color:"white"}}  to="/contact">Contact</Link>
             </li>
             <li onClick={()=>{setMenuOpen(!menuOpen)}}>
               <Link style={{textDecoration:"none" , fontSize:20 , backgroundColor: '#3fe503dd' , padding:5 , color:'black'}}  to={'/login'} >

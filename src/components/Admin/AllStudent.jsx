@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
 import { useParams } from "react-router-dom";
 
-const AllStudent = () => {
+const AllStudent = ({setNoteView , setStudentDetails}) => {
   const [course, setCourse] = useState("");
   const [studentEnrollment, setStudentEnrollment] = useState("");
   const [studentTab, setStudentTab] = useState();
@@ -21,6 +21,7 @@ const AllStudent = () => {
   const handleAllStudentTable = async (e) => {
     e.preventDefault();
     setStudentTab("studentInfo");
+    if(course==="" && studentEnrollment==="") return alert("Fill The Fields")
     try {
       const res = await fetch(`${backend}student/getstudent`, {
         method: "POST",
@@ -106,6 +107,8 @@ const AllStudent = () => {
           <StudentInfo
             studentList={studentList}
             setStudentList={setStudentList}
+            setNoteView={setNoteView}
+            setStudentDetails ={setStudentDetails}
           />
         ) : null}
       </div>

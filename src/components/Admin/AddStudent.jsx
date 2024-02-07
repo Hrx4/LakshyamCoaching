@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
 import { useParams } from "react-router-dom";
 
-const AddStudent = () => {
+const AddStudent = ({studentDetails}) => {
   const Gender = ["Male", "Female"];
   const Compi = ["IIT-JEE", "NEET"];
   const Schooling = ["CBSE", "ICSE"];
@@ -33,17 +33,26 @@ const AddStudent = () => {
       ? ["office 3"]
       : [];
 
-  const [iitNeetSub, setIitNeetSub] = useState([]);
-  const [iitNeetFee, setIitNeetFee] = useState(0);
-  const [schoolingSub, setSchoolingSub] = useState([]);
-  const [schoolingFee, setSchoolingFee] = useState(0);
-  const [extraSub, setExtraSub] = useState([]);
-  const [extraFee, setExtraFee] = useState(0);
-  const [monthlyIncome, setMonthlyIncome] = useState(0);
-  const [loading, setLoading] = useState(false);
+let iitsubstate = studentDetails.iitNeetSub ? studentDetails.iitNeetSub : []
+let schoolingsubstate = studentDetails.schoolingSub ? studentDetails.schoolingSub : []
+let extrasubstate = studentDetails.extraSub ? studentDetails.extraSub : []
 
-  const [formData, setFormData] = useState({
-    enrollment: "",
+  const [iitNeetSub, setIitNeetSub] = useState(iitsubstate);
+  const [iitNeetFee, setIitNeetFee] = useState(studentDetails ? studentDetails.iitNeetFee : 0);
+  const [schoolingSub, setSchoolingSub] = useState(schoolingsubstate);
+  const [schoolingFee, setSchoolingFee] = useState(studentDetails ? studentDetails.schoolingFee : 0);
+  const [extraSub, setExtraSub] = useState(extrasubstate);
+  const [extraFee, setExtraFee] = useState(studentDetails ? studentDetails.extraFee : 0);
+  const [monthlyIncome, setMonthlyIncome] = useState(studentDetails ? studentDetails.monthlyIncome : 0);
+  const [loading, setLoading] = useState(false);
+  const [propsData1, setpropsData1] = useState(false)
+  const [propsData2, setpropsData2] = useState(false)
+  const [propsData3, setpropsData3] = useState(false)
+
+  const [formData, setFormData] = useState(
+    JSON.stringify(studentDetails) === JSON.stringify({}) ? 
+    {
+    enrollment: "" ,
     office: "",
     photo: "",
     password: "",
@@ -68,7 +77,36 @@ const AddStudent = () => {
     iitNeetAdmission: "",
     schoolingAdmission: "",
     extraAdmission: "",
-  });
+    }
+    :
+    {
+    enrollment: studentDetails.studentEnrollment ,
+    office: studentDetails.studentOffice,
+    photo: studentDetails.studentPhoto,
+    password: studentDetails.studentPassword,
+    name: studentDetails.studentName,
+    dob: studentDetails.studentDob,
+    gender: studentDetails.studentGender,
+    fatherName: studentDetails.fatherName,
+    fatherOccupassion: studentDetails.fatherOccupassion,
+    fatherNo: studentDetails.fatherNo,
+    motherName: studentDetails.motherName,
+    parentWp: studentDetails.parentWp,
+    emergencyNo: studentDetails.emergencyNo,
+    address: studentDetails.studentAddress,
+    doj: studentDetails.studentDoj,
+    blood: studentDetails.studentBlood,
+    schoolName: studentDetails.schoolName,
+    lastClass: studentDetails.lastClass,
+    lastExam: studentDetails.lastExam,
+    iitNeetCourse: studentDetails.iitNeetCourse,
+    schoolingCourse: studentDetails.schoolingCourse,
+    schoolingClass: studentDetails.schoolingClass,
+    iitNeetAdmission: studentDetails.iitNeetAdmission,
+    schoolingAdmission: studentDetails.schoolingAdmission,
+    extraAdmission: studentDetails.extraAdmission,
+    }
+);
   const uploadFiles = async (e) => {
     const { files } = e.target;
     setLoading(true);
@@ -119,6 +157,7 @@ const AddStudent = () => {
         name="iitNeetCourse"
         id="iitNeetCourse"
         value={formData.iitNeetCourse}
+        
         onChange={(e) => {
           setFormData({ ...formData, iitNeetCourse: e.target.value });
         }}
@@ -141,6 +180,7 @@ const AddStudent = () => {
         name="schoolingCourse"
         id="schoolingCourse"
         value={formData.schoolingCourse}
+        
         onChange={(e) => {
           setFormData({ ...formData, schoolingCourse: e.target.value });
         }}
@@ -162,6 +202,7 @@ const AddStudent = () => {
         name="schoolingClass"
         id="schoolingClass"
         value={formData.schoolingClass}
+        
         onChange={(e) => {
           setFormData({ ...formData, schoolingClass: e.target.value });
         }}
@@ -246,6 +287,7 @@ const AddStudent = () => {
         name="office"
         id="office"
         value={formData.office}
+        required
         onChange={(e) => {
           setFormData({ ...formData, office: e.target.value });
         }}
@@ -262,18 +304,24 @@ const AddStudent = () => {
     );
   };
   const handleChange = (event) => {
+    if(formData.doj==="") return alert("Please add Date of Joining First")
+    setpropsData1(true)
     const {
       target: { value },
     } = event;
     setIitNeetSub(typeof value === "string" ? value.split(",") : value);
   };
   const handleChange1 = (event) => {
+    if(formData.doj==="") return alert("Please add Date of Joining First")
+    setpropsData2(true)
     const {
       target: { value },
     } = event;
     setSchoolingSub(typeof value === "string" ? value.split(",") : value);
   };
   const handleChange2 = (event) => {
+    setpropsData3(true)
+    if(formData.doj==="") return alert("Please add Date of Joining First")
     const {
       target: { value },
     } = event;
@@ -368,16 +416,21 @@ const AddStudent = () => {
   );
 
   useEffect(
-    () => setSchoolingSub([]),
-    [formData.schoolingCourse, formData.schoolingClass]
+    () => {setSchoolingSub([])
+      console.log(studentDetails);
+      console.log(formData);
+
+    },
+    [formData.schoolingCourse, formData.schoolingClass , studentDetails , formData ]
   );
 
-  useMemo(() => setIitNeetFee(iitNeetSub.length * 600), [iitNeetSub]);
-  useMemo(() => setExtraFee(extraSub.length * 500), [extraSub]);
+  useMemo(() => {
+    if(propsData1) setIitNeetFee(iitNeetSub.length * 600)}, [iitNeetSub , propsData1]);
+  useMemo(() => {if(propsData3) setExtraFee(extraSub.length * 500)}, [extraSub , propsData3]);
 
   useMemo(
     () =>
-      formData.schoolingCourse === "CBSE"
+      {if(propsData2) formData.schoolingCourse === "CBSE"
         ? formData.schoolingClass === "class 6" &&
           schoolingSub.includes("All Subject")
           ? setSchoolingFee(1100)
@@ -443,9 +496,9 @@ const AddStudent = () => {
         : formData.schoolingClass === "class 10" &&
           schoolingSub.includes("All Subject + Hindi/Bengali")
         ? setSchoolingFee(1900)
-        : setSchoolingFee(0),
+        : setSchoolingFee(0)},
 
-    [formData.schoolingClass, formData.schoolingCourse, schoolingSub]
+    [formData.schoolingClass, formData.schoolingCourse, schoolingSub,propsData2]
   );
 
   const handleSubmit = async (e) => {
@@ -509,16 +562,83 @@ const AddStudent = () => {
     }
   };
 
-  useEffect(() => {
-    const date = new Date();
-    const month = date.getMonth();
-    let totalMonthlyFee = iitNeetFee + schoolingFee + extraFee;
-    if (month >= 0 && month <= 2) {
-      setMonthlyIncome(totalMonthlyFee * (3 - month));
-    } else {
-      setMonthlyIncome((totalMonthlyFee * (12 - month + 3)) / (12 - month));
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    // const extraChangeFee = extraSub===studentDetails.extraSub
+    // const iitNeetChangeFee = iitNeetSub===studentDetails.iitNeetSub
+    // const schoolingChangeFee = schoolingSub===studentDetails.extraSub
+
+    try {
+      const response = await fetch(`${backend}student/${studentDetails._id}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          studentEnrollment: formData.enrollment,
+          studentPassword: formData.password,
+          studentOffice: formData.office,
+          studentPhoto: formData.photo,
+          studentName: formData.name,
+          studentDob: formData.dob,
+          studentGender: formData.gender,
+          fatherName: formData.fatherName,
+          fatherOccupassion: formData.fatherOccupassion,
+          fatherNo: formData.fatherNo,
+          motherName: formData.motherName,
+          parentWp: formData.parentWp,
+          emergencyNo: formData.emergencyNo,
+          studentAddress: formData.address,
+          studentDoj: formData.doj,
+          studentBlood: formData.blood,
+          schoolName: formData.schoolName,
+          lastClass: formData.lastClass,
+          lastExam: formData.lastExam,
+          iitNeetCourse: formData.iitNeetCourse,
+          schoolingCourse: formData.schoolingCourse,
+          schoolingClass: formData.schoolingClass,
+          iitNeetAdmission: formData.iitNeetAdmission,
+          schoolingAdmission: formData.schoolingAdmission,
+          extraAdmission: formData.extraAdmission,
+          iitNeetFee:   iitNeetFee,
+          schoolingFee: schoolingFee,
+          extraFee: extraFee,
+          iitNeetSub: iitNeetSub,
+          schoolingSub: schoolingSub,
+          extraSub: extraSub,
+          monthlyIncome: monthlyIncome,
+        }),
+      });
+
+      const resJson = await response.json();
+
+      if (response.status === 201) {
+        alert("Form Submitted");
+        // setIncome(resJson);
+        console.log("====================================");
+        console.log(resJson);
+        console.log("====================================");
+      } else {
+        console.log("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
     }
-  }, [iitNeetFee, schoolingFee, extraFee]);
+  };
+
+  useEffect(() => {
+    const date = new Date(formData.doj);
+    const month = date.getMonth();
+    let totalMonthlyFee = parseInt(iitNeetFee) + parseInt(schoolingFee) + parseInt(extraFee);
+    if(propsData1 || propsData2 || propsData3){
+      if (month >= 0 && month <= 2) {
+        setMonthlyIncome(totalMonthlyFee * (3 - month));
+      } else {
+        setMonthlyIncome((totalMonthlyFee * (12 - month + 3)) / (12 - month));
+      }
+    }
+  }, [iitNeetFee, schoolingFee, extraFee , propsData1 , propsData2 , propsData3 , formData.doj]);
 
   return (
     <>
@@ -546,6 +666,7 @@ const AddStudent = () => {
             <input
               type="text"
               value={formData.enrollment}
+              required
               onChange={(e) => {
                 setFormData({ ...formData, enrollment: e.target.value });
               }}
@@ -556,6 +677,7 @@ const AddStudent = () => {
             <input
               type="text"
               value={formData.password}
+              required
               onChange={(e) => {
                 setFormData({ ...formData, password: e.target.value });
               }}
@@ -580,6 +702,7 @@ const AddStudent = () => {
             <input
               type="date"
               value={formData.dob}
+              required
               onChange={(e) => {
                 setFormData({ ...formData, dob: e.target.value });
               }}
@@ -669,6 +792,7 @@ const AddStudent = () => {
             <input
               type="date"
               value={formData.doj}
+              required
               onChange={(e) => {
                 setFormData({ ...formData, doj: e.target.value });
               }}
@@ -732,6 +856,7 @@ const AddStudent = () => {
               id="demo-multiple-checkbox"
               multiple={true}
               value={iitNeetSub}
+              
               onChange={handleChange}
               input={<OutlinedInput label="Tag" />}
               renderValue={(selected) => selected.join(", ")}
@@ -756,7 +881,7 @@ const AddStudent = () => {
             value={iitNeetFee}
             onChange={(e) => setIitNeetFee(e.target.value)}
           />
-
+          
           <h2>Schooling Solution</h2>
           <div>
             <label htmlFor="">Select Board</label>
@@ -780,6 +905,7 @@ const AddStudent = () => {
               multiple
               value={schoolingSub}
               onChange={handleChange1}
+              
               input={<OutlinedInput label="Tag" />}
               renderValue={(selected) => selected.join(", ")}
               // MenuProps={MenuProps}
@@ -818,6 +944,7 @@ const AddStudent = () => {
               id="demo-multiple-checkbox"
               multiple={true}
               value={extraSub}
+              
               onChange={handleChange2}
               input={<OutlinedInput label="Tag" />}
               renderValue={(selected) => selected.join(", ")}
@@ -840,18 +967,29 @@ const AddStudent = () => {
           <input
             type="number"
             value={extraFee}
-            onChange={(e) => setExtraFee(e.target.value)}
+            onChange={(e) => 
+            {setpropsData3(true)
+            setExtraFee(e.target.value)}}
           />
+                  
           <h2>Total Monthly Income</h2>
           <input
             type="number"
             value={monthlyIncome}
-            onChange={(e) => setMonthlyIncome(e.target.value)}
-          />
-
-          <Button variant="contained" onClick={handleSubmit}>
+            onChange={(e) => {
+              console.log(monthlyIncome)
+              setMonthlyIncome(parseInt(e.target.value))}}
+          />         
+          {
+            (JSON.stringify(studentDetails) === JSON.stringify({}))?
+            (<Button variant="contained" onClick={handleSubmit}>
             Submit
-          </Button>
+          </Button>)
+          :
+          (<Button variant="contained" onClick={handleUpdate}>
+            Update
+          </Button>)
+          }
         </form>
       </div>
     </>

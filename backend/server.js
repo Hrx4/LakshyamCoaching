@@ -37,7 +37,7 @@ app.use("/student", require("./routes/studentRoutes"));
 app.use("/popup", require("./routes/popupRoutes"));
 app.use("/login", require("./routes/superLoginRoute"));
 app.use("/teacher", require("./routes/teacherRoutes"));
-app.use("/bday", require("./routes/bdayRoute"));
+app.use("/bday", require("./routes/bdayRoute"))
 
 app.listen(8080, () => {
   console.log(`Server is running on Port 8080`);
