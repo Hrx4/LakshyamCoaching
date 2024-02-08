@@ -93,7 +93,7 @@ const Birthday = () => {
             </tbody>
           </table>
         </div>
-        <h2 style={{ marginLeft: 5 }}>Student Birthday List</h2>
+        <h2 style={{ marginLeft: 5 }}>Teacher Birthday List</h2>
         <div
           className="table-scroll"
           style={{

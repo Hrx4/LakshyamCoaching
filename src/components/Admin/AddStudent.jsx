@@ -10,13 +10,14 @@ import {
   OutlinedInput,
   Select,
 } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ToastContainer } from "react-toastify";
 import { CircularProgress } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
 import { useParams } from "react-router-dom";
 
-const AddStudent = ({studentDetails}) => {
+const AddStudent = ({studentDetails , setNoteView}) => {
   const Gender = ["Male", "Female"];
   const Compi = ["IIT-JEE", "NEET"];
   const Schooling = ["CBSE", "ICSE"];
@@ -651,16 +652,30 @@ let extrasubstate = studentDetails.extraSub ? studentDetails.extraSub : []
       <ToastContainer />
       <div
         style={{
-          width: "30%",
+          width: "100%",
           marginLeft: "auto",
           marginRight: "auto",
           paddingTop: 30,
           paddingBottom: 30,
         }}
       >
-        <h2>Student Form</h2>
+      {
+        (JSON.stringify(studentDetails) === JSON.stringify({}))?
+        null:
+        <div style={{marginLeft:10 }} onClick={()=>setNoteView("allStudentForm")}><ArrowBackIcon style={{cursor:"pointer"}} /></div>
+      }
+      {
+        (JSON.stringify(studentDetails) === JSON.stringify({}))?
+        (
+          <h2 style={{width:"30%" , margin:"auto"}}>Student Form</h2>
+        ):
+        (
+          <h2 style={{width:"30%" , margin:"auto"}}>Update Student</h2>
+        )
+      }
+        
 
-        <form style={{ gap: 10, display: "flex", flexDirection: "column" }}>
+        <form style={{ gap: 10, display: "flex", flexDirection: "column" ,width:"30%" , margin:"auto"}}>
           <div>
             <label htmlFor="">Student Enrollment</label>
             <input

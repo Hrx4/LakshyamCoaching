@@ -17,7 +17,7 @@ const PaymentModal = ({ modalOpen, setModalOpen, paymentList, paymentId }) => {
     "July",
     "Augast",
     "September",
-    "Ovtober",
+    "October",
     "November",
     "December",
   ];
