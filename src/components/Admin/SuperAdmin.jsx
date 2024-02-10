@@ -624,7 +624,7 @@ const SuperAdmin = () => {
           {noteView === "teacherform" ? <TeacherForm /> : null}
           {noteView === "teachertable" ? <AllTeacher /> : null}
 
-          {noteView === "addStudentForm" ? <AddStudent studentDetails={studentDetails} /> : null}
+          {noteView === "addStudentForm" ? <AddStudent studentDetails={studentDetails} setNoteView = {setNoteView} /> : null}
           {noteView === "allStudentForm" ? <AllStudent setNoteView={setNoteView} setStudentDetails={setStudentDetails} /> : null}
           {noteView === "addPaymentDetails" ? <StudentPayment /> : null}
           {noteView === "Dashboard" ? <Dashboard /> : null}
