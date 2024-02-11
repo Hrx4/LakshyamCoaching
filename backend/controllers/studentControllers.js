@@ -377,21 +377,23 @@ const getMonthlyIncomeDetails = asyncHandler(async (req, res) => {
     if (studentClass !== "") {
       classList = students.filter((item) => item.schoolingClass === studentClass);
     }
+    if(studentClass === "" && studentCourse === "")  courseList=students
+
     students=courseList
     students = students.concat(classList)
+
+    jsonObject = students.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    students = Array.from(uniqueSet).map(JSON.parse);
   }
-console.log(students);
         students.map((student, index) => {
           let monthlyIncome = 0;
-          console.log(monthlyIncome ,  "index : " , index , "upper part");
 
           student.paymentDetails.map((item, index) => {
             if (month === item.paidMonth ) {
               monthlyIncome+=item.paymentFee
           }
-          console.log(monthlyIncome ,  "index : " , index);
           })
-          console.log(student.monthlyIncome , "monthly");
           if(monthlyIncome!==0){
             result.push({
               studentEnrollment : student.studentEnrollment,
@@ -438,8 +440,13 @@ courseList = students.filter((item) => item.extraFee !== 0);
 if (studentClass !== "") {
 classList = students.filter((item) => item.schoolingClass === studentClass);
 }
+if(studentClass === "" && studentCourse === "") courseList=students 
 students=courseList
 students = students.concat(classList)
+
+jsonObject = students.map(JSON.stringify);
+uniqueSet = new Set(jsonObject);
+students = Array.from(uniqueSet).map(JSON.parse);
 }
 
 
@@ -500,8 +507,14 @@ const getMonthlyDueDetails = asyncHandler(async (req, res) => {
     if (studentClass !== "") {
       classList = students.filter((item) => item.schoolingClass === studentClass);
     }
+    if(studentClass === "" && studentCourse === "") courseList=students 
+
     students=courseList
     students = students.concat(classList)
+    
+    jsonObject = students.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    students = Array.from(uniqueSet).map(JSON.parse);
   }
 
         students.map((student, index) => {
@@ -562,8 +575,14 @@ const getTotalDueDetails = asyncHandler(async (req, res) => {
     if (studentClass !== "") {
       classList = students.filter((item) => item.schoolingClass === studentClass);
     }
+    if(studentClass === "" && studentCourse === "") courseList=students 
+
     students=courseList
     students = students.concat(classList)
+    
+    jsonObject = students.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    students = Array.from(uniqueSet).map(JSON.parse);
   }
 
         students.map((student, index) => {

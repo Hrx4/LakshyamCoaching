@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "../Admin/Form.css"; // Import your CSS file
 import { ToastContainer, toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
@@ -8,12 +8,12 @@ import backend from "../../backend";
 const TeacherAddNote = () =>{
 
   const [title, setTitle] = useState("");
-  const [subject, setSubject] = useState("Math");
-  const [classValue, setClassValue] = useState("Class XI");
-  const [batch, setBatch] = useState("Batch 1");
+  const [subject, setSubject] = useState("");
+  const [classValue, setClassValue] = useState("");
+  const [batch, setBatch] = useState("");
   const [image, setImage] = useState("");
   const [pdf, setPdf] = useState("");
-  const [course, setCourse] = useState("JEE Main");
+  const [course, setCourse] = useState("");
   const [loading, setLoading] = useState(false);
 
   const uploadFiles = async (e) => {
@@ -88,6 +88,60 @@ const TeacherAddNote = () =>{
     // setLoading(false)
   };
 
+  const classList = useMemo(
+    ()=>course === "IIT / NEET" ?
+    [
+      "class 11 science",
+      "class 12 science",
+    ]: course=== "CBSE" ? 
+    [
+      "class 4",
+      "class 5",
+      "class 6",
+      "class 7",
+      "class 8",
+      "class 9",
+      "class 10",
+      "class 11 science",
+      "class 12 science",
+      "class 11 commerce",
+      "class 12 commerce",
+    ]
+  : course === "ICSE"
+  ? [
+      "class 4",
+      "class 5",
+      "class 6",
+      "class 7",
+      "class 8",
+      "class 9",
+      "class 10",
+    ] :[] , [course]
+  )
+
+  const subjectList = useMemo(()=>
+  (classValue==="class 4"||
+  classValue==="class 5"||
+  classValue==="class 6"||
+  classValue==="class 7"||
+  classValue==="class 8") ?
+  [
+    "English","SST" , "Math" , "Science" , "Bengali" , "Hindi"
+  ] :
+  (
+    classValue === "class 9" ||
+    classValue === "class 10"
+  ) ?
+  [    "English","SST" , "Math" , "Physics","Chemistry" , "Biology" , "Bengali" , "Hindi"
+] :
+(classValue === "class 11 science" ||
+classValue === "class 12 science") ? [
+  "Math" , "Physics","Chemistry" , "Biology" , "Computer" , "English"
+] :
+(classValue === "class 11 commerce" ||
+classValue === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Computer" , "English"] :[]
+  , [classValue])
+
     return (
       <>
       {loading ? (
@@ -112,43 +166,7 @@ const TeacherAddNote = () =>{
             />
           </div>
 
-          <div className="form-group">
-            <label style={{ marginRight: 10 }}>Subject:</label>
-            <select
-              type="text"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-            >
-              <option value="Math">Math</option>
-              <option value="Physics">Physics</option>
-              <option value="Chemistry">Chemistry</option>
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label style={{ marginRight: 10 }}>Class:</label>
-            <select
-              type="text"
-              value={classValue}
-              onChange={(e) => setClassValue(e.target.value)}
-            >
-              <option value="Class XI">Class XI</option>
-              <option value="Class XII">Class XII</option>
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label style={{ marginRight: 10 }}>Batch:</label>
-            <select
-              type="text"
-              value={batch}
-              onChange={(e) => setBatch(e.target.value)}
-            >
-              <option value="Batch 1">Batch 1</option>
-              <option value="Batch 2">Batch 2</option>
-              <option value="Batch 3">Batch 3</option>
-            </select>
-          </div>
+          
 
           <div className="form-group">
             <label>Note Thumbnail Image:</label>
@@ -159,6 +177,7 @@ const TeacherAddNote = () =>{
             <label>Upload File:</label>
             <input type="file" accept=".pdf" onChange={uploadFiles} />
           </div>
+          
 
           <div className="form-group">
             <label style={{ marginRight: 10 }}>Course:</label>
@@ -167,8 +186,68 @@ const TeacherAddNote = () =>{
               value={course}
               onChange={(e) => setCourse(e.target.value)}
             >
-              <option value="JEE Main">JEE Main</option>
-              <option value="WBJEE">WBJEE</option>
+            <option value="" disabled="disabled">
+          Choose
+        </option>
+              <option value="IIT / NEET">IIT / NEET</option>
+              <option value="CBSE">CBSE</option>
+              <option value="ICSE">ICSE</option>
+
+            </select>
+          </div>
+          <div className="form-group">
+            <label style={{ marginRight: 10 }}>Class:</label>
+            <select
+              type="text"
+              value={classValue}
+              onChange={(e) => setClassValue(e.target.value)}
+            >
+            <option value="" disabled="disabled">
+          Choose
+        </option>
+            {
+              classList?.map((item ,index)=>(
+                <option value={item}>{item}</option>
+              ))
+            }
+            </select>
+          </div>
+          <div className="form-group">
+            <label style={{ marginRight: 10 }}>Subject:</label>
+            <select
+              type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            >
+              <option value="" disabled="disabled">
+          Choose
+        </option>
+            {
+              subjectList?.map((item ,index)=>(
+                <option value={item}>{item}</option>
+              ))
+            }
+            </select>
+          </div>
+
+
+
+          <div className="form-group">
+            <label style={{ marginRight: 10 }}>Batch:</label>
+            <select
+              type="text"
+              value={batch}
+              onChange={(e) => setBatch(e.target.value)}
+            >
+            <option value="" disabled="disabled">
+          Choose
+        </option>
+              <option value="Batch 1">Batch 1</option>
+              <option value="Batch 2">Batch 2</option>
+              <option value="Batch 3">Batch 3</option>
+              <option value="Batch 3">Batch 4</option>
+              <option value="Batch 3">Batch 5</option>
+
             </select>
           </div>
 

@@ -3,6 +3,7 @@ import PaymentHistoryTab from "./PaymentHistoryTab";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentModal from "./PaymentModal";
+import "./PayDetailsTab.css"
 
 const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
   const [payHistory, setPayHistory] = useState();
@@ -55,7 +56,9 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
 
   return (
     <>
-      <ToastContainer />
+      <div id="button">
+      <ToastContainer  />
+      </div>
       <div
         className="table-scroll"
         style={{
@@ -111,6 +114,7 @@ const PayDetailsTab = ({ studentPayList, setStudentPayList }) => {
         <PaymentHistoryTab
           admissionList={paymentList.admissionPaymentDetails}
           paymentList={paymentList.paymentDetails}
+          studentList={paymentList}
         />
       ) : null}
       {payHistory === "PaymentModal" ? (
