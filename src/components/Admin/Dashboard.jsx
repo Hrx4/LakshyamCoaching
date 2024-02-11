@@ -26,7 +26,7 @@ const Dashboard = () => {
   const handleTotalDue = () => {
     setSubDash("TotalDue");
   };
-  const list = ["all" , "office 1", "office 2", "office 3"]
+  const list = ["all", "office 1", "office 2", "office 3"];
   const [income, setIncome] = useState([]);
   const [office, setOffice] = useState("");
 
@@ -49,7 +49,9 @@ const Dashboard = () => {
                 : id === "office3"
                 ? "office 3"
                 : id === "superadmin"
-                ? office === "all" ? "" : office
+                ? office === "all"
+                  ? ""
+                  : office
                 : "none",
           }),
         });
@@ -69,41 +71,58 @@ const Dashboard = () => {
       }
     };
     incomeList();
-  }, [id , office]);
+  }, [id, office]);
 
   return (
     <div
       className="dContainer"
       style={{ marginTop: 40, margin: 20, width: "100%" }}
     >
-      <div style={{display:"flex" , justifyContent:"space-between"}}>
-      <h1 className="dHeading" style={{ marginLeft: 15, display: "flex" }}>
-        Dashboard
-        
-      </h1>
-      {
-        (id === "superadmin")  ? <select
-          name="office"
-          id="office"
-          style={{height:"50%"}}
-          value={office}
-          onChange={(e) => {
-            setOffice(e.target.value);
-          }}
-        >
-          <option value="" disabled="disabled">
-            Choose
-          </option>
-          {list.map((item, index) => (
-            <option value={item} key={index}>
-              {item}
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h1 className="dHeading" style={{ marginLeft: 15, display: "flex" }}>
+          Dashboard
+        </h1>
+        <div>
+          <select
+            name="office"
+            id="office"
+            style={{ height: 40, borderRadius: 5, marginRight: 10 }}
+            value={office}
+            onChange={(e) => {
+              setOffice(e.target.value);
+            }}
+          >
+            <option value="" disabled="disabled">
+              Choose Year
             </option>
-          ))}
-        </select> : null
-
-      }
+            
+              <option value={2024} >
+                2024
+              </option>
+          </select>
+          {id === "superadmin" ? (
+            <select
+              name="office"
+              id="office"
+              style={{ height: 40, borderRadius: 5 }}
+              value={office}
+              onChange={(e) => {
+                setOffice(e.target.value);
+              }}
+            >
+              <option value="" disabled="disabled">
+                Choose Office
+              </option>
+              {list.map((item, index) => (
+                <option value={item} key={index}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          ) : null}
+        </div>
       </div>
-      
+
       <div
         className="dInnerContainer"
         style={{
@@ -271,16 +290,32 @@ const Dashboard = () => {
       </div>
 
       {subDash === "MonthlyIncome" ? (
-        <SubDashBoard headingDash="Monthly Income" apiRoute="monthlyincome" office={office} />
+        <SubDashBoard
+          headingDash="Monthly Income"
+          apiRoute="monthlyincome"
+          office={office}
+        />
       ) : null}
       {subDash === "TotalIncome" ? (
-        <SubDashBoard headingDash="Total Income" apiRoute="totalincome" office={office} />
+        <SubDashBoard
+          headingDash="Total Income"
+          apiRoute="totalincome"
+          office={office}
+        />
       ) : null}
       {subDash === "MonthlyDue" ? (
-        <SubDashBoard headingDash="Monthly Due" apiRoute="monthlydue" office={office} />
+        <SubDashBoard
+          headingDash="Monthly Due"
+          apiRoute="monthlydue"
+          office={office}
+        />
       ) : null}
       {subDash === "TotalDue" ? (
-        <SubDashBoard headingDash="Total Due" apiRoute="totaldue" office={office} />
+        <SubDashBoard
+          headingDash="Total Due"
+          apiRoute="totaldue"
+          office={office}
+        />
       ) : null}
     </div>
   );

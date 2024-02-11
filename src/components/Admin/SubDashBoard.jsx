@@ -83,7 +83,7 @@ useEffect(() => {
       </div>
       <div style={{ marginTop: 10 }}>
         <select className="student__field" required style={{ height: 40 }} value={studentCourse} onChange={(e)=>{setStudentCourse(e.target.value)}} >
-          <option hidden>Select Course</option>
+          <option value="">Select Course</option>
          
           <option value={"IIT / NEET"}>IIT / NEET</option>
           {/* <option>Schooling Solution</option> */}
@@ -93,7 +93,7 @@ useEffect(() => {
 
       <div style={{ marginTop: 10 }}>
         <select className="student__field" required style={{ height: 40 }} value={studentClass} onChange={(e)=>{setStudentClass(e.target.value)}}>
-          <option hidden >Select Class</option>
+          <option value="" >Select Class</option>
           {
             data.map((item , index)=>(
               <option value={item}>{item}</option>
@@ -110,9 +110,10 @@ useEffect(() => {
          <th style={{border: '1px solid #000', padding: '8px'}}>Enrollment No.</th>
             <th style={{border: '1px solid #000', padding: '8px'}} >Name</th>
             <th style={{border: '1px solid #000', padding: '8px'}}>Monthly Fee</th>
-            <th style={{border: '1px solid #000', padding: '8px'}}>Due</th>
+            <th style={{border: '1px solid #000', padding: '8px'}}>Monthly Due</th>
             <th style={{border: '1px solid #000', padding: '8px'}}>Total Paid</th>
             <th style={{border: '1px solid #000', padding: '8px'}}>Send Message</th>
+            <th style={{border: '1px solid #000', padding: '8px'}}> <button>Export</button></th>            
 
             </tr>
 
@@ -122,7 +123,9 @@ useEffect(() => {
               <th style={{border: '1px solid #000', padding: '8px'}}>Enrollment No.</th>
             <th style={{border: '1px solid #000', padding: '8px'}} >Name</th>
             <th style={{border: '1px solid #000', padding: '8px'}}>Monthly Fee</th>
-            <th style={{border: '1px solid #000', padding: '8px'}}>Income</th>            
+            <th style={{border: '1px solid #000', padding: '8px'}}>Total Paid</th>  
+            <th style={{border: '1px solid #000', padding: '8px'}}> <button>Export</button></th>            
+          
         </tr>)}
         
         </thead>

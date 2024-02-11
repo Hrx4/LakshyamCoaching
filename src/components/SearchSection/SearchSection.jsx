@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./SearchSection.css";
 import backend from "../../backend";
 
@@ -9,19 +9,62 @@ const SearchSection = ({ setNoteList, setShowImg, setShowPdf, setTitle }) => {
   const [classs, setClasss] = useState("");
   const [batch, setBatch] = useState("");
 
-  const mainSubjects = [
-    "CBSE Board All Subjects",
-    "ICSE Board All Subjects",
-    "Class 11 CBSE Boards + CUET",
-    "Class 11 ICSE Boards + CUET",
-    "Class 12 CBSE Boards + CUET",
-    "Class 12 ICSE Boards + CUET",
-    "JEE Mains",
-    "NEET",
-    "Foundation Course JEE IIT / NEET",
-    "Commerce Board + CUET",
-    "CA Foundation",
-  ];
+  
+
+  const classList = useMemo(
+    ()=>course === "IIT / NEET" ?
+    [
+      "class 11 science",
+      "class 12 science",
+    ]: course=== "CBSE" ? 
+    [
+      "class 4",
+      "class 5",
+      "class 6",
+      "class 7",
+      "class 8",
+      "class 9",
+      "class 10",
+      "class 11 science",
+      "class 12 science",
+      "class 11 commerce",
+      "class 12 commerce",
+    ]
+  : course === "ICSE"
+  ? [
+      "class 4",
+      "class 5",
+      "class 6",
+      "class 7",
+      "class 8",
+      "class 9",
+      "class 10",
+    ] :[] , [course]
+  )
+
+  const subjectList = useMemo(()=>
+  (classs==="class 4"||
+  classs==="class 5"||
+  classs==="class 6"||
+  classs==="class 7"||
+  classs==="class 8") ?
+  [
+    "English","SST" , "Math" , "Science" , "Bengali" , "Hindi"
+  ] :
+  (
+    classs === "class 9" ||
+    classs === "class 10"
+  ) ?
+  [    "English","SST" , "Math" , "Physics","Chemistry" , "Biology" , "Bengali" , "Hindi"
+] :
+(classs === "class 11 science" ||
+classs === "class 12 science") ? [
+  "Math" , "Physics","Chemistry" , "Biology" , "Computer" , "English"
+] :
+(classs === "class 11 commerce" ||
+classs === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Computer" , "English"] :[]
+  , [classs])
+
   const subSubjects = ["Math", "Physics", "Chemistry"];
   const classes = ["Class XI", "Class XII"];
   const batches = ["Batch 1", "Batch 2", "Batch 3"];
@@ -79,16 +122,16 @@ const SearchSection = ({ setNoteList, setShowImg, setShowPdf, setTitle }) => {
         setSubject(e.target.value);
       }}
     >
-      <option hidden>Select Subject</option>
+      <option style={{ color: "black" }} value="">Select Subject</option>
 
-      {options.map((option) => (
-        <option style={{ color: "black" }} key={option}>
+      {subjectList?.map((option) => (
+        <option style={{ color: "black" }} key={option} value={option}>
           {option}
         </option>
       ))}
     </select>
   );
-  const Select1 = ({ options, setCourse, course }) => (
+  const Select1 = ({  setCourse, course }) => (
     <select
       style={{
         width: "100%",
@@ -101,15 +144,13 @@ const SearchSection = ({ setNoteList, setShowImg, setShowPdf, setTitle }) => {
         setCourse(e.target.value);
       }}
     >
-      <option hidden>Select Course</option>
-      {options.map((option) => (
-        <option style={{ color: "black" }} key={option}>
-          {option}
-        </option>
-      ))}
+      <option  style={{ color: "black" }} value="">Select Course</option>
+      <option style={{ color: "black" }} value="IIT / NEET">IIT / NEET</option>
+              <option  style={{ color: "black" }}value="CBSE">CBSE</option>
+              <option style={{ color: "black" }} value="ICSE">ICSE</option>
     </select>
   );
-  const Select2 = ({ options, setClasss, classs }) => (
+  const Select2 = ({  setClasss, classs }) => (
     <select
       style={{
         width: "100%",
@@ -122,10 +163,10 @@ const SearchSection = ({ setNoteList, setShowImg, setShowPdf, setTitle }) => {
         setClasss(e.target.value);
       }}
     >
-      <option hidden>Select Class</option>
+      <option style={{ color: "black" }} value="">Select Class</option>
 
-      {options.map((option) => (
-        <option style={{ color: "black" }} key={option}>
+      {classList?.map((option) => (
+        <option style={{ color: "black" }} key={option} value={option}>
           {option}
         </option>
       ))}
@@ -144,19 +185,29 @@ const SearchSection = ({ setNoteList, setShowImg, setShowPdf, setTitle }) => {
         setBatch(e.target.value);
       }}
     >
-      <option hidden>Select Batch</option>
-
-      {options.map((option) => (
-        <option style={{ color: "black" }} key={option}>
-          {option}
-        </option>
-      ))}
+      <option value="">Select Batch</option>
+        <option style={{ color: "black" }} value="Batch 1">Batch 1</option>
+              <option style={{ color: "black" }} value="Batch 2">Batch 2</option>
+              <option style={{ color: "black" }} value="Batch 3">Batch 3</option>
+              <option style={{ color: "black" }} value="Batch 3">Batch 4</option>
+              <option style={{ color: "black" }} value="Batch 3">Batch 5</option>
     </select>
   );
 
   return (
     <section className="courseSearch">
       <div className="courseSearch-bars">
+        
+
+        <div className="courseSearch-bars-bar">
+          <Select1
+            setCourse={setCourse}
+            course={course}
+          />
+        </div>
+        <div className="courseSearch-bars-bar">
+          <Select2 options={classes} setClasss={setClasss} classs={classs} />
+        </div>
         <div className="courseSearch-bars-bar">
           <Select
             options={subSubjects}
@@ -164,20 +215,10 @@ const SearchSection = ({ setNoteList, setShowImg, setShowPdf, setTitle }) => {
             subject={subject}
           />
         </div>
-
-        <div className="courseSearch-bars-bar">
-          <Select1
-            options={mainSubjects}
-            setCourse={setCourse}
-            course={course}
-          />
-        </div>
         <div className="courseSearch-bars-bar">
           <Select3 options={batches} setBatch={setBatch} batch={batch} />
         </div>
-        <div className="courseSearch-bars-bar">
-          <Select2 options={classes} setClasss={setClasss} classs={classs} />
-        </div>
+        
         <button onClick={() => handleNoteTable()} style={{ borderRadius: 5 }}>
           Search
         </button>

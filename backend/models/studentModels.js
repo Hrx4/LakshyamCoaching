@@ -99,7 +99,7 @@ const studentSchema = mongoose.Schema(
       type: [],
     },
     schoolingSub: {
-      type: [],
+      type: String,
     },
     extraSub: {
       type: [],
