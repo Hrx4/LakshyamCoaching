@@ -10,7 +10,6 @@ const Contact = () => {
     <Navbar/>
     <div>
       <MainBanner
-        heading6="Home >"
         heading2a="Contact us"
         // heading2b="us"
         videoSource={myVideo}

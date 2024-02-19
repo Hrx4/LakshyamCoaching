@@ -75,7 +75,7 @@ const AllTeacher = () => {
       });
 
       const resJson = await response.json();
-      alert("Teacher Update");
+      window.location.reload();
       console.log(resJson);
     } catch (err) {
       console.log(err);
@@ -300,7 +300,7 @@ const AllTeacher = () => {
             <div className="form-group">
               <label>Date Of Joining:</label>
               <input
-                type="text"
+                type="date"
                 value={table.teacherDoj}
                 onChange={(e) =>
                   setTable({ ...table, teacherDoj: e.target.value })

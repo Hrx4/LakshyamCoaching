@@ -816,6 +816,40 @@ const AddStudent = ({ studentDetails, setNoteView }) => {
 
       if (response.status === 200) {
         alert("Form Submitted");
+        setIitNeetFee(0)
+        setSchoolingFee(0)
+        setExtraFee(0)
+        setIitNeetSub([])
+        setSchoolingSub([])
+        setExtraSub([])
+        setMonthlyIncome(0)
+        setFormData({
+          enrollment: "",
+          office: "",
+          photo: "",
+          password: "",
+          name: "",
+          dob: "",
+          gender: "",
+          fatherName: "",
+          fatherOccupassion: "",
+          fatherNo: "",
+          motherName: "",
+          parentWp: "",
+          emergencyNo: "",
+          address: "",
+          doj: "",
+          blood: "",
+          schoolName: "",
+          lastClass: "",
+          lastExam: "",
+          iitNeetCourse: "",
+          schoolingCourse: "",
+          schoolingClass: "",
+          iitNeetAdmission: "",
+          schoolingAdmission: "",
+          extraAdmission: "",
+        })
         // setIncome(resJson);
         console.log("====================================");
         console.log(resJson);

@@ -9,7 +9,6 @@ const Gallery = () => {
     <>
     <Navbar/>
     <MainBanner
-        heading6="Home >"
         heading2a="Gallery"
         videoSource={myVideo}
         showFeaturesSection={true}

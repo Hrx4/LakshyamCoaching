@@ -15,7 +15,6 @@ const About = () => {
   <Navbar/>
     <div>
       <MainBanner
-        heading6="Home >"
         heading2a="Success Starts Here"
         videoSource={myVideo}
         showFeaturesSection={true}

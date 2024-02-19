@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import backend from "../../backend";
 import { useParams } from "react-router-dom";
 
-const AllStudent = ({setNoteView , setStudentDetails}) => {
+const AllStudent = ({ setNoteView, setStudentDetails }) => {
   const [course, setCourse] = useState("");
   const [studentEnrollment, setStudentEnrollment] = useState("");
   const [studentTab, setStudentTab] = useState();
@@ -21,7 +21,8 @@ const AllStudent = ({setNoteView , setStudentDetails}) => {
   const handleAllStudentTable = async (e) => {
     e.preventDefault();
     setStudentTab("studentInfo");
-    if(course==="" && studentEnrollment==="") return alert("Fill The Fields")
+    if (course === "" && studentEnrollment === "")
+      return alert("Fill The Fields");
     try {
       const res = await fetch(`${backend}student/getstudent`, {
         method: "POST",
@@ -85,6 +86,10 @@ const AllStudent = ({setNoteView , setStudentDetails}) => {
                   onChange={(e) => setCourse(e.target.value)}
                   style={{ color: "white" }}
                 >
+                  <MenuItem value="Select Your Course">
+                    Select Your Course
+                  </MenuItem>
+
                   <MenuItem value="IIT-JEE/NEET">IIT-JEE/NEET</MenuItem>
                   <MenuItem value="Schooling Solution">
                     Schooling Solution
@@ -108,7 +113,7 @@ const AllStudent = ({setNoteView , setStudentDetails}) => {
             studentList={studentList}
             setStudentList={setStudentList}
             setNoteView={setNoteView}
-            setStudentDetails ={setStudentDetails}
+            setStudentDetails={setStudentDetails}
           />
         ) : null}
       </div>

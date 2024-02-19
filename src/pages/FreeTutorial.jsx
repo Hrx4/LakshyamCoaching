@@ -52,8 +52,7 @@ const FreeTutorial = () => {
       <Navbar />
       <div>
         <MainBanner
-          heading6="Home >"
-          heading2a="Free Tutorial"
+          heading2a="Study Materials"
           // heading2b="Tutorial"
           videoSource={myVideo}
           // buttonText="Discover more" // Provide buttonText prop if needed

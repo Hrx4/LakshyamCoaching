@@ -214,6 +214,15 @@ const ContactTable = (props) => {
               </div>
 
               <div className="form-group">
+                <label>Phone Number:</label>
+                <input
+                  type="text"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group">
                 <label>Message:</label>
                 <input
                   type="text"

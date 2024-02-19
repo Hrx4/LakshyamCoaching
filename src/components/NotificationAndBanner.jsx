@@ -28,7 +28,7 @@ const NotificationAndBanner = ({ noticeList, setNoticeList }) => {
     <>
       <div className="Ncontainer" style={{ paddingTop: 25, paddingBottom: 0 }}>
         <div className="carouselImage" style={{ float: "left", width: "45%" }}>
-          <Carousel>
+          <Carousel autoPlay infiniteLoop interval={3000}>
             <div>
               <img src={images[0]} alt="" />
             </div>

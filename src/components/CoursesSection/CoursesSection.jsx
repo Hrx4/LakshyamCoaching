@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import CourseItem from "../CourseItem/CourseItem";
-import './CoursesSection.css';
-import img_1 from './4.png';
-import img_2 from './5.png';
-import img_3 from './6.png';
-import img_4 from './7.png';
-import img_5 from './8.png';
-import img_6 from './9.png';
-import img_7 from './10.png';
-import img_8 from './11.png';
-import img_9 from './12.png';
-import img_10 from './13.png';
-import img_11 from './14.png';
-
-
-
+import "./CoursesSection.css";
+import img_1 from "./4.png";
+import img_2 from "./5.png";
+import img_3 from "./6.png";
+import img_4 from "./7.png";
+import img_5 from "./8.png";
+import img_6 from "./9.png";
+import img_7 from "./10.png";
+import img_8 from "./11.png";
+import img_9 from "./12.png";
+import img_10 from "./13.png";
+import img_11 from "./14.png";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 
 const CoursesSection = () => {
-
   const coursesData = [
     {
       imgSrc: img_1,
@@ -74,34 +72,78 @@ const CoursesSection = () => {
         "Students of classes XI and XII are prepared for entrances. Also, medical students are given regular coaching.",
     },
     {
-      imgSrc:img_10 ,
+      imgSrc: img_10,
       title: "Commerce Board + CUET",
       description:
         "Students of classes XI and XII are prepared for entrances. Also, engineering students are given regular coaching.",
     },
     {
-      imgSrc:img_11 ,
-      title:"CA Foundation",
+      imgSrc: img_11,
+      title: "CA Foundation",
       description:
         "Students of classes XI and XII are prepared for entrances. Also, medical students are given regular coaching.",
-    }
+    },
   ];
+  const scrollContainerRef = useRef(null);
+  const handleScroll = (scrollOffset) => {
+    const scrollContainer = scrollContainerRef.current;
+    const currentScrollLeft = scrollContainer.scrollLeft;
+    const newScrollLeft = currentScrollLeft + scrollOffset;
 
-
+    scrollContainer.scrollTo({
+      left: newScrollLeft,
+      behavior: "smooth", // Enable smooth scrolling
+    });
+  };
 
   return (
-    <section className="section-courses" data-section="section4" style={{paddingBottom:50}}>
-      <div className="container-fluid" >
+    <section
+      className="section-courses"
+      data-section="section4"
+      style={{ paddingBottom: 50 }}
+    >
+      <div className="container-fluid">
         <div className="">
           <div className="col-md-12">
             <div className="section-heading">
               <h2>Choose Your Course</h2>
             </div>
           </div>
-          <div className="courseContainer">
-            {coursesData.map((course, index) => (
-              <CourseItem key={index} {...course} />
-            ))}
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              className="arrow__btn"
+
+            >
+              <ArrowBackOutlinedIcon
+                style={{ color: "white", fontSize: 40, cursor: "pointer" }}
+                onClick={() => handleScroll(-400)}
+              />
+            </div>
+
+            <div className="courseContainer" ref={scrollContainerRef}>
+              {coursesData.map((course, index) => (
+                <CourseItem key={index} {...course} />
+              ))}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              className="arrow__btn"
+
+            >
+              <ArrowForwardOutlinedIcon
+                style={{ color: "white", fontSize: 40, cursor: "pointer" }}
+                onClick={() => handleScroll(+400)}
+              />
+            </div>
           </div>
         </div>
       </div>

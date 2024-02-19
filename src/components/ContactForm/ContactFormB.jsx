@@ -58,7 +58,7 @@ const ContactForm = ({
     }
 
     console.log("Submitted Data:", formData);
-
+alert("Form submitted")
     setFormData({
       name: "",
       email: "",

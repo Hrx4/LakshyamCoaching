@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import lakshyamLogo from "./lakshyamlogo.png";
 
 const SnavBar = (props) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate()
   useEffect(() => {
     // Function to handle scroll events
     const handleScroll = () => {
@@ -71,7 +72,7 @@ const SnavBar = (props) => {
               style={{ height: "100%", marginLeft: "190px" }}
             />
           </div>
-          <button>Sign Out</button>
+          <button onClick={()=>navigate("/login")}>Sign Out</button>
         </div>
       )}
     </div>
