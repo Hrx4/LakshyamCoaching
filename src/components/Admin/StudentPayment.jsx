@@ -20,7 +20,8 @@ const StudentPayment = () => {
   const handlePayDetails = async (e) => {
     e.preventDefault();
     setPayDetails("addPayDetails");
-    if(courseForPay==="" && studentEnrollment==="") return alert("Fill The Fields")
+    if (courseForPay === "" && studentEnrollment === "")
+      return alert("Fill The Fields");
     try {
       const res = await fetch(`${backend}student/getstudent`, {
         method: "POST",
@@ -87,6 +88,10 @@ const StudentPayment = () => {
                   onChange={(e) => setCourseForPay(e.target.value)}
                   style={{ color: "white" }}
                 >
+                  <MenuItem value="Select Your Course">
+                    Select Your Course
+                  </MenuItem>
+
                   <MenuItem value="IIT-JEE/NEET">IIT-JEE/NEET</MenuItem>
                   <MenuItem value="Schooling Solution">
                     Schooling Solution

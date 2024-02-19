@@ -8,3 +8,6 @@
         width: 350px !important;
     }
 }
+::-webkit-scrollbar{
+    display: none;
+}

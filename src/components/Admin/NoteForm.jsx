@@ -69,6 +69,10 @@ function NoteForm() {
         setTitle("");
         setImage("");
         setPdf("");
+        setClassValue("")
+        setSubject("")
+        setBatch("")
+        setCourse("")
         toast.success("Form submitted", {
           position: toast.POSITION.TOP_CENTER,
         });

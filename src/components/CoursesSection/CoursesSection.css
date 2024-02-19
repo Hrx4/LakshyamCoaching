@@ -46,12 +46,34 @@
   .courseContainer{
     box-sizing: border-box;
     display: flex;
-    width: auto  !important;
+    width: 90vw  !important;
     max-width: auto !important;
     flex-direction: row ;
-    overflow-x: scroll;    
-  }
-  .courseContainer::-webkit-scrollbar {
-    background: transparent; /* Chrome/Safari/Webkit */
+    overflow-x: scroll;   
+    /* overflow-y: scroll;  */
+  } 
+   .courseContainer::-webkit-scrollbar {
+    background: transparent; 
     width: 0px;
   }
+  @media (max-width:750px) {
+    .arrow__btn{
+      display: none !important;
+    }
+  }
+  /* .courseContainer {
+    width: 100px;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform-origin: right top;
+    transform: rotate(-90deg) translateX(-100px);
+  }
+  
+  .courseContainer > div {
+    width: 100px;
+    height: 100px;
+    transform: rotate(90deg);
+    transform-origin: right top;
+  }  */
+  

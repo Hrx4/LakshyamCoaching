@@ -61,7 +61,7 @@ const DuePayment = () => {
                 Payment Month
               </th>
               <th style={{ border: "1px solid #000", padding: "8px" }}>
-                Payment Fee
+                Due Payment
               </th>
             </tr>
           </thead>

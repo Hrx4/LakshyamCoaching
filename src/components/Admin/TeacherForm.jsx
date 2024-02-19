@@ -35,7 +35,7 @@ const TeacherForm = () => {
           teacherEmail: email,
           teacherPassword: password,
           teacherAddress: address,
-          teacherSalary: salary,
+          teacherSalary: parseInt(salary),
           teacherDoj: doj,
           teacherSubject: subjectValue,
           teacherClass: classValue,
@@ -44,10 +44,30 @@ const TeacherForm = () => {
       });
 
       const resJson = await response.json();
-      alert("Teacher added");
+
+      if (response.status === 200) {
+        console.log("fine");
+        alert("Teacher added");
+      setName("")
+      setDob("")
+      setAge("")
+      setGender("")
+      setEducation("")
+      setEmail("")
+      setPassword("")
+      setAddress("")
+      setSalary(0)
+      setDoj("")
+      setSubjectValue("")
+      setClassValue("")
+      setCourseValue("")
       console.log(resJson);
+      } else {
+        alert("Some error occured");
+      }
+      
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
   return (

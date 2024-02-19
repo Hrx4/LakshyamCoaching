@@ -10,7 +10,6 @@ const Courses = () => {
     <Navbar/>
     <div>
     <MainBanner
-        heading6="Home >"
         heading2a="our courses"
         // heading2b="courses"
         videoSource={myVideo}
