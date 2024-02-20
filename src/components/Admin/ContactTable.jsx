@@ -118,56 +118,58 @@ const ContactTable = (props) => {
                 </th>
               </tr>
             }
-            {props.contactList.map((item) => (
-              <tr
-                style={{ border: "1px solid black", padding: 5 }}
-                key={item._id}
-                onClick={() => {
-                  console.log(item._id);
-                }}
-              >
-                <td style={{ border: "1px solid black", padding: 5 }}>
-                  {item.contactName}
-                </td>
-                <td style={{ border: "1px solid black", padding: 5 }}>
-                  {item.contactEmail}
-                </td>
-                <td style={{ border: "1px solid black", padding: 5 }}>
-                  {item.contactPhone}
-                </td>
-                <td style={{ border: "1px solid black", padding: 5 }}>
-                  {item.contactMessage}
-                </td>
-                <td style={{ border: "1px solid black", padding: 5 }}>
-                  <Button
-                    style={{ marginBottom: 5, marginLeft: 5 }}
-                    variant="contained"
-                    color="error"
-                    size="small"
-                    onClick={() => handleDelete(JSON.stringify(item._id))}
-                  >
-                    Delete
-                  </Button>
-                  <Button
-                    style={{ marginBottom: 5, marginLeft: 5 }}
-                    variant="contained"
-                    color="success"
-                    size="small"
-                    onClick={() =>
-                      CustomerModalOpen(
-                        item._id,
-                        item.contactName,
-                        item.contactEmail,
-                        item.contactPhone,
-                        item.contactMessage
-                      )
-                    }
-                  >
-                    Update
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            {props.contactList.map((item) =>
+              item.contactPerson === "student" ? (
+                <tr
+                  style={{ border: "1px solid black", padding: 5 }}
+                  key={item._id}
+                  onClick={() => {
+                    console.log(item._id);
+                  }}
+                >
+                  <td style={{ border: "1px solid black", padding: 5 }}>
+                    {item.contactName}
+                  </td>
+                  <td style={{ border: "1px solid black", padding: 5 }}>
+                    {item.contactEmail}
+                  </td>
+                  <td style={{ border: "1px solid black", padding: 5 }}>
+                    {item.contactPhone}
+                  </td>
+                  <td style={{ border: "1px solid black", padding: 5 }}>
+                    {item.contactMessage}
+                  </td>
+                  <td style={{ border: "1px solid black", padding: 5 }}>
+                    <Button
+                      style={{ marginBottom: 5, marginLeft: 5 }}
+                      variant="contained"
+                      color="error"
+                      size="small"
+                      onClick={() => handleDelete(JSON.stringify(item._id))}
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      style={{ marginBottom: 5, marginLeft: 5 }}
+                      variant="contained"
+                      color="success"
+                      size="small"
+                      onClick={() =>
+                        CustomerModalOpen(
+                          item._id,
+                          item.contactName,
+                          item.contactEmail,
+                          item.contactPhone,
+                          item.contactMessage
+                        )
+                      }
+                    >
+                      Update
+                    </Button>
+                  </td>
+                </tr>
+              ) : null
+            )}
           </tbody>
         </table>
       </div>

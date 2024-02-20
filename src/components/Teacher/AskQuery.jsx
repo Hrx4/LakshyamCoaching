@@ -25,11 +25,18 @@ const AskQuery = () =>{
           contactEmail: formData.email,
           contactPhone: formData.phone,
           contactMessage: formData.message,
+          contactPerson : "teacher"
         }),
       });
       // let resJson = await res.json();
       if (res.status === 200) {
         console.log("fine");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        })
       } else {
         console.log("Some error occured");
         alert("All field required")
