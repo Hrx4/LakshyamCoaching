@@ -30,7 +30,11 @@ function NoteForm() {
       .then((res) => res.json())
       .then((data) => {
         if (files[0].type === "application/pdf") setPdf(data.url);
-        if (files[0].type === "image/jpeg" || files[0].type === "image/png")
+        if (
+          files[0].type === "image/jpeg" ||
+          files[0].type === "image/jpg" ||
+          files[0].type === "image/png"
+        )
           setImage(data.url);
       })
       .catch((err) => {
@@ -69,10 +73,10 @@ function NoteForm() {
         setTitle("");
         setImage("");
         setPdf("");
-        setClassValue("")
-        setSubject("")
-        setBatch("")
-        setCourse("")
+        setClassValue("");
+        setSubject("");
+        setBatch("");
+        setCourse("");
         toast.success("Form submitted", {
           position: toast.POSITION.TOP_CENTER,
         });
@@ -93,60 +97,64 @@ function NoteForm() {
   };
 
   const classList = useMemo(
-    ()=>course === "IIT / NEET" ?
-    [
-      "class 11 science",
-      "class 12 science",
-    ]: course=== "CBSE" ? 
-    [
-      "class 4",
-      "class 5",
-      "class 6",
-      "class 7",
-      "class 8",
-      "class 9",
-      "class 10",
-      "class 11 science",
-      "class 12 science",
-      "class 11 commerce",
-      "class 12 commerce",
-    ]
-  : course === "ICSE"
-  ? [
-      "class 4",
-      "class 5",
-      "class 6",
-      "class 7",
-      "class 8",
-      "class 9",
-      "class 10",
-    ] :[] , [course]
-  )
+    () =>
+      course === "IIT / NEET"
+        ? ["class 11 science", "class 12 science"]
+        : course === "CBSE"
+        ? [
+            "class 4",
+            "class 5",
+            "class 6",
+            "class 7",
+            "class 8",
+            "class 9",
+            "class 10",
+            "class 11 science",
+            "class 12 science",
+            "class 11 commerce",
+            "class 12 commerce",
+          ]
+        : course === "ICSE"
+        ? [
+            "class 4",
+            "class 5",
+            "class 6",
+            "class 7",
+            "class 8",
+            "class 9",
+            "class 10",
+          ]
+        : [],
+    [course]
+  );
 
-  const subjectList = useMemo(()=>
-  (classValue==="class 4"||
-  classValue==="class 5"||
-  classValue==="class 6"||
-  classValue==="class 7"||
-  classValue==="class 8") ?
-  [
-    "English","SST" , "Math" , "Science" , "Bengali" , "Hindi"
-  ] :
-  (
-    classValue === "class 9" ||
-    classValue === "class 10"
-  ) ?
-  [    "English","SST" , "Math" , "Physics","Chemistry" , "Biology" , "Bengali" , "Hindi"
-] :
-(classValue === "class 11 science" ||
-classValue === "class 12 science") ? [
-  "Math" , "Physics","Chemistry" , "Biology" , "Computer" , "English"
-] :
-(classValue === "class 11 commerce" ||
-classValue === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Computer" , "English"] :[]
-  , [classValue])
-
-  
+  const subjectList = useMemo(
+    () =>
+      classValue === "class 4" ||
+      classValue === "class 5" ||
+      classValue === "class 6" ||
+      classValue === "class 7" ||
+      classValue === "class 8"
+        ? ["English", "SST", "Math", "Science", "Bengali", "Hindi"]
+        : classValue === "class 9" || classValue === "class 10"
+        ? [
+            "English",
+            "SST",
+            "Math",
+            "Physics",
+            "Chemistry",
+            "Biology",
+            "Bengali",
+            "Hindi",
+          ]
+        : classValue === "class 11 science" || classValue === "class 12 science"
+        ? ["Math", "Physics", "Chemistry", "Biology", "Computer", "English"]
+        : classValue === "class 11 commerce" ||
+          classValue === "class 12 commerce"
+        ? ["Accountancy", "BST", "Economics", "Computer", "English"]
+        : [],
+    [classValue]
+  );
 
   return (
     <>
@@ -172,8 +180,6 @@ classValue === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Co
             />
           </div>
 
-          
-
           <div className="form-group">
             <label>Note Thumbnail Image:</label>
             <input type="file" accept="image/*" onChange={uploadFiles} />
@@ -183,7 +189,6 @@ classValue === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Co
             <label>Upload File:</label>
             <input type="file" accept=".pdf" onChange={uploadFiles} />
           </div>
-          
 
           <div className="form-group">
             <label style={{ marginRight: 10 }}>Course:</label>
@@ -192,13 +197,12 @@ classValue === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Co
               value={course}
               onChange={(e) => setCourse(e.target.value)}
             >
-            <option value="" disabled="disabled">
-          Choose
-        </option>
+              <option value="" disabled="disabled">
+                Choose
+              </option>
               <option value="IIT / NEET">IIT / NEET</option>
               <option value="CBSE">CBSE</option>
               <option value="ICSE">ICSE</option>
-
             </select>
           </div>
           <div className="form-group">
@@ -208,14 +212,12 @@ classValue === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Co
               value={classValue}
               onChange={(e) => setClassValue(e.target.value)}
             >
-            <option value="" disabled="disabled">
-          Choose
-        </option>
-            {
-              classList?.map((item ,index)=>(
+              <option value="" disabled="disabled">
+                Choose
+              </option>
+              {classList?.map((item, index) => (
                 <option value={item}>{item}</option>
-              ))
-            }
+              ))}
             </select>
           </div>
           <div className="form-group">
@@ -226,17 +228,13 @@ classValue === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Co
               onChange={(e) => setSubject(e.target.value)}
             >
               <option value="" disabled="disabled">
-          Choose
-        </option>
-            {
-              subjectList?.map((item ,index)=>(
+                Choose
+              </option>
+              {subjectList?.map((item, index) => (
                 <option value={item}>{item}</option>
-              ))
-            }
+              ))}
             </select>
           </div>
-
-
 
           <div className="form-group">
             <label style={{ marginRight: 10 }}>Batch:</label>
@@ -245,15 +243,14 @@ classValue === "class 12 commerce") ? ["Accountancy" , "BST" , "Economics" , "Co
               value={batch}
               onChange={(e) => setBatch(e.target.value)}
             >
-            <option value="" disabled="disabled">
-          Choose
-        </option>
+              <option value="" disabled="disabled">
+                Choose
+              </option>
               <option value="Batch 1">Batch 1</option>
               <option value="Batch 2">Batch 2</option>
               <option value="Batch 3">Batch 3</option>
               <option value="Batch 3">Batch 4</option>
               <option value="Batch 3">Batch 5</option>
-
             </select>
           </div>
 

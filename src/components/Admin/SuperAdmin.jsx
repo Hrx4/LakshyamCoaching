@@ -19,6 +19,7 @@ import AllBanner from "./AllBanner";
 import TeacherForm from "./TeacherForm";
 import AllTeacher from "./AllTeacher";
 import Birthday from "./Birthday";
+import ContactTableTeacher from "./ContactTableTeacher";
 
 const SuperAdmin = () => {
   const ref = useRef(null);
@@ -144,6 +145,35 @@ const SuperAdmin = () => {
     ref.current.classList.remove("slider__open");
     setSlideOpen(false);
     setNoteView("contacttable");
+
+    try {
+      const response = await fetch(`${backend}contact/`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      const resJson = await response.json();
+
+      if (response.status === 200) {
+        setContactList(resJson);
+        console.log("====================================");
+        console.log(resJson);
+        console.log("====================================");
+      } else {
+        console.log("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleContactTable1 = async () => {
+    ref.current.classList.add("slider__close");
+    ref.current.classList.remove("slider__open");
+    setSlideOpen(false);
+    setNoteView("contacttable1");
 
     try {
       const response = await fetch(`${backend}contact/`, {
@@ -429,7 +459,14 @@ const SuperAdmin = () => {
             style={{ padding: 20, cursor: "pointer", paddingLeft: 30 }}
             className="note__btn"
           >
-            ▶ Query Details
+            ▶ Student Query 
+          </div>
+          <div
+            onClick={handleContactTable1}
+            style={{ padding: 20, cursor: "pointer", paddingLeft: 30 }}
+            className="note__btn"
+          >
+            ▶ Teacher Query
           </div>
           <div
             onClick={handleApplyTable}
@@ -630,6 +667,8 @@ const SuperAdmin = () => {
           {noteView === "Dashboard" ? <Dashboard /> : null}
           {noteView === "addBannerForm" ? <AddBanner /> : null}
           {noteView === "birthday" ? <Birthday /> : null}
+          {noteView === "contacttable1" ? <ContactTableTeacher contactList={contactList}
+              setContactList={setContactList}/> : null}
 
           {noteView === "allBannerForm" ? (
             <AllBanner bannerList={bannerList} setBannerList={setBannerList} />

@@ -23,7 +23,7 @@ const DuePayment = () => {
   return (
     <>
       <h1 style={{ marginLeft: 15, display: "flex" }} className="dHeading">
-        Track Your Payment
+        Track Due Payments
       </h1>
       <div
         style={{
@@ -61,7 +61,7 @@ const DuePayment = () => {
                 Payment Month
               </th>
               <th style={{ border: "1px solid #000", padding: "8px" }}>
-                Due Payment
+                Due Payments
               </th>
             </tr>
           </thead>

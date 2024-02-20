@@ -22,7 +22,11 @@ const AddBanner = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (files[0].type === "image/jpeg" || files[0].type === "image/png")
+        if (
+          files[0].type === "image/jpeg" ||
+          files[0].type === "image/jpg" ||
+          files[0].type === "image/png"
+        )
           setImage(data.url);
       })
       .catch((err) => {

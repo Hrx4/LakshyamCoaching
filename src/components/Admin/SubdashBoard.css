@@ -16,3 +16,9 @@
         font-size: small ;
     }
 }
+ @media print {
+    .button {
+    display: none;
+    }
+    
+} 

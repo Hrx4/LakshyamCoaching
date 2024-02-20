@@ -18,6 +18,9 @@ const contactSchema = mongoose.Schema({
         type: String,
         required: [true, "Please add the message"],
     },
+    contactPerson : {
+        type: String,
+    }
     
 }, {
     timestamps: true,

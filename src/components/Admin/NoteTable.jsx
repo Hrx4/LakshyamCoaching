@@ -30,7 +30,11 @@ const NoteTable = (props) => {
       .then((res) => res.json())
       .then((data) => {
         if (files[0].type === "application/pdf") setPdf(data.url);
-        if (files[0].type === "image/jpeg" || files[0].type === "image/png")
+        if (
+          files[0].type === "image/jpeg" ||
+          files[0].type === "image/jpg" ||
+          files[0].type === "image/png"
+        )
           setImage(data.url);
         console.log("====================================");
         console.log(data.url);
