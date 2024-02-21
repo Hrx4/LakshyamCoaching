@@ -58,6 +58,7 @@ const AddBanner = () => {
         toast.success("Form submitted", {
           position: toast.POSITION.TOP_CENTER,
         });
+        e.target.reset()
       } else {
         toast.error("All field fill required", {
           position: toast.POSITION.TOP_CENTER,

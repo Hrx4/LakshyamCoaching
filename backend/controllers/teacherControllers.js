@@ -4,7 +4,12 @@ const teacherModels = require('../models/teacherModels');
 
 const createTeacher = asyncHandler(async(req , res) => {
     const {teacherName , teacherDob , teacherAge , teacherGender , teacherEducation , teacherAddress , teacherSalary , teacherDoj ,teacherSubject , teacherClass , teacherCourse,teacherEmail , teacherPassword  } = req.body;
- 
+    const studentCheck = teacherModels.find({teacherEmail : teacherEmail})
+
+    if (studentCheck) {
+        return res.status(404).json({message : "log"});
+        // throw new Error("teacher  found");
+      }
     const bdayMonth = new Date(teacherDob).getMonth()
   const bdayDate = new Date(teacherDob).getDate()
     const contact = await teacherModels.create({

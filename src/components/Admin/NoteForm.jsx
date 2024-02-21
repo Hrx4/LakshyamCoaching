@@ -18,6 +18,7 @@ function NoteForm() {
 
   const uploadFiles = async (e) => {
     const { files } = e.target;
+    console.log(e);
     setLoading(true);
     const data = new FormData();
     data.append("file", files[0]);
@@ -50,6 +51,7 @@ function NoteForm() {
 
     // Handle form submission here (e.g., send the data to the server)
     console.log({ title, subject, classValue, batch, image, pdf, course });
+    
     try {
       const res = await fetch(`${backend}getnote/`, {
         method: "POST",
@@ -80,6 +82,7 @@ function NoteForm() {
         toast.success("Form submitted", {
           position: toast.POSITION.TOP_CENTER,
         });
+        e.target.reset()
       } else {
         toast.error("All field fill required", {
           position: toast.POSITION.TOP_CENTER,
@@ -187,7 +190,7 @@ function NoteForm() {
 
           <div className="form-group">
             <label>Upload File:</label>
-            <input type="file" accept=".pdf" onChange={uploadFiles} />
+            <input type="file" accept=".pdf" onChange={uploadFiles} onClick={(e)=>console.log(e)}/>
           </div>
 
           <div className="form-group">

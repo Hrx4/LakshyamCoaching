@@ -42,6 +42,12 @@ const createStudent = asyncHandler(async (req, res) => {
   // const date = new Date();
   // const month = date.getMonth();
   // const month = date.getMonth();
+  const studentCheck = studentModels.find({studentEnrollment : studentEnrollment})
+  if (studentCheck) {
+    return res.status(404).json({message : "log"});
+
+  }
+
   const date = new Date(studentDoj)
   const month = new Date(studentDoj).getMonth()
   const actualDate = date;
