@@ -819,7 +819,7 @@ const AddStudent = ({ studentDetails, setNoteView }) => {
 
       if (response.status === 200) {
         alert("Form Submitted");
-        e.target.reset()
+        // e.target.reset()
         setIitNeetFee(0);
         setSchoolingFee(0);
         setExtraFee(0);
