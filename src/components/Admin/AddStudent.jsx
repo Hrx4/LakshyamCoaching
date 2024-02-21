@@ -819,6 +819,7 @@ const AddStudent = ({ studentDetails, setNoteView }) => {
 
       if (response.status === 200) {
         alert("Form Submitted");
+        e.target.reset()
         setIitNeetFee(0);
         setSchoolingFee(0);
         setExtraFee(0);
@@ -857,8 +858,12 @@ const AddStudent = ({ studentDetails, setNoteView }) => {
         console.log("====================================");
         console.log(resJson);
         console.log("====================================");
-      } else {
-        console.log("Some error occured");
+      }
+      else if(response.status===404){
+        alert("Change Enrollment No")
+      }
+       else {
+        alert("Error occured")
       }
     } catch (err) {
       console.log(err);

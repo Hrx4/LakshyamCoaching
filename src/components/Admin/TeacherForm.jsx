@@ -62,7 +62,11 @@ const TeacherForm = () => {
       setClassValue("")
       setCourseValue("")
       console.log(resJson);
-      } else {
+      }
+      else if(response.status===404) {
+        alert("Teacher already added")
+      }
+       else {
         alert("Some error occured");
       }
       
