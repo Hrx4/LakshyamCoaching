@@ -42,8 +42,9 @@ const createStudent = asyncHandler(async (req, res) => {
   // const date = new Date();
   // const month = date.getMonth();
   // const month = date.getMonth();
-  const studentCheck = studentModels.find({studentEnrollment : studentEnrollment})
-  if (studentCheck) {
+  const studentCheck = await studentModels.find({studentEnrollment : studentEnrollment})
+  if (!studentCheck) {
+    console.log(studentCheck)
     return res.status(404).json({message : "log"});
 
   }
