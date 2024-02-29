@@ -2,9 +2,8 @@ const asyncHandler = require("express-async-handler");
 const leaveModels = require("../models/leaveModels");
 
 const createNotice = asyncHandler(async (req, res) => {
-  const {  leaveDate, leaveDays , leavePdf } = req.body;
-  let {teacherName} = req.body
-  teacherName = teacherName.trimEnd
+  const {teacherName,  leaveDate, leaveDays , leavePdf } = req.body;
+  
   const notice = await leaveModels.create({
     teacherName, leaveDate, leaveDays : parseInt(leaveDays) , leavePdf , leaveStatus : "Pending"
   });
