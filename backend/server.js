@@ -37,6 +37,7 @@ app.use("/student", require("./routes/studentRoutes"));
 app.use("/popup", require("./routes/popupRoutes"));
 app.use("/login", require("./routes/superLoginRoute"));
 app.use("/teacher", require("./routes/teacherRoutes"));
+app.use("/leave", require("./routes/leaveRoutes"));
 app.use("/bday", require("./routes/bdayRoute"))
 
 app.listen(8080, () => {

@@ -1,21 +1,21 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const noticeSchema = mongoose.Schema({
-    
+const noticeSchema = mongoose.Schema(
+  {
     noticeTitle: {
-        type: String,
-        required: [true, "Please add the Title"],
+      type: String,
+      required: [true, "Please add the Title"],
     },
     noticeDetails: {
-        type: String,
+      type: String,
     },
     noticeLink: {
-        type: String,
+      type: String,
     },
-    
-}, {
+  },
+  {
     timestamps: true,
-}
+  }
 );
 
-module.exports = mongoose.model("notice" , noticeSchema)
+module.exports = mongoose.model("notice", noticeSchema);
