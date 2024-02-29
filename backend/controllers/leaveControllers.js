@@ -2,8 +2,9 @@ const asyncHandler = require("express-async-handler");
 const leaveModels = require("../models/leaveModels");
 
 const createNotice = asyncHandler(async (req, res) => {
-  const { teacherName, leaveDate, leaveDays , leavePdf } = req.body;
-
+  const {  leaveDate, leaveDays , leavePdf } = req.body;
+  let {teacherName} = req.body
+  teacherName = nameTeacher.trimEnd
   const notice = await leaveModels.create({
     teacherName, leaveDate, leaveDays : parseInt(leaveDays) , leavePdf , leaveStatus : "Pending"
   });
@@ -29,8 +30,7 @@ const deleteNotice = asyncHandler(async (req, res) => {
 });
 
 const getTeacherNotice = asyncHandler(async(req , res) => {
-    let nameTeacher = req.params.id
-    nameTeacher = nameTeacher.trimEnd
+    const nameTeacher = req.params.id
     console.log(nameTeacher);
     let notices = await leaveModels.find({teacherName : nameTeacher })
     notices = notices.reverse();
