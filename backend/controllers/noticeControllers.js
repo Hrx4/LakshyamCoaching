@@ -18,6 +18,7 @@ const getNotice = asyncHandler(async(req , res) => {
     res.status(200).json(notices);
 })
 
+
 const deleteNotice = asyncHandler(async(req , res) => {
     const notice = await noticeModels.findById(req.params.id);
     console.log(req.params.id)
@@ -56,4 +57,4 @@ const updateNotice = asyncHandler(async(req , res) => {
 
 
 
-module.exports = {createNotice , deleteNotice , updateNotice , getNotice}
+module.exports = {createNotice , deleteNotice , updateNotice , getNotice }

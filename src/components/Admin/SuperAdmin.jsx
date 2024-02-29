@@ -20,6 +20,7 @@ import TeacherForm from "./TeacherForm";
 import AllTeacher from "./AllTeacher";
 import Birthday from "./Birthday";
 import ContactTableTeacher from "./ContactTableTeacher";
+import LeaveTable from "./LeaveTable";
 
 const SuperAdmin = () => {
   const ref = useRef(null);
@@ -169,6 +170,12 @@ const SuperAdmin = () => {
       console.log(err);
     }
   };
+  const handleLeave = async () => {
+    ref.current.classList.add("slider__close");
+    ref.current.classList.remove("slider__open");
+    setSlideOpen(false);
+    setNoteView("leave");
+  }
   const handleContactTable1 = async () => {
     ref.current.classList.add("slider__close");
     ref.current.classList.remove("slider__open");
@@ -462,6 +469,13 @@ const SuperAdmin = () => {
             ▶ Student Query 
           </div>
           <div
+            onClick={handleLeave}
+            style={{ padding: 20, cursor: "pointer", paddingLeft: 30 }}
+            className="note__btn"
+          >
+            ▶ Teacher Leave
+          </div>
+          <div
             onClick={handleContactTable1}
             style={{ padding: 20, cursor: "pointer", paddingLeft: 30 }}
             className="note__btn"
@@ -667,6 +681,8 @@ const SuperAdmin = () => {
           {noteView === "Dashboard" ? <Dashboard /> : null}
           {noteView === "addBannerForm" ? <AddBanner /> : null}
           {noteView === "birthday" ? <Birthday /> : null}
+          {noteView === "leave" ? <LeaveTable /> : null}
+
           {noteView === "contacttable1" ? <ContactTableTeacher contactList={contactList}
               setContactList={setContactList}/> : null}
 

@@ -5,6 +5,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import TeacherProfile from "./TeacherProfile";
 import TeacherAddNote from "./TeacherAddNote";
 import AskQuery from "./AskQuery";
+import AskLeave from "./AskLeave";
 
 
 const TeacherPanel = () =>{
@@ -25,6 +26,12 @@ const handleAddNote = async () => {
 };
 const handleAskQuery = async () => {
   setNoteView("askquery");
+  ref.current.classList.add("slider__close");
+  ref.current.classList.remove("slider__open");
+  setSlideOpen(false);
+};
+const handleAskLeave = async () => {
+  setNoteView("leave");
   ref.current.classList.add("slider__close");
   ref.current.classList.remove("slider__open");
   setSlideOpen(false);
@@ -92,6 +99,13 @@ const btnclicked = () => {
           >
             ▶ Ask Query
           </div>
+          <div
+            style={{ padding: 20, cursor: "pointer", paddingLeft: 30 }}
+            className="note__btn"
+            onClick={handleAskLeave}
+          >
+            ▶ Ask Leave
+          </div>
           
           </div>
           <div
@@ -106,6 +120,8 @@ const btnclicked = () => {
           {noteView === "teacherprofile" ? <TeacherProfile/> : null}
           {noteView === "addnote" ? <TeacherAddNote/> : null}
           {noteView === "askquery" ? <AskQuery/> : null}
+          {noteView === "leave" ? <AskLeave/> : null}
+
           
         </div>
           
