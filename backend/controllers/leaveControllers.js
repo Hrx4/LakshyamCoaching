@@ -4,7 +4,7 @@ const leaveModels = require("../models/leaveModels");
 const createNotice = asyncHandler(async (req, res) => {
   const {  leaveDate, leaveDays , leavePdf } = req.body;
   let {teacherName} = req.body
-  teacherName = nameTeacher.trimEnd
+  teacherName = teacherName.trimEnd
   const notice = await leaveModels.create({
     teacherName, leaveDate, leaveDays : parseInt(leaveDays) , leavePdf , leaveStatus : "Pending"
   });
