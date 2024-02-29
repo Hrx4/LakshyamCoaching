@@ -29,7 +29,8 @@ const deleteNotice = asyncHandler(async (req, res) => {
 });
 
 const getTeacherNotice = asyncHandler(async(req , res) => {
-    const nameTeacher = req.params.id
+    let nameTeacher = req.params.id
+    nameTeacher = nameTeacher.trimEnd
     console.log(nameTeacher);
     let notices = await leaveModels.find({teacherName : nameTeacher })
     notices = notices.reverse();
